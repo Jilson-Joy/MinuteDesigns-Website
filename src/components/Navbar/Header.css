@@ -1,0 +1,42 @@
+/* .btnReachUs {
+  background-color: #ee964c;
+  border: "none";
+  width: "130px";
+  color: "black";
+  font-weight: 500;
+} */
+
+.btnReachUs {
+    background-color: #ee964c;
+    color: rgb(0, 0, 0);              
+    padding: 10px 20px;       
+    border: none;              
+    border-radius: 5px;
+    width: "130px";   
+    font-weight: 500; 
+    cursor: pointer;           
+    transition: background 0.5s ease-in-out; 
+  
+    &:hover {
+      background-color: #d4670d; 
+      color: #fff;
+    }
+  
+  }
+
+  .navbar-nav .nav-item:hover .dropdown-menu {
+    display: block;
+    margin-top: 0; 
+}
+ /* @media (min-width: 992px) {
+  .navbar-nav .nav-item:hover .dropdown-menu {
+      display: flex;
+      flex-direction: row; 
+  }
+
+  .navbar-nav .nav-item:hover .dropdown-item {
+      flex: 1; 
+      padding: 10px 15px; 
+      white-space: nowrap; 
+  }
+}  */
