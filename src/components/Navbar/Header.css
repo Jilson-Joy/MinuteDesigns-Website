@@ -7,11 +7,13 @@
 } */
 
 .btnReachUs {
-    background-color: #ee964c;
-    color: rgb(0, 0, 0);              
-    padding: 10px 20px;       
-    border: none;              
-    border-radius: 5px;
+    background-color: transparent;
+    /* color: rgb(0, 0, 0);               */
+    padding: 5px 20px;  
+    border-image: linear-gradient(to top, transparent 0%, #d4670d 100%) 1; 
+    /* border: 1px solid #ee964c;               */
+    /* border-radius: 5px; */
+    border-width: 2px;
     width: "130px";   
     font-weight: 500; 
     cursor: pointer;           
@@ -19,7 +21,7 @@
   
     &:hover {
       background-color: #d4670d; 
-      color: #fff;
+      color: # #d4670d;
     }
   
   }
