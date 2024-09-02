@@ -21,7 +21,7 @@
   
     &:hover {
       background-color: #d4670d; 
-      color: # #d4670d;
+      color: #d4670d;
     }
   
   }
@@ -30,15 +30,3 @@
     display: block;
     margin-top: 0; 
 }
- /* @media (min-width: 992px) {
-  .navbar-nav .nav-item:hover .dropdown-menu {
-      display: flex;
-      flex-direction: row; 
-  }
-
-  .navbar-nav .nav-item:hover .dropdown-item {
-      flex: 1; 
-      padding: 10px 15px; 
-      white-space: nowrap; 
-  }
-}  */
