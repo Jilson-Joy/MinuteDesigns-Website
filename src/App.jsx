@@ -4,8 +4,11 @@ import Header from './components/Navbar/Header';
 import './assets/css/commonStyle.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from './Pages/Home'; // Correct import
-import About from './Pages/About'; // Import About component
+import Home from './Pages/Home'; 
+import About from './Pages/About'; 
+import Work from './pages/Work';
+import Careers from './pages/Careers';
+import ReachUs from './pages/ReachUs';
 
 function App() {
   return (
@@ -15,6 +18,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/work" element={<Work/>} />
+          <Route path="/careers" element={<Careers/>} />
+          <Route path="/technologies" element={<Careers/>} />
+          <Route path="/reachUs" element={<ReachUs/>} />
         </Routes>
       </BrowserRouter>
     </>

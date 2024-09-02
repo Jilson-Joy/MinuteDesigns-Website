@@ -1,18 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-*{
-    padding: 0%;
-    margin: 0%;
-    box-sizing: border-box;
+* {
+  padding: 0%;
+  margin: 0%;
+  box-sizing: border-box;
 }
-body{
-    /* background-color: rgba(0, 0, 0, 0.815); */
-    font-family: "Poppins", sans-serif;
+
+:root {
+  /* Colors */
+  --primary-color: #ee964b;
+  --background-white-color: #f9f9f9;
+  --background-black-color: #0b141c;
+
+  /* Margins */
+  --small-margin: 8px;
+  --medium-margin: 16px;
+  --large-margin: 32px;
+
+  /* Padding */
+  --small-padding: 8px;
+  --medium-padding: 16px;
+  --large-padding: 32px;
+
+  /* Font Sizes */
+  --small-font-size: 14px;
+  --medium-font-size: 16px;
+  --large-font-size: 20px;
+  --font-family: "Poppins", sans-serif;
+  --regular-weight: 400;
+  --black-weight: 900;
+
+  /* Border Radius */
+  --border-radius: 5px;
 }
-.btn_ReachUs {
-    background-color: "#ee964c";
-    border: "none";
-    width: "130px";
-    color: "black";
-    font-weight: 500;
-  }
+body {
+  /* background-color: rgba(0, 0, 0, 0.815); */
+  font-family: "Poppins", sans-serif;
+}
+
+.hero-text {
+  font-weight: var(--black-weight);
+}
