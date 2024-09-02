@@ -10,9 +10,9 @@ import { Link } from 'react-router-dom';
 
 function Header() {
     return (
-        <Navbar expand="lg" bg="dark" data-bs-theme="dark">
+        <Navbar expand="lg" className='nav_bg'>
             <Container>
-               <Link to={"/"} className='logo'>
+                <Link to={"/"} className='logo'>
                     <Navbar.Brand href="#home" >
                         <img
                             alt=""
@@ -23,11 +23,11 @@ function Header() {
                         />{' '}
                         Minute designs
                     </Navbar.Brand>
-               </Link>
+                </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto text-left">
-                        <Nav.Link href="#home" className='pe-4'>About</Nav.Link>
+                        <Nav.Link href="#about" className='pe-4'>About</Nav.Link>
                         <Nav.Link href="#link" className='pe-4'>Work</Nav.Link>
                         <NavDropdown title="Technologies" id="basic-nav-dropdown" className='pe-4'>
                             <NavDropdown.Item href="#action/3.1">Technologies</NavDropdown.Item>
@@ -37,7 +37,7 @@ function Header() {
                             <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
                         </NavDropdown>
 
-                        <Nav.Link href="#link" className='pe-4'>Careers</Nav.Link>
+                        <Nav.Link href="#Careers" className='pe-4'>Careers</Nav.Link>
                         <button className='btnReachUs' >Reach Us</button>
                     </Nav>
                 </Navbar.Collapse>

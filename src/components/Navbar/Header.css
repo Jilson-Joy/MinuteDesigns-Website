@@ -7,8 +7,20 @@
 } */
 .logo{
   text-decoration: none;
-  font-family:Arial, Helvetica, sans-serif;
 }
+.nav_bg{
+  background-color: #0b141c;
+}
+.nav-link{
+  color: white !important; 
+}
+.nav-link:hover {
+  color: rgba(255, 255, 255, 0.685) !important; 
+}
+.nav_bg .nav-link.active {
+  color: #f8c471 !important; /* Same color as hover or a different one */
+}
+
 .btnReachUs {
     background-color: transparent;
     /* color: rgb(0, 0, 0);               */
