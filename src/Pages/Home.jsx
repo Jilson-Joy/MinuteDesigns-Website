@@ -5,10 +5,10 @@ import "../assets/css/mediaQuery.css";
 function Home() {
   return (
     <>
-      <section>
-        <div class="container hero-container">
-          <div class="row">
-            <div class="col-md-6">
+      <section className="hero-container">
+        <div class="container">
+        <div class="row align-items-center">
+        <div class="col-md-6 ">
               <h1 className="hero-text">
                 Design
                 <br />
@@ -30,6 +30,24 @@ function Home() {
                   <li class="item"></li>
                 </ul>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/*  */}
+      <section>
+        <div class="container">
+        <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 text-center text-md-left">
+          
+              <p className="hero-caption">
+                "Elevating user experience to its pinnacle."
+              </p>
+            </div>
+            <div class="col-md-6">
+           
             </div>
           </div>
         </div>
