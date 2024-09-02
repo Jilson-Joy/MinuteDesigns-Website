@@ -4,8 +4,8 @@ import Header from './components/Navbar/Header';
 import './assets/css/commonStyle.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from './Pages/Home'; // Correct import
-import About from './Pages/About'; // Import About component
+import Home from './Pages/Home'; 
+import About from './Pages/About'; 
 
 function App() {
   return (
