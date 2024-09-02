@@ -1,4 +1,14 @@
-/* BUTTON */
+/* .btnReachUs {
+  background-color: #ee964c;
+  border: "none";
+  width: "130px";
+  color: "black";
+  font-weight: 500;
+} */
+.logo{
+  text-decoration: none;
+  font-family:Arial, Helvetica, sans-serif;
+}
 .btnReachUs {
   position: relative;
   background: #EE964B;

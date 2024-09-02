@@ -6,21 +6,24 @@ import Logo from '../../assets/images/minute.jpg'
 import Button from 'react-bootstrap/Button';
 // import '../../assets/css/commonStyle.css'
 import './Header.css'
+import { Link } from 'react-router-dom';
 
 function Header() {
     return (
         <Navbar expand="lg" bg="dark" data-bs-theme="dark">
             <Container>
-                <Navbar.Brand href="#home" >
-                    <img
-                        alt=""
-                        src={Logo}
-                        width="40"
-                        height="40"
-                        className="d-inline-block align-top"
-                    />{' '}
-                    Minute designs
-                </Navbar.Brand>
+               <Link to={"/"} className='logo'>
+                    <Navbar.Brand href="#home" >
+                        <img
+                            alt=""
+                            src={Logo}
+                            width="40"
+                            height="40"
+                            className="d-inline-block align-top"
+                        />{' '}
+                        Minute designs
+                    </Navbar.Brand>
+               </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto text-left">
