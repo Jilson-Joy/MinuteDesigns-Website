@@ -5,14 +5,40 @@
     margin: 0%;
     box-sizing: border-box;
 }
+
+:root {
+    /* Colors */
+    --primary-color: #EE964B;
+    --background-white-color: #f9f9f9;
+    --background-black-color:#0b141c;
+  
+    /* Margins */
+    --small-margin: 8px;
+    --medium-margin: 16px;
+    --large-margin: 32px;
+  
+    /* Padding */
+    --small-padding: 8px;
+    --medium-padding: 16px;
+    --large-padding: 32px;
+  
+    /* Font Sizes */
+    --small-font-size: 14px;
+    --medium-font-size: 16px;
+    --large-font-size: 20px;
+    --font-family: "Poppins", sans-serif;
+    --regular-weight: 400;
+    --black-weight: 900;
+    
+    /* Border Radius */
+    --border-radius: 5px;
+  }
 body{
     /* background-color: rgba(0, 0, 0, 0.815); */
     font-family: "Poppins", sans-serif;
 }
-.btn_ReachUs {
-    background-color: "#ee964c";
-    border: "none";
-    width: "130px";
-    color: "black";
-    font-weight: 500;
-  }
+
+.hero-text
+{
+    font-weight: var( --black-weight);
+}
