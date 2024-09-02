@@ -1,27 +1,39 @@
 import React from "react";
-import '../assets/css/commonStyle.css'
+import "../assets/css/commonStyle.css";
+import "../assets/css/mediaQuery.css";
 
 function Home() {
   return (
     <>
-<section>
-        <div class="container">
+      <section>
+        <div class="container hero-container">
           <div class="row">
             <div class="col-md-6">
               <h1 className="hero-text">
-                Your text goes here. You can add any content like paragraphs,
-                headings, or even lists.
+                Design
+                <br />
+                Innovate
+                <br />
+                Thrive
               </h1>
+              <p className="hero-caption">
+                "Elevating user experience to its pinnacle."
+              </p>
             </div>
             <div class="col-md-6">
-            <h6>
-                Your text goes here. You can add any content like paragraphs,
-                headings, or even lists.
-              </h6>
+              <div className="hero-image-content">
+                <ul class="list">
+                  <li class="item"></li>
+                  <li class="item"></li>
+                  <li class="item"></li>
+                  <li class="item"></li>
+                  <li class="item"></li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-</section>
+      </section>
     </>
   );
 }
