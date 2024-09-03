@@ -1,17 +1,34 @@
-/* .btnReachUs {
-  background-color: #ee964c;
-  border: "none";
-  width: "130px";
-  color: "black";
-  font-weight: 500;
-} */
-.logo{
+.logo {
   text-decoration: none;
-  font-family:Arial, Helvetica, sans-serif;
 }
+.nav_bg {
+  background-color: #0b141c;
+}
+.nav-link {
+  color: white !important;
+}
+.nav-link:hover {
+  color: rgba(255, 255, 255, 0.685) !important;
+}
+.nav_bg .nav-link.active {
+  color: #706c6c !important; /* Same color as hover or a different one */
+}
+
+/*  Technologies dropdown*/
+.navbar-nav .dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+.dropdown-menu {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+/*  */
 .btnReachUs {
   position: relative;
-  background: #EE964B;
+  background: #ee964b;
   border-radius: 5px;
   width: 120px;
   height: 40px;
@@ -24,26 +41,25 @@
   transition: color 0.3s ease;
 }
 .btnReachUs::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
-  left: -100%; 
+  left: -100%;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.1);
-  transition: left 0.3s ease; 
+  transition: left 0.3s ease;
   z-index: -1;
 }
 .btnReachUs:hover::before {
   left: 0;
 }
 .btnReachUs:hover {
-  color: #fff; 
+  color: #fff;
 }
 /* NAVBAR */
-  .navbar-nav .nav-item:hover .dropdown-menu {
-    display: block;
-    margin-top: 0; 
-   }
-
+.navbar-nav .nav-item:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
 
