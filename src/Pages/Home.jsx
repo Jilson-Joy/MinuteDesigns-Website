@@ -4,6 +4,7 @@ import "../assets/css/mediaQuery.css";
 import Button from 'react-bootstrap/Button';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from "react-router-dom";
+import landImg from '../assets/images/social-media.gif'
 
 function Home() {
 
@@ -63,8 +64,36 @@ function Home() {
               </p>
             </div>
             <div className="col-md-6">
+            <div class="land_animation">
+   <div class="user user1"></div>
+   <div class="user user2"></div>
+   <div class="user user3"></div>
+   <div class="user user4"></div>
+   <div class="user user5"></div>
+   <div class="user user6"></div>
+   <div class="user user7"></div>
+   <div class="user user8"></div>
 
-              <div className="wrapper">
+   <div class="line line1"></div>
+   <div class="line line2"></div>
+   <div class="line line3"></div>
+   <div class="line line4"></div>
+   <div class="line line5"></div>
+   <div class="line line6"></div>
+   <div class="line line7"></div>
+   <div class="line line8"></div>
+   <div class="line line9"></div>
+   <div class="line line10"></div>
+   <div class="line line11"></div>
+   <div class="line line12"></div>
+   <div class="line line13"></div>
+   <div class="line line14"></div>
+</div>
+            {/* <img
+                          src={landImg}
+                          style={{ width: '80%', height: 'auto' }}
+                        /> */}
+              {/* <div className="wrapper">
                 <div className="img_container">
                   <input type="radio" name="slide" id="c1" checked />
                   <label for="c1" className="card">
@@ -110,7 +139,7 @@ function Home() {
                     </div>
                   </label>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -118,48 +147,42 @@ function Home() {
 
 
       {/* Technologies   */}
-      <section >
-
-          <div className="col-md-12 d-flex justify-content-center align-items-center">
-            <h1>Technologies</h1>
-          </div>
-
-        <div className="container technologies mt-5">
-          <div className="row d-flex justify-content-between align-items-center ">
-
-              <div className="row align-items-center">
-                {technologiesData.map((tech, index) => (
-                  <div className="col-md-6">
-                    <div key={index} className="row p-3">
-                      <div className="col-md-6">
-                        <h3>{tech.title}</h3>
-                        <p>{tech.description}</p>
-                        <Link to={tech.link} style={{ textDecoration: 'none' }}>
-                          <div className="button-with-text">
-                            <button className="readMore">
-                              <ArrowUpRight className="icon" />
-                              <span className="readMore-text">Read More</span>
-                            </button>
-                          </div>
-                        </Link>
-                      </div >
-                      <div className="col-md-6">
-                        <img
-                          src={tech.image}
-                          alt={tech.title}
-                          className="card_img"
-                          style={{ width: '100%', height: 'auto' }}
-                        />
-                      </div>
-                    </div>
-                    <hr />
-                  </div>
-   
-                ))}
-              </div>
+  <section className="parallax-section">
+  <div className="container technologies-container">
+    <div className="col-md-12 d-flex justify-content-center align-items-center">
+      <h1>Technologies</h1>
+    </div>
+    <div className="row d-flex justify-content-between align-items-center">
+      {technologiesData.map((tech, index) => (
+        <div className="col-md-6" key={index}>
+          <div className="row p-3">
+            <div className="col-md-6">
+              <h3>{tech.title}</h3>
+              <p>{tech.description}</p>
+              <Link to={tech.link} style={{ textDecoration: 'none' }}>
+                <div className="button-with-text">
+                  <button className="readMore">
+                    <ArrowUpRight className="icon" />
+                    <span className="readMore-text">Read More</span>
+                  </button>
+                </div>
+              </Link>
             </div>
+            <div className="col-md-6">
+              <img
+                src={tech.image}
+                alt={tech.title}
+                className="card_img"
+                style={{ width: '100%', height: 'auto' }}
+              />
+            </div>
+          </div>
+          <hr />
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
     </>
   );
