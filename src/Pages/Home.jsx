@@ -119,14 +119,14 @@ function Home() {
 
       {/* Technologies   */}
       <section >
-        <div className="row">
-          <div className="col-md d-flex justify-content-center align-items-center">
+
+          <div className="col-md-12 d-flex justify-content-center align-items-center">
             <h1>Technologies</h1>
           </div>
-        </div>
+
         <div className="container technologies mt-5">
           <div className="row d-flex justify-content-between align-items-center ">
-            <div className="col-md">
+
               <div className="row align-items-center">
                 {technologiesData.map((tech, index) => (
                   <div className="col-md-6">
@@ -152,11 +152,12 @@ function Home() {
                         />
                       </div>
                     </div>
+                    <hr />
                   </div>
+   
                 ))}
               </div>
             </div>
-          </div>
         </div>
       </section>
 
