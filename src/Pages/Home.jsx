@@ -147,18 +147,20 @@ function Home() {
 
 
       {/* Technologies   */}
+    
   <section className="parallax-section">
+    
   <div className="container technologies-container">
-    <div className="col-md-12 d-flex justify-content-center align-items-center">
-      <h1>Technologies</h1>
+  <div className="col-md-12 d-flex align-items-center">
+      <h1>Our Technologies</h1>
     </div>
-    <div className="row d-flex justify-content-between align-items-center">
+    <div className="row d-flex justify-content-between align-items-center mt-5 mb-2">
       {technologiesData.map((tech, index) => (
         <div className="col-md-6" key={index}>
           <div className="row p-3">
             <div className="col-md-6">
               <h3>{tech.title}</h3>
-              <p>{tech.description}</p>
+              <p className="tech-desc">{tech.description}</p>
               <Link to={tech.link} style={{ textDecoration: 'none' }}>
                 <div className="button-with-text">
                   <button className="readMore">
