@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Logo from '../../assets/images/minute.jpg'
+import Logo from '../../assets/images/MLOGO.png'
 import Button from 'react-bootstrap/Button';
 import { Link, useLocation } from 'react-router-dom';
 import './Header.css'
@@ -12,15 +12,13 @@ function Header() {
     return (
         <Navbar expand="lg" className='nav_bg'>
             <Container>
-                <Navbar.Brand as={Link} to="/" >
+                <Navbar.Brand as={Link} to="/" className='Nav-logo d-flex'>
                     <img
                         alt=""
                         src={Logo}
-                        width="40"
-                        height="40"
                         className="d-inline-block align-top"
-                    />{' '}
-                    Minute designs
+                    />
+                   <div className='logo_minute_text'> <h5 className='Logo-text'>Minute Designs</h5></div>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
