@@ -23,7 +23,7 @@
 
   /* Font Sizes */
   --small-font-size: 14px;
-  --medium-font-size: 20px;
+  --medium-font-size: 30px;
   --large-font-size: 5.5rem;
   --font-family: "Poppins", sans-serif;
   --regular-weight: 400;
@@ -45,7 +45,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full height of the viewport */
+  height: 100vh;  
   width: 100%;
 }
 .hero-text {
@@ -276,6 +276,10 @@ input:checked + label .description {
 .button-container {
   position: relative;
   display: inline-block;
+}
+.tech-desc
+{
+  font-size: var(--small-font-size) ;
 }
 
 .readMore {
@@ -527,4 +531,32 @@ input:checked + label .description {
   left: 70%;
   width: 32%;
   transform: rotate(124deg);
+}
+
+/* About */
+.page-container
+{
+  border-radius:var( --border-radius) ;
+  background-color: rgba(238, 238, 238, 0.582);
+  min-height: 400px;
+  margin-top: var(--medium-margin) ;
+  display: flex;
+  align-items: center;
+}
+.about-text 
+{
+  font-size: var(--medium-font-size);
+  padding-top: var( --medium-padding);
+  animation: fadeUp 1s ease-in-out forwards;
+}
+/* animation fade */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
