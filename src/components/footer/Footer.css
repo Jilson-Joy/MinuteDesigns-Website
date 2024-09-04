@@ -1,0 +1,58 @@
+.footer {
+  background-color: #0b141c;
+  min-height: 300px;
+  color: azure;
+}
+.footer_logo {
+  max-width: 45px;
+  max-height: 45px;
+}
+.footer_link p {
+  font-size: 15px;
+  opacity: 0.5;
+  cursor: pointer;
+  line-height: 1;
+}
+.footer_link p:hover {
+  opacity: 1;
+  color: #ee964b;
+}
+
+.footer_address p {
+  font-size: 13px;
+  /* max-width: 200px; */
+}
+.phone {
+  display: flex;
+  align-items: center;
+}
+.phone_icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.email_icons {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.icons {
+  visibility: hidden;
+}
+
+.copyright {
+  font-size: 13px;
+  opacity: 0.5;
+  text-align: end;
+}
+@media screen and (max-width: 780px) {
+  .footer {
+    margin: auto;
+    text-align: center;
+  }
+  .copyright {
+    text-align: center;
+  }
+}
