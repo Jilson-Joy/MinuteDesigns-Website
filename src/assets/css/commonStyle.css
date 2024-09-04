@@ -14,7 +14,7 @@
   /* Margins */
   --small-margin: 8px;
   --medium-margin: 52px;
-  --large-margin: 32px;
+  --large-margin: 82px;
 
   /* Padding */
   --small-padding: 8px;
@@ -33,6 +33,7 @@
   --border-radius: 5px;
   --container-radius: 15px;
 }
+
 body {
   font-family: "Poppins", sans-serif;
   height: 100vh;

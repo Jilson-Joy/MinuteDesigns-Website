@@ -5,6 +5,7 @@ import mission from "../assets/images/mission.gif";
 import AboutImg from "../assets/images/about-img.png";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import "../assets/css/commonStyle.css";
 
 function About() {
   useEffect(() => {
@@ -37,7 +38,7 @@ function About() {
               lasting impression. Your vision, our expertise—together, we
               innovate
             </p>
-            <div className="row-icons d-flex justify-content-around align-items-center pt-5 ">
+            <div className="row-icons d-flex justify-content-around align-items-center">
               <img src={organization} style={{ width: "8%", height: "auto" }} />
               <img
                 src={implementation}
