@@ -5,7 +5,7 @@ import Button from "react-bootstrap/Button";
 import { ArrowUpRight, MousePointer2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import landImg from "../assets/images/social-media.gif";
-
+import CarouselBox from "../components/carousel/CarouselBox"
 
 function Home() {
 
@@ -172,12 +172,12 @@ function Home() {
         </div>
       </section>
 
-      {/* Technologies   */}
+      {/* Services   */}
 
       <section className="parallax-section">
         <div className="container technologies-container">
           <div className="col-md-12 d-flex align-items-center">
-            <h1>Our Technologies</h1>
+            <h1>Our Services</h1>
           </div>
           <div className="row d-flex justify-content-between align-items-center mt-5 mb-2">
             {technologiesData.map((tech, index) => (
@@ -210,6 +210,12 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <div className="container">
+        {/* Testimonials */}
+        <h1>Testimonials</h1>
+        <CarouselBox />
+      </div>
     </>
   );
 }
