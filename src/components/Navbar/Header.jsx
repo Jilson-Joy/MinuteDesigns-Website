@@ -10,7 +10,7 @@ import './Header.css'
 function Header() {
     const location = useLocation();
     return (
-        <Navbar expand="lg" className='nav_bg'>
+        <Navbar expand="lg" className='nav_bg' sticky='top'>
             <Container>
                 <Navbar.Brand as={Link} to="/" className='Nav-logo d-flex'>
                     <img
