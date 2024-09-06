@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import logo from "../../assets/images/minute.jpg";
+import logo from "../../assets/images/MLOGO.png";
 import { Phone } from "lucide-react";
 import { Mail } from "lucide-react";
 
@@ -10,7 +10,12 @@ function Footer() {
       <div className="container">
         <div className="footer_content row pt-5">
           <div className="col-md-3">
-            <h3> Minute Designs</h3>
+            <div className="minute_logo_div">
+              <img src={logo} alt=""  className="footer_logo "/>
+              <div className="minute_text">
+                <h5 className='Logo-text'>Minute Designs</h5>
+                </div>
+            </div>
             <div className="footer_address mt-4">
               <p>
                 3rd Floor, Thakkolkaran Building, Metro Station, near
@@ -28,7 +33,7 @@ function Footer() {
               <p>About</p>
               <p>Services</p>
               <p>Career</p>
-              <p>Contact Us</p>
+              <p>Reach Us</p>
               <p>Terms & Conditions</p>
             </div>
           </div>
