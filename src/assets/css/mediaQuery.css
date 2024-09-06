@@ -92,4 +92,11 @@
   .card > .card_row > .description {
     width: 100%;
   }
+
+  /* dot  */
+  .dot-container {
+    animation: none;
+    max-width: 40px;
+    margin-left: 50px;
+  }
 }

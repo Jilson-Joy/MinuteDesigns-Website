@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/css/commonStyle.css";
 import "../assets/css/mediaQuery.css";
 import Button from "react-bootstrap/Button";
@@ -6,11 +6,11 @@ import { ArrowUpRight, MousePointer2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import landImg from "../assets/images/social-media.gif";
 
-
 function Home() {
 
+// dot animation
 
-  const [activeDescription, setActiveDescription] = useState('vision');
+  const [activeDescription, setActiveDescription] = useState("vision");
 
   const technologiesData = [
     {
@@ -51,6 +51,7 @@ function Home() {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6 ">
+
               <h1 className="hero-text">
                 Design
                 <br />
@@ -63,7 +64,111 @@ function Home() {
               </p>
             </div>
             <div className="col-md-6">
-              <div class="land_animation">
+
+            <div class="dot-container">
+                <div class="group top">
+                  <span>M</span>
+                  <span>I</span>
+                  <span>N</span>
+                  <span>U</span>
+                  <span>T</span>
+                  <span>E</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="group top">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="group right">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="group left">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="middle">
+                  <span>•</span>
+                </div>
+                <div class="group right">
+                <span>D</span>
+                  <span>E</span>
+                  <span>S</span>
+                  <span>I</span>
+                  <span>G</span>
+                  <span>N</span>
+                  <span>S</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="group left">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="group bottom">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="group bottom">
+                  <span></span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+              </div>
+
+
+        
+              {/* <div class="land_animation">
                 <div class="user user1"></div>
                 <div class="user user2"></div>
                 <div class="user user3"></div>
@@ -87,7 +192,7 @@ function Home() {
                 <div class="line line12"></div>
                 <div class="line line13"></div>
                 <div class="line line14"></div>
-              </div>
+              </div> */}
               {/* <div className="wrapper">
                 <div className="img_container">
                   <input type="radio" name="slide" id="c1" checked />
@@ -145,25 +250,55 @@ function Home() {
         <div className="container vm-section">
           <div className="row d-flex justify-content-between align-items-center mb-5 p-5">
             <div className="col-md-6">
-              <div className="d-flex align-items-center " onClick={() => setActiveDescription('vision')}>
-                <MousePointer2 className={`vm-icon ${activeDescription === 'vision' ? 'active' : ''}`} />
-                <p className={`vm-icon ${activeDescription === 'vision' ? 'active' : ''} hero-caption`}  >Vision</p>
+              <div
+                className="d-flex align-items-center "
+                onClick={() => setActiveDescription("vision")}
+              >
+                <MousePointer2
+                  className={`vm-icon ${
+                    activeDescription === "vision" ? "active" : ""
+                  }`}
+                />
+                <p
+                  className={`vm-icon ${
+                    activeDescription === "vision" ? "active" : ""
+                  } hero-caption`}
+                >
+                  Vision
+                </p>
               </div>
-              <div className="d-flex align-items-center mt-5" onClick={() => setActiveDescription('mission')}>
-                <MousePointer2 className={`vm-icon ${activeDescription === 'mission' ? 'active' : ''}`} />
-                <p className={`vm-icon ${activeDescription === 'mission' ? 'active' : ''} hero-caption`}  >Mission</p>
+              <div
+                className="d-flex align-items-center mt-5"
+                onClick={() => setActiveDescription("mission")}
+              >
+                <MousePointer2
+                  className={`vm-icon ${
+                    activeDescription === "mission" ? "active" : ""
+                  }`}
+                />
+                <p
+                  className={`vm-icon ${
+                    activeDescription === "mission" ? "active" : ""
+                  } hero-caption`}
+                >
+                  Mission
+                </p>
               </div>
             </div>
             <div className="col-md-6">
               <div className="description-box">
-                {activeDescription === 'vision' && (
+                {activeDescription === "vision" && (
                   <p className="vm-desc">
-                    Our goal is to become a leading digital innovation force, offering businesses efficient and scalable software solutions to thrive in the digital age.
+                    Our goal is to become a leading digital innovation force,
+                    offering businesses efficient and scalable software
+                    solutions to thrive in the digital age.
                   </p>
                 )}
-                {activeDescription === 'mission' && (
+                {activeDescription === "mission" && (
                   <p className="vm-desc">
-                    We focus on continuous improvement, staying ahead of technology trends, and fostering a collaborative environment that inspires creativity and innovation.
+                    We focus on continuous improvement, staying ahead of
+                    technology trends, and fostering a collaborative environment
+                    that inspires creativity and innovation.
                   </p>
                 )}
               </div>
