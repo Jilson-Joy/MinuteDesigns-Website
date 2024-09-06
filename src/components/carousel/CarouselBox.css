@@ -1,0 +1,123 @@
+.carouselbox {
+  position: relative;
+  padding: 10px;
+  
+}
+
+.card {
+  width: 600px; 
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  display: flex;
+  align-items: center;
+}
+
+.quote {
+  height: 30px;
+  width: 30px;
+  color: #ee964b;
+}
+.card_container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.card_text {
+  font-size: 15px;
+  max-width: 500px;
+  min-height: 80px;
+  text-overflow: ellipsis;
+}
+
+.carouselbox_img {
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+}
+
+.carouselbox_text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Position the Previous and Next Buttons */
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  border: none;
+  font-size: 30px;
+  color: #050303;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.carousel-control-prev {
+  left: -50px; /* Adjust the position based on your layout */
+}
+
+.carousel-control-next {
+  right: -50px; /* Adjust the position based on your layout */
+}
+
+/* Button hover effect */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  /* background-color: rgba(145, 17, 17, 0.8); */
+  color: #050303;
+}
+.icon_arrow{
+   width: 40px;
+   height: 50px;
+   background-color: #ee964b;
+   border-radius: 50px;
+
+}
+.icon_arrow:hover{
+   width: 50px;
+   height: 50px;
+   /* transition: 2s ease-in-out; */
+   background-color: #ee964b;
+   border-radius: 50px;
+
+}
+/* Mobile Responsive */
+@media screen and (max-width: 780px) {
+  .carouselbox {
+    flex-direction: column;
+    gap: 5px;
+  }
+.card{
+    width: 100%;
+    
+}
+  .carousel-control-prev {
+    left: 5%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+  .carousel-control-next {
+    right: 5%;
+    display: flex;
+    justify-content: space-between;
+    /* background-color: rgba(37, 33, 33, 0.8); */
+  }
+  .icon_arrow{
+    width: 50px;
+    height: 50px;
+    background-color: #ee964b;
+    border-radius: 50px;
+ }
+
+}
+.carousel-indicators [data-bs-target]{
+    /* position: absolute; */
+    /* top:10px; */
+    /* width: 15px;
+    height: 15px; */
+    /* border-radius: 50%; */
+    background-color: #ee964b;
+    display: none;
+}
