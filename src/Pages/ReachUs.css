@@ -1,0 +1,79 @@
+.reachUs_container {
+  border-radius: var(--border-radius);
+  background-color: rgba(238, 238, 238, 0.582);
+  background-image: url("../assets/images/bg-lines.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: var(--medium-margin);
+  margin-bottom: var(--medium-margin);
+  border-radius: 30px;
+  padding: 10px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.reachUs_container{
+    margin-top: 20vh;
+}
+.reachUs {
+  min-height: 80vh;
+}
+
+.form_group {
+  /* background-color: rgb(255, 255, 255); */
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.form_value {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.form_email {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.submit_btn {
+  width: 100%;
+  border-radius: 20px;
+  background-color: #ee964b;
+  border: none;
+}
+.input_box {
+  border-radius: 20px;
+}
+
+.map-responsive {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  width: 100%;
+  
+}
+
+.map-responsive iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Mobile devices (up to 600px) */
+@media screen and (max-width: 780px) {
+    .reachUs_container{
+        margin-top: 5px;
+    }
+  .row-icons {
+    display: flex;
+    flex-direction: column;
+  }
+.reachUs{
+    padding: 10px;
+}
+.form_input{
+    gap: 10px;
+}
+}
