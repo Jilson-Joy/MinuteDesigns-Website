@@ -720,3 +720,26 @@ input:checked + label .description {
 .circle-container .progress-circle:nth-child(3) {
   animation-delay: 3s;
 }
+
+/* vision mission */
+.vm-section {
+  position: relative;
+  background-color: #0b141c;
+  border-radius: var(--border-radius);
+  color: #f9f9f9;
+  margin-top: var(--large-margin) ;
+}
+.vm-desc
+{
+  font-size: 18px;
+}
+.vm-icon
+{
+  margin-bottom:'10';
+  margin: 0 4px;
+  cursor: pointer;
+ 
+}
+.vm-icon.active {
+  color:var(--primary-color);
+}
