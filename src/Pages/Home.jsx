@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../assets/css/commonStyle.css";
 import "../assets/css/mediaQuery.css";
 import Button from "react-bootstrap/Button";
-import { ArrowUpRight, MousePointer2  } from "lucide-react";
+import { ArrowUpRight, MousePointer2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import landImg from "../assets/images/social-media.gif";
 
@@ -145,31 +145,31 @@ function Home() {
         <div className="container vm-section">
           <div className="row d-flex justify-content-between align-items-center mb-5 p-5">
             <div className="col-md-6">
-            <div className="d-flex align-items-center ">
-            <MousePointer2  onClick={() => setActiveDescription('vision')}  className={`vm-icon ${activeDescription === 'vision' ? 'active' : ''}`}  /> 
-             <p className={`vm-icon ${activeDescription === 'vision' ? 'active' : ''} hero-caption`  }  >Vision</p>  
+              <div className="d-flex align-items-center " onClick={() => setActiveDescription('vision')}>
+                <MousePointer2 className={`vm-icon ${activeDescription === 'vision' ? 'active' : ''}`} />
+                <p className={`vm-icon ${activeDescription === 'vision' ? 'active' : ''} hero-caption`}  >Vision</p>
+              </div>
+              <div className="d-flex align-items-center mt-5" onClick={() => setActiveDescription('mission')}>
+                <MousePointer2 className={`vm-icon ${activeDescription === 'mission' ? 'active' : ''}`} />
+                <p className={`vm-icon ${activeDescription === 'mission' ? 'active' : ''} hero-caption`}  >Mission</p>
+              </div>
             </div>
-          <div className="d-flex align-items-center mt-5">  
-          <MousePointer2 onClick={() => setActiveDescription('mission')}  className={`vm-icon ${activeDescription === 'mission' ? 'active' : ''}`}  /> 
-          <p className={`vm-icon ${activeDescription === 'mission' ? 'active' : ''} hero-caption`  }  >Mission</p> 
+            <div className="col-md-6">
+              <div className="description-box">
+                {activeDescription === 'vision' && (
+                  <p className="vm-desc">
+                    Our goal is to become a leading digital innovation force, offering businesses efficient and scalable software solutions to thrive in the digital age.
+                  </p>
+                )}
+                {activeDescription === 'mission' && (
+                  <p className="vm-desc">
+                    We focus on continuous improvement, staying ahead of technology trends, and fostering a collaborative environment that inspires creativity and innovation.
+                  </p>
+                )}
+              </div>
             </div>
-            </div>
-      <div className="col-md-6">
-      <div className="description-box">
-          {activeDescription === 'vision' && (
-            <p className="vm-desc">
-              Our goal is to become a leading digital innovation force, offering businesses efficient and scalable software solutions to thrive in the digital age.
-            </p>
-          )}
-          {activeDescription === 'mission' && (
-            <p className="vm-desc">
-              We focus on continuous improvement, staying ahead of technology trends, and fostering a collaborative environment that inspires creativity and innovation.
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
           </div>
+        </div>
       </section>
 
       {/* Technologies   */}
