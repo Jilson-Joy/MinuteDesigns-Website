@@ -145,12 +145,12 @@ function Home() {
         <div className="container vm-section">
           <div className="row d-flex justify-content-between align-items-center mb-5 p-5">
             <div className="col-md-6">
-            <div className="d-flex align-items-center ">
-            <MousePointer2  onClick={() => setActiveDescription('vision')}  className={`vm-icon ${activeDescription === 'vision' ? 'active' : ''}`}  /> 
+            <div className="d-flex align-items-center "  onClick={() => setActiveDescription('vision')} >
+            <MousePointer2  className={`vm-icon ${activeDescription === 'vision' ? 'active' : ''}`}  /> 
              <p className={`vm-icon ${activeDescription === 'vision' ? 'active' : ''} hero-caption`  }  >Vision</p>  
             </div>
-          <div className="d-flex align-items-center mt-5">  
-          <MousePointer2 onClick={() => setActiveDescription('mission')}  className={`vm-icon ${activeDescription === 'mission' ? 'active' : ''}`}  /> 
+          <div className="d-flex align-items-center mt-5" onClick={() => setActiveDescription('mission')}>  
+          <MousePointer2   className={`vm-icon ${activeDescription === 'mission' ? 'active' : ''}`}  /> 
           <p className={`vm-icon ${activeDescription === 'mission' ? 'active' : ''} hero-caption`  }  >Mission</p> 
             </div>
             </div>
