@@ -5,6 +5,8 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Logo from '../../assets/images/MLOGO.png'
 import Button from 'react-bootstrap/Button';
 import { Link, useLocation } from 'react-router-dom';
+import { Smartphone, MonitorSmartphone  } from 'lucide-react';
+
 import './Header.css'
 
 function Header() {
@@ -40,15 +42,14 @@ function Header() {
                             Work
                         </Nav.Link>
                         <NavDropdown
-                            title="Technologies"
+                            title="Services"
                             id="basic-nav-dropdown"
                             className='pe-4'
                         >
-                            <NavDropdown.Item href="#action/3.1">Technologies</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.1"><MonitorSmartphone />Web Application</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2"><Smartphone/>Mobile Application</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">E-commerce</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">UI/UX</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link
                             as={Link}
