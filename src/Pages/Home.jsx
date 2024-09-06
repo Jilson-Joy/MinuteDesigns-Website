@@ -68,12 +68,12 @@ function Home() {
 
             <div class="dot-container">
                 <div class="group top">
-                  <span>M</span>
-                  <span>I</span>
-                  <span>N</span>
-                  <span>U</span>
-                  <span>T</span>
-                  <span>E</span>
+                  <span style={{color:'#ee964b', fontWeight:'bold'}}>M</span>
+                  <span style={{color:'#ee964b', fontWeight:'bold'}}>I</span>
+                  <span style={{color:'#ee964b', fontWeight:'bold'}}>N</span>
+                  <span style={{color:'#ee964b', fontWeight:'bold'}}>U</span>
+                  <span style={{color:'#ee964b', fontWeight:'bold'}}>T</span>
+                  <span style={{color:'#ee964b', fontWeight:'bold'}}>E</span>
                   <span>•</span>
                   <span>•</span>
                   <span>•</span>
@@ -166,9 +166,6 @@ function Home() {
                   <span>•</span>
                 </div>
               </div>
-
-
-        
               {/* <div class="land_animation">
                 <div class="user user1"></div>
                 <div class="user user2"></div>
@@ -244,6 +241,32 @@ function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section>
+      <div className="container ">
+      <div className="row">
+      <div class="flex-container-mission">
+  <div class="flex-slide-mission home-mission">
+    <div class="flex-title-mission flex-title-home-mission">Vission</div>
+    <div class="flex-about-mission flex-about-home-mission">
+      <p>Our goal is to become a leading digital innovation force,
+                    offering businesses efficient and scalable software
+                    solutions to thrive in the digital age.</p>
+    </div>
+  </div>
+  <div class="flex-slide-mission about-mission">
+    <div class="flex-title-mission">Mission</div>
+    <div class="flex-about-mission"><p>
+     <p> We focus on continuous improvement, staying ahead of
+                    technology trends, and fostering a collaborative environment
+                    that inspires creativity and innovation.</p>
+    </p></div>
+  </div>
+</div>
+                
+      </div>
+      </div>
       </section>
 
       {/* Second Section */}
