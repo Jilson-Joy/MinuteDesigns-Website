@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import "../assets/css/commonStyle.css";
 import "../assets/css/mediaQuery.css";
 import Button from "react-bootstrap/Button";
@@ -6,6 +6,7 @@ import { ArrowUpRight, MousePointer2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import landImg from "../assets/images/social-media.gif";
 import CarouselBox from "../components/carousel/CarouselBox";
+import Technologies from "../components/technologies/Technologies";
 
 function Home() {
   // dot animation
@@ -387,8 +388,15 @@ function Home() {
         </div>
       </section>
 
-      <div className="container">
+      {/* Technologies */}
+      <div className="container  mb-5">
+      <h1>Technologies</h1>
+        <Technologies />
+      </div>
+
+
         {/* Testimonials */}
+      <div className="container">
         <h1>Testimonials</h1>
         <CarouselBox />
       </div>

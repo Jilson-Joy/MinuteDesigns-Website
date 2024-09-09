@@ -8,16 +8,21 @@
     margin: 5px;
     padding: 10px 15px;
     border: none;
-    background-color: #246df8;
+    border-radius: 10px;
+    width: 100px;
+    background-color: #ee964b;
     color: white;
     cursor: pointer;
     font-size: 14px;
   }
   
   .filters button:hover {
-    background-color: #1a4bba;
+    background-color: #0b141c;
   }
-  
+  .filters button.active {
+    background-color: #0b141c;
+    color: white;
+  }
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -36,3 +41,4 @@
     height: auto;
     display: block;
   }
+
