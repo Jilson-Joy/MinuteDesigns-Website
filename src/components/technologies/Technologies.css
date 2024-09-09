@@ -1,0 +1,60 @@
+.Technologies_container {
+    display: flex;
+    justify-content: start; /* Start items from the left */
+    align-items: center;
+    width: 100%; /* Full width of the container */
+    overflow: hidden; /* Hide content that overflows the container */
+    white-space: nowrap;
+    /* position: relative;  */
+    padding: 10px;
+}
+
+.Technologies_slider {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    /* animation: scroll 20s linear infinite; */
+}
+
+.Technologies_icons {
+    display: inline-block;
+
+    text-align: center;
+    width: 200px; /* Adjust based on the content width */
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 20px;
+}
+
+.Technologies_icons img {
+    width: 80px;
+    aspect-ratio:3/3;
+    object-fit: contain;
+    /* mix-blend-mode: color-burn; */
+    padding: 10px;
+
+}
+
+.Technologies_icons h5 {
+    margin-top: 10px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+@keyframes scroll {
+    10% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+   /* Mobile devices (up to 600px) */
+   @media screen and (max-width: 1024px) {
+    .Technologies_slider {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        animation: scroll 25s linear infinite;
+    }
+    
+  }

@@ -4,8 +4,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Logo from '../../assets/images/MinuteLogo.png'
 import { Link, useLocation } from 'react-router-dom';
-import { Smartphone, MonitorSmartphone  } from 'lucide-react';
-
+import { Smartphone, MonitorSmartphone } from 'lucide-react';
+import headerIcons from '../../assets/images/about-img.png'
 import './Header.css'
 
 function Header() {
@@ -51,12 +51,13 @@ function Header() {
                         <NavDropdown
                             title="Services"
                             id="basic-nav-dropdown"
-                            className='pe-4'
+                            className='pe-4 '
                         >
-                            <NavDropdown.Item href="#action/3.1"><MonitorSmartphone />Web Application</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2"><Smartphone/>Mobile Application</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">E-commerce</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">UI/UX</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/webapp"><img src={headerIcons} alt="" className='headerIconImg' /> Web Application</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/mobileApp"><Smartphone />Mobile Application</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/e-commerce">E-commerce</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/uiux">UI/UX</NavDropdown.Item>
+
                         </NavDropdown>
                         <Nav.Link
                             as={Link}
@@ -68,7 +69,8 @@ function Header() {
                         </Nav.Link>
                         <Link to={'/reachUs'}>
                             <button
-                                className='btnReachUs'><span>Reach Us</span></button>
+                                className='btnReachUs'><span>Reach Us</span>
+                            </button>
                         </Link>
                     </Nav>
                 </Navbar.Collapse>
