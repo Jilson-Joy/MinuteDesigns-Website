@@ -15,35 +15,35 @@ function Home() {
 
   const technologiesData = [
     {
-      title: "React",
+      title: "Web Application",
       description: "A JavaScript library for building user interfaces.",
       image:
         "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
-      link: "https://reactjs.org/",
+      link: "/webapp",
     },
     {
-      title: "Node.js",
+      title: "Mobile Application",
       description:
         "A JavaScript runtime built on Chrome's V8 JavaScript engine.",
       image:
         "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
-      link: "https://nodejs.org/",
+      link: "/mobileApp",
     },
     {
-      title: "GraphQL",
+      title: "E-commerce",
       description:
         "A query language for APIs and a server-side runtime for executing those queries.",
       image:
         "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
-      link: "https://graphql.org/",
+      link: "/e-commerce",
     },
     {
-      title: "GraphQL",
+      title: "UI/UX",
       description:
         "A query language for APIs and a server-side runtime for executing those queries.",
       image:
         "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
-      link: "https://graphql.org/",
+      link: "/uiux",
     },
   ];
   return (
