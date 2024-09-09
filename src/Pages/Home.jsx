@@ -2,47 +2,48 @@ import React, { useState } from "react";
 import "../assets/css/commonStyle.css";
 import "../assets/css/mediaQuery.css";
 import Button from "react-bootstrap/Button";
-import { ArrowUpRight, MousePointer2  } from "lucide-react";
+import { ArrowUpRight, MousePointer2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import landImg from "../assets/images/social-media.gif";
-
+import CarouselBox from "../components/carousel/CarouselBox";
+import Technologies from "../components/technologies/Technologies";
 
 function Home() {
+  // dot animation
 
-
-  const [activeDescription, setActiveDescription] = useState('vision');
+  const [activeDescription, setActiveDescription] = useState("vision");
 
   const technologiesData = [
     {
-      title: "React",
+      title: "Web Application",
       description: "A JavaScript library for building user interfaces.",
       image:
         "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
-      link: "https://reactjs.org/",
+      link: "/webapp",
     },
     {
-      title: "Node.js",
+      title: "Mobile Application",
       description:
         "A JavaScript runtime built on Chrome's V8 JavaScript engine.",
       image:
         "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
-      link: "https://nodejs.org/",
+      link: "/mobileApp",
     },
     {
-      title: "GraphQL",
+      title: "E-commerce",
       description:
         "A query language for APIs and a server-side runtime for executing those queries.",
       image:
         "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
-      link: "https://graphql.org/",
+      link: "/e-commerce",
     },
     {
-      title: "GraphQL",
+      title: "UI/UX",
       description:
         "A query language for APIs and a server-side runtime for executing those queries.",
       image:
         "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
-      link: "https://graphql.org/",
+      link: "/uiux",
     },
   ];
   return (
@@ -63,121 +64,224 @@ function Home() {
               </p>
             </div>
             <div className="col-md-6">
-              <div class="land_animation">
-                <div class="user user1"></div>
-                <div class="user user2"></div>
-                <div class="user user3"></div>
-                <div class="user user4"></div>
-                <div class="user user5"></div>
-                <div class="user user6"></div>
-                <div class="user user7"></div>
-                <div class="user user8"></div>
-
-                <div class="line line1"></div>
-                <div class="line line2"></div>
-                <div class="line line3"></div>
-                <div class="line line4"></div>
-                <div class="line line5"></div>
-                <div class="line line6"></div>
-                <div class="line line7"></div>
-                <div class="line line8"></div>
-                <div class="line line9"></div>
-                <div class="line line10"></div>
-                <div class="line line11"></div>
-                <div class="line line12"></div>
-                <div class="line line13"></div>
-                <div class="line line14"></div>
-              </div>
-              {/* <div className="wrapper">
-                <div className="img_container">
-                  <input type="radio" name="slide" id="c1" checked />
-                  <label for="c1" className="card">
-                    <div className="card_row">
-                      <div className="icon">1</div>
-                      <div className="description">
-                        <h4>Winter</h4>
-                        <p>Winter has so much to offer -
-                          creative activities</p>
-                      </div>
-                    </div>
-                  </label>
-                  <input type="radio" name="slide" id="c2" />
-                  <label for="c2" className="card">
-                    <div className="card_row">
-                      <div className="icon">2</div>
-                      <div className="description">
-                        <h4>Digital Technology</h4>
-                        <p>Gets better every day -
-                          stay tuned</p>
-                      </div>
-                    </div>
-                  </label>
-                  <input type="radio" name="slide" id="c3" />
-                  <label for="c3" className="card">
-                    <div className="card_row">
-                      <div className="icon">3</div>
-                      <div className="description">
-                        <h4>Globalization</h4>
-                        <p>Help people all over the world</p>
-                      </div>
-                    </div>
-                  </label>
-                  <input type="radio" name="slide" id="c4" />
-                  <label for="c4" className="card">
-                    <div className="card_row">
-                      <div className="icon">4</div>
-                      <div className="description">
-                        <h4>New technologies</h4>
-                        <p>Space engineering becomes
-                          more and more advanced</p>
-                      </div>
-                    </div>
-                  </label>
+              <div class="dot-container">
+                <div class="group top">
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                    M
+                  </span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                    I
+                  </span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                    N
+                  </span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                    U
+                  </span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                    T
+                  </span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                    E
+                  </span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
                 </div>
-              </div> */}
+                <div class="group top">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="group right">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="group left">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="middle">
+                  <span>•</span>
+                </div>
+                <div class="group right">
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>D</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>E</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>S</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>I</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>G</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>N</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>S</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="group left">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="group bottom">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div class="group bottom">
+                  <span></span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div className="container ">
+          <div className="row">
+            <div class="flex-container-mission">
+              <div class="flex-slide-mission home-mission">
+                <div class="flex-title-mission flex-title-home-mission">
+                  Vision
+                </div>
+                <div class="flex-about-mission flex-about-home-mission">
+                  <p>
+                    Our goal is to become a leading digital innovation force,
+                    offering businesses efficient and scalable software
+                    solutions to thrive in the digital age.
+                  </p>
+                </div>
+              </div>
+              <div class="flex-slide-mission about-mission">
+                <div class="flex-title-mission">Mission</div>
+                <div class="flex-about-mission">
+                  <p>
+              
+                      We focus on continuous improvement, staying ahead of
+                      technology trends, and fostering a collaborative
+                      environment that inspires creativity and innovation.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Second Section */}
-      <section>
+      {/* <section>
         <div className="container vm-section">
           <div className="row d-flex justify-content-between align-items-center mb-5 p-5">
             <div className="col-md-6">
-            <div className="d-flex align-items-center ">
-            <MousePointer2  onClick={() => setActiveDescription('vision')}  className={`vm-icon ${activeDescription === 'vision' ? 'active' : ''}`}  /> 
-             <p className={`vm-icon ${activeDescription === 'vision' ? 'active' : ''} hero-caption`  }  >Vision</p>  
+              <div
+                className="d-flex align-items-center "
+                onClick={() => setActiveDescription("vision")}
+              >
+                <MousePointer2
+                  className={`vm-icon ${
+                    activeDescription === "vision" ? "active" : ""
+                  }`}
+                />
+                <p
+                  className={`vm-icon ${
+                    activeDescription === "vision" ? "active" : ""
+                  } hero-caption`}
+                >
+                  Vision
+                </p>
+              </div>
+              <div
+                className="d-flex align-items-center mt-5"
+                onClick={() => setActiveDescription("mission")}
+              >
+                <MousePointer2
+                  className={`vm-icon ${
+                    activeDescription === "mission" ? "active" : ""
+                  }`}
+                />
+                <p
+                  className={`vm-icon ${
+                    activeDescription === "mission" ? "active" : ""
+                  } hero-caption`}
+                >
+                  Mission
+                </p>
+              </div>
             </div>
-          <div className="d-flex align-items-center mt-5">  
-          <MousePointer2 onClick={() => setActiveDescription('mission')}  className={`vm-icon ${activeDescription === 'mission' ? 'active' : ''}`}  /> 
-          <p className={`vm-icon ${activeDescription === 'mission' ? 'active' : ''} hero-caption`  }  >Mission</p> 
+            <div className="col-md-6">
+              <div className="description-box">
+                {activeDescription === "vision" && (
+                  <p className="vm-desc">
+                    Our goal is to become a leading digital innovation force,
+                    offering businesses efficient and scalable software
+                    solutions to thrive in the digital age.
+                  </p>
+                )}
+                {activeDescription === "mission" && (
+                  <p className="vm-desc">
+                    We focus on continuous improvement, staying ahead of
+                    technology trends, and fostering a collaborative environment
+                    that inspires creativity and innovation.
+                  </p>
+                )}
+              </div>
             </div>
-            </div>
-      <div className="col-md-6">
-      <div className="description-box">
-          {activeDescription === 'vision' && (
-            <p className="vm-desc">
-              Our goal is to become a leading digital innovation force, offering businesses efficient and scalable software solutions to thrive in the digital age.
-            </p>
-          )}
-          {activeDescription === 'mission' && (
-            <p className="vm-desc">
-              We focus on continuous improvement, staying ahead of technology trends, and fostering a collaborative environment that inspires creativity and innovation.
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
           </div>
-      </section>
+        </div>
+      </section> */}
 
-      {/* Technologies   */}
+      {/* Services   */}
 
       <section className="parallax-section">
         <div className="container technologies-container">
           <div className="col-md-12 d-flex align-items-center">
-            <h1>Our Technologies</h1>
+            <h1>Our Services</h1>
           </div>
           <div className="row d-flex justify-content-between align-items-center mt-5 mb-2">
             {technologiesData.map((tech, index) => (
@@ -210,6 +314,19 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* Technologies */}
+      <div className="container  mb-5">
+      <h1>Technologies</h1>
+        <Technologies />
+      </div>
+
+
+        {/* Testimonials */}
+      <div className="container">
+        <h1>Testimonials</h1>
+        <CarouselBox />
+      </div>
     </>
   );
 }

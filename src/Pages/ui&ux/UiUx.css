@@ -1,0 +1,37 @@
+.uiux{
+    height: 100vh;   
+}
+.uiux_img{
+    width: 500px;
+}
+.uiux_img img{
+    width: 100%;
+}
+.uiux_text{
+    text-align: justify;
+
+}
+
+  /* Mobile devices (up to 600px) */
+  @media screen and (max-width: 780px) {
+    .uiux_col{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .uiux_img{
+       width: 200px;
+
+    }
+    .uiux{
+       height: 100%;
+
+    }
+    .uiux_img img{
+       width: 100%;
+
+      }
+      .uiux_text{
+       font-size: 15px;
+      }
+     }

@@ -1,9 +1,6 @@
 /* first section */
 @media screen and (max-width: 800px) {
-    .hero-text
-   {
-       font-size: 4.5rem ;
-   }
+  
  .item
   {
     width: 60px;
@@ -20,7 +17,7 @@
    /* Mobile devices (up to 600px) */
 @media screen and (max-width: 780px) {
   .hero-text {
-      font-size: 4rem;
+      font-size: 3rem;
   }
   .item {
       width: 60px;
@@ -33,6 +30,7 @@
 @media screen and (min-width: 800px) and (max-width: 1024px) {
   .hero-text {
       font-size: 4.5rem;
+  
   }
   .item {
       width: 70px;
@@ -51,6 +49,12 @@
 
 /* Tablet View */
 @media (max-width: 1024px) {
+  .dot-container {
+    animation: none;
+    max-width: 50px;
+
+  }
+
   .img_container {
     flex-wrap: wrap;
     justify-content: center;
@@ -91,5 +95,12 @@
 
   .card > .card_row > .description {
     width: 100%;
+  }
+
+  /* dot  */
+  .dot-container {
+    animation: none;
+    max-width: 40px;
+    margin-left: 50px;
   }
 }
