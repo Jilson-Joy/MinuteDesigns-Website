@@ -2,8 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Logo from '../../assets/images/MLOGO.png'
-import Button from 'react-bootstrap/Button';
+import Logo from '../../assets/images/MinuteLogo.png'
 import { Link, useLocation } from 'react-router-dom';
 import { Smartphone, MonitorSmartphone } from 'lucide-react';
 import headerIcons from '../../assets/images/about-img.png'
@@ -20,7 +19,7 @@ function Header() {
                         src={Logo}
                         className="d-inline-block align-top"
                     />
-                    <div className='logo_minute_text'> <h5 className='Logo-text'>Minute Designs</h5></div>
+                   {/* <div className='logo_minute_text'> <h5 className='Logo-text'>Minute Designs</h5></div> */}
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
@@ -40,6 +39,14 @@ function Header() {
                             className='pe-4'
                         >
                             Work
+                        </Nav.Link>
+                        <Nav.Link
+                            as={Link}
+                            to="/gallery"
+                            active={location.pathname === '/gallery'}
+                            className='pe-4'
+                        >
+                           Gallery
                         </Nav.Link>
                         <NavDropdown
                             title="Services"
