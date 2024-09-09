@@ -4,8 +4,9 @@
   color: azure;
   margin-top: var( --medium-margin);
 }
-.minute_logo_div{
-  display: flex;
+.logo_footer
+{
+  width: 850px;
 }
 .footer_logo {
   width: 15%;
@@ -49,14 +50,16 @@
 }
 
 .copyright {
-  font-size: 13px;
-  opacity: 0.5;
+  font-size: 12px;
+  opacity: 0.3;
   text-align: end;
+  font-weight: 200;
 }
 @media screen and (max-width: 780px) {
-  .minute_logo_div{
+  .logo_footer{
     display: flex;
     justify-content: center;
+    max-width: 100%;
   }
   .footer {
     margin: auto;
@@ -68,15 +71,6 @@
 
  
 }
-
-
-
-
-
-
-
-
-/* new */
 
 
 .footer_number li {

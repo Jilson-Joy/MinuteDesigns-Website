@@ -129,13 +129,13 @@ function Home() {
                   <span>•</span>
                 </div>
                 <div class="group right">
-                  <span>D</span>
-                  <span>E</span>
-                  <span>S</span>
-                  <span>I</span>
-                  <span>G</span>
-                  <span>N</span>
-                  <span>S</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>D</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>E</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>S</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>I</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>G</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>N</span>
+                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>S</span>
                   <span>•</span>
                   <span>•</span>
                 </div>
@@ -176,78 +176,7 @@ function Home() {
                   <span>•</span>
                 </div>
               </div>
-              {/* <div class="land_animation">
-                <div class="user user1"></div>
-                <div class="user user2"></div>
-                <div class="user user3"></div>
-                <div class="user user4"></div>
-                <div class="user user5"></div>
-                <div class="user user6"></div>
-                <div class="user user7"></div>
-                <div class="user user8"></div>
-
-                <div class="line line1"></div>
-                <div class="line line2"></div>
-                <div class="line line3"></div>
-                <div class="line line4"></div>
-                <div class="line line5"></div>
-                <div class="line line6"></div>
-                <div class="line line7"></div>
-                <div class="line line8"></div>
-                <div class="line line9"></div>
-                <div class="line line10"></div>
-                <div class="line line11"></div>
-                <div class="line line12"></div>
-                <div class="line line13"></div>
-                <div class="line line14"></div>
-              </div> */}
-              {/* <div className="wrapper">
-                <div className="img_container">
-                  <input type="radio" name="slide" id="c1" checked />
-                  <label for="c1" className="card">
-                    <div className="card_row">
-                      <div className="icon">1</div>
-                      <div className="description">
-                        <h4>Winter</h4>
-                        <p>Winter has so much to offer -
-                          creative activities</p>
-                      </div>
-                    </div>
-                  </label>
-                  <input type="radio" name="slide" id="c2" />
-                  <label for="c2" className="card">
-                    <div className="card_row">
-                      <div className="icon">2</div>
-                      <div className="description">
-                        <h4>Digital Technology</h4>
-                        <p>Gets better every day -
-                          stay tuned</p>
-                      </div>
-                    </div>
-                  </label>
-                  <input type="radio" name="slide" id="c3" />
-                  <label for="c3" className="card">
-                    <div className="card_row">
-                      <div className="icon">3</div>
-                      <div className="description">
-                        <h4>Globalization</h4>
-                        <p>Help people all over the world</p>
-                      </div>
-                    </div>
-                  </label>
-                  <input type="radio" name="slide" id="c4" />
-                  <label for="c4" className="card">
-                    <div className="card_row">
-                      <div className="icon">4</div>
-                      <div className="description">
-                        <h4>New technologies</h4>
-                        <p>Space engineering becomes
-                          more and more advanced</p>
-                      </div>
-                    </div>
-                  </label>
-                </div>
-              </div> */}
+             
             </div>
           </div>
         </div>
@@ -259,7 +188,7 @@ function Home() {
             <div class="flex-container-mission">
               <div class="flex-slide-mission home-mission">
                 <div class="flex-title-mission flex-title-home-mission">
-                  Vission
+                  Vision
                 </div>
                 <div class="flex-about-mission flex-about-home-mission">
                   <p>
@@ -273,12 +202,10 @@ function Home() {
                 <div class="flex-title-mission">Mission</div>
                 <div class="flex-about-mission">
                   <p>
-                    <p>
-                      {" "}
+              
                       We focus on continuous improvement, staying ahead of
                       technology trends, and fostering a collaborative
                       environment that inspires creativity and innovation.
-                    </p>
                   </p>
                 </div>
               </div>
