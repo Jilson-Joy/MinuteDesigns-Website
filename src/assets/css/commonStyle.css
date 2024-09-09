@@ -33,6 +33,10 @@
   --border-radius: 5px;
   --container-radius: 15px;
 }
+.padding-top
+{
+  margin-top: 3rem;
+}
 
 body {
   font-family: "Poppins", sans-serif;
@@ -327,15 +331,13 @@ input:checked + label .description {
   background-color: rgb(255, 255, 255); /* Add a white overlay */
 }
 
-
-
 /*  */
-.land_animation {
+/* .land_animation {
   position: relative;
   box-sizing: border-box;
   min-height: 300px;
   min-width: 300px;
-}
+} */
 /* .user::before {
   content: '';
   display: block;

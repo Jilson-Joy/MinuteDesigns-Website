@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/css/commonStyle.css";
 import "../assets/css/mediaQuery.css";
 import Button from "react-bootstrap/Button";
 import { ArrowUpRight, MousePointer2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import landImg from "../assets/images/social-media.gif";
+import MobApp from "../assets/images/mobile_application.png";
+import Ecommerce from "../assets/images/ecommerce.png";
+import UIUX from "../assets/images/uiux.png";
+import WebApp from "../assets/images/web-development.png";
 import CarouselBox from "../components/carousel/CarouselBox";
 import Technologies from "../components/technologies/Technologies";
 
 function Home() {
+
   // dot animation
 
   const [activeDescription, setActiveDescription] = useState("vision");
@@ -17,32 +21,28 @@ function Home() {
     {
       title: "Web Application",
       description: "A JavaScript library for building user interfaces.",
-      image:
-        "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
+      image:WebApp,
       link: "/webapp",
     },
     {
       title: "Mobile Application",
       description:
         "A JavaScript runtime built on Chrome's V8 JavaScript engine.",
-      image:
-        "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
+      image: MobApp,
       link: "/mobileApp",
     },
     {
       title: "E-commerce",
       description:
         "A query language for APIs and a server-side runtime for executing those queries.",
-      image:
-        "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
+      image:Ecommerce,
       link: "/e-commerce",
     },
     {
       title: "UI/UX",
       description:
         "A query language for APIs and a server-side runtime for executing those queries.",
-      image:
-        "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
+      image:UIUX,
       link: "/uiux",
     },
   ];
@@ -316,17 +316,21 @@ function Home() {
       </section>
 
       {/* Technologies */}
-      <div className="container  mb-5">
-      <h1>Technologies</h1>
-        <Technologies />
-      </div>
+   <section>
+        <div className="container padding-top mb-4">
+        <h1>Technologies</h1>
+          <Technologies />
+        </div>
+   </section>
 
 
         {/* Testimonials */}
-      <div className="container">
-        <h1>Testimonials</h1>
-        <CarouselBox />
-      </div>
+   <section>
+        <div className="container mt-5">
+          <h1>Testimonials</h1>
+          <CarouselBox />
+        </div>
+   </section>
     </>
   );
 }
