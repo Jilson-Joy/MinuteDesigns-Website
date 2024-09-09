@@ -32,14 +32,14 @@ function Header() {
                         >
                             About
                         </Nav.Link>
-                        <Nav.Link
+                        {/* <Nav.Link
                             as={Link}
                             to="/work"
                             active={location.pathname === '/work'}
                             className='pe-4'
                         >
                             Work
-                        </Nav.Link>
+                        </Nav.Link> */}
                         <Nav.Link
                             as={Link}
                             to="/gallery"
@@ -59,14 +59,14 @@ function Header() {
                             <NavDropdown.Item as={Link} to="/uiux">UI/UX</NavDropdown.Item>
 
                         </NavDropdown>
-                        <Nav.Link
+                        {/* <Nav.Link
                             as={Link}
                             to="/careers"
                             active={location.pathname === '/careers'}
                             className='pe-4'
                         >
                             Careers
-                        </Nav.Link>
+                        </Nav.Link> */}
                         <Link to={'/reachUs'}>
                             <button
                                 className='btnReachUs'><span>Reach Us</span>
