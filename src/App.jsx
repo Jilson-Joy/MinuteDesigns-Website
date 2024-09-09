@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home'; 
 import About from './Pages/About'; 
 import Work from './pages/Work';
+import Gallery from './Pages/Gallery';
 import Careers from './pages/Careers';
 import ReachUs from './pages/ReachUs';
 import Footer from './components/footer/Footer';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/work" element={<Work/>} />
+          <Route path="/gallery" element={<Gallery/>} />
           <Route path="/careers" element={<Careers/>} />
           <Route path="/technologies" element={<Careers/>} />
           <Route path="/reachUs" element={<ReachUs/>} />
