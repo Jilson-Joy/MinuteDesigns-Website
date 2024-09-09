@@ -1,0 +1,37 @@
+.ecommerce{
+    height: 100vh;   
+}
+.ecommerce_img{
+    width: 500px;
+}
+.ecommerce_img img{
+    width: 100%;
+}
+.ecommerce_text{
+    text-align: justify;
+
+}
+
+  /* Mobile devices (up to 600px) */
+  @media screen and (max-width: 780px) {
+    .ecommerce_col{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .ecommerce_img{
+       width: 200px;
+
+    }
+    .ecommerce{
+       height: 100%;
+
+    }
+    .ecommerce_img img{
+       width: 100%;
+
+      }
+      .ecommerce_text{
+       font-size: 15px;
+      }
+     }

@@ -1,0 +1,33 @@
+.mobileApplication {
+  height: 100vh;
+}
+.mobileApplication_img {
+  width: 500px;
+}
+.mobileApplication_img img {
+  width: 100%;
+}
+.mobileApplication_text {
+  text-align: justify;
+}
+
+/* Mobile devices (up to 600px) */
+@media screen and (max-width: 780px) {
+  .mobileApplication_col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mobileApplication_img {
+    width: 200px;
+  }
+  /* .mobileApplication {
+    height: 100%;
+  } */
+  .mobileApplication_img img {
+    width: 100%;
+  }
+  .mobileApplication_text {
+    font-size: 15px;
+  }
+}

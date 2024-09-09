@@ -1,0 +1,35 @@
+  
+  .webApplication{
+    height: 100vh;
+  }
+  .webApplication_img{
+    width: 500px;
+   }
+   .webApplication_img img{
+    width: 100%;
+   }
+   .webApplication_text{
+    text-align: justify;
+   }
+
+  /* Mobile devices (up to 600px) */
+   @media screen and (max-width: 780px) {
+    .web_col{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+ .webApplication_img{
+    width: 200px;
+ }
+ .webApplication{
+    height: 100%;
+
+ }
+ .webApplication_img img{
+    width: 100%;
+}
+   .webApplication_text{
+    font-size: 15px;
+   }
+  }

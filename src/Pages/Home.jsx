@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import "../assets/css/commonStyle.css";
 import "../assets/css/mediaQuery.css";
 import Button from "react-bootstrap/Button";
@@ -6,6 +6,7 @@ import { ArrowUpRight, MousePointer2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import landImg from "../assets/images/social-media.gif";
 import CarouselBox from "../components/carousel/CarouselBox";
+import Technologies from "../components/technologies/Technologies";
 
 function Home() {
   // dot animation
@@ -14,35 +15,35 @@ function Home() {
 
   const technologiesData = [
     {
-      title: "React",
+      title: "Web Application",
       description: "A JavaScript library for building user interfaces.",
       image:
         "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
-      link: "https://reactjs.org/",
+      link: "/webapp",
     },
     {
-      title: "Node.js",
+      title: "Mobile Application",
       description:
         "A JavaScript runtime built on Chrome's V8 JavaScript engine.",
       image:
         "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
-      link: "https://nodejs.org/",
+      link: "/mobileApp",
     },
     {
-      title: "GraphQL",
+      title: "E-commerce",
       description:
         "A query language for APIs and a server-side runtime for executing those queries.",
       image:
         "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
-      link: "https://graphql.org/",
+      link: "/e-commerce",
     },
     {
-      title: "GraphQL",
+      title: "UI/UX",
       description:
         "A query language for APIs and a server-side runtime for executing those queries.",
       image:
         "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
-      link: "https://graphql.org/",
+      link: "/uiux",
     },
   ];
   return (
@@ -387,8 +388,15 @@ function Home() {
         </div>
       </section>
 
-      <div className="container">
+      {/* Technologies */}
+      <div className="container  mb-5">
+      <h1>Technologies</h1>
+        <Technologies />
+      </div>
+
+
         {/* Testimonials */}
+      <div className="container">
         <h1>Testimonials</h1>
         <CarouselBox />
       </div>
