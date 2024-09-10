@@ -1,15 +1,22 @@
+import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Logo from '../../assets/images/MinuteLogo.png'
 import { Link, useLocation } from 'react-router-dom';
-import { Smartphone, MonitorSmartphone } from 'lucide-react';
+import { Smartphone, MonitorSmartphone, Menu, X } from 'lucide-react';
 import headerIcons from '../../assets/images/about-img.png'
 import './Header.css'
 
 function Header() {
     const location = useLocation();
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [isNavOpen, setIsNavOpen] = useState(false);
+
+    const toggleNavbar = () => {
+        setIsNavOpen(!isNavOpen);
+    };
     return (
         <Navbar expand="lg" className='nav_bg' sticky='top'>
             <Container>
@@ -19,9 +26,11 @@ function Header() {
                         src={Logo}
                         className="d-inline-block align-top"
                     />
-                   {/* <div className='logo_minute_text'> <h5 className='Logo-text'>Minute Designs</h5></div> */}
+                    {/* <div className='logo_minute_text'> <h5 className='Logo-text'>Minute Designs</h5></div> */}
                 </Navbar.Brand>
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Toggle aria-controls="basic-navbar-nav" onClick={toggleNavbar} style={{ color: "white"}}>
+                    {isNavOpen ? <X /> : <Menu />}
+                </Navbar.Toggle>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto text-left">
                         <Nav.Link
@@ -46,18 +55,28 @@ function Header() {
                             active={location.pathname === '/gallery'}
                             className='pe-4'
                         >
-                           Gallery
+                            Gallery
                         </Nav.Link>
                         <NavDropdown
                             title="Services"
                             id="basic-nav-dropdown"
-                            className='pe-4 '
+                            className='pe-4'
+                            onMouseEnter={() => setShowDropdown(true)}
+                            onMouseLeave={() => setShowDropdown(false)}
+                            show={showDropdown} // Control visibility here
                         >
-                            <NavDropdown.Item as={Link} to="/webapp"><img src={headerIcons} alt="" className='headerIconImg' /> Web Application</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/mobileApp"><Smartphone />Mobile Application</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/e-commerce">E-commerce</NavDropdown.Item>
-                            <NavDropdown.Item as={Link} to="/uiux">UI/UX</NavDropdown.Item>
-
+                            <NavDropdown.Item as={Link} to="/webapp">
+                                <img src={headerIcons} alt="" className='headerIconImg' /> Web Application
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/mobileApp">
+                                <Smartphone /> Mobile Application
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/e-commerce">
+                                E-commerce
+                            </NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/uiux">
+                                UI/UX
+                            </NavDropdown.Item>
                         </NavDropdown>
                         {/* <Nav.Link
                             as={Link}
