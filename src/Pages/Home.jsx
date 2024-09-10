@@ -16,6 +16,26 @@ function Home() {
   // dot animation
 
   const [activeDescription, setActiveDescription] = useState("vision");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+
+      if (scrollPosition > 90) {  // Adjust this value as needed
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
 
   const technologiesData = [
     {
@@ -125,7 +145,7 @@ function Home() {
                   <span>•</span>
                   <span>•</span>
                 </div>
-                <div class="middle">
+                <div className="middle">
                   <span>•</span>
                 </div>
                 <div class="group right">
@@ -180,11 +200,19 @@ function Home() {
             </div>
           </div>
         </div>
-      </section>
+        
 
+      </section>
+   
       <section>
         <div className="container ">
-          <div className="row">
+        <div className="container  ">
+        <div className={`${scrolled ? 'scrolled' : ''}`}>
+          <div className="circle"></div>
+        </div>
+      </div>
+
+          {/* <div className="row">
             <div class="flex-container-mission">
               <div class="flex-slide-mission home-mission">
                 <div class="flex-title-mission flex-title-home-mission">
@@ -210,7 +238,7 @@ function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -304,7 +332,7 @@ function Home() {
                       src={tech.image}
                       alt={tech.title}
                       className="card_img"
-                      style={{ width: "100%", height: "auto" }}
+                      style={{ width: "100%", height: "170px" }}
                     />
                   </div>
                 </div>

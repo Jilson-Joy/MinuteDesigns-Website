@@ -15,6 +15,7 @@ import WebApp from './Pages/webApplication/WebApp';
 import MobileApplication from './Pages/mobileApplication/MobileApplication';
 import Ecommerce from './Pages/ecommerce/Ecommerce';
 import UiUx from './Pages/ui&ux/UiUx';
+import Home1 from './Pages/Home1';
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home1 />} />
           <Route path="/about" element={<About />} />
           <Route path="/work" element={<Work/>} />
           <Route path="/gallery" element={<Gallery/>} />
