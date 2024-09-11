@@ -1,0 +1,14 @@
+.portfolio{
+    height: 100vh;
+}
+.portfolio_card{
+    border-radius: 10px;
+    width: 100%;
+}
+.portfolio_card_img{
+    padding: 10px;
+    border-radius: 20px;
+}
+.portfolio_card_text{
+    padding: 10px;
+}

@@ -57,6 +57,14 @@ function Header() {
                         >
                             Gallery
                         </Nav.Link>
+                        <Nav.Link
+                            as={Link}
+                            to="/portfolio"
+                            active={location.pathname === '/portfolio'}
+                            className='pe-4'
+                        >
+                            Portfolio
+                        </Nav.Link>
                         <NavDropdown
                             title="Services"
                             id="basic-nav-dropdown"
