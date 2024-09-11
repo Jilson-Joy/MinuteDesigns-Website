@@ -52,7 +52,7 @@
 .copyright {
   font-size: 12px;
   opacity: 0.3;
-  text-align: end;
+  text-align:center;
   font-weight: 200;
 }
 @media screen and (max-width: 780px) {
