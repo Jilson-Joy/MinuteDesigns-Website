@@ -13,14 +13,23 @@
 }
 
   /* Mobile devices (up to 600px) */
-  @media screen and (max-width: 780px) {
+  @media screen and (max-width: 920px) {
+    .ecommerce{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
     .ecommerce_col{
         display: flex;
+        flex-direction: column;
+
         align-items: center;
         justify-content: center;
     }
     .ecommerce_img{
-       width: 200px;
+       width: 100%;
 
     }
     .ecommerce{

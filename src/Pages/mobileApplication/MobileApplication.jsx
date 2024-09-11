@@ -1,25 +1,64 @@
 import React from 'react'
 import './MobileApplication.css'
 import mobileApp from '../../assets/images/Mobile_login.gif'
+import gitIcon from '../../assets/images/Git-Icon.png';
+import firebase from '../../assets/images/firebase.png';
+import Flutter from '../../assets/images/flutterIcons.png';
+
+
 function MobileApplication() {
     return (
-            <div className='container'>
-                <div className='mobileApplication row d-flex justify-content-center align-items-center'>
-                    <div className="mobileApplication_col col-md-6">
-                        <div className="mobileApplication_img ">
-                            <img src={mobileApp} />
-                        </div>
-                    </div>
-                    <div className="col-md-6">
-                        <div className='mobileApplication_text'>
-                            <h1>Mobile Application</h1>
-                            <p >
-                                Minute Designs specializes in web application development, offering custom solutions for businesses of all sizes. Their team uses cutting-edge technologies to ensure scalability, security, and efficiency. They design responsive applications for mobile devices, integrate with third-party services, and provide cloud deployment and maintenance. They also create custom e-commerce platforms. Their team stays ahead of the curve, using technologies like React, Node.js, and Laravel. They work closely with clients from concept to deployment, ensuring their vision is fully realized. They prioritize user-centric design and scalability, ensuring data safety and application protection. Contact Minute Designs to discuss your project and elevate your business with a custom web application.
-                            </p>
-                        </div>
+        <div className='container'>
+            <section className='mobileApplication row d-flex justify-content-center align-items-center'>
+                <div className="mobileApplication_col col-md-6">
+                    <div className="mobileApplication_img ">
+                        <img src={mobileApp} />
                     </div>
                 </div>
-            </div>
+                <div className="col-md-6">
+                    <div className='mobileApplication_text'>
+                        <h1 className='hero-text'>Mobile Application</h1>
+                        <p >
+                            Minute Designs creates custom mobile applications using Flutter for performance, scalability, and user experience, ensuring intuitive UI/UX, secure architecture, and reliable app deployment.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section className='mt-5 mb-5'>
+                <h3 className='serve_header mt-5 mb-5'>What do we serve ?</h3>
+                <div>
+                    <p className='serve_text'>
+                        We help you transform
+                        <br />
+                        a basic concept into a powerful
+                        <br />
+                        and scalable mobile application solution.
+                    </p>
+                </div>
+            </section>
+
+            <section className='mt-5 mb-5'>
+                <div className='mt-5 mb-5'>
+                    <h3 className='serve_header'>Tools we use</h3>
+                </div>
+
+                <div className='toolsUsed row '>
+                    <div className="webAppIcons col-md-4">
+                        <img src={firebase} alt="" />
+                        <h5>Firebase</h5>
+                    </div>
+                    <div className="webAppIcons col-md-4">
+                        <img src={Flutter} alt="" />
+                        <h5>Flutter</h5>
+                    </div>
+                    <div className="webAppIcons col-md-4">
+                        <img src={gitIcon} alt="" />
+                        <h5>Git</h5>
+                    </div>
+                </div>
+            </section>
+        </div>
     )
 }
 
