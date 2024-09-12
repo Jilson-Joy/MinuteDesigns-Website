@@ -40,7 +40,7 @@ function CarouselBox() {
     };
 
     return (
-        <div className='container carouselbox'>
+        <div className='container carouselbox mt-5 mb-2'>
             {/* Previous Button */}
             <button className="carousel-control-prev" onClick={() => setIndex(index === 0 ? testimonials.length / 2 - 1 : index - 1)}>
                 <ChevronLeft className='icon_arrow' />

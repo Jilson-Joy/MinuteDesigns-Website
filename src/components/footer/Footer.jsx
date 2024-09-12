@@ -8,7 +8,7 @@ function Footer() {
   return (
     <div className="footer">
       <div className="container">
-        <div className="footer_content row pt-5">
+        <div className="footer_content row pt-5 d-flex justify-space-between">
           <div className="col-md-4">
             <div className="logo_footer">
               <img src={logo} alt=""  className="footer_logo "/>
@@ -26,29 +26,30 @@ function Footer() {
           </div>
           <div className="col-md-2">
             <div>
-              <h3>Quick Links</h3>
+              <h5>Quick Links</h5>
             </div>
             <div className="footer_link mt-4">
               <p>Home</p>
               <p>About</p>
               <p>Services</p>
-              <p>Career</p>
-              <p>Reach Us</p>
-              <p>Terms & Conditions</p>
+              <p>Gallery</p>
+              {/* <p>Reach Us</p> */}
+              {/* <p>Terms & Conditions</p> */}
             </div>
           </div>
           <div className="col-md-3">
             <div>
-              <h3>Services</h3>
+              <h5>Services</h5>
             </div>
             <div className="footer_link mt-4">
-              <p>Home</p>
-              <p>Web Development</p>
-              <p>Mobile App Development</p>
+             <p >Web Application</p>
+              <p>Mobile Application</p>
+              <p>E-Commerce</p>
+              <p>UI/UX</p>
             </div>
           </div>
           <div className="col-md-3">
-            <h3>Contact Info</h3>
+            <h5>Contact Info</h5>
             <div className="footer_link mt-4">
               <ul className="footer_number list-unstyled">
                 <li className="mb-2">

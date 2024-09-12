@@ -15,28 +15,44 @@ import WebApp from './Pages/webApplication/WebApp';
 import MobileApplication from './Pages/mobileApplication/MobileApplication';
 import Ecommerce from './Pages/ecommerce/Ecommerce';
 import UiUx from './Pages/ui&ux/UiUx';
+import Home1 from './Pages/Home1';
+import Portfolio from './Pages/portfolio/Portfolio';
+import Dashboard from './Pages/dashboard/Dashboard';
+import  LogIn  from './Pages/login/Login';
 
 function App() {
   return (
-    <>
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/work" element={<Work/>} />
-          <Route path="/gallery" element={<Gallery/>} />
-          <Route path="/careers" element={<Careers/>} />
-          <Route path="/technologies" element={<Careers/>} />
-          <Route path="/reachUs" element={<ReachUs/>} />
-          <Route path="/webapp" element={<WebApp/>} />
-          <Route path="/mobileApp" element={<MobileApplication/>} />
-          <Route path="/e-commerce" element={<Ecommerce/>} />
-          <Route path="/uiux" element={<UiUx/>} />
-        </Routes>
-        <Footer/>
-      </BrowserRouter>
-    </>
+    <BrowserRouter>
+      <Routes>
+        {/* Dashboard route without Header and Footer */}
+        <Route path="/login" element={<LogIn />} />
+
+        {/* All other routes with Header and Footer */}
+        <Route
+          path="*"
+          element={
+            <>
+              <Header />
+              <Routes>
+                <Route path="/" element={<Home1 />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/work" element={<Work />} />
+                <Route path="/gallery" element={<Gallery />} />
+                <Route path="/careers" element={<Careers />} />
+                <Route path="/technologies" element={<Careers />} />
+                <Route path="/reachUs" element={<ReachUs />} />
+                <Route path="/webapp" element={<WebApp />} />
+                <Route path="/mobileApp" element={<MobileApplication />} />
+                <Route path="/e-commerce" element={<Ecommerce />} />
+                <Route path="/uiux" element={<UiUx />} />
+                <Route path="/portfolio" element={<Portfolio />} />
+              </Routes>
+              <Footer />
+            </>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

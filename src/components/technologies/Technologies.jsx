@@ -9,7 +9,7 @@ import './Technologies.css';
 
 function Technologies() {
     return (
-        <div className='Technologies_container'>
+        <div className='Technologies_container mt-5 mb-2'>
             <div className='Technologies_slider'>
                 <div className='Technologies_icons'>
                     <img src={figma} alt="Figma" />

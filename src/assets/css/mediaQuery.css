@@ -29,7 +29,7 @@
 /* Tablet devices (600px to 1024px) */
 @media screen and (min-width: 800px) and (max-width: 1024px) {
   .hero-text {
-      font-size: 4.5rem;
+      font-size: 4rem;
   
   }
   .item {

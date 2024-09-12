@@ -1,48 +1,68 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../assets/css/commonStyle.css";
 import "../assets/css/mediaQuery.css";
 import Button from "react-bootstrap/Button";
 import { ArrowUpRight, MousePointer2 } from "lucide-react";
 import { Link } from "react-router-dom";
-import landImg from "../assets/images/social-media.gif";
+import MobApp from "../assets/images/mobile_application.png";
+import Ecommerce from "../assets/images/ecommerce.png";
+import UIUX from "../assets/images/uiux.png";
+import WebApp from "../assets/images/web-development.png";
 import CarouselBox from "../components/carousel/CarouselBox";
 import Technologies from "../components/technologies/Technologies";
 
 function Home() {
+
   // dot animation
 
   const [activeDescription, setActiveDescription] = useState("vision");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+
+      if (scrollPosition > 90) {  // Adjust this value as needed
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
 
   const technologiesData = [
     {
       title: "Web Application",
       description: "A JavaScript library for building user interfaces.",
-      image:
-        "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
+      image:WebApp,
       link: "/webapp",
     },
     {
       title: "Mobile Application",
       description:
         "A JavaScript runtime built on Chrome's V8 JavaScript engine.",
-      image:
-        "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
+      image: MobApp,
       link: "/mobileApp",
     },
     {
       title: "E-commerce",
       description:
         "A query language for APIs and a server-side runtime for executing those queries.",
-      image:
-        "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
+      image:Ecommerce,
       link: "/e-commerce",
     },
     {
       title: "UI/UX",
       description:
         "A query language for APIs and a server-side runtime for executing those queries.",
-      image:
-        "https://i.pinimg.com/736x/70/22/fd/7022fde301338644bca180ebce7d51a7.jpg",
+      image:UIUX,
       link: "/uiux",
     },
   ];
@@ -125,7 +145,7 @@ function Home() {
                   <span>•</span>
                   <span>•</span>
                 </div>
-                <div class="middle">
+                <div className="middle">
                   <span>•</span>
                 </div>
                 <div class="group right">
@@ -180,11 +200,19 @@ function Home() {
             </div>
           </div>
         </div>
-      </section>
+        
 
+      </section>
+   
       <section>
         <div className="container ">
-          <div className="row">
+        <div className="container  ">
+        <div className={`${scrolled ? 'scrolled' : ''}`}>
+          <div className="circle"></div>
+        </div>
+      </div>
+
+          {/* <div className="row">
             <div class="flex-container-mission">
               <div class="flex-slide-mission home-mission">
                 <div class="flex-title-mission flex-title-home-mission">
@@ -210,7 +238,7 @@ function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -304,7 +332,7 @@ function Home() {
                       src={tech.image}
                       alt={tech.title}
                       className="card_img"
-                      style={{ width: "100%", height: "auto" }}
+                      style={{ width: "100%", height: "170px" }}
                     />
                   </div>
                 </div>
@@ -316,17 +344,21 @@ function Home() {
       </section>
 
       {/* Technologies */}
-      <div className="container  mb-5">
-      <h1>Technologies</h1>
-        <Technologies />
-      </div>
+   <section>
+        <div className="container padding-top mb-4">
+        <h1>Technologies</h1>
+          <Technologies />
+        </div>
+   </section>
 
 
         {/* Testimonials */}
-      <div className="container">
-        <h1>Testimonials</h1>
-        <CarouselBox />
-      </div>
+   <section>
+        <div className="container mt-5">
+          <h1>Testimonials</h1>
+          <CarouselBox />
+        </div>
+   </section>
     </>
   );
 }

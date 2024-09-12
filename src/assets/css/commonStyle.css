@@ -33,6 +33,10 @@
   --border-radius: 5px;
   --container-radius: 15px;
 }
+.padding-top
+{
+  margin-top: 3rem;
+}
 
 body {
   font-family: "Poppins", sans-serif;
@@ -327,15 +331,13 @@ input:checked + label .description {
   background-color: rgb(255, 255, 255); /* Add a white overlay */
 }
 
-
-
 /*  */
-.land_animation {
+/* .land_animation {
   position: relative;
   box-sizing: border-box;
   min-height: 300px;
   min-width: 300px;
-}
+} */
 /* .user::before {
   content: '';
   display: block;
@@ -776,259 +778,138 @@ input:checked + label .description {
 
 .dot-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   place-items: center;
-  animation: clockwise 40s linear infinite;
-  
+  position: relative;
 }
 
 .group {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(1, 1fr);
+  position: relative;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 80px;
   place-items: center;
-  height: 1rem;
-  width: 1rem;
 }
 
-.group span {
-  color: var(--color-dot);
-  display: grid;
-  place-items: center;
-  height: 2em;
-  width: 2em;
-}
-
-.group span:nth-child(1) {
+.dot {
+  width: 30px;
+  height: 30px;
+  background-color: rgb(0, 0, 0);
+  border-radius: 50%;
   position: absolute;
+}
+
+/* Position the dots in M-shape */
+.dot1 {
   top: 0;
   left: 0;
-}
-
-/* Animation for each nth-child */
-.group span:nth-child(1) {
   animation: d1 2s linear infinite;
 }
 
-.group span:nth-child(2) {
+.dot2 {
+  top: 50%;
+  left: 0;
   animation: d2 2s linear infinite;
 }
 
-.group span:nth-child(3) {
+.dot3 {
+  top: 100%;
+  left: 0;
   animation: d3 2s linear infinite;
 }
 
-.group span:nth-child(4) {
+.dot4 {
+  top: 50%;
+  left: 50%;
   animation: d4 2s linear infinite;
 }
 
-.group span:nth-child(5) {
+.dot5 {
+  top: 0;
+  left: 100%;
   animation: d5 2s linear infinite;
 }
 
-.group span:nth-child(6) {
+.dot6 {
+  top: 50%;
+  left: 100%;
   animation: d6 2s linear infinite;
 }
 
-.group span:nth-child(7) {
+.dot7 {
+  top: 100%;
+  left: 100%;
   animation: d7 2s linear infinite;
 }
 
-.group span:nth-child(8) {
+.dot8 {
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
   animation: d8 2s linear infinite;
 }
 
-.group span:nth-child(9) {
+.dot9 {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
   animation: d9 2s linear infinite;
 }
 
-.group span:nth-child(10) {
-  animation: d10 2s linear infinite;
-}
-
-.top {
-  transform: rotateZ(0deg);
-}
-
-.right {
-  transform: rotateZ(90deg);
-}
-
-.left {
-  transform: rotateZ(-90deg);
-}
-
-.bottom {
-  transform: rotateZ(180deg);
-}
-
-.middle {
-  display: grid;
-  place-items: center;
-  height: 6em;
-  width: 6em;
-}
-
-.middle span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2em;
-  width: 2em;
-  font-size: 2em;
-  animation: beat 3s linear infinite;
-  transition: transform 0.3s ease-out;
-  position: absolute; /* Allows the dot to move freely */
-}
-
-@keyframes clockwise {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes beat {
-  0%,
-  65% {
-    transform: scale(2);
-  }
-  70% {
-    transform: scale(4);
-  }
-  75% {
-    transform: scale(10);
-  }
-  80% {
-    transform: scale(10);
-  }
-  90%,
-  100% {
-    transform: scale(2);
-  }
-}
-
+/* Animation for each dot */
 @keyframes d1 {
-  0%,
-  80% {
-    transform: translateY(-6em);
-    opacity: 0;
-  }
-  90%,
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
 }
 
 @keyframes d2 {
-  0%,
-  70% {
-    transform: translateX(0);
-  }
-  80%,
-  100% {
-    transform: translateX(2em);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
 }
 
 @keyframes d3 {
-  0%,
-  60% {
-    transform: translateX(0);
-  }
-  70%,
-  100% {
-    transform: translateX(2em);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
 }
 
 @keyframes d4 {
-  0%,
-  50% {
-    transform: translateY(0);
-  }
-  60%,
-  100% {
-    transform: translateY(2em);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
 }
 
 @keyframes d5 {
-  0%,
-  20% {
-    transform: translateY(0);
-  }
-  30%,
-  100% {
-    transform: translateY(2em);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
 }
 
 @keyframes d6 {
-  0%,
-  30% {
-    transform: translateX(0);
-  }
-  40%,
-  100% {
-    transform: translateX(-2em);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
 }
 
 @keyframes d7 {
-  0%,
-  40% {
-    transform: translateX(0);
-  }
-  50%,
-  100% {
-    transform: translateX(-2em);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
 }
 
 @keyframes d8 {
-  0%,
-  10% {
-    transform: translateX(0);
-  }
-  20%,
-  100% {
-    transform: translateX(2em);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
 }
 
 @keyframes d9 {
-  0% {
-    transform: translateX(0);
-  }
-  10%,
-  100% {
-    transform: translateX(2em);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
 }
 
-@keyframes d10 {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  10%,
-  100% {
-    transform: translateY(6em);
-    opacity: 0;
-  }
-}
 
 /* vision and mission new */
 
 .flex-container-mission {
   position: relative;
   height: 80vh;
-  background-color: #0b141c;
+  
+  /* background-color: #0b141c; */
   border-radius: var(--border-radius);
   color: #f9f9f9;
   display: flex;
@@ -1090,4 +971,7 @@ input:checked + label .description {
 .flex-slide-mission:hover .flex-title-mission {
   opacity: 0;
 }
+
+
+/*  */
 
