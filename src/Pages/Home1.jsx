@@ -130,8 +130,8 @@ function Home1() {
         } else {
           setInView(false);
           setCirclePosition({
-            top: "60%",
-            left: "68%",
+            top: "50%",
+            left: "58%",
           });
         }
       },
@@ -174,8 +174,8 @@ function Home1() {
         } else {
           setEcommerceInView(false);
           setEcommerceCirclePosition({
-            top: "60%",
-            left: "68%",
+            top: "70%",
+            left: "58%",
           });
         }
       },
@@ -195,8 +195,8 @@ function Home1() {
         } else {
           setUiuxInView(false);
           setUiuxCirclePosition({
-            top: "60%",
-            left: "68%",
+            top: "50%",
+            left: "78%",
           });
         }
       },
@@ -235,8 +235,7 @@ function Home1() {
               </p>
             </div>
             <div className="col-md-6">
-              <div className="dot-container">
-                <div className="group">
+              {/* <div className="group">
                   <span className="dot dot1"></span>
                   <span className="dot dot2"></span>
                   <span className="dot dot3"></span>
@@ -246,28 +245,60 @@ function Home1() {
                   <span className="dot dot7"></span>
                   <span className="dot dot8"></span>
                   <span className="dot dot9"></span>
-                </div>
-              </div>
+                </div> */}
+
+              {/* Moving Circle for Web Application */}
+              <div
+                ref={circleRef}
+                className={`circle-dot ${inView ? "move-to-webapp" : ""}`}
+                style={{ top: circlePosition.top, left: circlePosition.left }}
+              ></div>
+
+              {/* Moving Circle for Mobile Application */}
+              <div
+                ref={mobileCircleRef}
+                className={`circle-dot green-circle ${
+                  mobileInView ? "move-to-mobileapp" : ""
+                }`}
+                style={{
+                  top: mobileCirclePosition.top,
+                  left: mobileCirclePosition.left,
+                }}
+              ></div>
+              {/* Moving Circle for E-commerce */}
+              <div
+                ref={ecommerceCircleRef}
+                className={`circle-dot blue-circle ${
+                  ecommerceInView ? "move-to-ecommerce" : ""
+                }`}
+                style={{
+                  top: ecommerceCirclePosition.top,
+                  left: ecommerceCirclePosition.left,
+                }}
+              ></div>
+              {/* Moving Circle for UI/UX */}
+              <div
+                ref={uiuxCircleRef}
+                className={`circle-dot violet-circle ${
+                  uiuxInView ? "move-to-uiux" : ""
+                }`}
+                style={{
+                  top: uiuxCirclePosition.top,
+                  left: uiuxCirclePosition.left,
+                }}
+              ></div>
             </div>
           </div>
         </div>
       </section>
-
       {/* Services */}
-      <section className="hero-container">
+      <section className="hero-container parallax-section">
         <div className="container technologies-container">
           <div className="col-md-12 d-flex align-items-center mb-3">
             <h5 className="head-text">Our Services</h5>
           </div>
 
           <div className="row d-flex justify-content-between align-items-center  mb-2">
-            {/* Moving Circle for Web Application */}
-            <div
-              ref={circleRef}
-              className={`circle-dot ${inView ? "move-to-webapp" : ""}`}
-              style={{ top: circlePosition.top, left: circlePosition.left }}
-            ></div>
-
             {/* Web Application Section */}
             <div className="col-md-8 service-head">
               <h3 ref={webAppRef}>Web Application</h3>
@@ -275,18 +306,6 @@ function Home1() {
           </div>
 
           <div className="row d-flex justify-content-between align-items-center mb-2 ">
-            {/* Moving Circle for Mobile Application */}
-            <div
-              ref={mobileCircleRef}
-              className={`circle-dot green-circle ${
-                mobileInView ? "move-to-mobileapp" : ""
-              }`}
-              style={{
-                top: mobileCirclePosition.top,
-                left: mobileCirclePosition.left,
-              }}
-            ></div>
-
             {/* Mobile Application Section */}
             <div className="col-md-8 service-head">
               <h3 ref={mobileAppRef}>Mobile Application</h3>
@@ -294,18 +313,6 @@ function Home1() {
           </div>
 
           <div className="row d-flex justify-content-between align-items-center  mb-2">
-            {/* Moving Circle for E-commerce */}
-            <div
-              ref={ecommerceCircleRef}
-              className={`circle-dot blue-circle ${
-                ecommerceInView ? "move-to-ecommerce" : ""
-              }`}
-              style={{
-                top: ecommerceCirclePosition.top,
-                left: ecommerceCirclePosition.left,
-              }}
-            ></div>
-
             {/* E-commerce Section */}
             <div className="col-md-8 service-head">
               <h3 ref={ecommerceRef}>E-commerce</h3>
@@ -313,18 +320,6 @@ function Home1() {
           </div>
 
           <div className="row d-flex justify-content-between align-items-center mb-2">
-            {/* Moving Circle for UI/UX */}
-            <div
-              ref={uiuxCircleRef}
-              className={`circle-dot violet-circle ${
-                uiuxInView ? "move-to-uiux" : ""
-              }`}
-              style={{
-                top: uiuxCirclePosition.top,
-                left: uiuxCirclePosition.left,
-              }}
-            ></div>
-
             {/* UI/UX Section */}
             <div className="col-md-8 service-head">
               <h3 ref={uiuxRef}>UI/UX</h3>
@@ -333,16 +328,22 @@ function Home1() {
         </div>
       </section>
 
+      {/* Highlight text */}
+      <section>
+      <div className="container mt-5 mb-5">
+          <h5 className="about-text-bold">Transforming Ideas into Reality with Expert Web & App Solutions</h5>
+        </div>
+      </section>
+
       {/* Technologies */}
-      {/* <section>
-        <div className="container">
-        <h5 className="head-text">Technologies</h5>
+      <section>
+        <div className="container mt-5 mb-5">
+          <h5 className="head-text">Technologies</h5>
           <Technologies />
-          </div>
-          </section> */}
+        </div>
+      </section>
 
       {/* testimonials */}
-
       <section className="testimonials-section">
         <div className="container">
           <h5 className="head-text">Testimonials</h5>
