@@ -4,8 +4,8 @@ import Header from './components/Navbar/Header';
 import './assets/css/commonStyle.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from './Pages/Home'; 
-import About from './Pages/About'; 
+import Home from './Pages/Home';
+import About from './Pages/About';
 import Work from './pages/Work';
 import Gallery from './Pages/Gallery';
 import Careers from './pages/Careers';
@@ -17,8 +17,11 @@ import Ecommerce from './Pages/ecommerce/Ecommerce';
 import UiUx from './Pages/ui&ux/UiUx';
 import Home1 from './Pages/Home1';
 import Portfolio from './Pages/portfolio/Portfolio';
+import LogIn from './Pages/login/Login';
+import MainDashboard from './Pages/dashboard/MainDashboard';
 import Dashboard from './Pages/dashboard/Dashboard';
-import  LogIn  from './Pages/login/Login';
+import Addpage from './Pages/dashboard/pages/Addpage';
+import ListPages from './Pages/dashboard/pages/ListPages';
 
 function App() {
   return (
@@ -26,6 +29,15 @@ function App() {
       <Routes>
         {/* Dashboard route without Header and Footer */}
         <Route path="/login" element={<LogIn />} />
+        {/* Main Dashboard Route with nested routes */}
+        <Route path="/mainDashboard" element={<MainDashboard />}>
+          {/* Default route in mainDashboard (Dashboard component) */}
+          <Route index element={<Dashboard />} />
+          
+          {/* AddPage route as a child of mainDashboard */}
+          <Route path="addPage" element={<Addpage />} />
+          <Route path="listPage" element={<ListPages />} />
+        </Route>
 
         {/* All other routes with Header and Footer */}
         <Route
