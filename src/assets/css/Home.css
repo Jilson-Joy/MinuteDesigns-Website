@@ -13,7 +13,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #ffcc00; /* Example color, adjust as needed */
+  background-color: #ee964b; /* Example color, adjust as needed */
   transition: all 0.9s ease;
 }
 
@@ -29,19 +29,16 @@
   background-color: #cc00ff;
 }
 .black-circle {
-  background-color: black;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  position: absolute;
-  transition: all 0.3s ease-in-out;
+  background-color: #0b141c;
 }
 
 
 .move-to-webapp,
 .move-to-mobileapp,
 .move-to-ecommerce,
-.move-to-uiux
+.move-to-uiux,
+.move-to-architecture,
+.move-to-rendering
 {
   transform: translateX(0) translateY(0); 
   margin-top: 15px;
@@ -357,4 +354,17 @@
       font-size: 14px;
     }
     
+  }
+  /* home container */
+  .home-container
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;  
+    border-radius:var( --border-radius);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
