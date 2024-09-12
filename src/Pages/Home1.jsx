@@ -49,7 +49,6 @@ function Home1() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-
   useEffect(() => {
     const dots = document.querySelectorAll(".progress-dot");
     dots.forEach((dot, index) => {
@@ -62,7 +61,7 @@ function Home1() {
       setCurrentIndex((prevIndex) =>
         prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // Auto-scroll every 3 seconds
+    }, 3000); 
 
     return () => clearInterval(autoScroll);
   }, []);
@@ -84,18 +83,22 @@ function Home1() {
   };
 
   const { name, position, photo, text } = testimonials[currentIndex];
-
   // testimonial end here
-
   const webAppRef = useRef(null);
   const mobileAppRef = useRef(null);
   const ecommerceRef = useRef(null);
   const uiuxRef = useRef(null);
+  const architectureRef = useRef(null);
+  const renderingRef = useRef(null);
+
 
   const circleRef = useRef(null);
   const mobileCircleRef = useRef(null);
   const ecommerceCircleRef = useRef(null);
   const uiuxCircleRef = useRef(null);
+  const architectureCircleRef = useRef(null);
+  const renderingCircleRef = useRef(null);
+
 
   const [circlePosition, setCirclePosition] = useState({ top: 0, left: 0 });
   const [mobileCirclePosition, setMobileCirclePosition] = useState({
@@ -110,11 +113,21 @@ function Home1() {
     top: 0,
     left: 0,
   });
-
+  const [architectureCirclePosition, setArchitectureCirclePosition] = useState({
+    top: 0,
+    left: 0,
+  });
+  const [renderingCirclePosition, setRenderingCirclePosition] = useState({
+    top: 0,
+    left: 0,
+  });
   const [inView, setInView] = useState(false);
   const [mobileInView, setMobileInView] = useState(false);
   const [ecommerceInView, setEcommerceInView] = useState(false);
   const [uiuxInView, setUiuxInView] = useState(false);
+  const [architectureInView, setArchitectureInView] = useState(false);
+  const [renderingInView, setRenderingInView] = useState(false);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -130,13 +143,14 @@ function Home1() {
         } else {
           setInView(false);
           setCirclePosition({
-            top: "50%",
-            left: "58%",
+            top: '45%',
+            left: '58%',
           });
         }
       },
       { threshold: 0.5 }
     );
+
 
     const mobileObserver = new IntersectionObserver(
       ([entry]) => {
@@ -152,7 +166,7 @@ function Home1() {
         } else {
           setMobileInView(false);
           setMobileCirclePosition({
-            top: "60%",
+            top: "55%",
             left: "68%",
           });
         }
@@ -174,7 +188,7 @@ function Home1() {
         } else {
           setEcommerceInView(false);
           setEcommerceCirclePosition({
-            top: "70%",
+            top: "65%",
             left: "58%",
           });
         }
@@ -195,7 +209,7 @@ function Home1() {
         } else {
           setUiuxInView(false);
           setUiuxCirclePosition({
-            top: "50%",
+            top: "45%",
             left: "78%",
           });
         }
@@ -203,17 +217,62 @@ function Home1() {
       { threshold: 0.5 }
     );
 
+    const architectureObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setArchitectureInView(true);
+          const architectureRect = architectureRef.current.getBoundingClientRect();
+          const architectureCircleRect = architectureCircleRef.current.getBoundingClientRect();
+          setArchitectureCirclePosition({
+            top: architectureRect.top + window.scrollY,
+            left: architectureRect.left - architectureCircleRect.width - 10,
+          });
+        } else {
+          setArchitectureInView(false);
+          setArchitectureCirclePosition({ top: '65%', left: '78%' });
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    const renderingObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRenderingInView(true);
+          const renderingRect = renderingRef.current.getBoundingClientRect();
+          const renderingCircleRect = renderingCircleRef.current.getBoundingClientRect();
+          setRenderingCirclePosition({
+            top: renderingRect.top + window.scrollY,
+            left: renderingRect.left - renderingCircleRect.width - 10,
+          });
+        } else {
+          setRenderingInView(false);
+          setRenderingCirclePosition(
+            {
+            top: "55%",
+            left: "67%",
+            }
+          );
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+
     if (webAppRef.current) observer.observe(webAppRef.current);
     if (mobileAppRef.current) mobileObserver.observe(mobileAppRef.current);
     if (ecommerceRef.current) ecommerceObserver.observe(ecommerceRef.current);
     if (uiuxRef.current) uiuxObserver.observe(uiuxRef.current);
+    if (architectureRef.current) architectureObserver.observe(architectureRef.current);
+    if (renderingRef.current) renderingObserver.observe(renderingRef.current);
 
     return () => {
       if (webAppRef.current) observer.unobserve(webAppRef.current);
       if (mobileAppRef.current) mobileObserver.unobserve(mobileAppRef.current);
-      if (ecommerceRef.current)
-        ecommerceObserver.unobserve(ecommerceRef.current);
+      if (ecommerceRef.current) ecommerceObserver.unobserve(ecommerceRef.current);
       if (uiuxRef.current) uiuxObserver.unobserve(uiuxRef.current);
+      if (architectureRef.current) architectureObserver.unobserve(architectureRef.current);
+      if (renderingRef.current) renderingObserver.unobserve(renderingRef.current);
     };
   }, []);
 
@@ -246,7 +305,6 @@ function Home1() {
                   <span className="dot dot8"></span>
                   <span className="dot dot9"></span>
                 </div> */}
-
               {/* Moving Circle for Web Application */}
               <div
                 ref={circleRef}
@@ -287,6 +345,18 @@ function Home1() {
                   left: uiuxCirclePosition.left,
                 }}
               ></div>
+                <div
+        ref={architectureCircleRef}
+        className={`circle-dot blue-circle ${architectureInView ? "move-to-architecture" : ""}`}
+        style={{ top: architectureCirclePosition.top, left: architectureCirclePosition.left }}
+      ></div>
+               
+      <div
+        ref={renderingCircleRef}
+        className={`circle-dot black-circle ${renderingInView ? "move-to-rendering" : ""}`}
+        style={{ top: renderingCirclePosition.top, left: renderingCirclePosition.left }}
+      ></div>
+              
             </div>
           </div>
         </div>
@@ -325,16 +395,28 @@ function Home1() {
               <h3 ref={uiuxRef}>UI/UX</h3>
             </div>
           </div>
+           {/* Architecture Section */}
+        <div className="col-md-8 service-head">
+          <h3 ref={architectureRef}>Architecture</h3>
+        </div>
+        {/* 3D Rendering Section */}
+        <div className="col-md-8 service-head">
+          <h3 ref={renderingRef}>3D Rendering Service</h3>
+        </div>
         </div>
       </section>
 
       {/* Highlight text */}
       <section>
-      <div className="container mt-5 mb-5">
-          <h5 className="about-text-bold">Transforming Ideas into Reality with Expert Web & App Solutions</h5>
+      <div className="container home-container mt-5">
+        <div className="col-md-12 text-center">
+          <p className="about-text">
+            <b>Transforming Ideas into Reality with <br /> Expert Web & App Solutions</b>
+          </p>
         </div>
-      </section>
+      </div>
 
+    </section>
       {/* Technologies */}
       <section>
         <div className="container mt-5 mb-5">
