@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Airplay, AlignJustify, BookOpen, Box, ChevronDown, ChevronLeft, Folders, Images, LayoutDashboard, Rss } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import './Sidebar.css'
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
     const [openDropdown, setOpenDropdown] = useState(null); // A single state for both dropdowns
