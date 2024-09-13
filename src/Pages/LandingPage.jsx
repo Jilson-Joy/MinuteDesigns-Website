@@ -45,6 +45,52 @@ function LandingPage() {
       </section>
 
       {/* Services section */}
+
+      <section className="parallax-section">
+        <div className="container ">
+          <div className="col-md-12 d-flex align-items-center mb-3">
+            <h5 className="head-text">Our Services</h5>
+          </div>
+
+          <div className="row d-flex justify-content-between align-items-center  mb-2">
+            {/* Web Application Section */}
+            <div className="col-md-4 service-head">
+              <div className="service-detail">
+                <h3>Web Application</h3>
+              </div>
+              <div className="service-desc">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
+                    ipsam velit eveniet natus commodi consequuntur quae, est
+                  </p>
+             </div>
+            </div>
+            <div className="col-md-4 service-head">
+              <div className="service-detail ">
+                <h3>Mobile Application</h3>
+              </div>
+              <div className="service-desc">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
+                    ipsam velit eveniet natus commodi consequuntur quae, est
+                  </p>
+             </div>
+            </div>
+            <div className="col-md-4 service-head">
+              <div className="service-detail ">
+                <h3>E-Commerce</h3>
+              </div>
+
+             <div className="service-desc">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius
+                    ipsam velit eveniet natus commodi consequuntur quae, est
+                  </p>
+             </div>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Add services or other content here */}
 
     </>
