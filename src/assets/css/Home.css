@@ -3,6 +3,16 @@
     font-size: 24px;
     color: #0b141c;
 }
+.service-head
+{
+
+  position: relative;
+}
+.service-desc
+{
+
+
+}
 .service-head h3
 {
     font-size: 3rem;
@@ -89,7 +99,6 @@
     font-size: 2em;
     margin-bottom: 20px;
   }
-  
   .testimonials-container {
     position: relative;
   display: flex;
@@ -97,7 +106,6 @@
   justify-content: center;
   overflow: hidden;
   }
-  
   .testimonial {
     max-width: 800px;
     width: 100%;
@@ -197,7 +205,7 @@
   }
   
   .progress-dot.active {
-    background-color: black;
+    background-color: #0b141c;
   }
   
   .testimonial-btn {

@@ -22,6 +22,7 @@ import MainDashboard from './Pages/dashboard/MainDashboard';
 import Dashboard from './Pages/dashboard/Dashboard';
 import Addpage from './Pages/dashboard/pages/Addpage';
 import ListPages from './Pages/dashboard/pages/ListPages';
+import LandingPage from './Pages/LandingPage';
 
 function App() {
   return (
@@ -46,7 +47,7 @@ function App() {
             <>
               <Header />
               <Routes>
-                <Route path="/" element={<Home1 />} />
+                <Route path="/" element={<LandingPage />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/work" element={<Work />} />
                 <Route path="/gallery" element={<Gallery />} />
