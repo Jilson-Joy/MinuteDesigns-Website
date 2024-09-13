@@ -3,17 +3,8 @@ import React, { useState, useEffect, useRef } from "react";
 import "../assets/css/LandingPage.css";
 import "../assets/css/commonStyle.css";
 import "../assets/css/mediaQuery.css";
-import Button from "react-bootstrap/Button";
-import { ArrowUpRight, MousePointer2 } from "lucide-react";
-import { Link } from "react-router-dom";
-import MobApp from "../assets/images/mobile_application.png";
-import Ecommerce from "../assets/images/ecommerce.png";
-import UIUX from "../assets/images/uiux.png";
-import WebApp from "../assets/images/web-development.png";
-import CarouselBox from "../components/carousel/CarouselBox";
-import Technologies from "../components/technologies/Technologies";
-import LandingImg from "../assets/images/Landing_img.png";
-import useMouse from "@react-hook/mouse-position";
+
+
 
 function LandingPage() {
   return (
