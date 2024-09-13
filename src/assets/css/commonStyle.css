@@ -776,131 +776,104 @@ input:checked + label .description {
   --color-dot: #363636;
 }
 
-.dot-container {
+.line-container {
   display: grid;
   place-items: center;
   position: relative;
 }
-
-.group {
-  display: grid;
+.line-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
   position: relative;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 80px;
-  place-items: center;
 }
 
-.dot {
-  width: 30px;
-  height: 30px;
-  background-color: rgb(0, 0, 0);
-  border-radius: 50%;
+.line {
   position: absolute;
+  width: 2px;
+  background-color: black;
 }
 
-/* Position the dots in M-shape */
-.dot1 {
-  top: 0;
-  left: 0;
-  animation: d1 2s linear infinite;
+.line-left {
+  height: 80%;
+  transform: rotate(0deg);
+  top: 10%;
+  left: 20%;
 }
 
-.dot2 {
-  top: 50%;
-  left: 0;
-  animation: d2 2s linear infinite;
+.line-middle-left {
+  height: 80%;
+  top: 10%;
+  left: 35%;
+  transform: rotate(0deg);
 }
 
-.dot3 {
-  top: 100%;
-  left: 0;
-  animation: d3 2s linear infinite;
+.line-middle-right {
+  height: 80%;
+  top: 2%;
+  left: 42%;
+  transform: rotate(-60deg);
+  z-index: -1;
 }
 
-.dot4 {
-  top: 50%;
-  left: 50%;
-  animation: d4 2s linear infinite;
+.line-right {
+  height: 80%;
+  top: 10%;
+  left: 70%;
+  transform: rotate(0deg);
 }
 
-.dot5 {
-  top: 0;
-  left: 100%;
-  animation: d5 2s linear infinite;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .line {
+    width: 3px;
+  }
+
+  .line-left {
+    left: 10%;
+  }
+
+  .line-middle-left {
+    left: 30%;
+  }
+
+  .line-middle-right {
+    left: 55%;
+  }
+
+  .line-right {
+    left: 75%;
+  }
 }
 
-.dot6 {
-  top: 50%;
-  left: 100%;
-  animation: d6 2s linear infinite;
+@media (max-width: 480px) {
+  .line {
+    width: 2px;
+  }
+
+  .line-left, .line-middle-left, .line-middle-right, .line-right {
+    height: 70%;
+  }
+
+  .line-left {
+    left: 5%;
+  }
+
+  .line-middle-left {
+    left: 25%;
+  }
+
+  .line-middle-right {
+    left: 50%;
+  }
+
+  .line-right {
+    left: 70%;
+  }
 }
 
-.dot7 {
-  top: 100%;
-  left: 100%;
-  animation: d7 2s linear infinite;
-}
 
-.dot8 {
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: d8 2s linear infinite;
-}
-
-.dot9 {
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: d9 2s linear infinite;
-}
-
-/* Animation for each dot */
-@keyframes d1 {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.5); }
-}
-
-@keyframes d2 {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.5); }
-}
-
-@keyframes d3 {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.5); }
-}
-
-@keyframes d4 {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.5); }
-}
-
-@keyframes d5 {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.5); }
-}
-
-@keyframes d6 {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.5); }
-}
-
-@keyframes d7 {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.5); }
-}
-
-@keyframes d8 {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.5); }
-}
-
-@keyframes d9 {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.5); }
-}
 
 
 /* vision and mission new */
