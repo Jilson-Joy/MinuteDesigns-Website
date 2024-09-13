@@ -1,42 +1,48 @@
-import React from 'react';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import './Login.css';
 import Auth from '../../assets/images/Authentication.gif';
-import Logo from '../../assets/images/minute.jpg'
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../redux/slices/authSlice';
+import { Spinner, Alert } from 'react-bootstrap';
 
 function Login() {
     const [validated, setValidated] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const dispatch = useDispatch();
 
-    const handleSubmit = (event) => {
-        const form = event.currentTarget;
+    const { loading, error, currentUser } = useSelector((state) => state.admin);
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
+
         if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
+            e.stopPropagation();
+            setValidated(true);
+            return;
         }
+
         setValidated(true);
+        dispatch(loginUser({ email, password }));
     };
 
     return (
-        <div className='container'>
-            <div className='login_container'>
-                <div className='login_section row d-flex justify-content-center align-items-center'>
-                    <div className='col-md-6'>
-                        <div className='login_img'>
-                            <img src={Auth} alt="" />
+        <div className="container">
+            <div className="login_container">
+                <div className="login_section row d-flex justify-content-center align-items-center">
+                    <div className="col-md-6">
+                        <div className="login_img">
+                            <img src={Auth} alt="Authentication" />
                         </div>
                     </div>
-                    <div className='col-md-6'>
-                        <div className='login_form'>
-                            {/* <div className='login_logo'>
-                                <img src={Logo} alt="" />
-                            </div> */}
-                            <Form noValidate validated={validated} onSubmit={handleSubmit}>
-
+                    <div className="col-md-6">
+                        <div className="login_form">
+                            <Form noValidate validated={validated} onSubmit={handleLogin}>
                                 <Row className="mb-3">
                                     <Form.Group as={Col} md="12" controlId="validationCustomEmail">
                                         <Form.Label>Email</Form.Label>
@@ -44,6 +50,8 @@ function Login() {
                                             type="email"
                                             placeholder="Email"
                                             required
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
                                         />
                                         <Form.Control.Feedback type="invalid">
                                             Please provide a valid email.
@@ -58,6 +66,8 @@ function Login() {
                                             type="password"
                                             placeholder="Password"
                                             required
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
                                         />
                                         <Form.Control.Feedback type="invalid">
                                             Please provide a password.
@@ -65,7 +75,16 @@ function Login() {
                                     </Form.Group>
                                 </Row>
 
-                                <button type="submit" className='login_button'>Submit</button>
+                                {currentUser && validated && !error && (
+                                    <Alert variant="success">Login successful!</Alert>
+                                )}
+                                {error && validated && (
+                                    <Alert variant="danger">Login failed. Please check your email or password.</Alert>
+                                )}
+
+                                <Button type="submit" className="login_button" disabled={loading}>
+                                    {loading ? <Spinner animation="border" size="sm" /> : 'Submit'}
+                                </Button>
                             </Form>
                         </div>
                     </div>

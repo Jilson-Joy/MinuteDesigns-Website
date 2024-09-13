@@ -4,12 +4,18 @@ import Header from './components/Navbar/Header';
 import './assets/css/commonStyle.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+<<<<<<< Updated upstream
 import Home from './Pages/Home';
 import About from './Pages/About';
 import Work from './pages/Work';
+=======
+import Home from './Pages/Home'; 
+import About from './Pages/About'; 
+import Work from './Pages/Work';
+>>>>>>> Stashed changes
 import Gallery from './Pages/Gallery';
-import Careers from './pages/Careers';
-import ReachUs from './pages/ReachUs';
+import Careers from './Pages/Careers';
+import ReachUs from './Pages/ReachUs';
 import Footer from './components/footer/Footer';
 import WebApp from './Pages/webApplication/WebApp';
 import MobileApplication from './Pages/mobileApplication/MobileApplication';
