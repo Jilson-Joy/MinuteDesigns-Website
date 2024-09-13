@@ -1,3 +1,80 @@
+/* home next section */
+/* Variables */
+:root {
+    --bezier-1: cubic-bezier(1, .1, .2, 1);
+    --count: 10;
+}
+.highlight-container
+{
+  background: #f0f0f0;
+  padding: 30px 20px;
+  border-radius: var(--container-radius);
+  min-height: 350px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-dot ul {
+  min-width: 350px;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(var(--count), 1fr);
+}
+.high-ball {
+    width: 10px;
+    position: relative;
+    margin: auto;
+}
+li span {
+    width: 20px;
+    height: 20px;
+    background-color: #444;
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%, -50%);
+    animation: sliding 1s ease-in-out infinite alternate;
+    border-radius: 100%;
+}
+/* Keyframes */
+@keyframes sliding {
+    100% {
+        margin-top: 45px;
+    }
+}
+/* Ball Animations */
+.ball-1 {
+    animation-delay: 0.25s;
+    background-color:  #ee964b;
+}
+
+.ball-2 {
+    animation-delay: 0.5s;
+    background-color: #377b37;
+}
+
+.ball-3 {
+    animation-delay: 0.75s;
+    background-color: #7a5afb;
+}
+
+.ball-4 {
+    animation-delay: 1s;
+    background-color: #d432c7;
+}
+
+.ball-5 {
+    animation-delay: 1.25s;
+    background-color: #00bcd4;
+}
+
+.ball-6 {
+    animation-delay: 1.5s;
+    background-color: #afaf29;
+}
+
+
 .cont {
     position: relative;
     top: 50%;
@@ -5,7 +82,6 @@
     transform: translate(-50%,-50%);
     display: inline-block;
   }
-  
   .dots {
     width: 15px;
     height: 15px;
@@ -13,14 +89,12 @@
     position: absolute;
     transform: translate(0px,0px);
   }
-  
   .d1 {
     transform: rotate(0deg) translateX(80px);
     background: #ee964b;
     animation: orbit1 2.5s ease-in-out infinite alternate;
     z-index: 10;
   }
-  
   .d2 {
     transform: rotate(-90deg) translateX(80px);
     background: #377b37;
@@ -149,3 +223,18 @@
       transform: rotate(765deg) translateX(0px) scale(2.6,2.6);
     }
   }
+
+
+/* service section */
+.service-head h3
+{
+   font-size: 2rem;
+}
+.service-desc p{
+  font-size: 14px;
+  text-align: justify;
+}
+.service-desc
+{
+    max-width: 300px;
+}
