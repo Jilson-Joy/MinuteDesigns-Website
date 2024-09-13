@@ -86,7 +86,9 @@ function Home1() {
   const { name, position, photo, text } = testimonials[currentIndex];
   // testimonial end here
   const webAppRef = useRef(null);
+
   const mobileAppRef = useRef(null);
+
   const ecommerceRef = useRef(null);
   const uiuxRef = useRef(null);
   const architectureRef = useRef(null);
@@ -94,6 +96,7 @@ function Home1() {
 
 
   const circleRef = useRef(null);
+
   const mobileCircleRef = useRef(null);
   const ecommerceCircleRef = useRef(null);
   const uiuxCircleRef = useRef(null);
@@ -123,7 +126,9 @@ function Home1() {
     left: 0,
   });
   const [inView, setInView] = useState(false);
+  
   const [mobileInView, setMobileInView] = useState(false);
+
   const [ecommerceInView, setEcommerceInView] = useState(false);
   const [uiuxInView, setUiuxInView] = useState(false);
   const [architectureInView, setArchitectureInView] = useState(false);
