@@ -1,18 +1,10 @@
-import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Navbar/Header';
 import './assets/css/commonStyle.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-<<<<<<< Updated upstream
-import Home from './Pages/Home';
-import About from './Pages/About';
-import Work from './pages/Work';
-=======
-import Home from './Pages/Home'; 
 import About from './Pages/About'; 
 import Work from './Pages/Work';
->>>>>>> Stashed changes
 import Gallery from './Pages/Gallery';
 import Careers from './Pages/Careers';
 import ReachUs from './Pages/ReachUs';
@@ -28,24 +20,28 @@ import MainDashboard from './Pages/dashboard/MainDashboard';
 import Dashboard from './Pages/dashboard/Dashboard';
 import Addpage from './Pages/dashboard/pages/Addpage';
 import ListPages from './Pages/dashboard/pages/ListPages';
+import EditPage from './Pages/dashboard/pages/EditPage';
+import AddTestimonial from './Pages/dashboard/testimonial/AddTestimonial';
+import ListTestimonials from './Pages/dashboard/testimonial/ListTestimonial';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Dashboard route without Header and Footer */}
         <Route path="/login" element={<LogIn />} />
-        {/* Main Dashboard Route with nested routes */}
         <Route path="/mainDashboard" element={<MainDashboard />}>
-          {/* Default route in mainDashboard (Dashboard component) */}
           <Route index element={<Dashboard />} />
           
-          {/* AddPage route as a child of mainDashboard */}
           <Route path="addPage" element={<Addpage />} />
           <Route path="listPage" element={<ListPages />} />
+          <Route path="edit-page/:id" element={<EditPage />} />
+          <Route path="addTestimonial" element={<AddTestimonial />} />
+          <Route path="listTestimonials" element={<ListTestimonials />} />
+
+
+
         </Route>
 
-        {/* All other routes with Header and Footer */}
         <Route
           path="*"
           element={

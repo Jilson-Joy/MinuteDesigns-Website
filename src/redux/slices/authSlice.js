@@ -74,7 +74,7 @@ const adminSlice = createSlice({
       });
   }
 });
-
+console.log(adminSlice)
 // Export actions
 export const { signOutSuccess } = adminSlice.actions;
 

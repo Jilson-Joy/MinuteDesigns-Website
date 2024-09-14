@@ -3,7 +3,7 @@ import { Airplay, AlignJustify, BookOpen, Box, ChevronDown, ChevronLeft, Folders
 import { Link } from 'react-router-dom';
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
-    const [openDropdown, setOpenDropdown] = useState(null); // A single state for both dropdowns
+    const [openDropdown, setOpenDropdown] = useState(null); // A single state for dropdowns
 
     const toggleDropdown = (dropdown) => {
         setOpenDropdown((prevDropdown) => (prevDropdown === dropdown ? null : dropdown));
@@ -36,14 +36,12 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                         <ChevronDown style={{ marginTop: '3px' }} />
                     </a>
                     <ul className={`dropdown-list ${openDropdown === 'pages' ? 'show' : ''}`}>
-                        <Link  to="/mainDashboard/addPage" className='link_tag'>
+                        <Link to="/mainDashboard/addPage" className='link_tag'>
                             <li>Add Page</li>
                         </Link>
-                       <Link to="/mainDashboard/listPage">
-                            <li>
-                                List Pages
-                            </li>
-                       </Link>
+                        <Link to="/mainDashboard/listPage" className='link_tag'>
+                            <li>List Pages</li>
+                        </Link>
                     </ul>
                 </li>
 
@@ -58,10 +56,12 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                         <ChevronDown style={{ marginTop: '3px' }} />
                     </a>
                     <ul className={`dropdown-list ${openDropdown === 'services' ? 'show' : ''}`}>
-                        <li >Web Development</li>
-                        <li>App Development</li>
-                        <li>E-Commerce</li>
-                        <li>UI/UX</li>
+                        <Link to="/mainDashboard/addService" className='link_tag'>
+                            <li>Add Service</li>
+                        </Link>
+                        <Link to="/mainDashboard/listServices" className='link_tag'>
+                            <li>List Services</li>
+                        </Link>
                     </ul>
                 </li>
 
@@ -80,10 +80,23 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                 </li>
 
                 <li className="sidebar-list-item">
-                    <a href="javascript:void(0)">
-                        <Folders className="icon" />
+                    <a
+                        href="javascript:void(0)"
+                        onClick={() => toggleDropdown('testimonials')}
+                        style={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <Box className="icon" />
                         Testimonials
+                        <ChevronDown style={{ marginTop: '3px' }} />
                     </a>
+                    <ul className={`dropdown-list ${openDropdown === 'testimonials' ? 'show' : ''}`}>
+                        <Link to="/mainDashboard/addTestimonial" className='link_tag'>
+                            <li>Add Testimonial</li>
+                        </Link>
+                        <Link to="/mainDashboard/listTestimonials" className='link_tag'>
+                            <li>List Testimonials</li>
+                        </Link>
+                    </ul>
                 </li>
             </ul>
         </aside>
