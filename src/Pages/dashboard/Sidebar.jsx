@@ -56,7 +56,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                         <ChevronDown style={{ marginTop: '3px' }} />
                     </a>
                     <ul className={`dropdown-list ${openDropdown === 'services' ? 'show' : ''}`}>
-                        <Link to="/mainDashboard/addService" className='link_tag'>
+                        <Link to="/mainDashboard/addServices" className='link_tag'>
                             <li>Add Service</li>
                         </Link>
                         <Link to="/mainDashboard/listServices" className='link_tag'>
@@ -98,6 +98,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                         </Link>
                     </ul>
                 </li>
+                
             </ul>
         </aside>
     );

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactQuill from 'react-quill'; 
-import 'react-quill/dist/quill.snow.css'; // Import styles for React Quill
-import { AddPageApi } from '../../../api/pages';
+import 'react-quill/dist/quill.snow.css'; 
+import { AddServiceApi } from '../../../api/services';
 
-const AddPage = () => {
+const AddServices = () => {
   const [formData, setFormData] = useState({
     pageUrl: '',
     pageTitle: '',
@@ -37,8 +37,7 @@ const AddPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await AddPageApi(formData);
-      console.log("Page added successfully:", result);
+   await AddServiceApi(formData);
       setFormData({
         pageUrl: '',
         pageTitle: '',
@@ -53,7 +52,7 @@ const AddPage = () => {
         metaTags: '',
       });
     } catch (error) {
-      console.error("Failed to add page:", error);
+      console.error("Failed to add service:", error);
     }
   };
 
@@ -70,7 +69,7 @@ const AddPage = () => {
 
   return (
     <div className="container">
-      <h1 className="mt-4">Add Page</h1>
+      <h1 className="mt-4">Add PagServicee</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
@@ -235,4 +234,4 @@ const AddPage = () => {
   );
 };
 
-export default AddPage;
+export default AddServices;

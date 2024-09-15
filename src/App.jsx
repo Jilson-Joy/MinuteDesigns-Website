@@ -23,6 +23,10 @@ import ListPages from './Pages/dashboard/pages/ListPages';
 import EditPage from './Pages/dashboard/pages/EditPage';
 import AddTestimonial from './Pages/dashboard/testimonial/AddTestimonial';
 import ListTestimonials from './Pages/dashboard/testimonial/ListTestimonial';
+import EditTestimonial from './Pages/dashboard/testimonial/editTestimonial';
+import AddServices from './Pages/dashboard/services/AddServices';
+import ListServices from './Pages/dashboard/services/ListServices';
+import EditService from './Pages/dashboard/services/EditServices';
 
 function App() {
   return (
@@ -37,6 +41,15 @@ function App() {
           <Route path="edit-page/:id" element={<EditPage />} />
           <Route path="addTestimonial" element={<AddTestimonial />} />
           <Route path="listTestimonials" element={<ListTestimonials />} />
+          <Route path="edit-testimonial/:id" element={<EditTestimonial />} />
+          <Route path="addServices" element={<AddServices />} />
+          <Route path="listServices" element={<ListServices />} />
+          <Route path="edit-service/:id" element={<EditService />} />
+
+
+          {/* <Route path="edit-service/:id" element={<edits />} /> */}
+
+
 
 
 
