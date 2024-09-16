@@ -12,18 +12,21 @@ const EditService = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    serviceUrl: "",
-    serviceTitle: "",
-    name: "",
-    shortDescription: "",
-    description: "",
-    content: "",
-    metaTitle: "",
-    metaDescription: "",
-    metaAuthor: "",
-    metaKeywords: "",
-    metaTags: "",
-    status: "",
+    pageUrl: '',
+    pageTitle: '',
+    name: '',
+    shortDescription: '',
+    description: '',
+    content: '',
+    meta: [
+      {
+        metaTitle: '',
+        metaDescription: '',
+        metaAuthor: '',
+        metaKeywords: [],
+      },
+    ],
+    metaTags: [],
   });
 
   const [loading, setLoading] = useState(true);
@@ -35,17 +38,21 @@ const EditService = () => {
         const serviceData = result.service;
 
         setFormData({
-          serviceUrl: serviceData.serviceUrl || "",
-          serviceTitle: serviceData.serviceTitle || "",
+          pageUrl: serviceData.pageUrl || "",
+          pageTitle: serviceData.pageTitle || "",
           name: serviceData.name || "",
           shortDescription: serviceData.shortDescription || "",
           description: serviceData.description || "",
           content: serviceData.content || "",
-          metaTitle: serviceData.metaTitle || "",
-          metaDescription: serviceData.metaDescription || "",
-          metaAuthor: serviceData.metaAuthor || "",
-          metaKeywords: serviceData.metaKeywords || "",
-          metaTags: serviceData.metaTags || "",
+          meta: [
+            {
+              metaTitle: serviceData.meta[0]?.metaTitle || "",
+              metaDescription: serviceData.meta[0]?.metaDescription || "",
+              metaAuthor: serviceData.meta[0]?.metaAuthor || "",
+              metaKeywords: serviceData.meta[0]?.metaKeywords.join(", ") || "",
+            },
+          ],
+          metaTags: serviceData.metaTags.join(", ") || "",
         });
         setLoading(false);
       } catch (error) {
@@ -59,31 +66,54 @@ const EditService = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
+    }));
+  };
+
+  const handleMetaChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      meta: [
+        {
+          ...prevData.meta[0],
+          [name]: value,
+        },
+      ],
+    }));
   };
 
   const handleContentChange = (value) => {
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       content: value,
-    });
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await UpdateServiceById(id, formData);
-      console.log("Service updated successfully:", result);
+      const result = await UpdateServiceById(id, {
+        ...formData,
+        meta: [
+          {
+            ...formData.meta[0],
+            metaKeywords: formData.meta[0].metaKeywords.split(',').map(keyword => keyword.trim()),
+          },
+        ],
+        metaTags: formData.metaTags.split(',').map(tag => tag.trim()),
+      });
 
-      toast.success("Service updated successfully!");
-
-      navigate("/mainDashboard/listServices");
+      if (result.success === false) {
+        toast.error(result.message || 'Failed to update service');
+      } else {
+        toast.success('Service updated successfully!');
+        navigate("/mainDashboard/listServices");
+      }
     } catch (error) {
       console.error("Failed to update service:", error);
-
       toast.error("Failed to update service. Please try again.");
     }
   };
@@ -109,34 +139,34 @@ const EditService = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
-          <label htmlFor="serviceUrl" className="col-sm-2 col-form-label">
-            Service URL
+          <label htmlFor="pageUrl" className="col-sm-2 col-form-label">
+            Page URL
           </label>
           <div className="col-sm-10">
             <input
               style={{ marginLeft: "40px" }}
               type="text"
               className="form-control"
-              id="serviceUrl"
-              name="serviceUrl"
-              value={formData.serviceUrl}
+              id="pageUrl"
+              name="pageUrl"
+              value={formData.pageUrl}
               onChange={handleChange}
             />
           </div>
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="serviceTitle" className="col-sm-2 col-form-label">
-            Service Title
+          <label htmlFor="pageTitle" className="col-sm-2 col-form-label">
+            Page Title
           </label>
           <div className="col-sm-10">
             <input
               style={{ marginLeft: "40px" }}
               type="text"
               className="form-control"
-              id="serviceTitle"
-              name="serviceTitle"
-              value={formData.serviceTitle}
+              id="pageTitle"
+              name="pageTitle"
+              value={formData.pageTitle}
               onChange={handleChange}
             />
           </div>
@@ -204,8 +234,8 @@ const EditService = () => {
               className="form-control"
               id="metaTitle"
               name="metaTitle"
-              value={formData.metaTitle}
-              onChange={handleChange}
+              value={formData.meta[0].metaTitle}
+              onChange={handleMetaChange}
             />
           </div>
         </div>
@@ -221,8 +251,8 @@ const EditService = () => {
               className="form-control"
               id="metaDescription"
               name="metaDescription"
-              value={formData.metaDescription}
-              onChange={handleChange}
+              value={formData.meta[0].metaDescription}
+              onChange={handleMetaChange}
             />
           </div>
         </div>
@@ -238,8 +268,8 @@ const EditService = () => {
               className="form-control"
               id="metaAuthor"
               name="metaAuthor"
-              value={formData.metaAuthor}
-              onChange={handleChange}
+              value={formData.meta[0].metaAuthor}
+              onChange={handleMetaChange}
             />
           </div>
         </div>
@@ -255,8 +285,8 @@ const EditService = () => {
               className="form-control"
               id="metaKeywords"
               name="metaKeywords"
-              value={formData.metaKeywords}
-              onChange={handleChange}
+              value={formData.meta[0].metaKeywords}
+              onChange={handleMetaChange}
             />
           </div>
         </div>
@@ -294,8 +324,8 @@ const EditService = () => {
         </div>
 
         <div className="row mb-3">
-          <div className="col-sm-10 offset-sm-0">
-            <button type="submit" className="btn btn-primary">
+          <div className="col-sm-10 offset-sm-2">
+            <button type="submit" className="btn btn-primary" style={{marginLeft:"-75px"}}>
               Update Service
             </button>
           </div>

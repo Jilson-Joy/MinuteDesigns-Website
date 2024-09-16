@@ -12,18 +12,19 @@ const EditPage = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    pageUrl: "",
-    pageTitle: "",
-    name: "",
-    shortDescription: "",
-    description: "",
-    content: "",
-    metaTitle: "",
-    metaDescription: "",
-    metaAuthor: "",
-    metaKeywords: "",
-    metaTags: "",
-    status: "",
+    pageUrl: '',
+    pageTitle: '',
+    name: '',
+    shortDescription: '',
+    description: '',
+    content: '',
+    meta: {
+      metaTitle: '',
+      metaDescription: '',
+      metaAuthor: '',
+      metaKeywords: '',
+    },
+    metaTags: '',
   });
 
   const [loading, setLoading] = useState(true);
@@ -41,10 +42,12 @@ const EditPage = () => {
           shortDescription: pageData.shortDescription || "",
           description: pageData.description || "",
           content: pageData.content || "",
-          metaTitle: pageData.metaTitle || "",
-          metaDescription: pageData.metaDescription || "",
-          metaAuthor: pageData.metaAuthor || "",
-          metaKeywords: pageData.metaKeywords || "",
+          meta: {
+            metaTitle: pageData.meta?.metaTitle || "",
+            metaDescription: pageData.meta?.metaDescription || "",
+            metaAuthor: pageData.meta?.metaAuthor || "",
+            metaKeywords: pageData.meta?.metaKeywords || "",
+          },
           metaTags: pageData.metaTags || "",
         });
         setLoading(false);
@@ -59,17 +62,27 @@ const EditPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (name.startsWith('meta.')) {
+      setFormData(prevData => ({
+        ...prevData,
+        meta: {
+          ...prevData.meta,
+          [name.replace('meta.', '')]: value,
+        },
+      }));
+    } else {
+      setFormData(prevData => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleContentChange = (value) => {
-    setFormData({
-      ...formData,
+    setFormData(prevData => ({
+      ...prevData,
       content: value,
-    });
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -79,11 +92,9 @@ const EditPage = () => {
       console.log("Page updated successfully:", result);
 
       toast.success("Page updated successfully!");
-
       navigate("/mainDashboard/listPage");
     } catch (error) {
       console.error("Failed to update page:", error);
-
       toast.error("Failed to update page. Please try again.");
     }
   };
@@ -203,8 +214,8 @@ const EditPage = () => {
               type="text"
               className="form-control"
               id="metaTitle"
-              name="metaTitle"
-              value={formData.metaTitle}
+              name="meta.metaTitle"
+              value={formData.meta.metaTitle}
               onChange={handleChange}
             />
           </div>
@@ -220,8 +231,8 @@ const EditPage = () => {
               type="text"
               className="form-control"
               id="metaDescription"
-              name="metaDescription"
-              value={formData.metaDescription}
+              name="meta.metaDescription"
+              value={formData.meta.metaDescription}
               onChange={handleChange}
             />
           </div>
@@ -237,8 +248,8 @@ const EditPage = () => {
               type="text"
               className="form-control"
               id="metaAuthor"
-              name="metaAuthor"
-              value={formData.metaAuthor}
+              name="meta.metaAuthor"
+              value={formData.meta.metaAuthor}
               onChange={handleChange}
             />
           </div>
@@ -254,8 +265,8 @@ const EditPage = () => {
               type="text"
               className="form-control"
               id="metaKeywords"
-              name="metaKeywords"
-              value={formData.metaKeywords}
+              name="meta.metaKeywords"
+              value={formData.meta.metaKeywords}
               onChange={handleChange}
             />
           </div>
@@ -302,7 +313,6 @@ const EditPage = () => {
         </div>
       </form>
 
-      {/* ToastContainer is required for toasts to show */}
       <ToastContainer />
     </div>
   );

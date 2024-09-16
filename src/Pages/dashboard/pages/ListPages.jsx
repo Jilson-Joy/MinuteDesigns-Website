@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { DeletePageById, GetAllPages, UpdatePageStatus } from '../../../api/pages'; 
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer, toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css';
 
 function ListPages() {
   const [pages, setPages] = useState([]);
@@ -35,8 +37,10 @@ function ListPages() {
       try {
         await DeletePageById(pageId); 
         setPages(pages.filter(page => page._id !== pageId));
+        toast.success('Page deleted successfully!');
       } catch (error) {
         console.error('Error deleting page:', error);
+        toast.error('Failed to delete page.');
       }
     }
   };
@@ -57,15 +61,22 @@ function ListPages() {
       try {
         await UpdatePageStatus(pageId, newStatus);
         setPages(pages.map(page => page._id === pageId ? { ...page, status: newStatus } : page));
+        toast.success(`Page ${action}d successfully!`);
       } catch (error) {
         console.error('Error updating page status:', error);
+        toast.error('Failed to update page status.');
       }
     }
   };
 
+  const handleView = (page) => {
+    setSelectedPage(page);
+    setShowModal(true);
+  };
+
   const handleCloseModal = () => {
-    setShowModal(false); 
-    setSelectedPage(null); 
+    setShowModal(false);
+    setSelectedPage(null);
   };
 
   if (loading) {
@@ -90,7 +101,8 @@ function ListPages() {
               <th scope="col">Status</th> 
               <th scope="col">Edit</th>
               <th scope="col">Delete</th>
-              <th scope="col">Change Status</th> 
+              <th scope="col">Status</th> 
+              <th scope="col">View</th>
             </tr>
           </thead>
           <tbody>
@@ -103,6 +115,7 @@ function ListPages() {
                 <td>{page.pageUrl}</td> 
                 <td>{page.shortDescription}</td> 
                 <td>{page.status ? 'Active' : 'Inactive'}</td> 
+               
                 <td>
                   <button 
                     onClick={() => handleEdit(page._id)}
@@ -127,16 +140,28 @@ function ListPages() {
                     {page.status ? 'Active' : 'Deactive'}
                   </button>
                 </td>
+                <td>
+                  <button 
+                    onClick={() => handleView(page)} // View button
+                    className="btn btn-info"
+                  >
+                    View
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
 
-      {selectedPage && (
+      {showModal && selectedPage && (
         <div className={`modal ${showModal ? 'show' : ''}`} tabIndex="-1" style={{ display: showModal ? 'block' : 'none' }}>
           <div className="modal-dialog modal-lg">
             <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Page Details</h5>
+                <button type="button" className="btn-close" onClick={handleCloseModal}></button>
+              </div>
               <div className="modal-body">
                 <div className="row mb-3">
                   <label className="col-sm-3">Page URL</label>
@@ -179,6 +204,66 @@ function ListPages() {
                     <div dangerouslySetInnerHTML={{ __html: selectedPage.content }} />
                   </div>
                 </div>
+
+                <div className="row mb-3">
+                  <label className="col-sm-3">Meta Title</label>
+                  <div className="col-sm-9">
+                    <p>{selectedPage.meta?.[0]?.metaTitle}</p>
+                  </div>
+                </div>
+
+                <div className="row mb-3">
+                  <label className="col-sm-3">Meta Description</label>
+                  <div className="col-sm-9">
+                    <p>{selectedPage.meta?.[0]?.metaDescription}</p>
+                  </div>
+                </div>
+
+                <div className="row mb-3">
+                  <label className="col-sm-3">Meta Author</label>
+                  <div className="col-sm-9">
+                    <p>{selectedPage.meta?.[0]?.metaAuthor}</p>
+                  </div>
+                </div>
+
+                <div className="row mb-3">
+                  <label className="col-sm-3">Meta Keywords</label>
+                  <div className="col-sm-9">
+                    <p>{selectedPage.meta?.[0]?.metaKeywords.join(', ')}</p>
+                  </div>
+                </div>
+
+                <div className="row mb-3">
+                  <label className="col-sm-3">Meta Tags</label>
+                  <div className="col-sm-9">
+                    <p>{selectedPage.metaTags.join(', ')}</p>
+                  </div>
+                </div>
+
+      
+
+                <div className="row mb-3">
+                  <label className="col-sm-3">Created At</label>
+                  <div className="col-sm-9">
+                    <p>{new Date(selectedPage.createdAt).toLocaleString()}</p>
+                  </div>
+                </div>
+
+                <div className="row mb-3">
+                  <label className="col-sm-3">Updated At</label>
+                  <div className="col-sm-9">
+                    <p>{new Date(selectedPage.updatedAt).toLocaleString()}</p>
+                  </div>
+                </div>
+
+               
+
+                <div className="row mb-3">
+                  <label className="col-sm-3">Status</label>
+                  <div className="col-sm-9">
+                    <p>{selectedPage.status ? 'Active' : 'Inactive'}</p>
+                  </div>
+                </div>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
@@ -189,6 +274,8 @@ function ListPages() {
       )}
 
       {showModal && <div className="modal-backdrop fade show" onClick={handleCloseModal}></div>}
+
+      <ToastContainer />
     </div>
   );
 }

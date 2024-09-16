@@ -1,32 +1,32 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Header from './components/Navbar/Header';
-import './assets/css/commonStyle.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "./components/Navbar/Header";
+import "./assets/css/commonStyle.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import About from './Pages/About'; 
-import Work from './Pages/Work';
-import Gallery from './Pages/Gallery';
-import Careers from './Pages/Careers';
-import ReachUs from './Pages/ReachUs';
-import Footer from './components/footer/Footer';
-import WebApp from './Pages/webApplication/WebApp';
-import MobileApplication from './Pages/mobileApplication/MobileApplication';
-import Ecommerce from './Pages/ecommerce/Ecommerce';
-import UiUx from './Pages/ui&ux/UiUx';
-import Home1 from './Pages/Home1';
-import Portfolio from './Pages/portfolio/Portfolio';
-import LogIn from './Pages/login/Login';
-import MainDashboard from './Pages/dashboard/MainDashboard';
-import Dashboard from './Pages/dashboard/Dashboard';
-import Addpage from './Pages/dashboard/pages/Addpage';
-import ListPages from './Pages/dashboard/pages/ListPages';
-import EditPage from './Pages/dashboard/pages/EditPage';
-import AddTestimonial from './Pages/dashboard/testimonial/AddTestimonial';
-import ListTestimonials from './Pages/dashboard/testimonial/ListTestimonial';
-import EditTestimonial from './Pages/dashboard/testimonial/editTestimonial';
-import AddServices from './Pages/dashboard/services/AddServices';
-import ListServices from './Pages/dashboard/services/ListServices';
-import EditService from './Pages/dashboard/services/EditServices';
+import About from "./Pages/About";
+import Work from "./Pages/Work";
+import Gallery from "./Pages/Gallery";
+import Careers from "./Pages/Careers";
+import ReachUs from "./Pages/ReachUs";
+import Footer from "./components/footer/Footer";
+import WebApp from "./Pages/webApplication/WebApp";
+import MobileApplication from "./Pages/mobileApplication/MobileApplication";
+import Ecommerce from "./Pages/ecommerce/Ecommerce";
+import UiUx from "./Pages/ui&ux/UiUx";
+import Home1 from "./Pages/Home1";
+import Portfolio from "./Pages/portfolio/Portfolio";
+import LogIn from "./Pages/login/Login";
+import MainDashboard from "./Pages/dashboard/MainDashboard";
+import Dashboard from "./Pages/dashboard/Dashboard";
+import Addpage from "./Pages/dashboard/pages/Addpage";
+import ListPages from "./Pages/dashboard/pages/ListPages";
+import EditPage from "./Pages/dashboard/pages/EditPage";
+import AddTestimonial from "./Pages/dashboard/testimonial/AddTestimonial";
+import ListTestimonials from "./Pages/dashboard/testimonial/ListTestimonial";
+import EditTestimonial from "./Pages/dashboard/testimonial/EditTestimonial";
+import AddServices from "./Pages/dashboard/services/AddServices";
+import ListServices from "./Pages/dashboard/services/ListServices";
+import EditService from "./Pages/dashboard/services/EditServices";
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
         <Route path="/login" element={<LogIn />} />
         <Route path="/mainDashboard" element={<MainDashboard />}>
           <Route index element={<Dashboard />} />
-          
+
           <Route path="addPage" element={<Addpage />} />
           <Route path="listPage" element={<ListPages />} />
           <Route path="edit-page/:id" element={<EditPage />} />
@@ -45,14 +45,6 @@ function App() {
           <Route path="addServices" element={<AddServices />} />
           <Route path="listServices" element={<ListServices />} />
           <Route path="edit-service/:id" element={<EditService />} />
-
-
-          {/* <Route path="edit-service/:id" element={<edits />} /> */}
-
-
-
-
-
         </Route>
 
         <Route

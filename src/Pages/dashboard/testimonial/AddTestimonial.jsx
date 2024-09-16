@@ -1,15 +1,19 @@
-import { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import ReactQuill from 'react-quill'; // Import React Quill
-import 'react-quill/dist/quill.snow.css'; // Import styles for React Quill
-import { AddTestimonialApi } from '../../../api/testimonial';
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { AddTestimonialApi } from "../../../api/testimonial";
+import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const AddTestimonial = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    content: '',
-   
+    title: "",
+    description: "",
+    content: "",
   });
 
   const handleChange = (e) => {
@@ -31,10 +35,14 @@ const AddTestimonial = () => {
     e.preventDefault();
     try {
       AddTestimonialApi(formData);
+      toast.success("Testimonial added successfully!");
+
+      navigate("/mainDashboard/listTestimonials");
+
       setFormData({
-        title: '',
-        description: '',
-        content: '',
+        title: "",
+        description: "",
+        content: "",
       });
     } catch (error) {
       console.error("Failed to add testimonial:", error);
@@ -43,12 +51,12 @@ const AddTestimonial = () => {
 
   const modules = {
     toolbar: [
-      [{ 'header': [1, 2, false] }], 
-      ['bold', 'italic', 'underline'], 
-      [{ 'color': [] }, { 'background': [] }],
-      ['link'],
-      ['clean'], 
-      ['code-block'], 
+      [{ header: [1, 2, false] }],
+      ["bold", "italic", "underline"],
+      [{ color: [] }, { background: [] }],
+      ["link"],
+      ["clean"],
+      ["code-block"],
     ],
   };
 
@@ -58,23 +66,30 @@ const AddTestimonial = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
-          <label htmlFor="title" className="col-sm-2 col-form-label">title</label>
+          <label htmlFor="title" className="col-sm-2 col-form-label">
+            title
+          </label>
           <div className="col-sm-10">
-            <input style={{marginLeft:"40px"}}
+            <input
+              style={{ marginLeft: "40px" }}
               type="text"
               className="form-control"
               id="title"
               name="title"
               value={formData.title}
               onChange={handleChange}
+              required
             />
           </div>
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="description" className="col-sm-2 col-form-label">description</label>
+          <label htmlFor="description" className="col-sm-2 col-form-label">
+            description
+          </label>
           <div className="col-sm-10">
-            <input style={{marginLeft:"40px"}}
+            <input
+              style={{ marginLeft: "40px" }}
               type="text"
               className="form-control"
               id="description"
@@ -85,26 +100,31 @@ const AddTestimonial = () => {
           </div>
         </div>
 
-     
-
-      
-      
-
         <div className="row mb-3">
-          <label htmlFor="content" className="col-sm-2 col-form-label">Content</label>
+          <label htmlFor="content" className="col-sm-2 col-form-label">
+            Content
+          </label>
           <div className="col-sm-10">
-            <ReactQuill style={{marginLeft:"40px", width: "100%" , height:"300px"}}
+            <ReactQuill
+              style={{ marginLeft: "40px", width: "100%", height: "300px" }}
               value={formData.content}
               onChange={handleContentChange}
-              modules={modules} 
+              modules={modules}
               placeholder="Write your content here..."
+              required
             />
           </div>
         </div>
 
         <div className="row mb-3">
           <div className="col-sm-8 offset-sm-2">
-            <button type="submit" style = {{marginLeft:"-20%"}}className="btn btn-primary">Submit</button>
+            <button
+              type="submit"
+              style={{ marginLeft: "-20%" }}
+              className="btn btn-primary"
+            >
+              Submit
+            </button>
           </div>
         </div>
       </form>

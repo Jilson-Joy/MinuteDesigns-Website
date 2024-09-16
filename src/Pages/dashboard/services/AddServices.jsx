@@ -1,10 +1,18 @@
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from "react-router-dom";
+
 import ReactQuill from 'react-quill'; 
 import 'react-quill/dist/quill.snow.css'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AddServiceApi } from '../../../api/services';
 
 const AddServices = () => {
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
   const [formData, setFormData] = useState({
     pageUrl: '',
     pageTitle: '',
@@ -12,19 +20,38 @@ const AddServices = () => {
     shortDescription: '',
     description: '',
     content: '',
-    metaTitle: '',
-    metaDescription: '',
-    metaAuthor: '',
-    metaKeywords: '',
+    meta: [
+      {
+        metaTitle: '',
+        metaDescription: '',
+        metaAuthor: '',
+        metaKeywords: '',
+      },
+    ],
     metaTags: '',
   });
 
+  // Handle field changes including nested meta fields
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+
+    if (name.startsWith("meta.")) {
+      const metaField = name.split(".")[1]; // Extract the specific field from meta object
+      setFormData((prevData) => ({
+        ...prevData,
+        meta: [
+          {
+            ...prevData.meta[0],
+            [metaField]: value, // Update the specific meta field
+          },
+        ],
+      }));
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
   const handleContentChange = (value) => {
@@ -34,10 +61,30 @@ const AddServices = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-   await AddServiceApi(formData);
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (isSubmitting) return;  
+  setIsSubmitting(true);    
+
+  try {
+    const result = await AddServiceApi({
+      ...formData,
+      meta: [
+        {
+          ...formData.meta[0],
+          metaKeywords: formData.meta[0].metaKeywords.split(',').map(keyword => keyword.trim()),
+        },
+      ],
+      metaTags: formData.metaTags.split(',').map(tag => tag.trim()),
+    });
+
+    if (result.success === false) {
+      toast.error(result.message || 'Failed to add service');
+    } else {
+      toast.success('Service added successfully!');
+      navigate("/mainDashboard/listServices");
+
       setFormData({
         pageUrl: '',
         pageTitle: '',
@@ -45,31 +92,37 @@ const AddServices = () => {
         shortDescription: '',
         description: '',
         content: '',
-        metaTitle: '',
-        metaDescription: '',
-        metaAuthor: '',
-        metaKeywords: '',
+        meta: [
+          {
+            metaTitle: '',
+            metaDescription: '',
+            metaAuthor: '',
+            metaKeywords: '',
+          },
+        ],
         metaTags: '',
       });
-    } catch (error) {
-      console.error("Failed to add service:", error);
     }
-  };
-
+  } catch (error) {
+    toast.error("Failed to add service");
+  } finally {
+    setIsSubmitting(false); 
+  }
+};
   const modules = {
     toolbar: [
-      [{ 'header': [1, 2, false] }], 
-      ['bold', 'italic', 'underline'], 
+      [{ 'header': [1, 2, false] }],
+      ['bold', 'italic', 'underline'],
       [{ 'color': [] }, { 'background': [] }],
       ['link'],
-      ['clean'], 
+      ['clean'],
       ['code-block'],
     ],
   };
 
   return (
     <div className="container">
-      <h1 className="mt-4">Add PagServicee</h1>
+      <h1 className="mt-4">Add Service</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
@@ -82,6 +135,7 @@ const AddServices = () => {
               name="pageUrl"
               value={formData.pageUrl}
               onChange={handleChange}
+              required
             />
           </div>
         </div>
@@ -110,6 +164,7 @@ const AddServices = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              required
             />
           </div>
         </div>
@@ -143,56 +198,56 @@ const AddServices = () => {
         </div>
        
         <div className="row mb-3">
-          <label htmlFor="metaTitle" className="col-sm-2 col-form-label">Meta Title</label>
+          <label htmlFor="meta.metaTitle" className="col-sm-2 col-form-label">Meta Title</label>
           <div className="col-sm-10">
             <input style={{marginLeft:"40px"}}
               type="text"
               className="form-control"
-              id="metaTitle"
-              name="metaTitle"
-              value={formData.metaTitle}
+              id="meta.metaTitle"
+              name="meta.metaTitle"
+              value={formData.meta[0].metaTitle}
               onChange={handleChange}
             />
           </div>
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="metaDescription" className="col-sm-2 col-form-label">Meta Description</label>
+          <label htmlFor="meta.metaDescription" className="col-sm-2 col-form-label">Meta Description</label>
           <div className="col-sm-10">
             <input style={{marginLeft:"40px"}}
               type="text"
               className="form-control"
-              id="metaDescription"
-              name="metaDescription"
-              value={formData.metaDescription}
+              id="meta.metaDescription"
+              name="meta.metaDescription"
+              value={formData.meta[0].metaDescription}
               onChange={handleChange}
             />
           </div>
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="metaAuthor" className="col-sm-2 col-form-label">Meta Author</label>
+          <label htmlFor="meta.metaAuthor" className="col-sm-2 col-form-label">Meta Author</label>
           <div className="col-sm-10">
             <input style={{marginLeft:"40px"}}
               type="text"
               className="form-control"
-              id="metaAuthor"
-              name="metaAuthor"
-              value={formData.metaAuthor}
+              id="meta.metaAuthor"
+              name="meta.metaAuthor"
+              value={formData.meta[0].metaAuthor}
               onChange={handleChange}
             />
           </div>
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="metaKeywords" className="col-sm-2 col-form-label">Meta Keywords (comma separated)</label>
+          <label htmlFor="meta.metaKeywords" className="col-sm-2 col-form-label">Meta Keywords (comma separated)</label>
           <div className="col-sm-10">
             <input style={{marginLeft:"40px"}}
               type="text"
               className="form-control"
-              id="metaKeywords"
-              name="metaKeywords"
-              value={formData.metaKeywords}
+              id="meta.metaKeywords"
+              name="meta.metaKeywords"
+              value={formData.meta[0].metaKeywords}
               onChange={handleChange}
             />
           </div>
@@ -220,16 +275,33 @@ const AddServices = () => {
               onChange={handleContentChange}
               modules={modules} 
               placeholder="Write your content here..."
+              required
             />
           </div>
         </div>
 
+        {/* <div className="row mb-3">
+          <label htmlFor="file" className="col-sm-2 col-form-label">File Upload</label>
+          <div className="col-sm-10">
+            <input style={{ marginLeft: "40px" }}
+              type="file"
+              className="form-control"
+              id="file"
+              name="file"
+              onChange={handleChange}
+            />
+          </div>
+        </div> */}
+
+
         <div className="row mb-3">
           <div className="col-sm-8 offset-sm-2">
-            <button type="submit" style = {{marginLeft:"-20%"}}className="btn btn-primary">Submit</button>
+          <button type="submit" style = {{marginLeft:"-20%"}}className="btn btn-primary">Submit</button>
           </div>
         </div>
       </form>
+
+      <ToastContainer /> 
     </div>
   );
 };

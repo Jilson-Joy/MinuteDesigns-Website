@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { Airplay, AlignJustify, BookOpen, Box, ChevronDown, ChevronLeft, Folders, Images, LayoutDashboard, Rss } from 'lucide-react';
+import { useState } from 'react';
+import {  BookOpen, Box, ChevronDown, ChevronLeft,  Images, LayoutDashboard, Rss } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
-    const [openDropdown, setOpenDropdown] = useState(null); // A single state for dropdowns
+    const [openDropdown, setOpenDropdown] = useState(null); 
 
     const toggleDropdown = (dropdown) => {
         setOpenDropdown((prevDropdown) => (prevDropdown === dropdown ? null : dropdown));
@@ -57,7 +57,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                     </a>
                     <ul className={`dropdown-list ${openDropdown === 'services' ? 'show' : ''}`}>
                         <Link to="/mainDashboard/addServices" className='link_tag'>
-                            <li>Add Service</li>
+                            <li>Add Services</li>
                         </Link>
                         <Link to="/mainDashboard/listServices" className='link_tag'>
                             <li>List Services</li>
@@ -72,12 +72,6 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                     </a>
                 </li>
 
-                <li className="sidebar-list-item">
-                    <a href="javascript:void(0)">
-                        <Rss className="icon" />
-                        Blog
-                    </a>
-                </li>
 
                 <li className="sidebar-list-item">
                     <a

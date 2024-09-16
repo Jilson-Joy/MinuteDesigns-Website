@@ -2,10 +2,14 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { DeleteTestimonialById, GetAllTestimonial, UpdateTestimonialStatus } from '../../../api/testimonial';
+import { ToastContainer, toast } from 'react-toastify'; 
+import 'react-toastify/dist/ReactToastify.css';
 
 function ListTestimonials() {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedTestimonial, setSelectedTestimonial] = useState(null); // State for the selected testimonial
+  const [showModal, setShowModal] = useState(false); // Modal visibility state
   const navigate = useNavigate();
 
   const fetchTestimonials = async () => {
@@ -23,9 +27,10 @@ function ListTestimonials() {
     fetchTestimonials();
   }, []);
 
-  const handleEdit = (pageId) => {
-    navigate(`/mainDashboard/edit-testimonial/${pageId}`); 
+  const handleEdit = (testimonialId) => {
+    navigate(`/mainDashboard/edit-testimonial/${testimonialId}`); 
   };
+
   const handleStatusChange = async (testimonialId) => {
     const testimonialToUpdate = testimonials.find(testimonial => testimonial._id === testimonialId);
   
@@ -46,28 +51,36 @@ function ListTestimonials() {
           testimonial._id === testimonialId ? { ...testimonial, status: newStatus } : testimonial
         );
         setTestimonials(updatedTestimonials); 
+        toast.success(`Testimonial ${action}d successfully!`);
   
       } catch (error) {
         console.error('Error updating testimonial status:', error);
       }
     }
   };
-  
 
   const handleDelete = async (testimonialId) => {
-      const confirmed = window.confirm('Are you sure you want to delete this testimonial? This action cannot be undone.');
-      if(confirmed){
-        try{
-          await DeleteTestimonialById(testimonialId); 
-          setTestimonials(testimonials.filter(testimonial => testimonial._id !== testimonialId)); 
-          
-        }
-        catch (error) {
-          console.error('Error deleting testimonial:', error);
-        }
+    const confirmed = window.confirm('Are you sure you want to delete this testimonial? This action cannot be undone.');
+    if (confirmed) {
+      try {
+        await DeleteTestimonialById(testimonialId); 
+        setTestimonials(testimonials.filter(testimonial => testimonial._id !== testimonialId)); 
+        toast.success('Testimonial deleted successfully!');
+      } catch (error) {
+        console.error('Error deleting testimonial:', error);
       }
-    };
- 
+    }
+  };
+
+  const handleView = (testimonial) => {
+    setSelectedTestimonial(testimonial); // Set the selected testimonial for the modal
+    setShowModal(true); // Show the modal
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false); // Hide the modal
+    setSelectedTestimonial(null); // Clear the selected testimonial
+  };
 
   if (loading) {
     return <div>Loading...</div>; 
@@ -88,8 +101,8 @@ function ListTestimonials() {
               <th scope="col">Content</th>
               <th scope="col">Edit</th>
               <th scope="col">Delete</th>
-              <th scope="col">Status change</th>
-
+              <th scope="col">Status</th>
+              <th scope="col">View</th> {/* Add view column */}
             </tr>
           </thead>
           <tbody>
@@ -123,11 +136,71 @@ function ListTestimonials() {
                     {testimonial.status ? 'Active' : 'Deactive'}
                   </button>
                 </td>
+                <td>
+                  <button 
+                    onClick={() => handleView(testimonial)} // View button
+                    className="btn btn-info"
+                  >
+                    View
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
+
+      {selectedTestimonial && (
+        <div className={`modal ${showModal ? 'show' : ''}`} tabIndex="-1" style={{ display: showModal ? 'block' : 'none' }}>
+          <div className="modal-dialog modal-lg">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Testimonial Details</h5>
+                <button type="button" className="btn-close" onClick={handleCloseModal}></button>
+              </div>
+              <div className="modal-body">
+                <div className="row mb-3">
+                  <label className="col-sm-3">Title</label>
+                  <div className="col-sm-9">
+                    <p>{selectedTestimonial.title}</p>
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label className="col-sm-3">Description</label>
+                  <div className="col-sm-9">
+                    <p>{selectedTestimonial.description}</p>
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label className="col-sm-3">Content</label>
+                  <div className="col-sm-9">
+                    <div dangerouslySetInnerHTML={{ __html: selectedTestimonial.content }} />
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label className="col-sm-3">Created At</label>
+                  <div className="col-sm-9">
+                    <p>{new Date(selectedTestimonial.createdAt).toLocaleString()}</p>
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <label className="col-sm-3">Updated At</label>
+                  <div className="col-sm-9">
+                    <p>{new Date(selectedTestimonial.updatedAt).toLocaleString()}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showModal && <div className="modal-backdrop fade show" onClick={handleCloseModal}></div>}
+      
+      <ToastContainer />
     </div>
   );
 }

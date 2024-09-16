@@ -7,12 +7,15 @@ export const AddPageApi = async (pageData) => {
       `http://localhost:3000/api/v1/page`,
       pageData,
       {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Ensure the content type is set to multipart/form-data
+        },
         withCredentials: true,
       }
     );
     return response.data;
   } catch (error) {
-    console.error("There was an error in adding page", error);
+    console.error("There was an error adding the page", error);
     throw error;
   }
 };
