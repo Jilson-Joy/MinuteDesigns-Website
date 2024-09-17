@@ -27,15 +27,14 @@ function LandingPage() {
           <div className="row align-items-center">
             <div className="col-md-6">
               <div className="dot-container">
-                <div
-                  className="dot"
-                  style={{ backgroundColor: "transparent" }}
-                ></div>
+                <div className="dot"style={{ backgroundColor: "transparent" }}></div>
+              
                 <div className="dot"></div>
                 <div className="dot"></div>
                 <div className="dot"></div>
                 <div className="dot"></div>
                 <div className="dot"></div>
+
 
                 <div className="group top">
                   <span>•</span>
@@ -148,6 +147,11 @@ function LandingPage() {
                 "Elevating user experience to its pinnacle."
               </p>
             </div>
+
+
+
+
+            
             {/* <div class="cont">
                 <div class="dots d1"></div>
                 <div class="dots d2"></div>
@@ -198,11 +202,19 @@ function LandingPage() {
       </div>
     </section> */}
 
-      <section>
+
+
+      <section className="parallax-section">
+        
+
         <div className="container">
-          <div className="col-md-12 d-flex align-items-center mb-3">
+        <section>
+    <div className="container">
+          <div className="col-md-12 d-flex align-items-center mb-5">
             <h5 className="head-text">Our Services</h5>
           </div>
+          </div>
+    </section>
           <div className="row d-flex justify-content-between align-items-center mb-2">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
@@ -221,6 +233,15 @@ function LandingPage() {
           </div>
         </div>
       </section>
+
+
+
+
+
+
+
+
+
 
       {/* Services section */}
       <section className="parallax-section">
