@@ -331,6 +331,7 @@ input:checked + label .description {
   background-color: rgb(255, 255, 255); /* Add a white overlay */
 }
 
+
 /*  */
 /* .land_animation {
   position: relative;
@@ -750,9 +751,9 @@ input:checked + label .description {
 
 /* scrollbar */
 /* width */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 10px;
-}
+} */
 
 /* Track */
 ::-webkit-scrollbar-track {
