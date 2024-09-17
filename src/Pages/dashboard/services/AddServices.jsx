@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from "react-router-dom";
-
-import ReactQuill from 'react-quill'; 
-import 'react-quill/dist/quill.snow.css'; 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AddServiceApi } from '../../../api/services';
+
+import ReactQuill from 'react-quill'; 
+import 'react-quill/dist/quill.snow.css'; 
 
 const AddServices = () => {
   const navigate = useNavigate();
@@ -41,7 +41,7 @@ const AddServices = () => {
         meta: [
           {
             ...prevData.meta[0],
-            [metaField]: value, // Update the specific meta field
+            [metaField]: value, 
           },
         ],
       }));
@@ -53,12 +53,6 @@ const AddServices = () => {
     }
   };
 
-  const handleContentChange = (value) => {
-    setFormData({
-      ...formData,
-      content: value,
-    });
-  };
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -108,16 +102,27 @@ const handleSubmit = async (e) => {
     setIsSubmitting(false); 
   }
 };
-  const modules = {
-    toolbar: [
-      [{ 'header': [1, 2, false] }],
-      ['bold', 'italic', 'underline'],
-      [{ 'color': [] }, { 'background': [] }],
-      ['link'],
-      ['clean'],
-      ['code-block'],
-    ],
-  };
+
+const modules = {
+  toolbar: [
+    [{ 'header': [1, 2, false] }],
+    ['bold', 'italic', 'underline'],
+    [{ 'color': [] }, { 'background': [] }],
+    ['link'],
+    ['clean'],
+    ['code-block'],
+  ],
+};
+
+const handleContentChange = (value) => {
+  setFormData({
+    ...formData,
+    content: value,
+  });
+};
+
+
+ 
 
   return (
     <div className="container">
@@ -266,18 +271,7 @@ const handleSubmit = async (e) => {
           </div>
         </div>
 
-        <div className="row mb-3">
-          <label htmlFor="content" className="col-sm-2 col-form-label">Content</label>
-          <div className="col-sm-10">
-            <ReactQuill style={{marginLeft:"40px", width: "100%" , height:"300px"}}
-              value={formData.content}
-              onChange={handleContentChange}
-              modules={modules} 
-              placeholder="Write your content here..."
-              required
-            />
-          </div>
-        </div>
+       
 
         {/* <div className="row mb-3">
           <label htmlFor="file" className="col-sm-2 col-form-label">File Upload</label>
@@ -291,7 +285,18 @@ const handleSubmit = async (e) => {
             />
           </div>
         </div> */}
-
+<div className="row mb-3">
+          <label htmlFor="content" className="col-sm-2 col-form-label">Content</label>
+          <div className="col-sm-10">
+            <ReactQuill style={{marginLeft:"40px", width: "100%" , height:"300px"}}
+              value={formData.content}
+              onChange={handleContentChange}
+              modules={modules} 
+              placeholder="Write your content here..."
+              required
+            />
+          </div>
+        </div>
 
         <div className="row mb-3">
           <div className="col-sm-8 offset-sm-2">

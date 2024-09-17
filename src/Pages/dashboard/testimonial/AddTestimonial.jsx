@@ -1,18 +1,18 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import { AddTestimonialApi } from "../../../api/testimonial";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 
 const AddTestimonial = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     title: "",
-    description: "",
     content: "",
   });
 
@@ -24,29 +24,29 @@ const AddTestimonial = () => {
     });
   };
 
-  const handleContentChange = (value) => {
-    setFormData({
-      ...formData,
-      content: value,
-    });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      AddTestimonialApi(formData);
+      await AddTestimonialApi(formData);
       toast.success("Testimonial added successfully!");
-
       navigate("/mainDashboard/listTestimonials");
-
       setFormData({
         title: "",
         description: "",
         content: "",
       });
     } catch (error) {
+      toast.error("Failed to add testimonial");
       console.error("Failed to add testimonial:", error);
     }
+  };
+
+  const handleContentChange = (value) => {
+    setFormData({
+      ...formData,
+      content: value,
+    });
   };
 
   const modules = {
@@ -67,7 +67,7 @@ const AddTestimonial = () => {
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
           <label htmlFor="title" className="col-sm-2 col-form-label">
-            title
+            Title
           </label>
           <div className="col-sm-10">
             <input
@@ -85,7 +85,7 @@ const AddTestimonial = () => {
 
         <div className="row mb-3">
           <label htmlFor="description" className="col-sm-2 col-form-label">
-            description
+            Description
           </label>
           <div className="col-sm-10">
             <input

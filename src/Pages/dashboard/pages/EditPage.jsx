@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import { GetPageById, UpdatePageById } from "../../../api/pages";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 const EditPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -78,12 +77,17 @@ const EditPage = () => {
     }
   };
 
-  const handleContentChange = (value) => {
-    setFormData(prevData => ({
-      ...prevData,
-      content: value,
-    }));
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ["bold", "italic", "underline"],
+      [{ color: [] }, { background: [] }],
+      ["link"],
+      ["clean"],
+      ["code-block"],
+    ],
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -99,20 +103,17 @@ const EditPage = () => {
     }
   };
 
-  const modules = {
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline"],
-      [{ color: [] }, { background: [] }],
-      ["link"],
-      ["clean"],
-      ["code-block"],
-    ],
-  };
 
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  const handleContentChange = (value) => {
+    setFormData(prevData => ({
+      ...prevData,
+      content: value,
+    }));
+  };
 
   return (
     <div className="container">
@@ -303,6 +304,8 @@ const EditPage = () => {
             />
           </div>
         </div>
+
+    
 
         <div className="row mb-3">
           <div className="col-sm-10 offset-sm-0">

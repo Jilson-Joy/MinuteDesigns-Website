@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import { GetServiceById, UpdateServiceById } from "../../../api/services";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const EditService = () => {
   const { id } = useParams();
@@ -85,12 +85,6 @@ const EditService = () => {
     }));
   };
 
-  const handleContentChange = (value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      content: value,
-    }));
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,6 +110,14 @@ const EditService = () => {
       console.error("Failed to update service:", error);
       toast.error("Failed to update service. Please try again.");
     }
+  };
+
+
+  const handleContentChange = (value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      content: value,
+    }));
   };
 
   const modules = {
@@ -307,7 +309,6 @@ const EditService = () => {
             />
           </div>
         </div>
-
         <div className="row mb-3">
           <label htmlFor="content" className="col-sm-2 col-form-label">
             Content
@@ -322,7 +323,7 @@ const EditService = () => {
             />
           </div>
         </div>
-
+      
         <div className="row mb-3">
           <div className="col-sm-10 offset-sm-2">
             <button type="submit" className="btn btn-primary" style={{marginLeft:"-75px"}}>

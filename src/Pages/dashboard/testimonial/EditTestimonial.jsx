@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import { GetTestimonialById, UpdateTestimonialById } from "../../../api/testimonial";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const EditTestimonialData = () => {
   const { id } = useParams();
@@ -48,12 +48,25 @@ const EditTestimonialData = () => {
     });
   };
 
+  const modules = {
+    toolbar: [
+      [{ header: [1, 2, false] }],
+      ["bold", "italic", "underline"],
+      [{ color: [] }, { background: [] }],
+      ["link"],
+      ["clean"],
+      ["code-block"],
+    ],
+  };
+
+
   const handleContentChange = (value) => {
     setFormData({
       ...formData,
       content: value,
     });
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -70,16 +83,7 @@ const EditTestimonialData = () => {
     }
   };
 
-  const modules = {
-    toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline"],
-      [{ color: [] }, { background: [] }],
-      ["link"],
-      ["clean"],
-      ["code-block"],
-    ],
-  };
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -136,6 +140,7 @@ const EditTestimonialData = () => {
             />
           </div>
         </div>
+
 
         <div className="row mb-3">
           <div className="col-sm-10 offset-sm-3" >

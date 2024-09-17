@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import { AddPageApi } from "../../../api/pages";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const AddPage = () => {
   const navigate = useNavigate();
@@ -50,13 +50,13 @@ const AddPage = () => {
     }
   };
 
+
   const handleContentChange = (content) => {
     setFormData((prevData) => ({
       ...prevData,
       content,
     }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -128,6 +128,7 @@ const AddPage = () => {
     "link",
     "image",
   ];
+
 
   return (
     <div className="container">
@@ -308,7 +309,7 @@ const AddPage = () => {
 
         <div className="mb-4">
           <label htmlFor="content" className="form-label">Content</label>
-          <ReactQuill
+          <ReactQuill style={{marginLeft:"120px", marginTop:"-30px", width: "100%" , height:"300px"}}
             id="content"
             value={formData.content}
             onChange={handleContentChange}
@@ -317,15 +318,7 @@ const AddPage = () => {
           />
         </div>
 
-        <div className="mt-4">
-          <h2>Rendered Output</h2>
-          <div
-            className="border p-3"
-            style={{ minHeight: "200px" }}
-            dangerouslySetInnerHTML={{ __html: formData.content }}
-          />
-        </div>
-
+      
         <div className="row mb-3">
           <div className="col-sm-8 offset-sm-2">
             <button

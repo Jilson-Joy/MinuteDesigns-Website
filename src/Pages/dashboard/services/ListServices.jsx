@@ -106,7 +106,6 @@ function ListServices() {
               <th scope="col">Title</th>
               <th scope="col">Service URL</th>
               <th scope="col">Description</th>
-              <th scope="col">Status</th> 
               <th scope="col">Edit</th>
               <th scope="col">Delete</th>
               <th scope="col">Status</th> 
@@ -122,7 +121,6 @@ function ListServices() {
                 <td>{page.pageTitle}</td> 
                 <td>{page.pageUrl}</td> 
                 <td>{page.shortDescription}</td> 
-                <td>{page.status ? 'Active' : 'Inactive'}</td> 
                
                 <td>
                   <button 
