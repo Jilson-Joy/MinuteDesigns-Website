@@ -312,6 +312,11 @@ function LandingPage() {
       </section>
 
       {/* Add services or other content here */}
+
+      {/* Technologies */}
+{/* <section>
+  <Technologies/>
+</section> */}
     </>
   );
 }

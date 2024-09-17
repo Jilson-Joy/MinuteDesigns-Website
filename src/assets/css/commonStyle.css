@@ -751,9 +751,9 @@ input:checked + label .description {
 
 /* scrollbar */
 /* width */
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 10px;
-}
+} */
 
 /* Track */
 ::-webkit-scrollbar-track {
