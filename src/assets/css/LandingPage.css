@@ -1,10 +1,23 @@
 /* home next section */
 
+/* CustomCursor.css */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  margin: 0 20px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+
 .service-item {
   text-align: center;
   color: #fff;
   padding: 20px;
-  border-right: 1px solid #afaf29;
+  /* border-right: 1px solid #afaf29; */
   position: relative;
   min-height: 250px;
   overflow: visible; 
@@ -97,6 +110,109 @@
 .service-item:hover::after {
   transform: scaleY(1);
 }
+
+
+
+/* second service */
+
+.service-item1 {
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  /* border-right: 1px solid #afaf29; */
+  position: relative;
+  min-height: 250px;
+  overflow: visible; 
+}
+
+.service-item1:last-child {
+  border-right: none;
+}
+
+.service-icon1 {
+  font-size: 1rem;
+
+  transition: opacity 0.5s ease-in-out, transform 0.8s ease-in-out;
+  mix-blend-mode: luminosity;
+  position: relative;
+}
+
+.service-title1 {
+  color: #000000;
+
+}
+
+.service-description1 {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #f9f9f9;
+  padding: 20px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.service-description1 p {
+  font-size: 14px;
+}
+
+.service-item1:hover .service-description1 {
+  display: flex;
+  opacity: 1;
+  font-size: 10px;
+  z-index: 1;
+}
+
+.service-item1:hover .service-icon1 {
+  transform: translateX(-350px);
+  padding: 20px 40px;
+  text-align: center;
+  position: absolute;
+}
+
+.service-item1:hover .service-title1 {
+  color: #000000;
+  transform: translateX(-350px);
+  position: absolute;
+}
+
+.service-item1::before,
+.service-item1::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #0b141c;
+  transition: transform 0.8s ease-in-out;
+}
+
+.service-item1::before {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.service-item1::after {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.service-item1:hover::before {
+  transform: scaleX(1);
+}
+
+.service-item1:hover::after {
+  transform: scaleY(1);
+}
+
 
 
 /* AnimatedBoxes.css */

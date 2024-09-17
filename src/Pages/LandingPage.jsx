@@ -4,6 +4,7 @@ import "../assets/css/LandingPage.css";
 import "../assets/css/commonStyle.css";
 import "../assets/css/mediaQuery.css";
 import WebDev from "../assets/images/web-developer.gif";
+import CursorMouse from '../components/CustomCursor';
 function LandingPage() {
   // services
 
@@ -28,7 +29,6 @@ function LandingPage() {
             <div className="col-md-6">
               <div className="dot-container">
                 <div className="dot"style={{ backgroundColor: "transparent" }}></div>
-              
                 <div className="dot"></div>
                 <div className="dot"></div>
                 <div className="dot"></div>
@@ -202,20 +202,28 @@ function LandingPage() {
       </div>
     </section> */}
 
-
+      <section>
+      <div className="container">
+      <CursorMouse/>
+      </div>
+      </section>
 
       <section className="parallax-section">
-        
-
         <div className="container">
         <section>
-    <div className="container">
+       <div className="container">
           <div className="col-md-12 d-flex align-items-center mb-5">
             <h5 className="head-text">Our Services</h5>
           </div>
           </div>
     </section>
-          <div className="row d-flex justify-content-between align-items-center mb-2">
+
+
+
+          <div className="row d-flex justify-content-around align-items-center mb-2">
+
+
+
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
                 <img src={WebDev} alt="Web Development" width={150} />
@@ -230,6 +238,25 @@ function LandingPage() {
                 </p>
               </div>
             </div>
+
+
+            <div className="col-md-3 text-center service-item1">
+              <div className="service-icon1">
+                <img src={WebDev} alt="Mobile Development" width={150} />
+              </div>
+              <div className="service-title1">
+                <h3>Mobile Application</h3>
+              </div>
+              <div className="service-description1">
+                <p>
+                  We create responsive and robust web applications tailored to
+                  your business needs.
+                </p>
+              </div>
+            </div>
+
+
+
           </div>
         </div>
       </section>
