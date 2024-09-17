@@ -331,6 +331,7 @@ input:checked + label .description {
   background-color: rgb(255, 255, 255); /* Add a white overlay */
 }
 
+
 /*  */
 /* .land_animation {
   position: relative;
