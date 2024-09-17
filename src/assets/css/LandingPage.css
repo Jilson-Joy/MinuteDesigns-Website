@@ -190,7 +190,7 @@ li span {
   }
 
   100% {
-    transform: rotate(495deg) translateX(0px) scale(2.2,2.2);
+    transform: rotate(495deg) translateX(0px) scale(2.4,2.4);
   }
 }
 
@@ -200,7 +200,7 @@ li span {
   }
 
   100% {
-    transform: rotate(585deg) translateX(0px) scale(1.8,1.8);
+    transform: rotate(585deg) translateX(0px) scale(2.4,2.4);
   }
 }
 
@@ -210,7 +210,7 @@ li span {
   }
 
   100% {
-    transform: rotate(675deg) translateX(0px) scale(1.4,1.4);
+    transform: rotate(675deg) translateX(0px) scale(2.4,2.4);
   }
 }
 
@@ -220,7 +220,7 @@ li span {
   }
 
   100% {
-    transform: rotate(765deg) translateX(0px) scale(2.6,2.6);
+    transform: rotate(765deg) translateX(0px) scale(2.4,2.4);
   }
 }
 
