@@ -585,7 +585,11 @@ input:checked + label .description {
     transform: translateY(0);
   }
 }
-
+.row-icons{
+  display: flex;
+  align-items:center;
+  justify-content:space-around;
+}
 .row-icons img {
   opacity: 0;
   animation: slideIn 1s ease-in-out forwards;
@@ -601,6 +605,26 @@ input:checked + label .description {
 
 .row-icons img:nth-child(3) {
   animation-delay: 0.6s;
+}
+
+.about-icons{
+  display: flex;
+  align-items:center;
+  justify-content:space-around;
+}
+.about-icons img {
+  opacity: 0;
+  animation: slideIn 1s ease-in-out forwards;
+}
+
+.about-icons img:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.about_img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*  */
@@ -946,6 +970,4 @@ input:checked + label .description {
   opacity: 0;
 }
 
-
-/*  */
 

@@ -102,6 +102,12 @@ function Header() {
               <NavDropdown.Item as={Link} to="/uiux">
                 UI/UX
               </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/architecture">
+               Architecture
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/3DRenderingService">
+                3D Rendering Service
+              </NavDropdown.Item>
             </NavDropdown>
             {/* <Nav.Link
                             as={Link}
