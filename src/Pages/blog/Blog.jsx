@@ -3,7 +3,11 @@ import "./Blog.css";
 function Blog() {
   return (
     <div className="container">
+       <div>
+          <h1 className="text-start mt-5">Blogs</h1>
+        </div>
       <div className="blog">
+       
         <div className=" blog_box row mt-5 ">
           <div className=" blog_img col-md-6">
             <img

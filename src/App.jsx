@@ -30,7 +30,8 @@ import Addpage from './Pages/dashboard/pages/Addpage';
 import ListPages from './Pages/dashboard/pages/ListPages';
 import LandingPage from './Pages/LandingPage';
 import Blog from './Pages/blog/Blog';
-import Service from './Pages/serviceNew/Service';
+import Architecture from './Pages/architecture/Architecture';
+import Rendering3DService from './Pages/3DRenderingService/Rendering3DService';
 
 function App() {
   return (
@@ -68,7 +69,8 @@ function App() {
                 <Route path="/uiux" element={<UiUx />} />
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/blog" element={<Blog />} />
-                {/* <Route path="/service" element={<Service />} /> */}
+                <Route path="/architecture" element={<Architecture />} />
+                <Route path="/3DRenderingService" element={<Rendering3DService />} />
               </Routes>
               <Footer />
             </>

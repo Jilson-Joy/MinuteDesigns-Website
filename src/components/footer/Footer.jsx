@@ -3,6 +3,7 @@ import "./Footer.css";
 import logo from "../../assets/images/MinuteLogo.png";
 import { Phone } from "lucide-react";
 import { Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -29,10 +30,11 @@ function Footer() {
               <h5>Quick Links</h5>
             </div>
             <div className="footer_link mt-4">
-              <p>Home</p>
-              <p>About</p>
-              <p>Services</p>
-              <p>Gallery</p>
+              <Link to={'/'} style={{ textDecoration: 'none', color:'white' }}><p>Home</p></Link>
+              <Link to={'/about'} style={{ textDecoration: 'none', color:'white' }}><p>About</p></Link>
+              <Link to={'portfolio'} style={{ textDecoration: 'none', color:'white' }}><p>Portfolio</p></Link>
+              <Link to={'/blog'} style={{ textDecoration: 'none', color:'white' }}><p>Blog</p></Link>
+              <Link to={'gallery'} style={{ textDecoration: 'none', color:'white' }}><p>Gallery</p></Link>
               {/* <p>Reach Us</p> */}
               {/* <p>Terms & Conditions</p> */}
             </div>
@@ -42,10 +44,12 @@ function Footer() {
               <h5>Services</h5>
             </div>
             <div className="footer_link mt-4">
-             <p >Web Application</p>
-              <p>Mobile Application</p>
-              <p>E-Commerce</p>
-              <p>UI/UX</p>
+             <Link to={'/webapp'} style={{ textDecoration: 'none', color:'white' }}><p>Web Application</p></Link>
+             <Link to={'/mobileApp'} style={{ textDecoration: 'none', color:'white' }}> <p>Mobile Application</p></Link>
+              <Link to={'/e-commerce'} style={{ textDecoration: 'none', color:'white' }}><p>E-Commerce</p></Link>
+              <Link to={'/uiux'} style={{ textDecoration: 'none', color:'white' }}><p>UI/UX</p></Link>
+              <Link to={'/architecture'} style={{ textDecoration: 'none', color:'white' }}><p>Architecture</p></Link>
+             <Link to={'/3DRenderingService'}  style={{ textDecoration: 'none', color:'white' }}> <p>3D Rendering Service</p></Link>
             </div>
           </div>
           <div className="col-md-3">
