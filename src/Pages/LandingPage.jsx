@@ -13,32 +13,7 @@ import TDICON from "../assets/images/3d-ICON.gif";
 import CursorMouse from "../components/CustomCursor";
 function LandingPage() {
 
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.3 } // Change threshold to 1.0
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
 
   return (
     <>
@@ -178,12 +153,12 @@ function LandingPage() {
           <section>
             <div className="container">
               <div className="col-md-12 d-flex align-items-center mb-5">
-                <h5 className="head-text">Our Services</h5>
+                <h5 className="head-text">What We Do</h5>
               </div>
             </div>
           </section>
           {/* 1st row service */}
-          <section  className={`fade-key ${isVisible ? 'visible' : ''}`}ref={sectionRef}>
+        
           <div className="row d-flex justify-content-around align-items-center mb-2">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
@@ -281,7 +256,7 @@ function LandingPage() {
               </div>
             </div>
           </div>
-          </section>
+     
         </div>
       </section>
 
