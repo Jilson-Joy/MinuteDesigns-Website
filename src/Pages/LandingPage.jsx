@@ -1,23 +1,42 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // import "../assets/css/Home.css";
 import "../assets/css/LandingPage.css";
 import "../assets/css/commonStyle.css";
 import "../assets/css/mediaQuery.css";
 import WebDev from "../assets/images/web-developer.gif";
-import CursorMouse from '../components/CustomCursor';
+import MobDev from "../assets/images/mobile-phone.gif";
+import Ecom from "../assets/images/online-shopping.gif";
+import UIUX from "../assets/images/UIUX-ICON.gif";
+import Archi from "../assets/images/architecture-ICON.gif";
+import TDICON from "../assets/images/3d-ICON.gif";
+
+import CursorMouse from "../components/CustomCursor";
 function LandingPage() {
-  // services
 
-  const [scrollY, setScrollY] = useState(0);
-
-  const handleScroll = () => {
-    setScrollY(window.scrollY);
-  };
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.3 } // Change threshold to 1.0
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
     };
   }, []);
 
@@ -28,13 +47,15 @@ function LandingPage() {
           <div className="row align-items-center">
             <div className="col-md-6">
               <div className="dot-container">
-                <div className="dot"style={{ backgroundColor: "transparent" }}></div>
+                <div
+                  className="dot"
+                  style={{ backgroundColor: "transparent" }}
+                ></div>
                 <div className="dot"></div>
                 <div className="dot"></div>
                 <div className="dot"></div>
                 <div className="dot"></div>
                 <div className="dot"></div>
-
 
                 <div className="group top">
                   <span>•</span>
@@ -43,14 +64,11 @@ function LandingPage() {
                   <span>•</span>
                   <span>•</span>
                   <span>•</span>
-         
                 </div>
-                <div className="group top">
-                  
-                </div>
+                <div className="group top"></div>
                 <div className="group right">
                   <span>•</span>
-             
+
                   <span>•</span>
                   <span>•</span>
                   <span>•</span>
@@ -59,7 +77,6 @@ function LandingPage() {
                   <span>•</span>
                 </div>
                 <div className="group left">
-                  
                   <span style={{ color: "#ee964b", fontWeight: "bold" }}>
                     M
                   </span>
@@ -106,7 +123,6 @@ function LandingPage() {
                   <span style={{ color: "#ee964b", fontWeight: "bold" }}>
                     S
                   </span>
-                
                 </div>
                 <div className="group left">
                   <span>•</span>
@@ -134,7 +150,6 @@ function LandingPage() {
                 </div>
               </div>
             </div>
-
             <div className="col-md-6">
               <h1 className="hero-text">
                 Design
@@ -147,83 +162,29 @@ function LandingPage() {
                 "Elevating user experience to its pinnacle."
               </p>
             </div>
-
-
-
-
-            
-            {/* <div class="cont">
-                <div class="dots d1"></div>
-                <div class="dots d2"></div>
-                <div class="dots d3"></div>
-                <div class="dots d4"></div>
-                <div class="dots d5"></div>
-                <div class="dots d6"></div>
-                <div class="dots d7"></div>
-                <div class="dots d8"></div>
-              </div> */}
           </div>
         </div>
       </section>
-      {/* Highlight text */}
-      {/* <section>
-      <div className="container highlight-container  mt-5">
-      <div className="row d-flex justify-content-between align-items-center  mb-2">
-        <div className="col-md-9 service-head">
-          <p className="about-text">
-            <b >Transforming Ideas into Reality with <br /> Expert Web & App Solutions</b>
-          </p>
-          </div>
-          <div className="col-md-3 ">
-        <div className="main-dot">
-        <ul>
-                  <li className="high-ball" >
-                    <span className="ball-1"></span>
-                  </li>
-                  <li className="high-ball">
-                    <span className="ball-2"></span>
-                  </li>
-                  <li className="high-ball" >
-                    <span className="ball-3"></span>
-                  </li>
-                  <li className="high-ball">
-                    <span className="ball-4"></span>
-                  </li>
-                  <li className="high-ball" >
-                    <span className="ball-5"></span>
-                  </li>
-                  <li className="high-ball">
-                    <span className="ball-6"></span>
-                  </li>
-                </ul>
-                </div>
-                </div>
-                </div>
-      </div>
-    </section> */}
+     
 
       <section>
-      <div className="container">
-      <CursorMouse/>
-      </div>
+        <div className="container">
+          <CursorMouse />
+        </div>
       </section>
 
       <section className="parallax-section">
         <div className="container">
-        <section>
-       <div className="container">
-          <div className="col-md-12 d-flex align-items-center mb-5">
-            <h5 className="head-text">Our Services</h5>
-          </div>
-          </div>
-    </section>
-
-
-
+          <section>
+            <div className="container">
+              <div className="col-md-12 d-flex align-items-center mb-5">
+                <h5 className="head-text">Our Services</h5>
+              </div>
+            </div>
+          </section>
+          {/* 1st row service */}
+          <section  className={`fade-key ${isVisible ? 'visible' : ''}`}ref={sectionRef}>
           <div className="row d-flex justify-content-around align-items-center mb-2">
-
-
-
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
                 <img src={WebDev} alt="Web Development" width={150} />
@@ -239,10 +200,9 @@ function LandingPage() {
               </div>
             </div>
 
-
             <div className="col-md-3 text-center service-item1">
               <div className="service-icon1">
-                <img src={WebDev} alt="Mobile Development" width={150} />
+                <img src={MobDev} alt="Mobile Development" width={150} />
               </div>
               <div className="service-title1">
                 <h3>Mobile Application</h3>
@@ -254,31 +214,86 @@ function LandingPage() {
                 </p>
               </div>
             </div>
-
-
-
           </div>
+
+          {/* 2nd row service */}
+          <div className="row d-flex justify-content-around align-items-center mb-2">
+            <div className="col-md-3 text-center service-item">
+              <div className="service-icon">
+                <img src={Ecom} alt="Ecommerce" width={150} />
+              </div>
+              <div className="service-title">
+                <h3>E-Commerce</h3>
+              </div>
+              <div className="service-description">
+                <p>
+                  We create responsive and robust web applications tailored to
+                  your business needs.
+                </p>
+              </div>
+            </div>
+
+            <div className="col-md-3 text-center service-item1">
+              <div className="service-icon1">
+                <img src={UIUX} alt="UIUX" width={150} />
+              </div>
+              <div className="service-title1">
+                <h3>UI / UX Design</h3>
+              </div>
+              <div className="service-description1">
+                <p>
+                  We create responsive and robust web applications tailored to
+                  your business needs.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 3rd row service */}
+          <div className="row d-flex justify-content-around align-items-center mb-2">
+            <div className="col-md-3 text-center service-item">
+              <div className="service-icon">
+                <img src={Archi} alt="Ecommerce" width={150} />
+              </div>
+              <div className="service-title">
+                <h3>Architecture</h3>
+              </div>
+              <div className="service-description">
+                <p>
+                  We create responsive and robust web applications tailored to
+                  your business needs.
+                </p>
+              </div>
+            </div>
+
+            <div className="col-md-3 text-center service-item1">
+              <div className="service-icon1">
+                <img src={TDICON} alt="UIUX" width={150} />
+              </div>
+              <div className="service-title1">
+                <h3>3D Rendering</h3>
+              </div>
+              <div className="service-description1">
+                <p>
+                  We create responsive and robust web applications tailored to
+                  your business needs.
+                </p>
+              </div>
+            </div>
+          </div>
+          </section>
         </div>
       </section>
 
-
-
-
-
-
-
-
-
-
       {/* Services section */}
-      <section className="parallax-section">
+      {/* <section className="parallax-section">
         <div className="container">
           <div className="col-md-12 d-flex align-items-center mb-3">
             <h5 className="head-text">Our Services</h5>
           </div>
 
           <div className="row d-flex justify-content-between align-items-center  mb-2 ladder-layout">
-            {/* Web Application Section */}
+
             <div className="col-md-4 service-head">
               <div className="service-detail">
                 <h3>Web Application</h3>
@@ -291,7 +306,7 @@ function LandingPage() {
               </div>
             </div>
 
-            {/* Mobile Application Section */}
+
             <div className="col-md-4 service-head">
               <div className="service-detail">
                 <h3>Mobile Application</h3>
@@ -304,7 +319,6 @@ function LandingPage() {
               </div>
             </div>
 
-            {/* E-Commerce Section */}
             <div className="col-md-4 service-head">
               <div className="service-detail">
                 <h3>E-Commerce</h3>
@@ -317,8 +331,8 @@ function LandingPage() {
               </div>
             </div>
 
-            {/* ui-ux Section */}
-            {/* <div className="col-md-4 service-head">
+
+       <div className="col-md-4 service-head">
         <div className="service-detail">
         <h3>UI/UX</h3>
         </div>
@@ -328,10 +342,10 @@ function LandingPage() {
             velit eveniet natus commodi consequuntur quae, est.
           </p>
         </div>
-      </div> */}
+      </div> 
 
-            {/* Architecture Section */}
-            {/* <div className="col-md-4 service-head">
+    
+       <div className="col-md-4 service-head">
         <div className="service-detail">
         <h3>Architecture</h3>
         </div>
@@ -341,9 +355,9 @@ function LandingPage() {
             velit eveniet natus commodi consequuntur quae, est.
           </p>
         </div>
-      </div> */}
-            {/* 3D Rendering Section */}
-            {/* <div className="col-md-4 service-head">
+      </div> 
+ 
+      <div className="col-md-4 service-head">
         <div className="service-detail">
             <span></span>
         <h3> 3D Rendering Service </h3>
@@ -354,10 +368,10 @@ function LandingPage() {
             velit eveniet natus commodi consequuntur quae, est.
           </p>
         </div>
-      </div> */}
+      </div> 
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Add services or other content here */}
     </>
