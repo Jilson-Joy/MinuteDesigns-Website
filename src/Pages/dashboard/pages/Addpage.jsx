@@ -1,7 +1,6 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { AddPageApi } from "../../../api/pages";
@@ -39,7 +38,7 @@ const AddPage = () => {
         meta: [
           {
             ...prevData.meta[0],
-            [metaField]: value, 
+            [metaField]: value,
           },
         ],
       }));
@@ -51,11 +50,11 @@ const AddPage = () => {
     }
   };
 
-  const handleContentChange = (value) => {
-    setFormData({
-      ...formData,
-      content: value,
-    });
+  const handleContentChange = (content) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      content,
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -99,20 +98,36 @@ const AddPage = () => {
         });
       }
     } catch (error) {
-      toast.error("Failed to add page",error);
+      toast.error("Failed to add page", error);
     }
   };
 
   const modules = {
     toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline"],
-      [{ color: [] }, { background: [] }],
-      ["link"],
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ size: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
+      ["link", "image"],
       ["clean"],
-      ["code-block"],
     ],
   };
+
+  const formats = [
+    "header",
+    "font",
+    "size",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+  ];
 
   return (
     <div className="container">
@@ -224,10 +239,7 @@ const AddPage = () => {
         </div>
 
         <div className="row mb-3">
-          <label
-            htmlFor="meta.metaDescription"
-            className="col-sm-2 col-form-label"
-          >
+          <label htmlFor="meta.metaDescription" className="col-sm-2 col-form-label">
             Meta Description
           </label>
           <div className="col-sm-10">
@@ -261,10 +273,7 @@ const AddPage = () => {
         </div>
 
         <div className="row mb-3">
-          <label
-            htmlFor="meta.metaKeywords"
-            className="col-sm-2 col-form-label"
-          >
+          <label htmlFor="meta.metaKeywords" className="col-sm-2 col-form-label">
             Meta Keywords (comma separated)
           </label>
           <div className="col-sm-10">
@@ -297,33 +306,25 @@ const AddPage = () => {
           </div>
         </div>
 
-        <div className="row mb-3">
-          <label htmlFor="content" className="col-sm-2 col-form-label">
-            Content
-          </label>
-          <div className="col-sm-10">
-            <ReactQuill
-              style={{ marginLeft: "40px", width: "100%", height: "300px" }}
-              value={formData.content}
-              onChange={handleContentChange}
-              modules={modules}
-              placeholder="Write your content here..."
-              required
-            />
-          </div>
+        <div className="mb-4">
+          <label htmlFor="content" className="form-label">Content</label>
+          <ReactQuill
+            id="content"
+            value={formData.content}
+            onChange={handleContentChange}
+            modules={modules}
+            formats={formats}
+          />
         </div>
-        {/* <div className="row mb-3">
-          <label htmlFor="file" className="col-sm-2 col-form-label">File Upload</label>
-          <div className="col-sm-10">
-            <input style={{ marginLeft: "40px" }}
-              type="file"
-              className="form-control"
-              id="file"
-              name="file"
-              onChange={handleChange}
-            />
-          </div>
-        </div> */}
+
+        <div className="mt-4">
+          <h2>Rendered Output</h2>
+          <div
+            className="border p-3"
+            style={{ minHeight: "200px" }}
+            dangerouslySetInnerHTML={{ __html: formData.content }}
+          />
+        </div>
 
         <div className="row mb-3">
           <div className="col-sm-8 offset-sm-2">

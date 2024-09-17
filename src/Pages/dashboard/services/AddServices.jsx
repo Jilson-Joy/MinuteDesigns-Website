@@ -31,12 +31,11 @@ const AddServices = () => {
     metaTags: '',
   });
 
-  // Handle field changes including nested meta fields
   const handleChange = (e) => {
     const { name, value } = e.target;
 
     if (name.startsWith("meta.")) {
-      const metaField = name.split(".")[1]; // Extract the specific field from meta object
+      const metaField = name.split(".")[1]; 
       setFormData((prevData) => ({
         ...prevData,
         meta: [
@@ -104,7 +103,7 @@ const handleSubmit = async (e) => {
       });
     }
   } catch (error) {
-    toast.error("Failed to add service");
+    toast.error("Failed to add service",error);
   } finally {
     setIsSubmitting(false); 
   }
@@ -126,7 +125,7 @@ const handleSubmit = async (e) => {
 
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
-          <label htmlFor="pageUrl" className="col-sm-2 col-form-label">Page URL</label>
+          <label htmlFor="pageUrl" className="col-sm-2 col-form-label">Service URL</label>
           <div className="col-sm-10">
             <input style={{marginLeft:"40px"}}
               type="text"
@@ -141,7 +140,7 @@ const handleSubmit = async (e) => {
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="pageTitle" className="col-sm-2 col-form-label">Page Title</label>
+          <label htmlFor="pageTitle" className="col-sm-2 col-form-label">Service Title</label>
           <div className="col-sm-10">
             <input style={{marginLeft:"40px"}}
               type="text"

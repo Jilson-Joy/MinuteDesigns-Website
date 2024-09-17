@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import {  BookOpen, Box, ChevronDown, ChevronLeft,  Images, LayoutDashboard, Rss } from 'lucide-react';
+import { BookOpen, Box, ChevronDown, ChevronLeft, LayoutDashboard, } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
-    const [openDropdown, setOpenDropdown] = useState(null); 
+    const [openDropdown, setOpenDropdown] = useState(null);
 
     const toggleDropdown = (dropdown) => {
         setOpenDropdown((prevDropdown) => (prevDropdown === dropdown ? null : dropdown));
@@ -65,13 +65,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                     </ul>
                 </li>
 
-                <li className="sidebar-list-item">
-                    <a href="javascript:void(0)">
-                        <Images className="icon" />
-                        Gallery
-                    </a>
-                </li>
-
+              
 
                 <li className="sidebar-list-item">
                     <a
@@ -92,7 +86,26 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                         </Link>
                     </ul>
                 </li>
-                
+
+                <li className="sidebar-list-item">
+                    <a
+                        href="javascript:void(0)"
+                        onClick={() => toggleDropdown('categories')}
+                        style={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <Box className="icon" />
+                        Categories
+                        <ChevronDown style={{ marginTop: '3px' }} />
+                    </a>
+                    <ul className={`dropdown-list ${openDropdown === 'categories' ? 'show' : ''}`}>
+                        <Link to="/mainDashboard/addCategory" className='link_tag'>
+                            <li>Add Category</li>
+                        </Link>
+                        <Link to="/mainDashboard/listCategory" className='link_tag'>
+                            <li>List Categories</li>
+                        </Link>
+                    </ul>   
+                </li>
             </ul>
         </aside>
     );

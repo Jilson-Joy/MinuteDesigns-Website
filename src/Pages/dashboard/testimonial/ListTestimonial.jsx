@@ -8,8 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 function ListTestimonials() {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedTestimonial, setSelectedTestimonial] = useState(null); // State for the selected testimonial
-  const [showModal, setShowModal] = useState(false); // Modal visibility state
+  const [selectedTestimonial, setSelectedTestimonial] = useState(null); 
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   const fetchTestimonials = async () => {
@@ -73,13 +73,13 @@ function ListTestimonials() {
   };
 
   const handleView = (testimonial) => {
-    setSelectedTestimonial(testimonial); // Set the selected testimonial for the modal
-    setShowModal(true); // Show the modal
+    setSelectedTestimonial(testimonial);
+    setShowModal(true); 
   };
 
   const handleCloseModal = () => {
-    setShowModal(false); // Hide the modal
-    setSelectedTestimonial(null); // Clear the selected testimonial
+    setShowModal(false); 
+    setSelectedTestimonial(null); 
   };
 
   if (loading) {
@@ -89,20 +89,27 @@ function ListTestimonials() {
   return (
     <div className="container">
       <h1 className="mt-4">List of Testimonials</h1>
+      <div style={{ textAlign: 'right' }}>
+        <button
+          onClick={() => navigate('/mainDashboard/addTestimonial')} 
+          className="btn btn-success mb-3"
+        >
+          Add Testimonial
+        </button>
+      </div>
       {testimonials.length === 0 ? (
         <p>No testimonials available.</p> 
       ) : (
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Serial Number</th>
+              <th scope="col">Sl No.</th>
               <th scope="col">Title</th>
               <th scope="col">Description</th>
-              <th scope="col">Content</th>
               <th scope="col">Edit</th>
               <th scope="col">Delete</th>
               <th scope="col">Status</th>
-              <th scope="col">View</th> {/* Add view column */}
+              <th scope="col">View</th> 
             </tr>
           </thead>
           <tbody>
@@ -111,7 +118,6 @@ function ListTestimonials() {
                 <td>{index + 1}</td> 
                 <td>{testimonial.title}</td> 
                 <td>{testimonial.description}</td>
-                <td>{testimonial.content}</td>
                 <td>
                   <button 
                     onClick={() => handleEdit(testimonial._id)}
@@ -138,7 +144,7 @@ function ListTestimonials() {
                 </td>
                 <td>
                   <button 
-                    onClick={() => handleView(testimonial)} // View button
+                    onClick={() => handleView(testimonial)} 
                     className="btn btn-info"
                   >
                     View

@@ -86,17 +86,25 @@ function ListServices() {
   return (
     <div className="container">
       <h1 className="mt-4">List of Services</h1>
+      <div style={{ textAlign: 'right' }}>
+        <button
+          onClick={() => navigate('/mainDashboard/addServices')} 
+          className="btn btn-success mb-3"
+        >
+          Add Service
+        </button>
+      </div>
       {services.length === 0 ? (
         <p>No pages available.</p> 
       ) : (
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Serial Number</th>
+              <th scope="col">Sl No.</th>
               <th scope="col">Code</th>
               <th scope="col">Name</th>
               <th scope="col">Title</th>
-              <th scope="col">Page URL</th>
+              <th scope="col">Service URL</th>
               <th scope="col">Description</th>
               <th scope="col">Status</th> 
               <th scope="col">Edit</th>

@@ -86,13 +86,21 @@ function ListPages() {
   return (
     <div className="container">
       <h1 className="mt-4">List of Pages</h1>
+      <div style={{ textAlign: 'right' }}>
+        <button
+          onClick={() => navigate('/mainDashboard/addPage')} 
+          className="btn btn-success mb-3"
+        >
+          Add Page
+        </button>
+      </div>
       {pages.length === 0 ? (
         <p>No pages available.</p> 
       ) : (
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Serial Number</th>
+              <th scope="col">Sl No.</th>
               <th scope="col">Code</th>
               <th scope="col">Name</th>
               <th scope="col">Title</th>
@@ -240,8 +248,6 @@ function ListPages() {
                   </div>
                 </div>
 
-      
-
                 <div className="row mb-3">
                   <label className="col-sm-3">Created At</label>
                   <div className="col-sm-9">
@@ -255,8 +261,6 @@ function ListPages() {
                     <p>{new Date(selectedPage.updatedAt).toLocaleString()}</p>
                   </div>
                 </div>
-
-               
 
                 <div className="row mb-3">
                   <label className="col-sm-3">Status</label>
