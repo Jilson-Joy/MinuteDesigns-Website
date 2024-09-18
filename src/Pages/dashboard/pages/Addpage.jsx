@@ -10,6 +10,12 @@ import "react-quill/dist/quill.snow.css";
 const AddPage = () => {
   const navigate = useNavigate();
 
+const [files, setFiles] = useState([]);
+ const handleFileChange = (event) => {
+    if (event.target.files) {
+      setFiles(Array.from(event.target.files));
+    }
+  };
   const [formData, setFormData] = useState({
     pageUrl: "",
     pageTitle: "",
@@ -59,26 +65,39 @@ const AddPage = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    const formDataToSend = new FormData();
+  
+    files.forEach((file) => {
+      formDataToSend.append("files", file);
+    });
+      formDataToSend.append("pageUrl", formData.pageUrl);
+    formDataToSend.append("pageTitle", formData.pageTitle);
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("shortDescription", formData.shortDescription);
+    formDataToSend.append("description", formData.description);
+    formDataToSend.append("content", formData.content);
+      formDataToSend.append("metaTitle", formData.meta[0].metaTitle);
+    formDataToSend.append("metaDescription", formData.meta[0].metaDescription);
+    formDataToSend.append("metaAuthor", formData.meta[0].metaAuthor);
+      formDataToSend.append(
+      "metaKeywords",
+      formData.meta[0].metaKeywords.split(",").map((keyword) => keyword.trim())
+    );
+    formDataToSend.append(
+      "metaTags",
+      formData.metaTags.split(",").map((tag) => tag.trim())
+    );
+  
     try {
-      const result = await AddPageApi({
-        ...formData,
-        meta: [
-          {
-            ...formData.meta[0],
-            metaKeywords: formData.meta[0].metaKeywords
-              .split(",")
-              .map((keyword) => keyword.trim()),
-          },
-        ],
-        metaTags: formData.metaTags.split(",").map((tag) => tag.trim()),
-      });
-
+      const result = await AddPageApi(formDataToSend);
+  
       if (result.success === false) {
         toast.error(result.message || "Failed to add page");
       } else {
         toast.success("Page added successfully!");
         navigate("/mainDashboard/listPage");
-
+  
         setFormData({
           pageUrl: "",
           pageTitle: "",
@@ -96,12 +115,14 @@ const AddPage = () => {
           ],
           metaTags: "",
         });
+        setFiles([]);  
       }
     } catch (error) {
       toast.error("Failed to add page", error);
     }
   };
-
+  
+ 
   const modules = {
     toolbar: [
       [{ header: "1" }, { header: "2" }, { font: [] }],
@@ -222,6 +243,20 @@ const AddPage = () => {
           </div>
         </div>
 
+           <div className="form-group mb-4">
+          <label htmlFor="fileUpload">Upload File</label>
+          
+          
+          <input
+            type="file"
+            className="form-control"
+            name="files"
+            multiple
+            onChange={handleFileChange}
+          />
+        </div>
+
+
         <div className="row mb-3">
           <label htmlFor="meta.metaTitle" className="col-sm-2 col-form-label">
             Meta Title
@@ -318,6 +353,7 @@ const AddPage = () => {
           />
         </div>
 
+     
       
         <div className="row mb-3">
           <div className="col-sm-8 offset-sm-2">

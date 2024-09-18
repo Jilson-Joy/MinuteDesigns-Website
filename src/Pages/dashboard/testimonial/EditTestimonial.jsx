@@ -17,6 +17,7 @@ const EditTestimonialData = () => {
     content: "",
   });
 
+  const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -30,6 +31,7 @@ const EditTestimonialData = () => {
           description: testimonialData.description || "",
           content: testimonialData.content || "",
         });
+        setFiles(testimonialData.files || []);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching testimonial data:", error);
@@ -40,12 +42,25 @@ const EditTestimonialData = () => {
     fetchTestimonialData();
   }, [id]);
 
+  const handleFileChange = (event) => {
+    if (event.target.files) {
+      setFiles(Array.from(event.target.files));
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value,
-    });
+    }));
+  };
+
+  const handleContentChange = (value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      content: value,
+    }));
   };
 
   const modules = {
@@ -59,31 +74,26 @@ const EditTestimonialData = () => {
     ],
   };
 
-
-  const handleContentChange = (value) => {
-    setFormData({
-      ...formData,
-      content: value,
-    });
-  };
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formDataToSend = new FormData();
+
+    files.forEach((file) => {
+      formDataToSend.append("files", file);
+    });
+    formDataToSend.append("title", formData.title);
+    formDataToSend.append("content", formData.content);
+
     try {
-    await UpdateTestimonialById(id, formData);
-
+      await UpdateTestimonialById(id, formDataToSend);
       toast.success("Testimonial updated successfully!");
-
       navigate("/mainDashboard/listTestimonials");
     } catch (error) {
       console.error("Failed to update testimonial:", error);
-
       toast.error("Failed to update testimonial. Please try again.");
     }
   };
-
-
 
   if (loading) {
     return <div>Loading...</div>;
@@ -95,11 +105,11 @@ const EditTestimonialData = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
-          <label htmlFor="title" className="col-sm-2 col-form-label" >
+          <label htmlFor="title" className="col-sm-2 col-form-label">
             Title
           </label>
-          <div className="col-sm-10"  style={{paddingLeft:"40px"}} >
-            <input 
+          <div className="col-sm-10">
+            <input
               type="text"
               className="form-control"
               id="title"
@@ -110,11 +120,11 @@ const EditTestimonialData = () => {
           </div>
         </div>
 
-        <div className="row mb-3"  >
+        <div className="row mb-3">
           <label htmlFor="description" className="col-sm-2 col-form-label">
             Description
           </label>
-          <div className="col-sm-10" style={{paddingLeft:"40px"}}>
+          <div className="col-sm-10">
             <input
               type="text"
               className="form-control"
@@ -126,11 +136,22 @@ const EditTestimonialData = () => {
           </div>
         </div>
 
+        <div className="form-group mb-4">
+          <label htmlFor="fileUpload">Upload Files</label>
+          <input
+            type="file"
+            className="form-control"
+            name="files"
+            multiple
+            onChange={handleFileChange}
+          />
+        </div>
+
         <div className="row mb-3">
           <label htmlFor="content" className="col-sm-2 col-form-label">
             Content
           </label>
-          <div className="col-sm-10" style={{paddingLeft:"40px"}}>
+          <div className="col-sm-10" style={{ paddingLeft: "50px" }}>
             <ReactQuill
               style={{ width: "100%", height: "300px" }}
               value={formData.content}
@@ -141,10 +162,12 @@ const EditTestimonialData = () => {
           </div>
         </div>
 
-
         <div className="row mb-3">
-          <div className="col-sm-10 offset-sm-3" >
-            <button type="submit" className="btn btn-primary" style={{marginTop:"80px", marginLeft:"-80px"}}>
+          <div className="col-sm-10 offset-sm-2">
+            <button
+              type="submit"
+              className="btn btn-primary"
+            >
               Update Testimonial
             </button>
           </div>

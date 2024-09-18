@@ -10,12 +10,16 @@ import 'react-quill/dist/quill.snow.css';
 
 const AddServices = () => {
   const navigate = useNavigate();
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-
+  const [files, setFiles] = useState([]);
+  const handleFileChange = (event) => {
+     if (event.target.files) {
+       setFiles(Array.from(event.target.files));
+     }
+   };
   const [formData, setFormData] = useState({
-    pageUrl: '',
-    pageTitle: '',
+    serviceUrl: '',
+    serviceTitle: '',
     name: '',
     shortDescription: '',
     description: '',
@@ -54,54 +58,65 @@ const AddServices = () => {
   };
 
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  if (isSubmitting) return;  
-  setIsSubmitting(true);    
-
-  try {
-    const result = await AddServiceApi({
-      ...formData,
-      meta: [
-        {
-          ...formData.meta[0],
-          metaKeywords: formData.meta[0].metaKeywords.split(',').map(keyword => keyword.trim()),
-        },
-      ],
-      metaTags: formData.metaTags.split(',').map(tag => tag.trim()),
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const formDataToSend = new FormData();
+  
+    files.forEach((file) => {
+      formDataToSend.append("files", file);
     });
-
-    if (result.success === false) {
-      toast.error(result.message || 'Failed to add service');
-    } else {
-      toast.success('Service added successfully!');
-      navigate("/mainDashboard/listServices");
-
-      setFormData({
-        pageUrl: '',
-        pageTitle: '',
-        name: '',
-        shortDescription: '',
-        description: '',
-        content: '',
-        meta: [
-          {
-            metaTitle: '',
-            metaDescription: '',
-            metaAuthor: '',
-            metaKeywords: '',
-          },
-        ],
-        metaTags: '',
-      });
+      formDataToSend.append("serviceUrl", formData.pageUrl);
+    formDataToSend.append("serviceTitle", formData.pageTitle);
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("shortDescription", formData.shortDescription);
+    formDataToSend.append("description", formData.description);
+    formDataToSend.append("content", formData.content);
+      formDataToSend.append("metaTitle", formData.meta[0].metaTitle);
+    formDataToSend.append("metaDescription", formData.meta[0].metaDescription);
+    formDataToSend.append("metaAuthor", formData.meta[0].metaAuthor);
+      formDataToSend.append(
+      "metaKeywords",
+      formData.meta[0].metaKeywords.split(",").map((keyword) => keyword.trim())
+    );
+    formDataToSend.append(
+      "metaTags",
+      formData.metaTags.split(",").map((tag) => tag.trim())
+    );
+  
+    try {
+      const result = await AddServiceApi(formDataToSend);
+  
+      if (result.success === false) {
+        toast.error(result.message || "Failed to add page");
+      } else {
+        toast.success("Service added successfully!");
+        navigate("/mainDashboard/listServices");
+  
+        setFormData({
+          serviceUrl: "",
+          serviceTitle: "",
+          name: "",
+          shortDescription: "",
+          description: "",
+          content: "",
+          meta: [
+            {
+              metaTitle: "",
+              metaDescription: "",
+              metaAuthor: "",
+              metaKeywords: "",
+            },
+          ],
+          metaTags: "",
+        });
+        setFiles([]);  
+      }
+    } catch (error) {
+      toast.error("Failed to add service", error);
     }
-  } catch (error) {
-    toast.error("Failed to add service",error);
-  } finally {
-    setIsSubmitting(false); 
-  }
-};
+  };
+  
 
 const modules = {
   toolbar: [
@@ -185,6 +200,18 @@ const handleContentChange = (value) => {
               onChange={handleChange}
             />
           </div>
+        </div>
+        <div className="form-group mb-4">
+          <label htmlFor="fileUpload">Upload File</label>
+          
+          
+          <input
+            type="file"
+            className="form-control"
+            name="files"
+            multiple
+            onChange={handleFileChange}
+          />
         </div>
 
         <div className="row mb-3">

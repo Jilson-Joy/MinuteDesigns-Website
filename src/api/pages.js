@@ -8,7 +8,7 @@ export const AddPageApi = async (pageData) => {
       pageData,
       {
         headers: {
-          'Content-Type': 'multipart/form-data', // Ensure the content type is set to multipart/form-data
+          'Content-Type': 'multipart/form-data', 
         },
         withCredentials: true,
       }
@@ -18,7 +18,7 @@ export const AddPageApi = async (pageData) => {
     console.error("There was an error adding the page", error);
     throw error;
   }
-};
+}
 
 export const GetAllPages = async (pageData) => {
   try {
@@ -50,18 +50,26 @@ export const DeletePageById = async (id) => {
   }
 };
 
+
 export const UpdatePageById = async (id, updatedData) => {
   try {
     const response = await axios.put(
-      `http://localhost:3000/api/v1/page/${id}`,updatedData,
-      { withCredentials: true } 
+      `http://localhost:3000/api/v1/page/${id}`,
+      updatedData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        withCredentials: true,
+      }
     );
     return response.data;
   } catch (error) {
-    console.error('There was an error deleting the page:', error);
+    console.error('There was an error updating the page:', error);
     throw error;
   }
 };
+
 
 
 export const GetPageById = async (id) => {

@@ -7,14 +7,16 @@ import { toast } from "react-toastify";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
-
 const AddTestimonial = () => {
   const navigate = useNavigate();
-
+  
   const [formData, setFormData] = useState({
     title: "",
+    description: "",
     content: "",
   });
+
+  const [files, setFiles] = useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,21 +26,9 @@ const AddTestimonial = () => {
     });
   };
 
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await AddTestimonialApi(formData);
-      toast.success("Testimonial added successfully!");
-      navigate("/mainDashboard/listTestimonials");
-      setFormData({
-        title: "",
-        description: "",
-        content: "",
-      });
-    } catch (error) {
-      toast.error("Failed to add testimonial");
-      console.error("Failed to add testimonial:", error);
+  const handleFileChange = (e) => {
+    if (e.target.files) {
+      setFiles(Array.from(e.target.files));
     }
   };
 
@@ -47,6 +37,35 @@ const AddTestimonial = () => {
       ...formData,
       content: value,
     });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const formDataToSend = new FormData();
+
+    formDataToSend.append("title", formData.title);
+    formDataToSend.append("description", formData.description);
+    formDataToSend.append("content", formData.content);
+
+    files.forEach((file) => {
+      formDataToSend.append("files", file);
+    });
+
+    try {
+      await AddTestimonialApi(formDataToSend);
+      toast.success("Testimonial added successfully!");
+      navigate("/mainDashboard/listTestimonials");
+      setFormData({
+        title: "",
+        description: "",
+        content: "",
+      });
+      setFiles([]); 
+    } catch (error) {
+      toast.error("Failed to add testimonial");
+      console.error("Failed to add testimonial:", error);
+    }
   };
 
   const modules = {
@@ -114,6 +133,17 @@ const AddTestimonial = () => {
               required
             />
           </div>
+        </div>
+
+        <div className="form-group mb-4">
+          <label htmlFor="fileUpload">Upload File</label>
+          <input
+            type="file"
+            className="form-control"
+            name="files"
+            multiple
+            onChange={handleFileChange}
+          />
         </div>
 
         <div className="row mb-3">

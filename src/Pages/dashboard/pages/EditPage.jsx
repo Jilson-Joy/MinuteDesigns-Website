@@ -6,26 +6,28 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+
 const EditPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    pageUrl: '',
-    pageTitle: '',
-    name: '',
-    shortDescription: '',
-    description: '',
-    content: '',
+    pageUrl: "",
+    pageTitle: "",
+    name: "",
+    shortDescription: "",
+    description: "",
+    content: "",
     meta: {
-      metaTitle: '',
-      metaDescription: '',
-      metaAuthor: '',
-      metaKeywords: '',
+      metaTitle: "",
+      metaDescription: "",
+      metaAuthor: "",
+      metaKeywords: "",
     },
-    metaTags: '',
+    metaTags: "",
   });
 
+  const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -49,6 +51,7 @@ const EditPage = () => {
           },
           metaTags: pageData.metaTags || "",
         });
+        setFiles(pageData.files || []);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching page data:", error);
@@ -59,22 +62,35 @@ const EditPage = () => {
     fetchPageData();
   }, [id]);
 
+  const handleFileChange = (event) => {
+    if (event.target.files) {
+      setFiles(Array.from(event.target.files));
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name.startsWith('meta.')) {
-      setFormData(prevData => ({
+    if (name.startsWith("meta.")) {
+      setFormData((prevData) => ({
         ...prevData,
         meta: {
           ...prevData.meta,
-          [name.replace('meta.', '')]: value,
+          [name.replace("meta.", "")]: value,
         },
       }));
     } else {
-      setFormData(prevData => ({
+      setFormData((prevData) => ({
         ...prevData,
         [name]: value,
       }));
     }
+  };
+
+  const handleContentChange = (value) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      content: value,
+    }));
   };
 
   const modules = {
@@ -88,13 +104,37 @@ const EditPage = () => {
     ],
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const result = await UpdatePageById(id, formData);
-      console.log("Page updated successfully:", result);
 
+    const formDataToSend = new FormData();
+
+    files.forEach((file) => {
+      formDataToSend.append("files", file);
+    });
+    formDataToSend.append("pageUrl", formData.pageUrl);
+    formDataToSend.append("pageTitle", formData.pageTitle);
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("shortDescription", formData.shortDescription);
+    formDataToSend.append("description", formData.description);
+    formDataToSend.append("content", formData.content);
+    formDataToSend.append("metaTitle", formData.meta.metaTitle);
+    formDataToSend.append("metaDescription", formData.meta.metaDescription);
+    formDataToSend.append("metaAuthor", formData.meta.metaAuthor);
+    formDataToSend.append(
+      "metaKeywords",
+      formData.meta.metaKeywords.split(",").map((keyword) => keyword.trim())
+    );
+
+    const metaTags =
+      typeof formData.metaTags === "string" ? formData.metaTags : "";
+    formDataToSend.append(
+      "metaTags",
+      metaTags.split(",").map((tag) => tag.trim())
+    );
+
+    try {
+      await UpdatePageById(id, formDataToSend);
       toast.success("Page updated successfully!");
       navigate("/mainDashboard/listPage");
     } catch (error) {
@@ -103,17 +143,9 @@ const EditPage = () => {
     }
   };
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
-
-  const handleContentChange = (value) => {
-    setFormData(prevData => ({
-      ...prevData,
-      content: value,
-    }));
-  };
 
   return (
     <div className="container">
@@ -205,6 +237,18 @@ const EditPage = () => {
           </div>
         </div>
 
+        <div className="form-group mb-4">
+          <label htmlFor="fileUpload">Upload Files</label>
+          <input
+            style={{ marginLeft: "40px" }}
+            type="file"
+            className="form-control"
+            name="files"
+            multiple
+            onChange={handleFileChange}
+          />
+        </div>
+
         <div className="row mb-3">
           <label htmlFor="metaTitle" className="col-sm-2 col-form-label">
             Meta Title
@@ -294,9 +338,9 @@ const EditPage = () => {
           <label htmlFor="content" className="col-sm-2 col-form-label">
             Content
           </label>
-          <div className="col-sm-10">
+          <div className="col-sm-10" style={{ paddingLeft: "50px" }}>
             <ReactQuill
-              style={{ marginLeft: "80px", width: "200%", height: "150%" }}
+              style={{ width: "100%", height: "300px" }}
               value={formData.content}
               onChange={handleContentChange}
               modules={modules}
@@ -305,12 +349,14 @@ const EditPage = () => {
           </div>
         </div>
 
-    
-
         <div className="row mb-3">
-          <div className="col-sm-10 offset-sm-0">
-            <button type="submit" className="btn btn-primary">
-              Update Page
+          <div className="col-sm-10 offset-sm-2">
+            <button
+              type="submit"
+              style={{ marginLeft: "-20%" }}
+              className="btn btn-primary"
+            >
+              Update
             </button>
           </div>
         </div>

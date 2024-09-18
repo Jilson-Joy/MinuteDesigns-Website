@@ -6,6 +6,9 @@ export const AddCategoryApi = async (categoryData) => {
       `http://localhost:3000/api/v1/category`,
       categoryData,
       {
+        headers: {
+          'Content-Type': 'multipart/form-data', 
+        },
         withCredentials: true,
       }
     );
@@ -22,6 +25,9 @@ export const UpdateCategoryById = async (id, categoryData) => {
       `http://localhost:3000/api/v1/category/${id}`,
       categoryData,
       {
+        headers: {
+          'Content-Type': 'multipart/form-data', 
+        },
         withCredentials: true,
       }
     );

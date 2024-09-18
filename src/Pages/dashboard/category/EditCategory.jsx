@@ -14,18 +14,20 @@ const EditCategory = () => {
     videoUrl: "",
   });
 
+  const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCategoryData = async () => {
       try {
         const result = await GetCategoryById(id);
-        const categoryData = result.category; 
+        const categoryData = result.category;
 
         setFormData({
           categoryName: categoryData.categoryName || "",
           videoUrl: categoryData.videoUrl || "",
         });
+
         setLoading(false);
       } catch (error) {
         console.error("Error fetching category data:", error);
@@ -44,10 +46,27 @@ const EditCategory = () => {
     });
   };
 
+  const handleFileChange = (event) => {
+    if (event.target.files) {
+      setFiles(Array.from(event.target.files));
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const formDataToSend = new FormData();
+    
+    files.forEach((file) => {
+      formDataToSend.append("files", file); 
+    });
+
+    formDataToSend.append("categoryName", formData.categoryName);
+    formDataToSend.append("videoUrl", formData.videoUrl);
+
     try {
-      await UpdateCategoryById(id, formData);
+      await UpdateCategoryById(id, formDataToSend);
+
       toast.success("Category updated successfully!");
       navigate("/mainDashboard/listCategory");
     } catch (error) {
@@ -77,6 +96,7 @@ const EditCategory = () => {
               name="categoryName"
               value={formData.categoryName}
               onChange={handleChange}
+              required
             />
           </div>
         </div>
@@ -93,8 +113,20 @@ const EditCategory = () => {
               name="videoUrl"
               value={formData.videoUrl}
               onChange={handleChange}
+              placeholder="https://example.com/video"
             />
           </div>
+        </div>
+
+        <div className="form-group mb-4">
+          <label htmlFor="fileUpload">Upload File</label>
+          <input
+            type="file"
+            className="form-control"
+            name="files"
+            multiple
+            onChange={handleFileChange}
+          />
         </div>
 
         <div className="row mb-3">
@@ -111,4 +143,4 @@ const EditCategory = () => {
   );
 };
 
-export default EditCategory
+export default EditCategory;

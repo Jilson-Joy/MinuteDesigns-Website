@@ -6,6 +6,8 @@ export const AddTestimonialApi = async (testimonialData) => {
       `http://localhost:3000/api/v1/testimonial`,
       testimonialData,
       {
+        headers:{          'Content-Type': 'multipart/form-data', 
+        },
         withCredentials: true,
       }
     );
@@ -23,6 +25,9 @@ export const UpdateTestimonialById = async (id,testimonialData) => {
       `http://localhost:3000/api/v1/testimonial/${id}`,
       testimonialData,
       {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
         withCredentials: true,
       }
     );

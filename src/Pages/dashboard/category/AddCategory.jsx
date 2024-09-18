@@ -14,6 +14,14 @@ const AddCategory = () => {
     description: "",
   });
 
+  const [files, setFiles] = useState([]);
+
+  const handleFileChange = (event) => {
+    if (event.target.files) {
+      setFiles(Array.from(event.target.files)); // Store the files
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -24,17 +32,26 @@ const AddCategory = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await AddCategoryApi(formData);
-      toast.success("Category added successfully!");
 
+    const formDataToSend = new FormData();
+
+    files.forEach((file) => {
+      formDataToSend.append("files", file); // Append each file
+    });
+
+    formDataToSend.append("categoryName", formData.categoryName);
+    formDataToSend.append("videoUrl", formData.videoUrl);
+
+    try {
+      await AddCategoryApi(formDataToSend); // Use formDataToSend with files
+      toast.success("Category added successfully!");
       navigate("/mainDashboard/listCategory");
 
       setFormData({
         categoryName: "",
         videoUrl: "",
-        description: "",
       });
+      setFiles([]); // Reset the file input
     } catch (error) {
       console.error("Failed to add category:", error);
       toast.error("Error adding category.");
@@ -80,6 +97,17 @@ const AddCategory = () => {
               placeholder="https://example.com/video"
             />
           </div>
+        </div>
+
+        <div className="form-group mb-4">
+          <label htmlFor="fileUpload">Upload File</label>
+          <input
+            type="file"
+            className="form-control"
+            name="files"
+            multiple
+            onChange={handleFileChange}
+          />
         </div>
 
         <div className="row mb-3">

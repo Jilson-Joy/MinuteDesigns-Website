@@ -6,7 +6,11 @@ export const AddServiceApi = async (serviceData) => {
     const response = await axios.post(
       `http://localhost:3000/api/v1/service`,
       serviceData,
-      {
+      
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data', 
+          },
         withCredentials: true,
       }
     );
@@ -50,7 +54,12 @@ export const UpdateServiceById = async (id, updatedData) => {
     const response = await axios.put(
       `http://localhost:3000/api/v1/service/${id}`,
       updatedData,
-      { withCredentials: true }
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data', 
+        },
+        withCredentials: true,  
+      }
     );
     return response.data;
   } catch (error) {
