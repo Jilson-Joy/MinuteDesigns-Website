@@ -1,17 +1,18 @@
 import axios from "axios";
 
-// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL; 
+import config from "../config";
 
+const { API_BASE_URL } = config;
 export const loginApi = async (email, password) => {
-    try {
-        const response = await axios.post(
-            `http://localhost:3000/api/v1/auth/login`,
-            { email, password }, 
-            { withCredentials: true }
-        );
-        return response.data;
-    } catch (error) {
-        console.error("There was an error logging in!", error);
-        throw error;
-    }
+  try {
+    const response = await axios.post(
+      `${API_BASE_URL}/auth/login`,
+      { email, password },
+      { withCredentials: true }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("There was an error logging in!", error);
+    throw error;
+  }
 };

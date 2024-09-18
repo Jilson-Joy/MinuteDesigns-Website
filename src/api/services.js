@@ -1,16 +1,17 @@
 import axios from "axios";
+import config from '../config';
 
-// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const { API_BASE_URL } = config; 
+
 export const AddServiceApi = async (serviceData) => {
   try {
     const response = await axios.post(
-      `http://localhost:3000/api/v1/service`,
+      `${API_BASE_URL}/service`, 
       serviceData,
-      
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data', 
-          },
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
         withCredentials: true,
       }
     );
@@ -24,7 +25,7 @@ export const AddServiceApi = async (serviceData) => {
 export const GetAllServices = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/v1/service`,
+      `${API_BASE_URL}/service`, 
       {
         withCredentials: true,
       }
@@ -39,7 +40,7 @@ export const GetAllServices = async () => {
 export const DeleteServiceById = async (id) => {
   try {
     const response = await axios.delete(
-      `http://localhost:3000/api/v1/service/${id}`,
+      `${API_BASE_URL}/service/${id}`, 
       { withCredentials: true }
     );
     return response.data;
@@ -52,13 +53,13 @@ export const DeleteServiceById = async (id) => {
 export const UpdateServiceById = async (id, updatedData) => {
   try {
     const response = await axios.put(
-      `http://localhost:3000/api/v1/service/${id}`,
+      `${API_BASE_URL}/service/${id}`,
       updatedData,
       {
         headers: {
-          'Content-Type': 'multipart/form-data', 
+          'Content-Type': 'multipart/form-data',
         },
-        withCredentials: true,  
+        withCredentials: true,
       }
     );
     return response.data;
@@ -71,7 +72,7 @@ export const UpdateServiceById = async (id, updatedData) => {
 export const GetServiceById = async (id) => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/v1/service/${id}`,
+      `${API_BASE_URL}/service/${id}`,
       { withCredentials: true }
     );
     return response.data;
@@ -84,7 +85,7 @@ export const GetServiceById = async (id) => {
 export const UpdateServiceStatus = async (serviceId, status) => {
   try {
     const response = await axios.patch(
-      `http://localhost:3000/api/v1/service/${serviceId}/status`,
+      `${API_BASE_URL}/service/${serviceId}/status`, 
       { status },
       { withCredentials: true }
     );

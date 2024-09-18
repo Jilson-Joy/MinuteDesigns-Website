@@ -6,10 +6,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { Modal, Button } from "react-bootstrap";
 
 const AddTestimonial = () => {
   const navigate = useNavigate();
-  
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -17,6 +18,8 @@ const AddTestimonial = () => {
   });
 
   const [files, setFiles] = useState([]);
+  const [showSourceModal, setShowSourceModal] = useState(false);
+  const [sourceCode, setSourceCode] = useState(formData.content);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,9 +44,8 @@ const AddTestimonial = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    const formDataToSend = new FormData();
 
+    const formDataToSend = new FormData();
     formDataToSend.append("title", formData.title);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
@@ -61,11 +63,24 @@ const AddTestimonial = () => {
         description: "",
         content: "",
       });
-      setFiles([]); 
+      setFiles([]);
     } catch (error) {
       toast.error("Failed to add testimonial");
       console.error("Failed to add testimonial:", error);
     }
+  };
+
+  const handleSourceCode = () => {
+    setShowSourceModal(true);
+    setSourceCode(formData.content);
+  };
+
+  const handleSaveSourceCode = () => {
+    setFormData({
+      ...formData,
+      content: sourceCode,
+    });
+    setShowSourceModal(false);
   };
 
   const modules = {
@@ -124,14 +139,24 @@ const AddTestimonial = () => {
             Content
           </label>
           <div className="col-sm-10">
-            <ReactQuill
-              style={{ marginLeft: "40px", width: "100%", height: "300px" }}
-              value={formData.content}
-              onChange={handleContentChange}
-              modules={modules}
-              placeholder="Write your content here..."
-              required
-            />
+            <div style={{ position: "relative" }}>
+              <ReactQuill
+                style={{ marginLeft: "40px", width: "100%", height: "300px" }}
+                value={formData.content}
+                onChange={handleContentChange}
+                modules={modules}
+                placeholder="Write your content here..."
+              />
+            </div>
+            <div >
+              <button 
+                type="button"
+                className="btn btn-secondary mt-2"
+                onClick={handleSourceCode}
+              >
+                code
+              </button>
+            </div>
           </div>
         </div>
 
@@ -148,16 +173,34 @@ const AddTestimonial = () => {
 
         <div className="row mb-3">
           <div className="col-sm-8 offset-sm-2">
-            <button
-              type="submit"
-              style={{ marginLeft: "-20%" }}
-              className="btn btn-primary"
-            >
+            <button type="submit" className="btn btn-primary">
               Submit
             </button>
           </div>
         </div>
       </form>
+
+      <Modal show={showSourceModal} onHide={() => setShowSourceModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Source Code</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <textarea
+            rows="10"
+            className="form-control"
+            value={sourceCode}
+            onChange={(e) => setSourceCode(e.target.value)}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowSourceModal(false)}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSaveSourceCode}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

@@ -1,9 +1,12 @@
 import axios from "axios";
+import config from '../config';
+
+const { API_BASE_URL } = config;
 
 export const AddCategoryApi = async (categoryData) => {
   try {
     const response = await axios.post(
-      `http://localhost:3000/api/v1/category`,
+      `${API_BASE_URL}/category`, 
       categoryData,
       {
         headers: {
@@ -22,7 +25,7 @@ export const AddCategoryApi = async (categoryData) => {
 export const UpdateCategoryById = async (id, categoryData) => {
   try {
     const response = await axios.put(
-      `http://localhost:3000/api/v1/category/${id}`,
+      `${API_BASE_URL}/category/${id}`,
       categoryData,
       {
         headers: {
@@ -41,7 +44,7 @@ export const UpdateCategoryById = async (id, categoryData) => {
 export const GetCategoryById = async (id) => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/v1/category/${id}`,
+      `${API_BASE_URL}/category/${id}`, 
       {
         withCredentials: true,
       }
@@ -56,7 +59,7 @@ export const GetCategoryById = async (id) => {
 export const GetAllCategories = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/v1/category`,
+      `${API_BASE_URL}/category`, 
       {
         withCredentials: true,
       }
@@ -71,7 +74,7 @@ export const GetAllCategories = async () => {
 export const DeleteCategoryById = async (id) => {
   try {
     const response = await axios.delete(
-      `http://localhost:3000/api/v1/category/${id}`,
+      `${API_BASE_URL}/category/${id}`, 
       {
         withCredentials: true,
       }
@@ -86,7 +89,7 @@ export const DeleteCategoryById = async (id) => {
 export const UpdateCategoryStatus = async (categoryId, status) => {
   try {
     const response = await axios.patch(
-      `http://localhost:3000/api/v1/category/${categoryId}/status`,
+      `${API_BASE_URL}/category/${categoryId}/status`, 
       { status },
       { withCredentials: true }
     );

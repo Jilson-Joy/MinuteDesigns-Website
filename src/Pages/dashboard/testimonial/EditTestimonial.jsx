@@ -166,9 +166,10 @@ const EditTestimonialData = () => {
           <div className="col-sm-10 offset-sm-2">
             <button
               type="submit"
+              style={{ marginLeft: "-20%" }}
               className="btn btn-primary"
             >
-              Update Testimonial
+              Update
             </button>
           </div>
         </div>

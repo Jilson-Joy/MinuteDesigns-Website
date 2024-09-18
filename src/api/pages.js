@@ -1,10 +1,11 @@
 import axios from "axios";
+import config from '../config'; 
 
-// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const { API_BASE_URL } = config; 
 export const AddPageApi = async (pageData) => {
   try {
     const response = await axios.post(
-      `http://localhost:3000/api/v1/page`,
+      `${API_BASE_URL}/page`, 
       pageData,
       {
         headers: {
@@ -18,29 +19,25 @@ export const AddPageApi = async (pageData) => {
     console.error("There was an error adding the page", error);
     throw error;
   }
-}
+};
 
-export const GetAllPages = async (pageData) => {
+export const GetAllPages = async () => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/v1/page`,
-      pageData,
-      {
-        withCredentials: true,
-      }
+      `${API_BASE_URL}/page`,
+      { withCredentials: true }
     );
     return response.data;
   } catch (error) {
-    console.error("There was an error in adding page", error);
+    console.error("There was an error fetching all pages", error);
     throw error;
   }
 };
 
-
 export const DeletePageById = async (id) => {
   try {
     const response = await axios.delete(
-      `http://localhost:3000/api/v1/page/${id}`,
+      `${API_BASE_URL}/page/${id}`,
       { withCredentials: true } 
     );
     return response.data;
@@ -50,11 +47,10 @@ export const DeletePageById = async (id) => {
   }
 };
 
-
 export const UpdatePageById = async (id, updatedData) => {
   try {
     const response = await axios.put(
-      `http://localhost:3000/api/v1/page/${id}`,
+      `${API_BASE_URL}/page/${id}`,
       updatedData,
       {
         headers: {
@@ -70,26 +66,23 @@ export const UpdatePageById = async (id, updatedData) => {
   }
 };
 
-
-
 export const GetPageById = async (id) => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/v1/page/${id}`,
+      `${API_BASE_URL}/page/${id}`,
       { withCredentials: true } 
     );
     return response.data;
   } catch (error) {
-    console.error('There was an error deleting the page:', error);
+    console.error('There was an error fetching the page:', error);
     throw error;
   }
 };
 
-
 export const UpdatePageStatus = async (pageId, status) => {
   try {
     const response = await axios.patch(
-      `http://localhost:3000/api/v1/page/${pageId}/status`,
+      `${API_BASE_URL}/page/${pageId}/status`,
       { status },
       { withCredentials: true }
     );
@@ -99,5 +92,3 @@ export const UpdatePageStatus = async (pageId, status) => {
     throw error;
   }
 };
-
-

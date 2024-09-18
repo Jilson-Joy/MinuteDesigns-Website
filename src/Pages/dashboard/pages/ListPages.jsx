@@ -15,7 +15,7 @@ function ListPages() {
   useEffect(() => {
     const fetchPages = async () => {
       try {
-        const result = await GetAllPages(1, 10); 
+        const result = await GetAllPages(); 
         setPages(result.pages);
       } catch (error) {
         console.error('Error fetching pages:', error);

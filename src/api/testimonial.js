@@ -1,28 +1,12 @@
 import axios from "axios";
+import config from '../config';
+
+const { API_BASE_URL } = config; 
 
 export const AddTestimonialApi = async (testimonialData) => {
   try {
     const response = await axios.post(
-      `http://localhost:3000/api/v1/testimonial`,
-      testimonialData,
-      {
-        headers:{          'Content-Type': 'multipart/form-data', 
-        },
-        withCredentials: true,
-      }
-    );
-    return response.data;
-  } catch (error) {
-    console.error("There was an error in adding testimonial", error);
-    throw error;
-  }
-};
-
-
-export const UpdateTestimonialById = async (id,testimonialData) => {
-  try {
-    const response = await axios.put(
-      `http://localhost:3000/api/v1/testimonial/${id}`,
+      `${API_BASE_URL}/testimonial`,
       testimonialData,
       {
         headers: {
@@ -38,67 +22,80 @@ export const UpdateTestimonialById = async (id,testimonialData) => {
   }
 };
 
+export const UpdateTestimonialById = async (id, testimonialData) => {
+  try {
+    const response = await axios.put(
+      `${API_BASE_URL}/testimonial/${id}`,
+      testimonialData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("There was an error in updating testimonial", error);
+    throw error;
+  }
+};
+
 export const GetTestimonialById = async (id) => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/v1/testimonial/${id}`,
+      `${API_BASE_URL}/testimonial/${id}`, 
       {
         withCredentials: true,
       }
     );
     return response.data;
   } catch (error) {
-    console.error("There was an error in adding testimonial", error);
+    console.error("There was an error in retrieving testimonial", error);
     throw error;
   }
 };
 
-
-
-export const GetAllTestimonial = async (testimonialData) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3000/api/v1/testimonial`,
-        testimonialData,
-        {
-          withCredentials: true,
-        }
-      );
-      return response.data;
-    } catch (error) {
-      console.error("There was an error in adding testimonial", error);
-      throw error;
-    }
-  };
-
+export const GetAllTestimonial = async () => { 
+  try {
+    const response = await axios.get(
+      `${API_BASE_URL}/testimonial`, 
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("There was an error in retrieving testimonials", error);
+    throw error;
+  }
+};
 
 export const DeleteTestimonialById = async (id) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:3000/api/v1/testimonial/${id}`,
-        {
-          withCredentials: true,
-        }
-      );
-      return response.data;
-    } catch (error) {
-      console.error("There was an error in deleting testimonial", error);
-      throw error;
-    }
-  };
+  try {
+    const response = await axios.delete(
+      `${API_BASE_URL}/testimonial/${id}`,
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("There was an error in deleting testimonial", error);
+    throw error;
+  }
+};
 
-
-
-  export const UpdateTestimonialStatus = async (testimonialId, status) => {
-    try {
-      const response = await axios.patch(
-        `http://localhost:3000/api/v1/testimonial/${testimonialId}/status`,
-        { status },
-        { withCredentials: true }
-      );
-      return response.data;
-    } catch (error) {
-      console.error('Error updating page status:', error);
-      throw error;
-    }
-  };
+export const UpdateTestimonialStatus = async (testimonialId, status) => {
+  try {
+    const response = await axios.patch(
+      `${API_BASE_URL}/testimonial/${testimonialId}/status`, 
+      { status },
+      { withCredentials: true }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error updating testimonial status:', error);
+    throw error;
+  }
+};
