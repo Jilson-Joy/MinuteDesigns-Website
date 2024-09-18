@@ -2,8 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Navbar/Header';
 import './assets/css/commonStyle.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // import Home from './Pages/Home';
 import About from './Pages/About';
@@ -32,6 +31,7 @@ import LandingPage from './Pages/LandingPage';
 import Blog from './Pages/blog/Blog';
 import Architecture from './Pages/architecture/Architecture';
 import Rendering3DService from './Pages/3DRenderingService/Rendering3DService';
+import AboutNew from './Pages/about/AboutNew';
 
 function App() {
   return (
@@ -56,21 +56,25 @@ function App() {
             <>
               <Header />
               <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/work" element={<Work />} />
-                <Route path="/gallery" element={<Gallery />} />
-                <Route path="/careers" element={<Careers />} />
-                <Route path="/technologies" element={<Careers />} />
-                <Route path="/reachUs" element={<ReachUs />} />
-                <Route path="/webapp" element={<WebApp />} />
-                <Route path="/mobileApp" element={<MobileApplication />} />
-                <Route path="/e-commerce" element={<Ecommerce />} />
-                <Route path="/uiux" element={<UiUx />} />
-                <Route path="/portfolio" element={<Portfolio />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/architecture" element={<Architecture />} />
-                <Route path="/3DRenderingService" element={<Rendering3DService />} />
+                  <Route path="/" element={<LandingPage />} />
+                  {/* <Route path="/about" element={<About />} /> */}
+                  <Route path="/about" element={<AboutNew />} />
+                  <Route path="/work" element={<Work />} />
+                  <Route path="/gallery" element={<Gallery />} />
+                  <Route path="/careers" element={<Careers />} />
+                  <Route path="/technologies" element={<Careers />} />
+                  <Route path="/reachUs" element={<ReachUs />} />
+                  <Route path="/webapp" element={<WebApp />} />
+                  <Route path="/mobileApp" element={<MobileApplication />} />
+                  <Route path="/e-commerce" element={<Ecommerce />} />
+                  <Route path="/uiux" element={<UiUx />} />
+                  <Route path="/portfolio" element={<Portfolio />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/architecture" element={<Architecture />} />
+                  <Route
+                    path="/3DRenderingService"
+                    element={<Rendering3DService />}
+                  />
               </Routes>
               <Footer />
             </>
