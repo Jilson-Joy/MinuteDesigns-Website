@@ -6,16 +6,15 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { Modal, Button } from "react-bootstrap";
 
 const AddPage = () => {
   const navigate = useNavigate();
 
-const [files, setFiles] = useState([]);
- const handleFileChange = (event) => {
-    if (event.target.files) {
-      setFiles(Array.from(event.target.files));
-    }
-  };
+  const [files, setFiles] = useState([]);
+  const [showSourceModal, setShowSourceModal] = useState(false);
+  const [sourceCode, setSourceCode] = useState("");
+
   const [formData, setFormData] = useState({
     pageUrl: "",
     pageTitle: "",
@@ -33,6 +32,57 @@ const [files, setFiles] = useState([]);
     ],
     metaTags: "",
   });
+
+  const handleFileChange = (event) => {
+    if (event.target.files) {
+      setFiles(Array.from(event.target.files));
+    }
+  };
+
+  const handleSourceCode = () => {
+    setShowSourceModal(true);
+    setSourceCode(formData.content);
+  };
+
+  const handleSaveSourceCode = () => {
+    setFormData({
+      ...formData,
+      content: sourceCode,
+    });
+    setShowSourceModal(false);
+  };
+
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ size: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
+
+  const formats = [
+    "header",
+    "font",
+    "size",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,31 +106,31 @@ const [files, setFiles] = useState([]);
     }
   };
 
-
   const handleContentChange = (content) => {
     setFormData((prevData) => ({
       ...prevData,
       content,
     }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formDataToSend = new FormData();
-  
+
     files.forEach((file) => {
       formDataToSend.append("files", file);
     });
-      formDataToSend.append("pageUrl", formData.pageUrl);
+    formDataToSend.append("pageUrl", formData.pageUrl);
     formDataToSend.append("pageTitle", formData.pageTitle);
     formDataToSend.append("name", formData.name);
     formDataToSend.append("shortDescription", formData.shortDescription);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
-      formDataToSend.append("metaTitle", formData.meta[0].metaTitle);
+    formDataToSend.append("metaTitle", formData.meta[0].metaTitle);
     formDataToSend.append("metaDescription", formData.meta[0].metaDescription);
     formDataToSend.append("metaAuthor", formData.meta[0].metaAuthor);
-      formDataToSend.append(
+    formDataToSend.append(
       "metaKeywords",
       formData.meta[0].metaKeywords.split(",").map((keyword) => keyword.trim())
     );
@@ -88,16 +138,16 @@ const [files, setFiles] = useState([]);
       "metaTags",
       formData.metaTags.split(",").map((tag) => tag.trim())
     );
-  
+
     try {
       const result = await AddPageApi(formDataToSend);
-  
+
       if (result.success === false) {
         toast.error(result.message || "Failed to add page");
       } else {
         toast.success("Page added successfully!");
         navigate("/mainDashboard/listPage");
-  
+
         setFormData({
           pageUrl: "",
           pageTitle: "",
@@ -115,41 +165,12 @@ const [files, setFiles] = useState([]);
           ],
           metaTags: "",
         });
-        setFiles([]);  
+        setFiles([]);
       }
     } catch (error) {
       toast.error("Failed to add page", error);
     }
   };
-  
- 
-  const modules = {
-    toolbar: [
-      [{ header: "1" }, { header: "2" }, { font: [] }],
-      [{ size: [] }],
-      ["bold", "italic", "underline", "strike", "blockquote"],
-      [{ list: "ordered" }, { list: "bullet" }, { indent: "-1" }, { indent: "+1" }],
-      ["link", "image"],
-      ["clean"],
-    ],
-  };
-
-  const formats = [
-    "header",
-    "font",
-    "size",
-    "bold",
-    "italic",
-    "underline",
-    "strike",
-    "blockquote",
-    "list",
-    "bullet",
-    "indent",
-    "link",
-    "image",
-  ];
-
 
   return (
     <div className="container">
@@ -243,10 +264,8 @@ const [files, setFiles] = useState([]);
           </div>
         </div>
 
-           <div className="form-group mb-4">
+        <div className="form-group mb-4">
           <label htmlFor="fileUpload">Upload File</label>
-          
-          
           <input
             type="file"
             className="form-control"
@@ -255,7 +274,6 @@ const [files, setFiles] = useState([]);
             onChange={handleFileChange}
           />
         </div>
-
 
         <div className="row mb-3">
           <label htmlFor="meta.metaTitle" className="col-sm-2 col-form-label">
@@ -275,7 +293,10 @@ const [files, setFiles] = useState([]);
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="meta.metaDescription" className="col-sm-2 col-form-label">
+          <label
+            htmlFor="meta.metaDescription"
+            className="col-sm-2 col-form-label"
+          >
             Meta Description
           </label>
           <div className="col-sm-10">
@@ -309,7 +330,10 @@ const [files, setFiles] = useState([]);
         </div>
 
         <div className="row mb-3">
-          <label htmlFor="meta.metaKeywords" className="col-sm-2 col-form-label">
+          <label
+            htmlFor="meta.metaKeywords"
+            className="col-sm-2 col-form-label"
+          >
             Meta Keywords (comma separated)
           </label>
           <div className="col-sm-10">
@@ -342,19 +366,40 @@ const [files, setFiles] = useState([]);
           </div>
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="content" className="form-label">Content</label>
-          <ReactQuill style={{marginLeft:"120px", marginTop:"-30px", width: "100%" , height:"300px"}}
-            id="content"
-            value={formData.content}
-            onChange={handleContentChange}
-            modules={modules}
-            formats={formats}
-          />
+        <div className="row mb-3">
+          <label htmlFor="content" className="col-sm-2 col-form-label">
+            Content
+          </label>
+          <div className="col-sm-10">
+            <div className="quill-container" style={{ position: "relative" }}>
+              <ReactQuill
+                style={{ marginLeft: "40px", width: "100%", height: "300px" }}
+                value={formData.content}
+                onChange={handleContentChange}
+                modules={modules}
+                formats={formats}
+                placeholder="Write your content here..."
+              />
+            </div>
+          </div>
+          <div className="row mb-3">
+            <div className="col-sm-8 offset-sm-2">
+              <button
+                style={{
+                  width: "150px",
+                  marginLeft: "200%",
+                  marginTop: "-80px",
+                }}
+                type="button"
+                className="btn btn-secondary mt-2"
+                onClick={handleSourceCode}
+              >
+                Source Code
+              </button>
+            </div>
+          </div>
         </div>
 
-     
-      
         <div className="row mb-3">
           <div className="col-sm-8 offset-sm-2">
             <button
@@ -367,6 +412,27 @@ const [files, setFiles] = useState([]);
           </div>
         </div>
       </form>
+      <Modal show={showSourceModal} onHide={() => setShowSourceModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Source Code</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <textarea
+            rows="10"
+            className="form-control"
+            value={sourceCode}
+            onChange={(e) => setSourceCode(e.target.value)}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowSourceModal(false)}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSaveSourceCode}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
       <ToastContainer />
     </div>

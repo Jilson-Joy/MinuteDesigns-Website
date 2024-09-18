@@ -85,14 +85,35 @@ const AddTestimonial = () => {
 
   const modules = {
     toolbar: [
-      [{ header: [1, 2, false] }],
-      ["bold", "italic", "underline"],
-      [{ color: [] }, { background: [] }],
-      ["link"],
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ size: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image"],
       ["clean"],
-      ["code-block"],
     ],
   };
+
+  const formats = [
+    "header",
+    "font",
+    "size",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+  ];
 
   return (
     <div className="container">
@@ -134,32 +155,6 @@ const AddTestimonial = () => {
           </div>
         </div>
 
-        <div className="row mb-3">
-          <label htmlFor="content" className="col-sm-2 col-form-label">
-            Content
-          </label>
-          <div className="col-sm-10">
-            <div style={{ position: "relative" }}>
-              <ReactQuill
-                style={{ marginLeft: "40px", width: "100%", height: "300px" }}
-                value={formData.content}
-                onChange={handleContentChange}
-                modules={modules}
-                placeholder="Write your content here..."
-              />
-            </div>
-            <div >
-              <button 
-                type="button"
-                className="btn btn-secondary mt-2"
-                onClick={handleSourceCode}
-              >
-                code
-              </button>
-            </div>
-          </div>
-        </div>
-
         <div className="form-group mb-4">
           <label htmlFor="fileUpload">Upload File</label>
           <input
@@ -172,8 +167,41 @@ const AddTestimonial = () => {
         </div>
 
         <div className="row mb-3">
+          <label htmlFor="content" className="col-sm-2 col-form-label">
+            Content
+          </label>
+          <div className="col-sm-10">
+            <div className="quill-container" style={{ position: "relative" }}>
+              <ReactQuill
+                style={{ marginLeft: "40px", width: "100%", height: "300px" }}
+                value={formData.content}
+                onChange={handleContentChange}
+                modules={modules}
+                formats={formats}
+                placeholder="Write your content here..."
+              />
+            </div>
+          </div>
+          <div className="row mb-3">
+            <div className="col-sm-8 offset-sm-2">
+              <button
+                style={{ width: "150px", marginLeft: "200%", marginTop: "-80px"}}
+                type="button"
+                className="btn btn-secondary mt-2"
+                onClick={handleSourceCode}
+              >
+                Source Code
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="row mb-3">
           <div className="col-sm-8 offset-sm-2">
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              style={{ marginLeft: "-20%" }}
+              className="btn btn-primary"
+            >
               Submit
             </button>
           </div>

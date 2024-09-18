@@ -4,6 +4,9 @@ import { AddCategoryApi } from "../../../api/category";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { Modal, Button } from "react-bootstrap";
 
 const AddCategory = () => {
   const navigate = useNavigate();
@@ -12,15 +15,70 @@ const AddCategory = () => {
     categoryName: "",
     videoUrl: "",
     description: "",
+    content: "",
   });
 
   const [files, setFiles] = useState([]);
+  const [showSourceModal, setShowSourceModal] = useState(false);
+  const [sourceCode, setSourceCode] = useState("");
 
   const handleFileChange = (event) => {
     if (event.target.files) {
       setFiles(Array.from(event.target.files)); // Store the files
     }
   };
+
+  const handleContentChange = (value) => {
+    setFormData({
+      ...formData,
+      content: value,
+    });
+  };
+
+  const handleSourceCode = () => {
+    setShowSourceModal(true);
+    setSourceCode(formData.content);
+  };
+
+  const handleSaveSourceCode = () => {
+    setFormData({
+      ...formData,
+      content: sourceCode,
+    });
+    setShowSourceModal(false);
+  };
+
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ size: [] }],
+      ["bold", "italic", "underline", "strike", "blockquote"],
+      [
+        { list: "ordered" },
+        { list: "bullet" },
+        { indent: "-1" },
+        { indent: "+1" },
+      ],
+      ["link", "image"],
+      ["clean"],
+    ],
+  };
+
+  const formats = [
+    "header",
+    "font",
+    "size",
+    "bold",
+    "italic",
+    "underline",
+    "strike",
+    "blockquote",
+    "list",
+    "bullet",
+    "indent",
+    "link",
+    "image",
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +99,8 @@ const AddCategory = () => {
 
     formDataToSend.append("categoryName", formData.categoryName);
     formDataToSend.append("videoUrl", formData.videoUrl);
+    formDataToSend.append("description", formData.description);
+    formDataToSend.append("content", formData.content);
 
     try {
       await AddCategoryApi(formDataToSend); // Use formDataToSend with files
@@ -50,6 +110,8 @@ const AddCategory = () => {
       setFormData({
         categoryName: "",
         videoUrl: "",
+        description: "",
+        content: "",
       });
       setFiles([]); // Reset the file input
     } catch (error) {
@@ -111,6 +173,37 @@ const AddCategory = () => {
         </div>
 
         <div className="row mb-3">
+          <label htmlFor="content" className="col-sm-2 col-form-label">
+            Content
+          </label>
+          <div className="col-sm-10">
+            <div className="quill-container" style={{ position: "relative" }}>
+              <ReactQuill
+                style={{ marginLeft: "40px", width: "100%", height: "300px" }}
+                value={formData.content}
+                onChange={handleContentChange}
+                modules={modules}
+                formats={formats}
+                placeholder="Write your content here..."
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="row mb-3">
+          <div className="col-sm-8 offset-sm-2">
+            <button
+              style={{ width: "150px", marginLeft: "200%", marginTop: "-80px" }}
+              type="button"
+              className="btn btn-secondary mt-2"
+              onClick={handleSourceCode}
+            >
+              Source Code
+            </button>
+          </div>
+        </div>
+
+        <div className="row mb-3">
           <div className="col-sm-8 offset-sm-2">
             <button
               type="submit"
@@ -122,6 +215,28 @@ const AddCategory = () => {
           </div>
         </div>
       </form>
+
+      <Modal show={showSourceModal} onHide={() => setShowSourceModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit Source Code</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <textarea
+            rows="10"
+            className="form-control"
+            value={sourceCode}
+            onChange={(e) => setSourceCode(e.target.value)}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowSourceModal(false)}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSaveSourceCode}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
