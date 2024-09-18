@@ -29,6 +29,9 @@ import Dashboard from './Pages/dashboard/Dashboard';
 import Addpage from './Pages/dashboard/pages/Addpage';
 import ListPages from './Pages/dashboard/pages/ListPages';
 import LandingPage from './Pages/LandingPage';
+import Blog from './Pages/blog/Blog';
+import Architecture from './Pages/architecture/Architecture';
+import Rendering3DService from './Pages/3DRenderingService/Rendering3DService';
 
 function App() {
   return (
@@ -40,7 +43,7 @@ function App() {
         <Route path="/mainDashboard" element={<MainDashboard />}>
           {/* Default route in mainDashboard (Dashboard component) */}
           <Route index element={<Dashboard />} />
-          
+
           {/* AddPage route as a child of mainDashboard */}
           <Route path="addPage" element={<Addpage />} />
           <Route path="listPage" element={<ListPages />} />
@@ -65,6 +68,9 @@ function App() {
                 <Route path="/e-commerce" element={<Ecommerce />} />
                 <Route path="/uiux" element={<UiUx />} />
                 <Route path="/portfolio" element={<Portfolio />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/architecture" element={<Architecture />} />
+                <Route path="/3DRenderingService" element={<Rendering3DService />} />
               </Routes>
               <Footer />
             </>

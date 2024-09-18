@@ -444,7 +444,14 @@ function LandingPage() {
       </div> 
           </div>
         </div>
-      </section> */}
+      </section>
+
+      {/* Add services or other content here */}
+
+      {/* Technologies */}
+{/* <section>
+  <Technologies/>
+</section> */}
     </>
   );
 }

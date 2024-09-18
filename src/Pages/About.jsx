@@ -6,7 +6,7 @@ import AboutImg from "../assets/images/about-img.png";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import "../assets/css/commonStyle.css";
-
+import '../assets/css/mediaQuery.css'
 function About() {
   useEffect(() => {
     const aboutText = document.querySelector(".about-text");
@@ -38,7 +38,7 @@ function About() {
               lasting impression. Your vision, our expertise—together, we
               innovate
             </p>
-            <div className="row-icons d-flex justify-content-around align-items-center">
+            <div className="about-icons ">
               <img src={organization} style={{ width: "8%", height: "auto" }} />
               <img
                 src={implementation}
@@ -46,11 +46,11 @@ function About() {
               />
               <img src={mission} style={{ width: "8%", height: "auto" }} />
             </div>
-            <div class="progress-bar">
-              <div class="circle-container">
-                <div class="progress-circle"></div>
-                <div class="progress-circle"></div>
-                <div class="progress-circle"></div>
+            <div className="progress-bar">
+              <div className="circle-container">
+                <div className="progress-circle"></div>
+                <div className="progress-circle"></div>
+                <div className="progress-circle"></div>
               </div>
             </div>
           </div>
@@ -59,13 +59,13 @@ function About() {
 
       {/* second container */}
       <div className="container">
-        <div className="row d-flex justify-content-between align-items-center">
+        <div className="row d-flex justify-content-between align-items-center mb-5">
           <div className="col-md-5">
             <p className="about-text-bold">
               We Strive - To Improve Your Company & Help Your Business Growth
             </p>
             <Link to={"/reachUs"} style={{ textDecoration: "none" }}>
-              <div className="button-with-text">
+              <div className="button-with-text py-4">
                 <button className="readMore">
                   <ArrowUpRight className="icon" />
                   <span className="readMore-text">Connect with us</span>
@@ -73,8 +73,8 @@ function About() {
               </div>
             </Link>
           </div>
-          <div className="col-md-6">
-            <img src={AboutImg} style={{ width: "80%", height: "auto" }} />
+          <div className=" about_img col-md-6">
+            <img src={AboutImg} style={{ width: "80%", height: "auto" ,borderRadius:"20px " }} />
           </div>
         </div>
       </div>
