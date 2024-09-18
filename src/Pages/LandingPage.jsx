@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+
 // import "../assets/css/Home.css";
 import "../assets/css/LandingPage.css";
 import "../assets/css/commonStyle.css";
@@ -11,27 +12,17 @@ import Archi from "../assets/images/architecture-ICON.gif";
 import TDICON from "../assets/images/3d-ICON.gif";
 
 import CursorMouse from "../components/CustomCursor";
+import Testimonial from "./Testimonial";
 function LandingPage() {
-
-
-
   return (
     <>
       <section className="hero-container">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-md-6">
-              <div className="dot-container">
-                <div
-                  className="dot"
-                  style={{ backgroundColor: "transparent" }}
-                ></div>
-                <div className="dot"></div>
-                <div className="dot"></div>
-                <div className="dot"></div>
-                <div className="dot"></div>
-                <div className="dot"></div>
+            <div className="col-md-6 dot-wrapper">
 
+              <div className="d-flex ">
+              <div class="container land-dot">
                 <div className="group top">
                   <span>•</span>
                   <span>•</span>
@@ -39,20 +30,28 @@ function LandingPage() {
                   <span>•</span>
                   <span>•</span>
                   <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
                 </div>
-                <div className="group top"></div>
-                <div className="group right">
-                  <span>•</span>
-
+                <div className="group top">
                   <span>•</span>
                   <span>•</span>
                   <span>•</span>
                   <span>•</span>
                   <span>•</span>
                   <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div className="group top">
+                 
                 </div>
                 <div className="group left">
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                <span style={{ color: "#ee964b", fontWeight: "bold" }}>
                     M
                   </span>
                   <span style={{ color: "#ee964b", fontWeight: "bold" }}>
@@ -72,12 +71,96 @@ function LandingPage() {
                   </span>
                   <span>•</span>
                   <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+
                 </div>
                 <div className="middle">
-                  <span></span>
+                 
                 </div>
                 <div className="group right">
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div className="group left">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div className="group bottom">
+                
+                </div>
+                <div className="group bottom">
+                 
+                </div>
+              </div>
+
+
+              <div className="land-middle">
+                  <span></span>
+                </div>
+
+              <div class="container land-dot">
+                <div className="group top">
+                 
+                </div>
+                <div className="group top">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div className="group top">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  
+                </div>
+                <div className="group right">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                </div>
+                <div className="middle">
+                 
+                </div>
+                <div className="group top">
+                <span style={{ color: "#ee964b", fontWeight: "bold" }}>
                     D
                   </span>
                   <span style={{ color: "#ee964b", fontWeight: "bold" }}>
@@ -95,25 +178,25 @@ function LandingPage() {
                   <span style={{ color: "#ee964b", fontWeight: "bold" }}>
                     N
                   </span>
+                    <span>•</span>
+              
                   <span style={{ color: "#ee964b", fontWeight: "bold" }}>
                     S
                   </span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+
                 </div>
                 <div className="group left">
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
+                 
                 </div>
-                <div className="group bottom"></div>
                 <div className="group bottom">
-                  <span></span>
+                 
+                </div>
+                <div className="group bottom">
+                  <span>•</span>
+                  <span>•</span>
                   <span>•</span>
                   <span>•</span>
                   <span>•</span>
@@ -124,6 +207,10 @@ function LandingPage() {
                   <span>•</span>
                 </div>
               </div>
+              </div>
+
+
+
             </div>
             <div className="col-md-6">
               <h1 className="hero-text">
@@ -140,10 +227,10 @@ function LandingPage() {
           </div>
         </div>
       </section>
-     
 
+      {/* mouse cursor */}
       <section>
-        <div className="container">
+        <div className="container ">
           <CursorMouse />
         </div>
       </section>
@@ -158,11 +245,11 @@ function LandingPage() {
             </div>
           </section>
           {/* 1st row service */}
-        
+
           <div className="row d-flex justify-content-around align-items-center mb-2">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
-                <img src={WebDev} alt="Web Development" width={150} />
+                <img src={WebDev} alt="Web Development" width={120} />
               </div>
               <div className="service-title">
                 <h3>Web Application</h3>
@@ -177,7 +264,7 @@ function LandingPage() {
 
             <div className="col-md-3 text-center service-item1">
               <div className="service-icon1">
-                <img src={MobDev} alt="Mobile Development" width={150} />
+                <img src={MobDev} alt="Mobile Development" width={120} />
               </div>
               <div className="service-title1">
                 <h3>Mobile Application</h3>
@@ -195,7 +282,7 @@ function LandingPage() {
           <div className="row d-flex justify-content-around align-items-center mb-2">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
-                <img src={Ecom} alt="Ecommerce" width={150} />
+                <img src={Ecom} alt="Ecommerce" width={120} />
               </div>
               <div className="service-title">
                 <h3>E-Commerce</h3>
@@ -210,7 +297,7 @@ function LandingPage() {
 
             <div className="col-md-3 text-center service-item1">
               <div className="service-icon1">
-                <img src={UIUX} alt="UIUX" width={150} />
+                <img src={UIUX} alt="UIUX" width={120} />
               </div>
               <div className="service-title1">
                 <h3>UI / UX Design</h3>
@@ -228,7 +315,7 @@ function LandingPage() {
           <div className="row d-flex justify-content-around align-items-center mb-2">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
-                <img src={Archi} alt="Ecommerce" width={150} />
+                <img src={Archi} alt="Ecommerce" width={120} />
               </div>
               <div className="service-title">
                 <h3>Architecture</h3>
@@ -243,7 +330,7 @@ function LandingPage() {
 
             <div className="col-md-3 text-center service-item1">
               <div className="service-icon1">
-                <img src={TDICON} alt="UIUX" width={150} />
+                <img src={TDICON} alt="UIUX" width={120} />
               </div>
               <div className="service-title1">
                 <h3>3D Rendering</h3>
@@ -256,9 +343,20 @@ function LandingPage() {
               </div>
             </div>
           </div>
-     
         </div>
       </section>
+
+      {/* testimonials */}
+
+      <div className="container">
+        <Testimonial />
+      </div>
+
+      {/* <div className="thumb-layer paroller">
+          <figure className="image">
+            <img src="http://t.commonsupport.com/adro/images/resource/user-thumbs.png" alt="User Thumbs" />
+          </figure>
+        </div> */}
 
       {/* Services section */}
       {/* <section className="parallax-section">
@@ -347,8 +445,6 @@ function LandingPage() {
           </div>
         </div>
       </section> */}
-
-      {/* Add services or other content here */}
     </>
   );
 }

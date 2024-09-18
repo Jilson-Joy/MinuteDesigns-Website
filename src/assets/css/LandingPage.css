@@ -1,4 +1,162 @@
-/* fade animation */
+/* DOT */
+.land-middle
+{
+  position: absolute;
+  height: 20px; /* Set the height of the middle div */
+  width: 20px; /* Set the width of the middle div */
+  background-color: black;
+  top: 65%;
+  left: 28%;
+}
+
+
+.land-dot {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0; /* No gap between grid items */
+}
+
+.group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  place-items: center;
+  height: 6em; 
+  width: 6em;  
+  gap: 0; 
+  
+}
+
+.group span {
+  color: black; /* Replace with your actual color */
+  display: grid;
+  place-items: center;
+  height: 2em;
+  width: 2em;
+}
+
+.group span:nth-child(1) {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.group span:nth-child(2) {
+  animation: d2 3s linear infinite;
+}
+
+.group span:nth-child(3) {
+  animation: d3 3s linear infinite;
+}
+
+.group span:nth-child(4) {
+  animation: d4 3s linear infinite;
+}
+
+.group span:nth-child(5) {
+  animation: d5 3s linear infinite;
+}
+
+.group span:nth-child(6) {
+  animation: d6 3s linear infinite;
+}
+
+.group span:nth-child(7) {
+  animation: d7 3s linear infinite;
+}
+
+.group span:nth-child(8) {
+  animation: d8 3s linear infinite;
+}
+
+.group span:nth-child(9) {
+  animation: d9 3s linear infinite;
+}
+
+.group span:nth-child(10) {
+  animation: d10 3s linear infinite;
+}
+
+.top {
+  transform: rotateZ(0deg);
+}
+
+.right {
+  transform: rotateZ(45deg);
+}
+
+.left {
+  transform: rotateZ(-90deg);
+}
+
+.bottom {
+  transform: rotateZ(180deg);
+}
+
+.middle {
+  display: grid;
+  place-items: center;
+  height: 6em;
+  width: 6em;
+}
+
+.middle span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2em;
+  width: 2em;
+  font-size: 2em;
+  animation: beat 3s linear infinite;
+}
+
+@keyframes clockwise {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes beat {
+    from, 
+    to { transform: scale(1); }
+    65% { transform: scale(1); }
+    70% { transform: scale(4); }
+    75% { transform: scale(1); }
+    80% { transform: scale(4); }
+    /* No need for a separate keyframe for the last scale */
+}
+
+@keyframes d1 {
+    from, 
+    to { transform: translateY(-6em); opacity:0; }
+    /* Adjusted for timing */
+    to { transform: translateY(0); opacity :1; }
+}
+
+@keyframes d2 {
+    from, 
+    to { transform: translateX(0); }
+    to { transform :translateX(2em); }
+}
+
+/* Continue similarly for other animations */
+
+@keyframes d3 {
+    from, 
+    to { transform :translateX(0); }
+    to { transform :translateX(2em); }
+}
+
+/* ... Repeat for d4 through d10 ... */
+
+@keyframes d4 {
+    from, 
+    to { transform :translateY(0); }
+    to { transform :translateY(2em); }
+}
+
+/* ... and so on ... */
 
 /* CustomCursor.css */
 .custom-cursor {
@@ -16,8 +174,6 @@
 .service-item {
   text-align: center;
   color: #fff;
-  padding: 20px;
-  /* border-right: 1px solid #afaf29; */
   position: relative;
   min-height: 250px;
   overflow: visible; 
@@ -29,15 +185,14 @@
 
 .service-icon {
   font-size: 1rem;
-
   transition: opacity 0.5s ease-in-out, transform 0.8s ease-in-out;
   mix-blend-mode: luminosity;
   position: relative;
 }
 
-.service-title {
+.service-title h3 {
   color: #000000;
-
+  font-size: 25px;
 }
 
 .service-description {
@@ -69,19 +224,20 @@
 }
 
 .service-item:hover .service-icon {
-  transform: translateX(320px);
-  padding: 20px 60px;
+  transform: translateX(300px);
+  padding: 50px 60px;
   text-align: center;
   position: absolute;
-  border-right: 1px solid rgba(104, 104, 104, 0.577);
+  
+
 
 }
 
 .service-item:hover .service-title {
   color: #000000;
-  transform: translateX(350px);
+  transform: translateX(330px);
   position: absolute;
-  font-size: 15px;
+  font-size: 10px;
 
 }
 
@@ -123,7 +279,6 @@
 .service-item1 {
   text-align: center;
   color: #fff;
-  padding: 20px;
   /* border-right: 1px solid #afaf29; */
   position: relative;
   min-height: 250px;
@@ -136,15 +291,14 @@
 
 .service-icon1 {
   font-size: 1rem;
-
   transition: opacity 0.5s ease-in-out, transform 0.8s ease-in-out;
   mix-blend-mode: luminosity;
   position: relative;
 }
 
-.service-title1 {
+.service-title1 h3{
   color: #000000;
-
+  font-size: 25px;
 }
 
 .service-description1 {
@@ -163,30 +317,25 @@
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
-
 .service-description1 p {
   font-size: 14px;
 }
-
-
 .service-item1:hover .service-description1 {
   display: flex;
   opacity: 1;
   font-size: 10px;
   z-index: 1;
 }
-
 .service-item1:hover .service-icon1 {
-  transform: translateX(-320px);
-  padding: 20px 50px;
+  transform: translateX(-280px);
+  padding: 50px 60px;
   text-align: center;
   position: absolute;
-  border-left: 1px solid rgba(104, 104, 104, 0.577);
 }
 
 .service-item1:hover .service-title1 {
   color: #000000;
-  transform: translateX(-300px);
+  transform: translateX(-250px);
   position: absolute;
 }
 
@@ -248,302 +397,6 @@
   opacity: 0; /* Initial opacity */
   transition: opacity 0.8s ease-in;
   transform: translateY(0); /* Initial position */
-}
-
-
-
-
-.dot {
-  position: absolute;
-  width: 20px; 
-  height: 20px; 
-  background-color: #0b141c;
-  animation: rotate 8s linear infinite;
-}
-
-.dot:nth-child(2) {
-  top: 10%;
-  left: 25%;
-  transform: translate(50%, 0);
-}
-
-.dot:nth-child(3) {
-  top: 40%;
-  left: 60%;
-  transform: translate(-50%, 0);
-}
-
-.dot:nth-child(4) {
-  top: 60%;
-  left: 48%;
-  transform: translate(-50%, 0);
-}
-
-.dot:nth-child(5) {
-  top: 40%;
-  left: 35%;
-}
-
-.dot:nth-child(6) {
-  top: 10%;
-  left: 70%;
-}
-
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.dot-container {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  place-items: center;
-  /* animation: clockwise 60s linear infinite; */
-}
-
-.group {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  place-items: center;
-  height: 5em;
-  width: 5em;
-}
-
-.group span {
-  display: grid;
-  place-items: center;
-  height: 2em;
-  width: 2em;
-  color: #000000; /* Replace with your color value */
-}
-
-.group span:nth-child(1) {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-/* Individual animations for each child */
-.group span:nth-child(1) {
-  animation: d1 3s linear infinite;
-}
-
-.group span:nth-child(2) {
-  animation: d2 3s linear infinite;
-}
-
-.group span:nth-child(3) {
-  animation: d3 3s linear infinite;
-}
-
-.group span:nth-child(4) {
-  animation: d4 3s linear infinite;
-}
-
-.group span:nth-child(5) {
-  animation: d5 3s linear infinite;
-}
-
-.group span:nth-child(6) {
-  animation: d6 3s linear infinite;
-}
-
-.group span:nth-child(7) {
-  animation: d7 3s linear infinite;
-}
-
-.group span:nth-child(8) {
-  animation: d8 3s linear infinite;
-}
-
-.group span:nth-child(9) {
-  animation: d9 3s linear infinite;
-}
-
-.group span:nth-child(10) {
-  animation: d10 3s linear infinite;
-}
-
-.top {
-  transform: rotateZ(0deg);
-}
-
-.right {
-  transform: rotateZ(90deg);
-}
-
-.left {
-  transform: rotateZ(-90deg);
-}
-
-.bottom {
-  transform: rotateZ(180deg);
-}
-
-.middle {
-  display: grid;
-  place-items: center;
-  height: 6em;
-  width: 6em;
-}
-
-.middle span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 2em;
-  width: 2em;
-  font-size: 2em;
-  animation: beat 3s linear infinite;
-}
-
-@keyframes clockwise {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes beat {
-  0%,
-  65% {
-    transform: scale(1);
-  }
-  70% {
-    transform: scale(4);
-  }
-  75% {
-    transform: scale(1);
-  }
-  80% {
-    transform: scale(4);
-  }
-  90%,
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes d1 {
-  0%,
-  80% {
-    transform: translateY(-6em);
-    opacity: 0;
-  }
-  90%,
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes d2 {
-  0%,
-  70% {
-    transform: translateX(0);
-  }
-  80%,
-  100% {
-    transform: translateX(2em);
-  }
-}
-
-@keyframes d3 {
-  0%,
-  60% {
-    transform: translateX(0);
-  }
-  70%,
-  100% {
-    transform: translateX(2em);
-  }
-}
-
-@keyframes d4 {
-  0%,
-  50% {
-    transform: translateY(0);
-  }
-  60%,
-  100% {
-    transform: translateY(2em);
-  }
-}
-
-@keyframes d5 {
-  0%,
-  20% {
-    transform: translateY(0);
-  }
-  30%,
-  100% {
-    transform: translateY(2em);
-  }
-}
-
-@keyframes d6 {
-  0%,
-  30% {
-    transform: translateX(0);
-  }
-  40%,
-  100% {
-    transform: translateX(-2em);
-  }
-}
-
-@keyframes d7 {
-  0%,
-  40% {
-    transform: translateX(0);
-  }
-  50%,
-  100% {
-    transform: translateX(-2em);
-  }
-}
-
-@keyframes d8 {
-  0%,
-  10% {
-    transform: translateX(0);
-  }
-  20%,
-  100% {
-    transform: translateX(2em);
-  }
-}
-
-@keyframes d9 {
-  0% {
-    transform: translateX(0);
-  }
-  10%,
-  100% {
-    transform: translateX(2em);
-  }
-}
-
-@keyframes d10 {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  10%,
-  100% {
-    transform: translateY(6em);
-    opacity: 0;
-  }
 }
 
 /* Variables */
