@@ -9,7 +9,7 @@ import MobDev from "../assets/images/mobile-phone.gif";
 import Ecom from "../assets/images/online-shopping.gif";
 import UIUX from "../assets/images/UIUX-ICON.gif";
 import Archi from "../assets/images/architecture-ICON.gif";
-import TDICON from "../assets/images/3d-ICON.gif";
+import Crm from "../assets/images/crm-icon.gif";
 
 import CursorMouse from "../components/CustomCursor";
 import Testimonial from "./Testimonial";
@@ -318,7 +318,7 @@ function LandingPage() {
                 <img src={Archi} alt="Ecommerce" width={120} />
               </div>
               <div className="service-title">
-                <h3>Architecture</h3>
+                <h3>Architecture 3D </h3>
               </div>
               <div className="service-description">
                 <p>
@@ -330,10 +330,10 @@ function LandingPage() {
 
             <div className="col-md-3 text-center service-item1">
               <div className="service-icon1">
-                <img src={TDICON} alt="UIUX" width={120} />
+                <img src={Crm} alt="UIUX" width={120} />
               </div>
-              <div className="service-title1">
-                <h3>3D Rendering</h3>
+              <div className="service-title1-crm">
+                <h3>CRM</h3>
               </div>
               <div className="service-description1">
                 <p>

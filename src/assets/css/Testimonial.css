@@ -6,36 +6,39 @@
   
   .testimonial-section {
     position: relative;
-    padding-top: 80px;
-    padding-bottom: 210px;
     overflow: hidden;
+    padding: 80px 0;
+  
   }
   
-  /* .testimonial-section:before {
-    position: absolute;
-    left: -200px;
-    top: 22%;
-    background-image: url('../images/ring-circlenew.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 701px;
-    height: 756px;
-    content: "";
-    animation: fa-spin 20s infinite alternate;
-  } */
-
   .testimonial-section:before {
     position: absolute;
-    right: 200px;
-    top: 15%;
-    background-image: url('../images/test-circle.png');
+    left: 0; /* Align to the left side */
+    top: 20%;
+    background-image: url('../images//test-circle.png');
     background-repeat: no-repeat;
     background-position: center;
     width: 600px;
     height: 100vh;
     content: "";
-    animation: custom-spin 8s infinite alternate;
-  }
+    animation: custom-spin 11s infinite alternate ;
+}
+
+.testimonial-section:after {
+    position: absolute;
+    right: 0; /* Align to the right side */
+    top: 20%;
+    background-image: url('../images/test-circle2.png'); /* Same image as before */
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 600px;
+    height: 100vh;
+    content: "";
+    animation: custom-spin 11s infinite alternate ;
+    z-index: -1;
+}
+
+
   @keyframes custom-spin {
     0% {
       transform: rotate(0deg);
@@ -76,11 +79,12 @@
     position: relative;
     display: block;
     font-size: 18px;
-    line-height: 32px;
+    line-height: 25px;
     color: #282331;
     font-weight: 400;
     margin-bottom: 50px;
     font-family: "Muli", sans-serif;
+    min-height: 50px;
   }
   
   .info-box {
