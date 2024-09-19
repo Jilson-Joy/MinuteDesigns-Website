@@ -19,196 +19,199 @@ function LandingPage() {
       <section className="hero-container">
         <div className="container">
           <div className="row align-items-center">
+            <div className="col-md-6 ">
+
             <div className="col-md-6 dot-wrapper">
 
-              <div className="d-flex ">
-              <div class="container land-dot">
-                <div className="group top">
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                </div>
-                <div className="group top">
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                </div>
-                <div className="group top">
-                 
-                </div>
-                <div className="group left">
-                <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    M
-                  </span>
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    I
-                  </span>
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    N
-                  </span>
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    U
-                  </span>
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    T
-                  </span>
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    E
-                  </span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
+<div className="d-flex ">
+<div class="container land-dot">
+  <div className="group top">
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+  </div>
+  <div className="group top">
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+  </div>
+  <div className="group top">
+   
+  </div>
+  <div className="group left">
+  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      M
+    </span>
+    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      I
+    </span>
+    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      N
+    </span>
+    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      U
+    </span>
+    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      T
+    </span>
+    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      E
+    </span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
 
-                </div>
-                <div className="middle">
-                 
-                </div>
-                <div className="group right">
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                </div>
-                <div className="group left">
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                </div>
-                <div className="group bottom">
-                
-                </div>
-                <div className="group bottom">
-                 
-                </div>
-              </div>
+  </div>
+  <div className="middle">
+   
+  </div>
+  <div className="group right">
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+  </div>
+  <div className="group left">
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+  </div>
+  <div className="group bottom">
+  
+  </div>
+  <div className="group bottom">
+   
+  </div>
+</div>
 
 
-              <div className="land-middle">
-                  <span></span>
-                </div>
+<div className="land-middle">
+    <span></span>
+  </div>
 
-              <div class="container land-dot">
-                <div className="group top">
-                 
-                </div>
-                <div className="group top">
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                </div>
-                <div className="group top">
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  
-                </div>
-                <div className="group right">
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                </div>
-                <div className="middle">
-                 
-                </div>
-                <div className="group top">
-                <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    D
-                  </span>
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    E
-                  </span>
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    S
-                  </span>
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    I
-                  </span>
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    G
-                  </span>
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    N
-                  </span>
-                    <span>•</span>
-              
-                  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                    S
-                  </span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
+<div class="container land-dot">
+  <div className="group top">
+   
+  </div>
+  <div className="group top">
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+  </div>
+  <div className="group top">
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    
+  </div>
+  <div className="group right">
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+  </div>
+  <div className="middle">
+   
+  </div>
+  <div className="group top">
+  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      D
+    </span>
+    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      E
+    </span>
+    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      S
+    </span>
+    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      I
+    </span>
+    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      G
+    </span>
+    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      N
+    </span>
+      <span>•</span>
 
-                </div>
-                <div className="group left">
-                 
-                </div>
-                <div className="group bottom">
-                 
-                </div>
-                <div className="group bottom">
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                  <span>•</span>
-                </div>
-              </div>
-              </div>
+    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+      S
+    </span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
 
+  </div>
+  <div className="group left">
+   
+  </div>
+  <div className="group bottom">
+   
+  </div>
+  <div className="group bottom">
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+    <span>•</span>
+  </div>
+
+</div>
+</div>
+</div>
 
 
             </div>
