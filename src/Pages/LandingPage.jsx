@@ -14,14 +14,13 @@ import Crm from "../assets/images/crm-icon.gif";
 import CursorMouse from "../components/CustomCursor";
 import Testimonial from "./Testimonial";
 import Delivered from "../components/delivered/Delivered";
+import Technologies from "../components/technologies/Technologies";
 function LandingPage() {
   return (
     <>
       <section className="hero-container">
         <div className="container">
           <div className="row align-items-center">
-
-
             <div className="col-md-6 dot-wrapper">
               <div className="d-flex ">
                 <div class="container land-dot">
@@ -103,9 +102,9 @@ function LandingPage() {
                   <div className="group bottom"></div>
                 </div>
 
-<div className="land-middle">
-    <span></span>
-  </div>
+                <div className="land-middle">
+                  <span></span>
+                </div>
 
                 <div class="container land-dot">
                   <div className="group top"></div>
@@ -205,7 +204,6 @@ function LandingPage() {
             </div>
           </div>
         </div>
-
       </section>
 
       {/* mouse cursor */}
@@ -334,8 +332,15 @@ function LandingPage() {
 
       {/* Delivered */}
       <div>
-        <Delivered/>
+        <Delivered />
       </div>
+
+      {/* Technologies */}
+      <div>
+        <Technologies/>
+      </div>
+
+
       {/* <div className="thumb-layer paroller">
           <figure className="image">
             <img src="http://t.commonsupport.com/adro/images/resource/user-thumbs.png" alt="User Thumbs" />

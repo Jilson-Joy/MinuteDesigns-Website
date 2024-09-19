@@ -1,7 +1,4 @@
-.technologies_box{
-    /* height: 500px; */
- 
-}
+/* 
 .Technologies_container {
   height: 500px;
   overflow: hidden;
@@ -22,7 +19,7 @@
   display: inline-block;
   padding: 10px;
   text-align: center;
-  width: 200px; /* Adjust based on the content width */
+  width: 200px; 
   border-radius: 20px;
 }
 
@@ -30,7 +27,6 @@
   width: 80px;
   aspect-ratio: 3/3;
   object-fit: contain;
-  /* mix-blend-mode: color-burn; */
   padding: 10px;
 }
 
@@ -41,7 +37,6 @@
 }
 
 .Marquee {
-  /* background: linear-gradient(-135deg, #008ed9, #8b00db); */
   width: 90vw;
   box-sizing: border-box;
   padding: 1em;
@@ -50,8 +45,8 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  transform: rotate(-90deg); /* Rotate the marquee */
-  transform-origin: center; /* Ensure it rotates around the center */
+  transform: rotate(-90deg);
+  transform-origin: center; 
 }
 
 .Marquee-content {
@@ -68,7 +63,6 @@
   width: 150px;
   margin: 0 0.5em;
   padding: 0.5em;
-  /* background: rgba(255, 255, 255, .1); */
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border: 1px solid black;
   border-radius: 20px;
@@ -80,8 +74,6 @@
 }
 
 .Marquee-tag:hover {
-  /* background: rgba(255, 255, 255, .5); */
-  /* transform: scale(1.1); */
   cursor: pointer;
   transform: scale(1) rotate(90deg);
 }
@@ -95,7 +87,6 @@
   }
 }
 
-/* Mobile devices (up to 600px) */
 @media screen and (max-width: 780px) {
  .Marquee{
     transform: rotate(0deg);
@@ -109,4 +100,159 @@
     display: flex;
     flex-direction: column;
  }
+} */
+
+.technologies_box {
+  background-color: #0b141c;
+  color: #f9f9f9;
+  border-radius: 20px;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
 }
+.technologies_box_col1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.technologies_box_col2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.technologies_box_marguee {
+  display: flex;
+  justify-content: space-between;
+}
+.marquee {
+  height: 500px;
+  overflow: hidden;
+}
+.marguee_img_div {
+  display: flex;
+  flex-direction: column;
+  gap: 200px;
+  animation: marquee 30s linear infinite;
+}
+
+.black-white-img {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease-in-out;
+}
+
+.black-white-img:hover {
+  filter: grayscale(0%);
+}
+
+/* Keyframes for scrolling up */
+@keyframes marquee {
+  0% {
+    transform: translateY(0); /* Start below the viewport */
+  }
+  100% {
+    transform: translateY(-100%); /* End above the viewport */
+  }
+}
+
+/* Keyframes for scrolling down */
+@keyframes scrollDown {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.marquee.down .marguee_img_div {
+  animation: scrollDown 30s linear infinite; /* Change to scroll down */
+}
+.marquee:hover .marguee_img_div {
+  animation-play-state: paused; /* Pause animation on hover */
+}
+
+/* .Technologies_icons {
+  display: inline-block;
+  padding: 10px;
+  text-align: center;
+  width: 200px; 
+  border-radius: 20px;
+}
+
+.Technologies_icons img {
+  width: 80px;
+  aspect-ratio: 3/3;
+  object-fit: contain;
+  padding: 10px;
+}
+
+.Technologies_icons h5 {
+  margin-top: 10px;
+  font-size: 14px;
+  white-space: nowrap;
+  color: #f9f9f9;
+}
+.Marquee {
+  width: 20vw;
+  min-height: 500px;
+  box-sizing: border-box;
+  padding: 1em;
+  color: rgb(0, 0, 0);
+  font-weight: 200;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transform: rotate(-90deg);
+  transform-origin: center; 
+}
+
+.Marquee-content {
+  display: flex;
+  animation: marquee 10s linear infinite;
+  padding: 10px;
+}
+
+.Marquee-content:hover {
+  animation-play-state: paused;
+}
+
+.Marquee-tag {
+  width: 150px;
+  margin: 0 0.5em;
+  padding: 0.5em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  transform: rotate(90deg);
+}
+
+.Marquee-tag:hover {
+  cursor: pointer;
+  transform: scale(1) rotate(90deg);
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media screen and (max-width: 780px) {
+ .Marquee{
+    transform: rotate(0deg);
+
+ }
+ .Marquee-tag{
+    transform: rotate(0deg);
+
+ }
+
+}  */
