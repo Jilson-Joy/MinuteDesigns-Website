@@ -35,6 +35,7 @@ function LandingPage() {
                     <span>•</span>
                     <span>•</span>
                     <span>•</span>
+                    
                   </div>
                   <div className="group top">
                     <span>•</span>
@@ -102,9 +103,9 @@ function LandingPage() {
                   <div className="group bottom"></div>
                 </div>
 
-                <div className="land-middle">
-                  <span></span>
-                </div>
+                {/* <div className="land-middle">
+                    <span></span>
+                  </div> */}
 
                 <div class="container land-dot">
                   <div className="group top"></div>
@@ -119,6 +120,7 @@ function LandingPage() {
                     <span>•</span>
                     <span>•</span>
                     <span>•</span>
+                    
                   </div>
                   <div className="group top">
                     <span>•</span>
@@ -131,8 +133,20 @@ function LandingPage() {
                     <span>•</span>
                     <span>•</span>
                     <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    
                   </div>
                   <div className="group right">
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
+                  <span>•</span>
                     <span>•</span>
                     <span>•</span>
                     <span>•</span>
@@ -213,7 +227,7 @@ function LandingPage() {
         </div>
       </section>
 
-      <section className="parallax-section">
+      <section className="parallax-section ">
         <div className="container">
           <section>
             <div className="container">
@@ -242,7 +256,7 @@ function LandingPage() {
 
             <div className="col-md-3 text-center service-item1">
               <div className="service-icon1">
-                <img src={MobDev} alt="Mobile Development" width={120} />
+                <img src={MobDev} alt="Mobile Development" width={110} />
               </div>
               <div className="service-title1">
                 <h3>Mobile Application</h3>
@@ -260,7 +274,7 @@ function LandingPage() {
           <div className="row d-flex justify-content-around align-items-center mb-2">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
-                <img src={Ecom} alt="Ecommerce" width={120} />
+                <img src={Ecom} alt="Ecommerce" width={110} />
               </div>
               <div className="service-title">
                 <h3>E-Commerce</h3>
@@ -275,7 +289,7 @@ function LandingPage() {
 
             <div className="col-md-3 text-center service-item1">
               <div className="service-icon1">
-                <img src={UIUX} alt="UIUX" width={120} />
+                <img src={UIUX} alt="UIUX" width={110} />
               </div>
               <div className="service-title1">
                 <h3>UI / UX Design</h3>
@@ -296,7 +310,7 @@ function LandingPage() {
                 <img src={Archi} alt="Ecommerce" width={120} />
               </div>
               <div className="service-title">
-                <h3>Architecture 3D </h3>
+                <h3>Architecture & 3D </h3>
               </div>
               <div className="service-description">
                 <p>
@@ -307,11 +321,11 @@ function LandingPage() {
             </div>
 
             <div className="col-md-3 text-center service-item1">
-              <div className="service-icon1">
-                <img src={Crm} alt="UIUX" width={120} />
+              <div className="service-icon1-crm">
+                <img src={Crm} alt="UIUX" width={115} />
               </div>
               <div className="service-title1-crm">
-                <h3>CRM</h3>
+                <h3>CRM/ ERP</h3>
               </div>
               <div className="service-description1">
                 <p>
@@ -324,19 +338,22 @@ function LandingPage() {
         </div>
       </section>
 
+
+          {/* Delivered */}
+          <div>
+        <Delivered />
+      </div>
+
       {/* testimonials */}
 
       <div className="container">
         <Testimonial />
       </div>
 
-      {/* Delivered */}
-      <div>
-        <Delivered />
-      </div>
+  
 
       {/* Technologies */}
-      <div>
+      <div className="container">
         <Technologies/>
       </div>
 

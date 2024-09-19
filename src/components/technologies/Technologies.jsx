@@ -184,7 +184,7 @@ function Technologies() {
   // };
 
   return (
-    <div className="container mt-5 mb-5">
+    <div className="container hero-container ">
       <div className="technologies_box row">
         <div className="technologies_box_col1 col-md-6">
           <div className="tech_des ">
@@ -216,34 +216,34 @@ function Technologies() {
                 <img
                   src={node}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={mongodbicons}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={laravel}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={mysql}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={Flutter}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
-                <img src={php} alt="" width="60%" className="black-white-img" />
+                <img src={php} alt="" width="45%" className="black-white-img" />
               </div>
             </div>
             <div className="marquee down">
@@ -251,52 +251,52 @@ function Technologies() {
                 <img
                   src={laravel}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={figma}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={mysql}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={Flutter}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={figma}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={reactLogo}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={node}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={mongodbicons}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
-                <img src={php} alt="" width="60%" className="black-white-img" />
+                <img src={php} alt="" width="45%" className="black-white-img" />
               </div>
             </div>
             <div className="marquee">
@@ -304,44 +304,44 @@ function Technologies() {
                 <img
                   src={figma}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
-                <img src={php} alt="" width="60%" className="black-white-img" />
+                <img src={php} alt="" width="45%" className="black-white-img" />
                 <img
                   src={reactLogo}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={node}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={laravel}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={mongodbicons}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={mysql}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
                 <img
                   src={Flutter}
                   alt=""
-                  width="60%"
+                  width="45%"
                   className="black-white-img"
                 />
               </div>

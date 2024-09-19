@@ -43,6 +43,7 @@
       display: flex;
       align-items: center;
   }
+
 }
 
 /* Small desktops and larger tablets (1024px and up) */
@@ -50,6 +51,7 @@
   .hero-text {
       font-size: 5rem;
   }
+
 }
 
 
@@ -97,6 +99,10 @@
 
   .card > .card_row > .description {
     width: 100%;
+  }
+  .land-dot
+  {
+    display: none;
   }
 
 

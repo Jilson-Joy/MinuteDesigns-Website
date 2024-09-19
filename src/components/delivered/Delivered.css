@@ -35,23 +35,25 @@ font-weight: 700;
 
 .products_delivered_iteam {
   text-align: center;
-  padding: 10px;
+  padding: 0 10px;
   color: #f9f9f9;
   background-color: #0b141c;
-  min-width: 25%;
-  height: 180px;
+  min-width: 20%;
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  border-radius: 5px;
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
   transition: all 0.3s ease-in-out; /* Smooth transition */
 }
 
 .products_delivered_iteam p {
-  font-size: 70px;
+  font-size: 50px;
   font-weight: 700;
+}
+.products_delivered_iteam h5{
+  font-size: 15px;
 }
 
 /* Media Queries for responsiveness */
@@ -63,7 +65,7 @@ font-weight: 700;
   }
 
   .products_delivered_iteam p {
-    font-size: 60px;
+    font-size: 55px;
   }
 }
 
