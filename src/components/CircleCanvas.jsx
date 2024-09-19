@@ -1,0 +1,195 @@
+import React, { useRef, useEffect, useState } from 'react';
+
+const CircleCanvas = ({
+  bgColor = 'white',
+  circleSize = 6,
+  circleSpacing = 10,
+  cursorRange = 80,
+  cursorSpeed = 2,
+  highlightColor = 'black',
+  otherDotColor = 'transparent',
+  letterColor = '#ee964b',
+}) => {
+  const canvasRef = useRef(null);
+  const [isCursorMoving, setIsCursorMoving] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext('2d');
+    const circles = [];
+    const shapeSize = 400;
+    const swapInterval = 2000;
+    let lastSwapTime = 0;
+
+    const letters = ['M', 'I', 'N', 'U', 'T', 'E'];
+    const lettersDSG = ['D', 'E', 'S', 'I', 'G', 'N', 'S'].reverse();
+
+    const gridCenterX = canvas.width / 2;
+    const gridCenterY = canvas.height / 2;
+    const halfSize = shapeSize / 2;
+
+    const isHighlightDot = (x, y) => {
+      const leftX = gridCenterX - halfSize;
+      const rightX = gridCenterX + halfSize; // Add this line
+      const topY = gridCenterY - halfSize;
+      const bottomY = gridCenterY + halfSize;
+
+      const slope = (bottomY - topY) / (shapeSize / 3);
+
+      return (
+        (x >= leftX && x <= leftX + 0.3 * shapeSize && y >= topY && y <= bottomY) ||
+        (x >= rightX - 0.3 * shapeSize && x <= rightX && y >= topY && y <= bottomY) ||
+        (x >= leftX + 0.2 * shapeSize && x <= gridCenterX &&
+          y >= topY && y <= bottomY &&
+          y <= topY + slope * (x - leftX - 0.2 * shapeSize)) ||
+        (x >= gridCenterX && x <= rightX - 0.2 * shapeSize &&
+          y >= topY && y <= bottomY &&
+          y <= topY + slope * (rightX - x - 0.2 * shapeSize))
+      );
+    };
+
+    const init = () => {
+      circles.length = 0;
+      const radius = circleSize / 2;
+      const spacingX = circleSpacing + circleSize;
+      const spacingY = circleSpacing + circleSize;
+      const columns = Math.floor(canvas.width / spacingX);
+      const rows = Math.floor(canvas.height / spacingY);
+      const offsetX = (canvas.width - columns * spacingX + circleSpacing) / 2;
+      const offsetY = (canvas.height - rows * spacingY + circleSpacing) / 2;
+
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < columns; x++) {
+          const cx = offsetX + x * spacingX + radius;
+          const cy = offsetY + y * spacingY + radius;
+          circles.push({ x: cx, y: cy, baseX: cx, baseY: cy });
+        }
+      }
+    };
+    
+
+    const draw = () => {
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      let minuteIndex = 0;
+      let designIndex = lettersDSG.length - 1;
+
+      circles.forEach((circle) => {
+        ctx.beginPath();
+        ctx.arc(circle.x, circle.y, circleSize / 2, 0, 2 * Math.PI);
+
+        const leftX = gridCenterX - halfSize;
+        const rightX = gridCenterX + halfSize; // Add this line
+        const topY = gridCenterY - halfSize;
+        const bottomY = gridCenterY + halfSize;
+        if (circle.x >= leftX && circle.x <= leftX + 0.2 * shapeSize &&
+            circle.y >= topY && circle.y <= bottomY &&
+            minuteIndex < letters.length) {
+          ctx.fillStyle = letterColor;
+          ctx.font = `${circleSize * 2}px Arial`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(letters[minuteIndex], circle.x, circle.y);
+          minuteIndex++;
+        } else if (circle.x >= rightX - 0.3 * shapeSize && circle.x <= rightX &&
+                   circle.y >= topY && circle.y <= bottomY &&
+                   designIndex >= 0) {
+          ctx.fillStyle = letterColor;
+          ctx.font = `${circleSize * 2}px Arial`;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(lettersDSG[designIndex], circle.x, circle.y);
+          designIndex--;
+        } else if (isHighlightDot(circle.x, circle.y)) {
+          ctx.fillStyle = highlightColor;
+          ctx.fill();
+        } else {
+          ctx.fillStyle = otherDotColor;
+          ctx.fill();
+        }
+      });
+    };
+
+
+
+
+  
+  
+  
+
+  
+  
+    const swapDots = () => {
+      const index1 = Math.floor(Math.random() * circles.length);
+      const index2 = Math.floor(Math.random() * circles.length);
+
+      const tempX = circles[index1].baseX;
+      const tempY = circles[index1].baseY;
+      circles[index1].baseX = circles[index2].baseX;
+      circles[index1].baseY = circles[index2].baseY;
+      circles[index2].baseX = tempX;
+      circles[index2].baseY = tempY;
+    };
+
+    const update = () => {
+      const now = Date.now();
+
+      if (now - lastSwapTime > swapInterval) {
+        swapDots();
+        lastSwapTime = now;
+      }
+
+      circles.forEach((circle) => {
+        const dx = circle.baseX - circle.x;
+        const dy = circle.baseY - circle.y;
+        circle.x += dx / 10; 
+        circle.y += dy / 10; 
+      });
+    };
+
+    const animate = () => {
+      update();
+      draw();
+      requestAnimationFrame(animate);
+    };
+
+    const handleResize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      init();
+    };
+
+    const handleMouseMove = (e) => {
+      setMousePosition({
+        x: e.clientX - canvas.offsetLeft,
+        y: e.clientY - canvas.offsetTop,
+      });
+      setIsCursorMoving(true);
+    };
+
+    const handleMouseOut = () => {
+      setIsCursorMoving(false);
+    };
+
+    window.addEventListener('resize', handleResize);
+    canvas.addEventListener('mousemove', handleMouseMove);
+    canvas.addEventListener('mouseout', handleMouseOut);
+
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+    init();
+    animate();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      canvas.removeEventListener('mousemove', handleMouseMove);
+      canvas.removeEventListener('mouseout', handleMouseOut);
+    };
+  }, [bgColor, circleSize, circleSpacing, highlightColor, otherDotColor, letterColor, isCursorMoving]);
+
+  return <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />;
+};
+
+export default CircleCanvas;

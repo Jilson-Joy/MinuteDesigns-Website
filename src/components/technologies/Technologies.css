@@ -134,7 +134,7 @@
   display: flex;
   flex-direction: column;
   gap: 120px;
-  animation: marquee s linear infinite;
+  animation: marquee 20s linear infinite;
 }
 
 .black-white-img {
