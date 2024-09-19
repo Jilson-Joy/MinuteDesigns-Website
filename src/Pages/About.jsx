@@ -7,6 +7,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import "../assets/css/commonStyle.css";
 import '../assets/css/mediaQuery.css'
+
 function About() {
   useEffect(() => {
     const aboutText = document.querySelector(".about-text");
