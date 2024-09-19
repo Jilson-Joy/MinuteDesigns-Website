@@ -105,12 +105,10 @@
 .technologies_box {
   background-color: #0b141c;
   color: #f9f9f9;
-  border-radius: 20px;
   min-height: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 5px;
 }
 .technologies_box_col1 {
   display: flex;
@@ -129,14 +127,14 @@
   justify-content: space-between;
 }
 .marquee {
-  height: 500px;
+  height: 450px;
   overflow: hidden;
 }
 .marguee_img_div {
   display: flex;
   flex-direction: column;
-  gap: 200px;
-  animation: marquee 30s linear infinite;
+  gap: 120px;
+  animation: marquee 12s linear infinite;
 }
 
 .black-white-img {

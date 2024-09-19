@@ -227,7 +227,7 @@ function LandingPage() {
         </div>
       </section>
 
-      <section className="parallax-section">
+      <section className="parallax-section ">
         <div className="container">
           <section>
             <div className="container">
@@ -338,19 +338,22 @@ function LandingPage() {
         </div>
       </section>
 
+
+          {/* Delivered */}
+          <div>
+        <Delivered />
+      </div>
+
       {/* testimonials */}
 
       <div className="container">
         <Testimonial />
       </div>
 
-      {/* Delivered */}
-      <div>
-        <Delivered />
-      </div>
+  
 
       {/* Technologies */}
-      <div>
+      <div className="container">
         <Technologies/>
       </div>
 

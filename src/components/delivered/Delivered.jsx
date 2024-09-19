@@ -11,7 +11,7 @@ function Delivered() {
   // Helper function to increment the count
   const countUp = (target, setStateFunction, duration) => {
     let start = 0;
-    const increment = Math.ceil(target / (duration / 10)); // Adjust increment based on duration
+    const increment = Math.ceil(target / (duration / 8)); // Adjust increment based on duration
 
     const timer = setInterval(() => {
       start += increment;
@@ -30,9 +30,9 @@ function Delivered() {
         const entry = entries[0];
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true); // Ensure animation runs only once
-          countUp(20, setProductCount, 1000); // Count to 20+ in 1 second
-          countUp(10, setEmployeeCount, 1000); // Count to 10 in 1 second
-          countUp(30, setClientCount, 1000); // Count to 30+ in 1 second
+          countUp(23, setProductCount, 1000); // Count to 20+ in 1 second
+          countUp(8, setEmployeeCount, 1000); // Count to 10 in 1 second
+          countUp(31, setClientCount, 1000); // Count to 30+ in 1 second
         }
       },
       { threshold: 0.5 } // Trigger when 50% of the section is visible
@@ -58,7 +58,7 @@ function Delivered() {
           <h5>Products</h5>
         </div>
         <div className="products_delivered_iteam">
-          <p>{employeeCount}</p>
+          <p>{employeeCount}+</p>
           <h5>Employees</h5>
         </div>
         <div className="products_delivered_iteam">
