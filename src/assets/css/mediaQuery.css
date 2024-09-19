@@ -1,6 +1,6 @@
 /* first section */
 @media screen and (max-width: 800px) {
-  
+
  .item
   {
     width: 60px;
@@ -24,6 +24,10 @@
       width: 60px;
       display: flex;
       align-items: center;
+  }
+  .mobile-dot
+  {
+    display: none;
   }
 
 }
@@ -51,11 +55,7 @@
 
 /* Tablet View */
 @media (max-width: 1024px) {
-  .dot-container {
-    animation: none;
-    max-width: 50px;
 
-  }
 
   .img_container {
     flex-wrap: wrap;
@@ -99,10 +99,5 @@
     width: 100%;
   }
 
-  /* dot  */
-  .dot-container {
-    animation: none;
-    max-width: 40px;
-    margin-left: 50px;
-  }
+
 }
