@@ -14,12 +14,12 @@
   .testimonial-section:before {
     position: absolute;
     left: 0; /* Align to the left side */
-    top: 20%;
+    top: 19%;
     background-image: url('../images//test-circle.png');
     background-repeat: no-repeat;
     background-position: center;
     width: 600px;
-    height: 100vh;
+    min-height: 700px;
     content: "";
     animation: custom-spin 11s infinite alternate ;
 }
@@ -32,7 +32,7 @@
     background-repeat: no-repeat;
     background-position: center;
     width: 600px;
-    height: 100vh;
+    min-height: 700px;
     content: "";
     animation: custom-spin 11s infinite alternate ;
     z-index: -1;
