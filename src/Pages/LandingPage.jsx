@@ -10,6 +10,8 @@ import Ecom from "../assets/images/online-shopping.gif";
 import UIUX from "../assets/images/UIUX-ICON.gif";
 import Archi from "../assets/images/architecture-ICON.gif";
 import Crm from "../assets/images/crm-icon.gif";
+import In3D from "../assets/images/3d-ICON.gif";
+import VRICON from "../assets/images/360-ICON.gif";
 
 import CursorMouse from "../components/CustomCursor";
 import Testimonial from "./Testimonial";
@@ -24,7 +26,7 @@ function LandingPage() {
             <div className="col-md-6 dot-wrapper">
               <div className="d-flex ">
                 <div class="container land-dot">
-                  <div className="group top">
+                  <div className="group left">
                     <span>•</span>
                     <span>•</span>
                     <span>•</span>
@@ -35,7 +37,6 @@ function LandingPage() {
                     <span>•</span>
                     <span>•</span>
                     <span>•</span>
-                    
                   </div>
                   <div className="group top">
                     <span>•</span>
@@ -48,9 +49,13 @@ function LandingPage() {
                     <span>•</span>
                     <span>•</span>
                     <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+             
                   </div>
                   <div className="group top"></div>
-                  <div className="group left">
+                  <div className="group top">
                     <span style={{ color: "#ee964b", fontWeight: "bold" }}>
                       M
                     </span>
@@ -64,10 +69,10 @@ function LandingPage() {
                       U
                     </span>
                     <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                      T
+                      E
                     </span>
                     <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-                      E
+                      T
                     </span>
                     <span>•</span>
                     <span>•</span>
@@ -87,7 +92,7 @@ function LandingPage() {
                     <span>•</span>
                     <span>•</span>
                   </div>
-                  <div className="group left">
+                  <div className="group top">
                     <span>•</span>
                     <span>•</span>
                     <span>•</span>
@@ -108,7 +113,7 @@ function LandingPage() {
                   </div> */}
 
                 <div class="container land-dot">
-                  <div className="group top"></div>
+                  <div className="group left"></div>
                   <div className="group top">
                     <span>•</span>
                     <span>•</span>
@@ -120,7 +125,9 @@ function LandingPage() {
                     <span>•</span>
                     <span>•</span>
                     <span>•</span>
-                    
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
                   </div>
                   <div className="group top">
                     <span>•</span>
@@ -133,9 +140,6 @@ function LandingPage() {
                     <span>•</span>
                     <span>•</span>
                     <span>•</span>
-                    <span>•</span>
-                    <span>•</span>
-                    
                   </div>
                   <div className="group right">
                   <span>•</span>
@@ -189,7 +193,7 @@ function LandingPage() {
                   </div>
                   <div className="group left"></div>
                   <div className="group bottom"></div>
-                  <div className="group bottom">
+                  <div className="group top">
                     <span>•</span>
                     <span>•</span>
                     <span>•</span>
@@ -200,9 +204,11 @@ function LandingPage() {
                     <span>•</span>
                     <span>•</span>
                     <span>•</span>
+                
                   </div>
                 </div>
               </div>
+              
             </div>
             <div className="col-md-6">
               <h1 className="hero-text">
@@ -238,7 +244,7 @@ function LandingPage() {
           </section>
           {/* 1st row service */}
 
-          <div className="row d-flex justify-content-around align-items-center mb-2">
+          <div className="row d-flex justify-content-around align-items-center ">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
                 <img src={WebDev} alt="Web Development" width={120} />
@@ -271,7 +277,7 @@ function LandingPage() {
           </div>
 
           {/* 2nd row service */}
-          <div className="row d-flex justify-content-around align-items-center mb-2">
+          <div className="row d-flex justify-content-around align-items-center ">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
                 <img src={Ecom} alt="Ecommerce" width={110} />
@@ -304,10 +310,10 @@ function LandingPage() {
           </div>
 
           {/* 3rd row service */}
-          <div className="row d-flex justify-content-around align-items-center mb-2">
+          <div className="row d-flex justify-content-around align-items-center ">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
-                <img src={Archi} alt="Ecommerce" width={120} />
+                <img src={Archi} alt="architecture" width={120} />
               </div>
               <div className="service-title">
                 <h3>Architecture & 3D </h3>
@@ -322,7 +328,7 @@ function LandingPage() {
 
             <div className="col-md-3 text-center service-item1">
               <div className="service-icon1-crm">
-                <img src={Crm} alt="UIUX" width={115} />
+                <img src={Crm} alt="crm" width={115} />
               </div>
               <div className="service-title1-crm">
                 <h3>CRM/ ERP</h3>
@@ -334,14 +340,48 @@ function LandingPage() {
                 </p>
               </div>
             </div>
+
+
+               {/* 4th row service */}
+          <div className="row d-flex justify-content-around align-items-center mb-2">
+
+            <div className="col-md-3 text-center service-item">
+              <div className="service-icon">
+                <img src={In3D} alt="Interactive3D" width={115} />
+              </div>
+              <div className="service-title">
+                <h3>Interactive 3D</h3>
+              </div>
+              <div className="service-description">
+                <p>
+                  We create responsive and robust web applications tailored to
+                  your business needs.
+                </p>
+              </div>
+            </div>
+
+            <div className="col-md-3 text-center service-item1">
+              <div className="service-icon1-crm">
+                <img src={VRICON} alt="360deg" width={115} />
+              </div>
+              <div className="service-title1-crm">
+                <h3>360° VR</h3>
+              </div>
+              <div className="service-description1">
+                <p>
+                  We create responsive and robust web applications tailored to
+                  your business needs.
+                </p>
+              </div>
+            </div>
+            </div>s
           </div>
         </div>
       </section>
 
-
-          {/* Delivered */}
-          <div>
-        <Delivered />
+  {/* Technologies */}
+  <div className="container">
+        <Technologies/>
       </div>
 
       {/* testimonials */}
@@ -350,13 +390,12 @@ function LandingPage() {
         <Testimonial />
       </div>
 
-  
-
-      {/* Technologies */}
-      <div className="container">
-        <Technologies/>
+           {/* Delivered */}
+           <div>
+        <Delivered />
       </div>
 
+    
 
       {/* <div className="thumb-layer paroller">
           <figure className="image">

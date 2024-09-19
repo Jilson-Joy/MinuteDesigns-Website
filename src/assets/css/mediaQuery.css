@@ -52,6 +52,7 @@
       font-size: 5rem;
   }
 
+
 }
 
 
@@ -63,6 +64,22 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+  .service-item:hover .service-icon
+  {
+    display: none;
+  }
+  .service-item:hover .service-icon1
+  {
+    display: none;
+  }
+  .service-item:hover .service-title {
+    display: none;
+  }
+  .service-item:hover .service-title1 {
+    display: none;
+  }
+  
+  
 
   .card {
     width: 100px;
@@ -104,6 +121,19 @@
   {
     display: none;
   }
-
+  .service-item:hover .service-icon
+  {
+    display: none;
+  }
+  .service-item:hover .service-icon1
+  {
+    display: none;
+  }
+  .service-item:hover .service-title {
+    display: none;
+  }
+  .service-item:hover .service-title1 {
+    display: none;
+  }
 
 }

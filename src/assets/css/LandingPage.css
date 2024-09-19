@@ -23,7 +23,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   place-items: center;
-  height: 7em; 
+  height: 6em; 
   width: 6em;  
 
 
