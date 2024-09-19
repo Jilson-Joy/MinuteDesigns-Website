@@ -1,4 +1,6 @@
 /* DOT */
+
+
 .land-middle
 {
   position: absolute;
@@ -156,19 +158,25 @@
     to { transform :translateY(2em); }
 }
 
-/* ... and so on ... */
 
 /* CustomCursor.css */
 .custom-cursor {
   position: fixed;
   width: 20px;
   height: 20px;
-  background-color: black;
+  background: repeating-linear-gradient(
+    45deg,             /* Angle of the stripes */
+    black,             /* First color */
+    black 2px,         /* Thickness of the black stripe */
+    transparent 2px,   /* Gap between stripes */
+    transparent 4px    /* Distance to the next black stripe */
+  );
   margin: 0 20px;
   pointer-events: none;
   transform: translate(-50%, -50%);
   z-index: 9999;
 }
+
 
 
 .service-item {
@@ -345,7 +353,6 @@
   color: #000000;
   font-size: 25px;
 }
-
 
 .service-item1:hover .service-title1-crm {
   color: #000000;

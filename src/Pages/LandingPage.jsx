@@ -20,6 +20,8 @@ function LandingPage() {
       <section className="hero-container">
         <div className="container">
           <div className="row align-items-center">
+
+
             <div className="col-md-6 dot-wrapper">
               <div className="d-flex ">
                 <div class="container land-dot">
@@ -101,9 +103,9 @@ function LandingPage() {
                   <div className="group bottom"></div>
                 </div>
 
-                <div className="land-middle">
-                  <span></span>
-                </div>
+<div className="land-middle">
+    <span></span>
+  </div>
 
                 <div class="container land-dot">
                   <div className="group top"></div>
@@ -203,6 +205,7 @@ function LandingPage() {
             </div>
           </div>
         </div>
+
       </section>
 
       {/* mouse cursor */}
