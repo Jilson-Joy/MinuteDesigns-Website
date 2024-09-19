@@ -13,6 +13,7 @@ import Crm from "../assets/images/crm-icon.gif";
 
 import CursorMouse from "../components/CustomCursor";
 import Testimonial from "./Testimonial";
+import Delivered from "../components/delivered/Delivered";
 function LandingPage() {
   return (
     <>
@@ -22,198 +23,173 @@ function LandingPage() {
             <div className="col-md-6 ">
 
             <div className="col-md-6 dot-wrapper">
-
-<div className="d-flex ">
-<div class="container land-dot">
-  <div className="group top">
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-  </div>
-  <div className="group top">
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-  </div>
-  <div className="group top">
-   
-  </div>
-  <div className="group left">
-  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      M
-    </span>
-    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      I
-    </span>
-    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      N
-    </span>
-    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      U
-    </span>
-    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      T
-    </span>
-    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      E
-    </span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-
-  </div>
-  <div className="middle">
-   
-  </div>
-  <div className="group right">
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-  </div>
-  <div className="group left">
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-  </div>
-  <div className="group bottom">
-  
-  </div>
-  <div className="group bottom">
-   
-  </div>
-</div>
-
+              <div className="d-flex ">
+                <div class="container land-dot">
+                  <div className="group top">
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                  </div>
+                  <div className="group top">
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                  </div>
+                  <div className="group top"></div>
+                  <div className="group left">
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      M
+                    </span>
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      I
+                    </span>
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      N
+                    </span>
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      U
+                    </span>
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      T
+                    </span>
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      E
+                    </span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                  </div>
+                  <div className="middle"></div>
+                  <div className="group right">
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                  </div>
+                  <div className="group left">
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                  </div>
+                  <div className="group bottom"></div>
+                  <div className="group bottom"></div>
+                </div>
 
 <div className="land-middle">
     <span></span>
   </div>
 
-<div class="container land-dot">
-  <div className="group top">
-   
-  </div>
-  <div className="group top">
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-  </div>
-  <div className="group top">
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    
-  </div>
-  <div className="group right">
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-  </div>
-  <div className="middle">
-   
-  </div>
-  <div className="group top">
-  <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      D
-    </span>
-    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      E
-    </span>
-    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      S
-    </span>
-    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      I
-    </span>
-    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      G
-    </span>
-    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      N
-    </span>
-      <span>•</span>
+                <div class="container land-dot">
+                  <div className="group top"></div>
+                  <div className="group top">
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                  </div>
+                  <div className="group top">
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                  </div>
+                  <div className="group right">
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                  </div>
+                  <div className="middle"></div>
+                  <div className="group top">
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      D
+                    </span>
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      E
+                    </span>
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      S
+                    </span>
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      I
+                    </span>
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      G
+                    </span>
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      N
+                    </span>
+                    <span>•</span>
 
-    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
-      S
-    </span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-
-  </div>
-  <div className="group left">
-   
-  </div>
-  <div className="group bottom">
-   
-  </div>
-  <div className="group bottom">
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-    <span>•</span>
-  </div>
-
-</div>
-</div>
-</div>
-
-
+                    <span style={{ color: "#ee964b", fontWeight: "bold" }}>
+                      S
+                    </span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                  </div>
+                  <div className="group left"></div>
+                  <div className="group bottom"></div>
+                  <div className="group bottom">
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                    <span>•</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="col-md-6">
               <h1 className="hero-text">
@@ -355,6 +331,10 @@ function LandingPage() {
         <Testimonial />
       </div>
 
+      {/* Delivered */}
+      <div>
+        <Delivered/>
+      </div>
       {/* <div className="thumb-layer paroller">
           <figure className="image">
             <img src="http://t.commonsupport.com/adro/images/resource/user-thumbs.png" alt="User Thumbs" />
@@ -452,7 +432,7 @@ function LandingPage() {
       {/* Add services or other content here */}
 
       {/* Technologies */}
-{/* <section>
+      {/* <section>
   <Technologies/>
 </section> */}
     </>
