@@ -90,6 +90,25 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                 <li className="sidebar-list-item">
                     <a
                         href="javascript:void(0)"
+                        onClick={() => toggleDropdown('blog')}
+                        style={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <Box className="icon" />
+                        Blogs
+                        <ChevronDown style={{ marginTop: '3px' }} />
+                    </a>
+                    <ul className={`dropdown-list ${openDropdown === 'blog' ? 'show' : ''}`}>
+                        <Link to="/mainDashboard/addBlog" className='link_tag'>
+                            <li>Add Blog</li>
+                        </Link>
+                        <Link to="/mainDashboard/listBlogs" className='link_tag'>
+                            <li>List Blogs</li>
+                        </Link>
+                    </ul>
+                </li>
+                <li className="sidebar-list-item">
+                    <a
+                        href="javascript:void(0)"
                         onClick={() => toggleDropdown('categories')}
                         style={{ display: 'flex', alignItems: 'center' }}
                     >

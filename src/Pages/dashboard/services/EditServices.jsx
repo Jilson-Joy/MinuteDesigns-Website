@@ -394,7 +394,7 @@ const EditService = () => {
                 style={{
                   width: "150px",
                   marginLeft: "200%",
-                  marginTop: "-80px",
+                  paddingTop:"10px"
                 }}
                 type="button"
                 className="btn btn-secondary mt-2"

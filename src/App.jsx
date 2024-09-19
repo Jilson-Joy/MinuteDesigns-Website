@@ -30,6 +30,9 @@ import EditService from "./Pages/dashboard/services/EditServices";
 import AddCategory from "./Pages/dashboard/category/AddCategory";
 import ListCategories from "./Pages/dashboard/category/ListCategory";
 import EditCategory from "./Pages/dashboard/category/EditCategory";
+import AddBlog from "./Pages/dashboard/blog/AddBlog";
+import ListBlogs from "./Pages/dashboard/blog/ListBlog";
+import EditBlog from "./Pages/dashboard/blog/EditBlog";
 
 function App() {
   return (
@@ -51,6 +54,9 @@ function App() {
           <Route path="addCategory" element={<AddCategory />} />
           <Route path="listCategory" element={<ListCategories />} />
           <Route path="edit-category/:id" element={<EditCategory />} />
+          <Route path="addBlog" element={<AddBlog />} />
+          <Route path="listBlogs" element={<ListBlogs />} />
+          <Route path="edit-blog/:id" element={<EditBlog />} />
         </Route>
 
         <Route
