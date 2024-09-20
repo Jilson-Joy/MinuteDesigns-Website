@@ -1,0 +1,251 @@
+/* DOT */
+
+
+/* CustomCursor.css */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: repeating-linear-gradient(
+    45deg,             /* Angle of the stripes */
+    black,             /* First color */
+    black 2px,         /* Thickness of the black stripe */
+    transparent 2px,   /* Gap between stripes */
+    transparent 4px    /* Distance to the next black stripe */
+  );
+  margin: 0 20px;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+
+
+.service-item {
+  text-align: center;
+  color: #fff;
+  position: relative;
+  min-height: 250px;
+  overflow: visible; 
+}
+
+.service-item:last-child {
+  border-right: none;
+}
+
+.service-icon {
+  font-size: 1rem;
+  transition: opacity 0.5s ease-in-out, transform 0.8s ease-in-out;
+  mix-blend-mode: luminosity;
+  position: relative;
+}
+
+.service-title h3 {
+  color: #000000;
+  font-size: 25px;
+}
+
+.service-description {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #f9f9f9;
+  padding: 0 20px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.service-description p {
+  font-size: 15px;
+}
+
+.service-item:hover .service-description {
+  display: flex;
+  opacity: 1;
+  font-size: 10px;
+  z-index: 1;
+}
+
+.service-item:hover .service-icon {
+  transform: translateX(300px);
+  padding: 50px 60px;
+  text-align: center;
+  position: absolute;
+  
+
+
+}
+
+.service-item:hover .service-title {
+  color: #000000;
+  transform: translateX(330px);
+  position: absolute;
+  font-size: 10px;
+}
+
+
+
+.service-item::before,
+.service-item::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #0b141c;
+  transition: transform 0.8s ease-in-out;
+
+}
+
+.service-item::before {
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.service-item::after {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.service-item:hover::before {
+  transform: scaleX(1);
+}
+
+.service-item:hover::after {
+  transform: scaleY(1);
+}
+
+
+
+/* second service */
+
+.service-item1 {
+  text-align: center;
+  color: #fff;
+  /* border-right: 1px solid #afaf29; */
+  position: relative;
+  min-height: 250px;
+  overflow: visible; 
+}
+
+.service-item1:last-child {
+  border-right: none;
+}
+
+.service-icon1 {
+  font-size: 1rem;
+  transition: opacity 0.5s ease-in-out, transform 0.8s ease-in-out;
+  mix-blend-mode: luminosity;
+  position: relative;
+}
+.service-icon1-crm {
+  font-size: 1rem;
+  transition: opacity 0.5s ease-in-out, transform 0.8s ease-in-out;
+  mix-blend-mode: luminosity;
+  position: relative;
+}
+
+
+.service-title1 h3{
+  color: #000000;
+  font-size: 25px;
+}
+
+.service-description1 {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #f9f9f9;
+  padding: 20px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+.service-description1 p {
+  font-size: 14px;
+}
+.service-item1:hover .service-description1 {
+  display: flex;
+  opacity: 1;
+  font-size: 10px;
+  z-index: 1;
+}
+.service-item1:hover .service-icon1 {
+  transform: translateX(-280px);
+  padding: 50px 60px;
+  text-align: center;
+  position: absolute;
+}
+
+.service-item1:hover .service-title1 {
+  color: #000000;
+  transform: translateX(-250px);
+  position: absolute;
+}
+
+.service-title1-crm 
+{
+  color: #000000;
+  font-size: 25px;
+}
+
+.service-item1:hover .service-title1-crm {
+  color: #000000;
+  transform: translateX(-200px);
+  position: absolute;
+}
+.service-item1:hover .service-icon1-crm {
+  transform: translateX(-260px);
+  padding: 50px 60px;
+  text-align: center;
+  position: absolute;
+}
+
+.service-item1::before,
+.service-item1::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: #0b141c;
+  transition: transform 0.8s ease-in-out;
+}
+
+.service-item1::before {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.service-item1::after {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.service-item1:hover::before {
+  transform: scaleX(1);
+}
+
+.service-item1:hover::after {
+  transform: scaleY(1);
+}
+.head-text
+{
+    font-size: 2.5rem;
+    color: #0b141c;
+}
