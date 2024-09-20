@@ -1,9 +1,19 @@
+.webApplication_container{
+  overflow: hidden;
+}
 .webAppTop {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
+}
+.webAppTop_scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .webapplication_header {
   display: flex;
@@ -20,21 +30,23 @@
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  
 }
 .webapplication_header_button {
   height: 100px;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
 }
 .webapplication_header_button button {
-  width: 100px;
-    height: 100px;
-  border-radius: 50%;
-  border: none;
+  width: 190px;
+  height: 50px;
+  border-radius: 10px;
   background-color: #000000;
   color: #f9f9f9;
   transition: 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 10px;
 }
 .webapplication_header_button button:hover {
   background-color: #ee964b;
@@ -51,7 +63,7 @@
     /* padding: 40px 20px; */
     display: flex;
     align-items: center;
-    justify-content: center ;
+    justify-content: center;
     margin-top: 50px;
     margin-bottom: 50px;
   }
@@ -64,34 +76,33 @@
     font-size: 1.8rem;
     text-align: center;
   }
-  .webapplication_header_img img{
-width: 100%;
+  .webapplication_header_img img {
+    width: 100%;
   }
-  .webAppCards{
+  .webAppCards {
     display: flex;
     flex-direction: column;
-   
   }
-  .webAppCards_card{
+  .webAppCards_card {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 10px;
   }
-.webapplication_header_button{
-     display: flex;
+  .webapplication_header_button {
+    display: flex;
     align-items: center;
     justify-content: center;
-}
+  }
   .webapplication_header_button button {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 50px;
   }
 }
-.webapplication_header_text1{
-    /* text-align: center; */
-    font-size: 40px;
+.webapplication_header_text1 {
+  /* text-align: center; */
+  font-size: 40px;
 }
 .webAppCards_heading p {
   font-size: 30px;
@@ -106,11 +117,11 @@ width: 100%;
 }
 .webAppCards_card {
   border: 1px solid rgba(0, 0, 0, 0.15);
-  max-width:550px;
-  min-height:300px;
+  max-width: 550px;
+  min-height: 300px;
   border-radius: 10px;
   padding: 10px;
-text-align: justify;
+  /* text-align: justify; */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -129,6 +140,200 @@ text-align: justify;
   margin: 10px;
 }
 .webApp_text {
-  /* text-align: justify; */
   font-size: 15px;
+}
+
+/* section 1 */
+
+.Introduction_box {
+  text-align: center;
+  min-height: 200px;
+  background-color: #0b141c;
+  color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px;
+}
+.contactUs_box {
+  /* text-align: center; */
+  min-height: 200px;
+  background-color: #0b141c;
+  color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 10px;
+}
+.contactUs_box button {
+  width: 120px;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #ee964b;
+  color: #f9f9f9;
+  border: none;
+}
+/* section 2 */
+.offer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+.Offer_card {
+  padding: 10px;
+  text-align: justify;
+  max-width: 500px;
+  border-radius: 10px;
+}
+.Offer_card_img {
+  mix-blend-mode: luminosity;
+}
+/* section 3 */
+.Technologies_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 200px;
+  /* background-color: #0b141c; */
+  color: #000000;
+  border-radius: 20px;
+}
+.Technologies_img_box {
+  max-width: 180px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.034);
+  box-shadow: rgba(149, 157, 165, 0.123) 0px 8px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  min-height: 130px;
+}
+.Technologies_img_box img {
+  max-width: 70px;
+}
+
+/* section 4 Our Process */
+
+.timeline-section {
+  min-height: 100vh;
+  padding: 100px 15px;
+}
+.timeline-items {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.timeline-items::before {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color: #000000;
+  left: calc(50% - 1px);
+}
+.timeline-item {
+  margin-bottom: 40px;
+  width: 100%;
+  position: relative;
+}
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+.timeline-item:nth-child(odd) {
+  padding-right: calc(50% + 30px);
+  text-align: right;
+}
+.timeline-item:nth-child(even) {
+  padding-left: calc(50% + 30px);
+}
+.timeline-dot {
+  height: 16px;
+  width: 16px;
+  background-color: #eaa023;
+  position: absolute;
+  left: calc(50% - 8px);
+  border-radius: 50%;
+  top: 10px;
+}
+.timeline-date {
+  font-size: 18px;
+  color: #eaa023;
+  margin: 6px 0 15px;
+}
+.timeline-content {
+  background-color: #0b141c;
+  padding: 30px;
+  border-radius: 5px;
+}
+.timeline-content h3 {
+  font-size: 20px;
+  color: #ffffff;
+  margin: 0 0 10px;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.timeline-content p {
+  color: #c8c8c8;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 22px;
+}
+
+/* responsive */
+@media (max-width: 767px) {
+  .timeline-items::before {
+    left: 7px;
+  }
+  .timeline-item:nth-child(odd) {
+    padding-right: 0;
+    text-align: left;
+  }
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    padding-left: 37px;
+  }
+  .timeline-dot {
+    left: 0;
+  }
+}
+
+/* section 5  Why Choose Minute Designs?*/
+
+.Choose {
+display: flex;
+align-items: center;
+justify-content: center;
+max-height: 500px;
+background-color: #0b141c;
+color: #c8c8c8;
+margin: 10px;
+border-radius: 10px;
+
+}
+/* .Choose_text{
+    display: flex;
+    flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+} */
+.Choose_img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.Choose_img img{
+  max-width: 50%;
+  padding: 10px;
+  /* mix-blend-mode:luminosity */
 }
