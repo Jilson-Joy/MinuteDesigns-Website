@@ -31,11 +31,11 @@ const CircleCanvas = ({
 
     const isHighlightDot = (x, y) => {
       const leftX = gridCenterX - halfSize;
-      const rightX = gridCenterX + halfSize; // Add this line
+      const rightX = gridCenterX + halfSize; 
       const topY = gridCenterY - halfSize;
       const bottomY = gridCenterY + halfSize;
 
-      const slope = (bottomY - topY) / (shapeSize / 3);
+      const slope = (bottomY - topY) / (shapeSize / 2);
 
       return (
         (x >= leftX && x <= leftX + 0.3 * shapeSize && y >= topY && y <= bottomY) ||
@@ -59,15 +59,32 @@ const CircleCanvas = ({
       const offsetX = (canvas.width - columns * spacingX + circleSpacing) / 2;
       const offsetY = (canvas.height - rows * spacingY + circleSpacing) / 2;
 
+      const rowsToRemove = 4; // Height of the triangle
+      const triangleBase = rowsToRemove * 2; // Base width of the triangle
+
       for (let y = 0; y < rows; y++) {
         for (let x = 0; x < columns; x++) {
           const cx = offsetX + x * spacingX + radius;
           const cy = offsetY + y * spacingY + radius;
+
+          // Skip dots in a triangular shape from the top left to the middle
+          if (y < rowsToRemove && 
+              (x < columns / 2) && // Left side
+              (y >= (rowsToRemove - 1) - (x - (columns / 2 - Math.floor(triangleBase / 2))) / (triangleBase / 2) * (rowsToRemove - 1))) {
+            continue; // Skip this circle
+          }
+
+          // Skip dots in a triangular shape from the top right to the middle
+          if (y < rowsToRemove && 
+              (x >= columns / 2) && // Right side
+              (y >= (rowsToRemove - 1) - ((columns - x - 1) - (columns / 2 + Math.floor(triangleBase / 2))) / (triangleBase / 2) * (rowsToRemove - 1))) {
+            continue; // Skip this circle
+          }
+
           circles.push({ x: cx, y: cy, baseX: cx, baseY: cy });
         }
       }
     };
-    
 
     const draw = () => {
       ctx.fillStyle = bgColor;
@@ -81,10 +98,11 @@ const CircleCanvas = ({
         ctx.arc(circle.x, circle.y, circleSize / 2, 0, 2 * Math.PI);
 
         const leftX = gridCenterX - halfSize;
-        const rightX = gridCenterX + halfSize; // Add this line
+        const rightX = gridCenterX + halfSize; 
         const topY = gridCenterY - halfSize;
         const bottomY = gridCenterY + halfSize;
-        if (circle.x >= leftX && circle.x <= leftX + 0.2 * shapeSize &&
+
+        if (circle.x >= leftX && circle.x <= leftX + 0.23 * shapeSize &&
             circle.y >= topY && circle.y <= bottomY &&
             minuteIndex < letters.length) {
           ctx.fillStyle = letterColor;
@@ -112,35 +130,7 @@ const CircleCanvas = ({
       });
     };
 
-
-
-
-  
-  
-  
-
-  
-  
-    const swapDots = () => {
-      const index1 = Math.floor(Math.random() * circles.length);
-      const index2 = Math.floor(Math.random() * circles.length);
-
-      const tempX = circles[index1].baseX;
-      const tempY = circles[index1].baseY;
-      circles[index1].baseX = circles[index2].baseX;
-      circles[index1].baseY = circles[index2].baseY;
-      circles[index2].baseX = tempX;
-      circles[index2].baseY = tempY;
-    };
-
     const update = () => {
-      const now = Date.now();
-
-      if (now - lastSwapTime > swapInterval) {
-        swapDots();
-        lastSwapTime = now;
-      }
-
       circles.forEach((circle) => {
         const dx = circle.baseX - circle.x;
         const dy = circle.baseY - circle.y;
