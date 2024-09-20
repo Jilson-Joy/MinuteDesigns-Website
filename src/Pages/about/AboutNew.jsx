@@ -5,6 +5,7 @@ import minuteLogo from "../../assets/images/minute.jpg";
 import Delivered from "../../components/delivered/Delivered";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../variants";
+import Mlogo from "../../assets/images/M.png";
 
 function AboutNew() {
   return (
@@ -143,7 +144,7 @@ function AboutNew() {
             </div>
             <div className="our_culture_img col-md-6 col-lg-4 mb-4">
               <img
-                src="https://img.freepik.com/free-vector/gradation-m-letter-logo-design_557339-335.jpg?w=740&t=st=1726660507~exp=1726661107~hmac=508e52e901cc7cb6507d120ff6d86c2dafd45e37bf5ca22b402b1cfe51863167"
+                src={Mlogo}
                 alt="Culture Image"
               />
             </div>
