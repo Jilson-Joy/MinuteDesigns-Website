@@ -18,12 +18,9 @@
     "@tinymce/tinymce-react": "^5.1.1",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
-<<<<<<< HEAD
     "framer-motion": "^11.5.4",
-=======
     "dompurify": "^3.1.6",
     "dotenv": "^16.4.5",
->>>>>>> 460832c44826673fdd970074d5a2eb912b7e8238
     "imagesloaded": "^5.0.0",
     "isotope-layout": "^3.0.6",
     "lucide-react": "^0.438.0",
@@ -36,12 +33,8 @@
     "react-redux": "^7.2.6",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.26.1",
-<<<<<<< HEAD
-    "redux": "^3.1.0",
-=======
     "react-toastify": "^10.0.5",
     "redux": "^4.2.1",
->>>>>>> 460832c44826673fdd970074d5a2eb912b7e8238
     "redux-devtools-extension": "^2.13.9",
     "redux-persist": "^6.0.0",
     "sweetalert2": "^11.13.2"
