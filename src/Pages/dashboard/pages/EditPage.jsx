@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
-import { AddPageApi } from "../../../api/pages";
+import { GetPageById, UpdatePageById } from "../../../api/pages";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.snow.css";
 import { Modal, Button } from "react-bootstrap";
 
-const AddPage = () => {
+const EditPage = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
-
-  const [files, setFiles] = useState([]);
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [sourceCode, setSourceCode] = useState("");
 
@@ -31,11 +31,8 @@ const AddPage = () => {
     metaTags: "",
   });
 
-  const handleFileChange = (event) => {
-    if (event.target.files) {
-      setFiles(Array.from(event.target.files));
-    }
-  };
+  const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleSourceCode = () => {
     setShowSourceModal(true);
@@ -82,95 +79,121 @@ const AddPage = () => {
     "image",
   ];
 
+  useEffect(() => {
+    const fetchPageData = async () => {
+      try {
+        const result = await GetPageById(id);
+        const pageData = result.page;
+
+        setFormData({
+          pageUrl: pageData.pageUrl || "",
+          pageTitle: pageData.pageTitle || "",
+          name: pageData.name || "",
+          shortDescription: pageData.shortDescription || "",
+          description: pageData.description || "",
+          content: pageData.content || "",
+          meta: {
+            metaTitle: pageData.meta?.metaTitle || "",
+            metaDescription: pageData.meta?.metaDescription || "",
+            metaAuthor: pageData.meta?.metaAuthor || "",
+            metaKeywords: pageData.meta?.metaKeywords || "",
+          },
+          metaTags: pageData.metaTags || "",
+        });
+        setFiles(pageData.files || []);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching page data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchPageData();
+  }, [id]);
+
+  const handleFileChange = (event) => {
+    if (event.target.files) {
+      setFiles(Array.from(event.target.files));
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (name.startsWith("meta.")) {
-      const metaField = name.split(".")[1];
       setFormData((prevData) => ({
         ...prevData,
         meta: {
           ...prevData.meta,
-          [metaField]: value,
+          [name.replace("meta.", "")]: value,
         },
       }));
     } else {
-      setFormData({
-        ...formData,
+      setFormData((prevData) => ({
+        ...prevData,
         [name]: value,
-      });
+      }));
     }
   };
 
-  const handleContentChange = (content) => {
+  const handleContentChange = (value) => {
     setFormData((prevData) => ({
       ...prevData,
-      content,
+      content: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formDataToSend = new FormData();
 
     files.forEach((file) => {
-        formDataToSend.append("files", file);
+      formDataToSend.append("files", file);
     });
-
     formDataToSend.append("pageUrl", formData.pageUrl);
     formDataToSend.append("pageTitle", formData.pageTitle);
     formDataToSend.append("name", formData.name);
     formDataToSend.append("shortDescription", formData.shortDescription);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
-
     const metaArray = [
-        {
-            metaTitle: formData.meta.metaTitle,
-            metaDescription: formData.meta.metaDescription,
-            metaAuthor: formData.meta.metaAuthor,
-            metaKeywords: formData.meta.metaKeywords.split(",").map((keyword) => keyword.trim()),
-        },
-    ];
+      {
+          metaTitle: formData.meta.metaTitle,
+          metaDescription: formData.meta.metaDescription,
+          metaAuthor: formData.meta.metaAuthor,
+          metaKeywords: formData.meta.metaKeywords.split(",").map((keyword) => keyword.trim()),
+      },
+  ];
 
-    metaArray.forEach((meta, index) => {
-        Object.keys(meta).forEach((key) => {
-            formDataToSend.append(`meta[${index}][${key}]`, meta[key]);
-        });
-    });
+  metaArray.forEach((meta, index) => {
+      Object.keys(meta).forEach((key) => {
+          formDataToSend.append(`meta[${index}][${key}]`, meta[key]);
+      });
+  });
 
-    const tags = formData.metaTags.split(",").map((tag) => tag.trim());
-    tags.forEach((tag, index) => {
-        formDataToSend.append(`metaTags`, tag); 
-    });
+  const tags = typeof formData.metaTags === "string" 
+  ? formData.metaTags.split(",").map((tag) => tag.trim()) 
+  : []; 
+
+   
 
     try {
-        const result = await AddPageApi(formDataToSend);
-        if (result.success === false) {
-            toast.error(result.message || "Failed to add page");
-        } else {
-            toast.success("Page added successfully!");
-            navigate("/mainDashboard/listPage");
-            setFormData({
-                pageUrl: "",
-                pageTitle: "",
-                name: "",
-                shortDescription: "",
-                description: "",
-                content: "",
-                meta: { metaTitle: "", metaDescription: "", metaAuthor: "", metaKeywords: "" },
-                metaTags: "",
-            });
-            setFiles([]);
-        }
+      await UpdatePageById(id, formDataToSend);
+      toast.success("Page updated successfully!");
+      navigate("/mainDashboard/listPage");
     } catch (error) {
-        toast.error("Failed to add page", error);
+      console.error("Failed to update page:", error);
+      toast.error("Failed to update page. Please try again.");
     }
-};
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div className="container mt-4">
-      <h1>Add Page</h1>
+    <div className="container">
+      <h1 className="mt-4">Edit Page</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -362,7 +385,6 @@ const AddPage = () => {
           </button>
         </div>
       </form>
-
       <Modal show={showSourceModal} onHide={() => setShowSourceModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Source Code</Modal.Title>
@@ -390,4 +412,4 @@ const AddPage = () => {
   );
 };
 
-export default AddPage;
+export default EditPage;

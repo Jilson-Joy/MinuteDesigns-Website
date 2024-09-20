@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -8,12 +8,14 @@ import Auth from '../../assets/images/Authentication.gif';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { loginUser } from '../../redux/slices/authSlice';
 import { Spinner, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 function Login() {
     const [validated, setValidated] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
+    const navigate = useNavigate(); 
 
     const { loading, error, currentUser } = useSelector((state) => state.admin);
 
@@ -28,6 +30,12 @@ function Login() {
         setValidated(true);
         dispatch(loginUser({ email, password }));
     };
+
+    useEffect(() => {
+        if (currentUser) {
+            navigate('/mainDashboard'); 
+        }
+    }, [currentUser, navigate]);
 
     return (
         <div className="container">

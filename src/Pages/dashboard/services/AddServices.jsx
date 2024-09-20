@@ -1,39 +1,132 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import { AddPageApi } from "../../../api/pages";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ReactQuill from "react-quill";
+import { AddServiceApi } from "../../../api/services";
 import "react-quill/dist/quill.snow.css";
 import { Modal, Button } from "react-bootstrap";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
-const AddPage = () => {
+const AddServices = () => {
   const navigate = useNavigate();
 
   const [files, setFiles] = useState([]);
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [sourceCode, setSourceCode] = useState("");
 
+  const handleFileChange = (event) => {
+    if (event.target.files) {
+      setFiles(Array.from(event.target.files));
+    }
+  };
+
   const [formData, setFormData] = useState({
-    pageUrl: "",
-    pageTitle: "",
+    serviceUrl: "",
+    serviceTitle: "",
     name: "",
     shortDescription: "",
     description: "",
     content: "",
-    meta: {
-      metaTitle: "",
-      metaDescription: "",
-      metaAuthor: "",
-      metaKeywords: "",
-    },
+    meta: [
+      {
+        metaTitle: "",
+        metaDescription: "",
+        metaAuthor: "",
+        metaKeywords: "",
+      },
+    ],
     metaTags: "",
   });
 
-  const handleFileChange = (event) => {
-    if (event.target.files) {
-      setFiles(Array.from(event.target.files));
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    if (name.startsWith("meta.")) {
+      const metaField = name.split(".")[1];
+      setFormData((prevData) => ({
+        ...prevData,
+        meta: [
+          {
+            ...prevData.meta[0],
+            [metaField]: value,
+          },
+        ],
+      }));
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formDataToSend = new FormData();
+    files.forEach((file) => {
+      formDataToSend.append("files", file);
+    });
+    formDataToSend.append("serviceUrl", formData.serviceUrl);
+    formDataToSend.append("serviceTitle", formData.serviceTitle);
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("shortDescription", formData.shortDescription);
+    formDataToSend.append("description", formData.description);
+    formDataToSend.append("content", formData.content);
+
+    const meta = formData.meta[0];
+    const metaArray = [
+      {
+        metaTitle: meta.metaTitle,
+        metaDescription: meta.metaDescription,
+        metaAuthor: meta.metaAuthor,
+        metaKeywords: meta.metaKeywords
+          .split(",")
+          .map((keyword) => keyword.trim()),
+      },
+    ];
+
+    metaArray.forEach((meta, index) => {
+      Object.keys(meta).forEach((key) => {
+        formDataToSend.append(`meta[${index}][${key}]`, meta[key]);
+      });
+    });
+
+    const tags = formData.metaTags.split(",").map((tag) => tag.trim());
+    tags.forEach((tag) => {
+      formDataToSend.append("metaTags", tag);
+    });
+
+    try {
+      const result = await AddServiceApi(formDataToSend);
+      if (result.success === false) {
+        toast.error(result.message || "Failed to add service");
+      } else {
+        toast.success("Service added successfully!");
+        navigate("/mainDashboard/listServices");
+
+        setFormData({
+          serviceUrl: "",
+          serviceTitle: "",
+          name: "",
+          shortDescription: "",
+          description: "",
+          content: "",
+          meta: [
+            {
+              metaTitle: "",
+              metaDescription: "",
+              metaAuthor: "",
+              metaKeywords: "",
+            },
+          ],
+          metaTags: "",
+        });
+        setFiles([]);
+      }
+    } catch (error) {
+      toast.error("Failed to add service");
     }
   };
 
@@ -82,122 +175,43 @@ const AddPage = () => {
     "image",
   ];
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name.startsWith("meta.")) {
-      const metaField = name.split(".")[1];
-      setFormData((prevData) => ({
-        ...prevData,
-        meta: {
-          ...prevData.meta,
-          [metaField]: value,
-        },
-      }));
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
+  const handleContentChange = (value) => {
+    setFormData({
+      ...formData,
+      content: value,
+    });
   };
-
-  const handleContentChange = (content) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      content,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formDataToSend = new FormData();
-
-    files.forEach((file) => {
-        formDataToSend.append("files", file);
-    });
-
-    formDataToSend.append("pageUrl", formData.pageUrl);
-    formDataToSend.append("pageTitle", formData.pageTitle);
-    formDataToSend.append("name", formData.name);
-    formDataToSend.append("shortDescription", formData.shortDescription);
-    formDataToSend.append("description", formData.description);
-    formDataToSend.append("content", formData.content);
-
-    const metaArray = [
-        {
-            metaTitle: formData.meta.metaTitle,
-            metaDescription: formData.meta.metaDescription,
-            metaAuthor: formData.meta.metaAuthor,
-            metaKeywords: formData.meta.metaKeywords.split(",").map((keyword) => keyword.trim()),
-        },
-    ];
-
-    metaArray.forEach((meta, index) => {
-        Object.keys(meta).forEach((key) => {
-            formDataToSend.append(`meta[${index}][${key}]`, meta[key]);
-        });
-    });
-
-    const tags = formData.metaTags.split(",").map((tag) => tag.trim());
-    tags.forEach((tag, index) => {
-        formDataToSend.append(`metaTags`, tag); 
-    });
-
-    try {
-        const result = await AddPageApi(formDataToSend);
-        if (result.success === false) {
-            toast.error(result.message || "Failed to add page");
-        } else {
-            toast.success("Page added successfully!");
-            navigate("/mainDashboard/listPage");
-            setFormData({
-                pageUrl: "",
-                pageTitle: "",
-                name: "",
-                shortDescription: "",
-                description: "",
-                content: "",
-                meta: { metaTitle: "", metaDescription: "", metaAuthor: "", metaKeywords: "" },
-                metaTags: "",
-            });
-            setFiles([]);
-        }
-    } catch (error) {
-        toast.error("Failed to add page", error);
-    }
-};
 
   return (
     <div className="container mt-4">
-      <h1>Add Page</h1>
+      <h1>Add Service</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="pageUrl" className="form-label">
-            Page URL
+          <label htmlFor="serviceUrl" className="form-label">
+            Service URL
           </label>
           <input
             type="text"
             className="form-control"
-            id="pageUrl"
-            name="pageUrl"
-            value={formData.pageUrl}
+            id="serviceUrl"
+            name="serviceUrl"
+            value={formData.serviceUrl}
             onChange={handleChange}
             required
           />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="pageTitle" className="form-label">
-            Page Title
+          <label htmlFor="serviceTitle" className="form-label">
+            Service Title
           </label>
           <input
             type="text"
             className="form-control"
-            id="pageTitle"
-            name="pageTitle"
-            value={formData.pageTitle}
+            id="serviceTitle"
+            name="serviceTitle"
+            value={formData.serviceTitle}
             onChange={handleChange}
           />
         </div>
@@ -232,6 +246,19 @@ const AddPage = () => {
         </div>
 
         <div className="mb-3">
+          <label htmlFor="fileUpload" className="form-label">
+            Upload File
+          </label>
+          <input
+            type="file"
+            className="form-control"
+            name="files"
+            multiple
+            onChange={handleFileChange}
+          />
+        </div>
+
+        <div className="mb-3">
           <label htmlFor="description" className="form-label">
             Description
           </label>
@@ -246,19 +273,6 @@ const AddPage = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="fileUpload" className="form-label">
-            Upload File
-          </label>
-          <input
-            type="file"
-            className="form-control"
-            name="files"
-            multiple
-            onChange={handleFileChange}
-          />
-        </div>
-
-        <div className="mb-3">
           <label htmlFor="meta.metaTitle" className="form-label">
             Meta Title
           </label>
@@ -267,7 +281,7 @@ const AddPage = () => {
             className="form-control"
             id="meta.metaTitle"
             name="meta.metaTitle"
-            value={formData.meta.metaTitle}
+            value={formData.meta[0].metaTitle}
             onChange={handleChange}
           />
         </div>
@@ -281,7 +295,7 @@ const AddPage = () => {
             className="form-control"
             id="meta.metaDescription"
             name="meta.metaDescription"
-            value={formData.meta.metaDescription}
+            value={formData.meta[0].metaDescription}
             onChange={handleChange}
           />
         </div>
@@ -295,7 +309,7 @@ const AddPage = () => {
             className="form-control"
             id="meta.metaAuthor"
             name="meta.metaAuthor"
-            value={formData.meta.metaAuthor}
+            value={formData.meta[0].metaAuthor}
             onChange={handleChange}
           />
         </div>
@@ -309,7 +323,7 @@ const AddPage = () => {
             className="form-control"
             id="meta.metaKeywords"
             name="meta.metaKeywords"
-            value={formData.meta.metaKeywords}
+            value={formData.meta[0].metaKeywords}
             onChange={handleChange}
           />
         </div>
@@ -329,9 +343,7 @@ const AddPage = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="content" className="form-label">
-            Content
-          </label>
+          <label className="form-label">Content</label>
           <ReactQuill
             value={formData.content}
             onChange={handleContentChange}
@@ -341,6 +353,7 @@ const AddPage = () => {
             style={{ height: "300px" }}
           />
         </div>
+
         <div className="mb-3">
           <button
             style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
@@ -390,4 +403,4 @@ const AddPage = () => {
   );
 };
 
-export default AddPage;
+export default AddServices;

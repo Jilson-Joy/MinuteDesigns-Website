@@ -18,7 +18,9 @@ function MainDashboard() {
             <div className='grid-container'>
                 <Header OpenSidebar={OpenSidebar} />
                 <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
+                <div className='container row' style={{ marginLeft: '70px' }}>
                 <Dashboard />
+                </div>
 
             </div>
         </>

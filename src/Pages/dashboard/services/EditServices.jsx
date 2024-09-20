@@ -1,23 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
-import { AddPageApi } from "../../../api/pages";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Modal, Button } from "react-bootstrap";
+import { GetServiceById, UpdateServiceById } from "../../../api/services";
 
-const AddPage = () => {
+const EditService = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
-
-  const [files, setFiles] = useState([]);
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [sourceCode, setSourceCode] = useState("");
 
   const [formData, setFormData] = useState({
-    pageUrl: "",
-    pageTitle: "",
+    serviceUrl: "",
+    serviceTitle: "",
     name: "",
     shortDescription: "",
     description: "",
@@ -31,11 +30,8 @@ const AddPage = () => {
     metaTags: "",
   });
 
-  const handleFileChange = (event) => {
-    if (event.target.files) {
-      setFiles(Array.from(event.target.files));
-    }
-  };
+  const [files, setFiles] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleSourceCode = () => {
     setShowSourceModal(true);
@@ -43,10 +39,10 @@ const AddPage = () => {
   };
 
   const handleSaveSourceCode = () => {
-    setFormData({
-      ...formData,
+    setFormData((prevData) => ({
+      ...prevData,
       content: sourceCode,
-    });
+    }));
     setShowSourceModal(false);
   };
 
@@ -82,130 +78,154 @@ const AddPage = () => {
     "image",
   ];
 
+  useEffect(() => {
+    const fetchServiceData = async () => {
+      try {
+        const result = await GetServiceById(id);
+        const serviceData = result.service || {};
+
+        setFormData({
+          serviceUrl: serviceData.serviceUrl || "",
+          serviceTitle: serviceData.serviceTitle || "",
+          name: serviceData.name || "",
+          shortDescription: serviceData.shortDescription || "",
+          description: serviceData.description || "",
+          content: serviceData.content || "",
+          meta: {
+            metaTitle: serviceData.meta?.metaTitle || "",
+            metaDescription: serviceData.meta?.metaDescription || "",
+            metaAuthor: serviceData.meta?.metaAuthor || "",
+            metaKeywords: serviceData.meta?.metaKeywords || "",
+          },
+          metaTags: serviceData.metaTags || "",
+        });
+        setFiles(serviceData.files || []);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching service data:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchServiceData();
+  }, [id]);
+
+  const handleFileChange = (event) => {
+    if (event.target.files) {
+      setFiles(Array.from(event.target.files));
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     if (name.startsWith("meta.")) {
-      const metaField = name.split(".")[1];
       setFormData((prevData) => ({
         ...prevData,
         meta: {
           ...prevData.meta,
-          [metaField]: value,
+          [name.replace("meta.", "")]: value,
         },
       }));
     } else {
-      setFormData({
-        ...formData,
+      setFormData((prevData) => ({
+        ...prevData,
         [name]: value,
-      });
+      }));
     }
   };
 
-  const handleContentChange = (content) => {
+  const handleContentChange = (value) => {
     setFormData((prevData) => ({
       ...prevData,
-      content,
+      content: value,
     }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formDataToSend = new FormData();
 
     files.forEach((file) => {
-        formDataToSend.append("files", file);
+      formDataToSend.append("files", file);
     });
 
-    formDataToSend.append("pageUrl", formData.pageUrl);
-    formDataToSend.append("pageTitle", formData.pageTitle);
+    formDataToSend.append("serviceUrl", formData.serviceUrl);
+    formDataToSend.append("serviceTitle", formData.serviceTitle);
     formDataToSend.append("name", formData.name);
     formDataToSend.append("shortDescription", formData.shortDescription);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
-
+    
     const metaArray = [
-        {
-            metaTitle: formData.meta.metaTitle,
-            metaDescription: formData.meta.metaDescription,
-            metaAuthor: formData.meta.metaAuthor,
-            metaKeywords: formData.meta.metaKeywords.split(",").map((keyword) => keyword.trim()),
-        },
+      {
+        metaTitle: formData.meta.metaTitle,
+        metaDescription: formData.meta.metaDescription,
+        metaAuthor: formData.meta.metaAuthor,
+        metaKeywords: formData.meta.metaKeywords ? formData.meta.metaKeywords.split(",").map((keyword) => keyword.trim()) : [],
+      },
     ];
 
     metaArray.forEach((meta, index) => {
-        Object.keys(meta).forEach((key) => {
-            formDataToSend.append(`meta[${index}][${key}]`, meta[key]);
-        });
+      Object.keys(meta).forEach((key) => {
+        formDataToSend.append(`meta[${index}][${key}]`, meta[key]);
+      });
     });
 
-    const tags = formData.metaTags.split(",").map((tag) => tag.trim());
-    tags.forEach((tag, index) => {
-        formDataToSend.append(`metaTags`, tag); 
-    });
+    const tags = typeof formData.metaTags === "string" 
+    ? formData.metaTags.split(",").map((tag) => tag.trim()) 
+    : []; 
 
     try {
-        const result = await AddPageApi(formDataToSend);
-        if (result.success === false) {
-            toast.error(result.message || "Failed to add page");
-        } else {
-            toast.success("Page added successfully!");
-            navigate("/mainDashboard/listPage");
-            setFormData({
-                pageUrl: "",
-                pageTitle: "",
-                name: "",
-                shortDescription: "",
-                description: "",
-                content: "",
-                meta: { metaTitle: "", metaDescription: "", metaAuthor: "", metaKeywords: "" },
-                metaTags: "",
-            });
-            setFiles([]);
-        }
+      const response = await UpdateServiceById(id, formDataToSend);
+      if (!response.success) {
+        toast.error(response.message || "Failed to update service.");
+      } else {
+        toast.success("Service updated successfully!");
+        navigate("/mainDashboard/listServices");
+      }
     } catch (error) {
-        toast.error("Failed to add page", error);
+      console.error("Failed to update service:", error);
+      toast.error("Failed to update service. Please try again.");
     }
-};
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
-    <div className="container mt-4">
-      <h1>Add Page</h1>
+    <div className="container">
+      <h1 className="mt-4">Edit Service</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="pageUrl" className="form-label">
-            Page URL
-          </label>
+          <label htmlFor="serviceUrl" className="form-label">Service URL</label>
           <input
             type="text"
             className="form-control"
-            id="pageUrl"
-            name="pageUrl"
-            value={formData.pageUrl}
+            id="serviceUrl"
+            name="serviceUrl"
+            value={formData.serviceUrl}
             onChange={handleChange}
             required
           />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="pageTitle" className="form-label">
-            Page Title
-          </label>
+          <label htmlFor="serviceTitle" className="form-label">Service Title</label>
           <input
             type="text"
             className="form-control"
-            id="pageTitle"
-            name="pageTitle"
-            value={formData.pageTitle}
+            id="serviceTitle"
+            name="serviceTitle"
+            value={formData.serviceTitle}
             onChange={handleChange}
           />
         </div>
 
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            Name
-          </label>
+          <label htmlFor="name" className="form-label">Name</label>
           <input
             type="text"
             className="form-control"
@@ -218,9 +238,7 @@ const AddPage = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="shortDescription" className="form-label">
-            Short Description
-          </label>
+          <label htmlFor="shortDescription" className="form-label">Short Description</label>
           <input
             type="text"
             className="form-control"
@@ -232,9 +250,18 @@ const AddPage = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="description" className="form-label">
-            Description
-          </label>
+          <label htmlFor="fileUpload" className="form-label">Upload File</label>
+          <input
+            type="file"
+            className="form-control"
+            name="files"
+            multiple
+            onChange={handleFileChange}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="description" className="form-label">Description</label>
           <input
             type="text"
             className="form-control"
@@ -246,26 +273,11 @@ const AddPage = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="fileUpload" className="form-label">
-            Upload File
-          </label>
-          <input
-            type="file"
-            className="form-control"
-            name="files"
-            multiple
-            onChange={handleFileChange}
-          />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="meta.metaTitle" className="form-label">
-            Meta Title
-          </label>
+          <label htmlFor="metaTitle" className="form-label">Meta Title</label>
           <input
             type="text"
             className="form-control"
-            id="meta.metaTitle"
+            id="metaTitle"
             name="meta.metaTitle"
             value={formData.meta.metaTitle}
             onChange={handleChange}
@@ -273,13 +285,11 @@ const AddPage = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="meta.metaDescription" className="form-label">
-            Meta Description
-          </label>
+          <label htmlFor="metaDescription" className="form-label">Meta Description</label>
           <input
             type="text"
             className="form-control"
-            id="meta.metaDescription"
+            id="metaDescription"
             name="meta.metaDescription"
             value={formData.meta.metaDescription}
             onChange={handleChange}
@@ -287,13 +297,11 @@ const AddPage = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="meta.metaAuthor" className="form-label">
-            Meta Author
-          </label>
+          <label htmlFor="metaAuthor" className="form-label">Meta Author</label>
           <input
             type="text"
             className="form-control"
-            id="meta.metaAuthor"
+            id="metaAuthor"
             name="meta.metaAuthor"
             value={formData.meta.metaAuthor}
             onChange={handleChange}
@@ -301,13 +309,11 @@ const AddPage = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="meta.metaKeywords" className="form-label">
-            Meta Keywords (comma separated)
-          </label>
+          <label htmlFor="metaKeywords" className="form-label">Meta Keywords (comma separated)</label>
           <input
             type="text"
             className="form-control"
-            id="meta.metaKeywords"
+            id="metaKeywords"
             name="meta.metaKeywords"
             value={formData.meta.metaKeywords}
             onChange={handleChange}
@@ -315,9 +321,7 @@ const AddPage = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="metaTags" className="form-label">
-            Meta Tags (comma separated)
-          </label>
+          <label htmlFor="metaTags" className="form-label">Meta Tags (comma separated)</label>
           <input
             type="text"
             className="form-control"
@@ -329,9 +333,7 @@ const AddPage = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="content" className="form-label">
-            Content
-          </label>
+          <label className="form-label">Content</label>
           <ReactQuill
             value={formData.content}
             onChange={handleContentChange}
@@ -341,6 +343,7 @@ const AddPage = () => {
             style={{ height: "300px" }}
           />
         </div>
+
         <div className="mb-3">
           <button
             style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
@@ -361,6 +364,7 @@ const AddPage = () => {
             Submit
           </button>
         </div>
+
       </form>
 
       <Modal show={showSourceModal} onHide={() => setShowSourceModal(false)}>
@@ -390,4 +394,4 @@ const AddPage = () => {
   );
 };
 
-export default AddPage;
+export default EditService;
