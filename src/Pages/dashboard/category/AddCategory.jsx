@@ -141,7 +141,7 @@ const AddCategory = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="videoUrl" className="form-label">
+          <label htmlFor="videoUrl" className="col-sm-2 col-form-label">
             Video URL
           </label>
           <input

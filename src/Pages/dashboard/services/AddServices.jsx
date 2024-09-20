@@ -61,7 +61,6 @@ const AddServices = () => {
       });
     }
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -75,17 +74,29 @@ const AddServices = () => {
     formDataToSend.append("shortDescription", formData.shortDescription);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
-    formDataToSend.append("metaTitle", formData.meta[0].metaTitle);
-    formDataToSend.append("metaDescription", formData.meta[0].metaDescription);
-    formDataToSend.append("metaAuthor", formData.meta[0].metaAuthor);
-    formDataToSend.append(
-      "metaKeywords",
-      formData.meta[0].metaKeywords.split(",").map((keyword) => keyword.trim())
-    );
-    formDataToSend.append(
-      "metaTags",
-      formData.metaTags.split(",").map((tag) => tag.trim())
-    );
+
+    const meta = formData.meta[0];
+    const metaArray = [
+      {
+        metaTitle: meta.metaTitle,
+        metaDescription: meta.metaDescription,
+        metaAuthor: meta.metaAuthor,
+        metaKeywords: meta.metaKeywords
+          .split(",")
+          .map((keyword) => keyword.trim()),
+      },
+    ];
+
+    metaArray.forEach((meta, index) => {
+      Object.keys(meta).forEach((key) => {
+        formDataToSend.append(`meta[${index}][${key}]`, meta[key]);
+      });
+    });
+
+    const tags = formData.metaTags.split(",").map((tag) => tag.trim());
+    tags.forEach((tag) => {
+      formDataToSend.append("metaTags", tag);
+    });
 
     try {
       const result = await AddServiceApi(formDataToSend);
@@ -115,7 +126,7 @@ const AddServices = () => {
         setFiles([]);
       }
     } catch (error) {
-      toast.error("Failed to add service", error);
+      toast.error("Failed to add service");
     }
   };
 
@@ -177,7 +188,9 @@ const AddServices = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label htmlFor="serviceUrl" className="form-label">Service URL</label>
+          <label htmlFor="serviceUrl" className="form-label">
+            Service URL
+          </label>
           <input
             type="text"
             className="form-control"
@@ -190,7 +203,9 @@ const AddServices = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="serviceTitle" className="form-label">Service Title</label>
+          <label htmlFor="serviceTitle" className="form-label">
+            Service Title
+          </label>
           <input
             type="text"
             className="form-control"
@@ -202,7 +217,9 @@ const AddServices = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">Name</label>
+          <label htmlFor="name" className="form-label">
+            Name
+          </label>
           <input
             type="text"
             className="form-control"
@@ -215,7 +232,9 @@ const AddServices = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="shortDescription" className="form-label">Short Description</label>
+          <label htmlFor="shortDescription" className="form-label">
+            Short Description
+          </label>
           <input
             type="text"
             className="form-control"
@@ -227,7 +246,9 @@ const AddServices = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="fileUpload" className="form-label">Upload File</label>
+          <label htmlFor="fileUpload" className="form-label">
+            Upload File
+          </label>
           <input
             type="file"
             className="form-control"
@@ -238,7 +259,9 @@ const AddServices = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="description" className="form-label">Description</label>
+          <label htmlFor="description" className="form-label">
+            Description
+          </label>
           <input
             type="text"
             className="form-control"
@@ -250,7 +273,9 @@ const AddServices = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="meta.metaTitle" className="form-label">Meta Title</label>
+          <label htmlFor="meta.metaTitle" className="form-label">
+            Meta Title
+          </label>
           <input
             type="text"
             className="form-control"
@@ -262,7 +287,9 @@ const AddServices = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="meta.metaDescription" className="form-label">Meta Description</label>
+          <label htmlFor="meta.metaDescription" className="form-label">
+            Meta Description
+          </label>
           <input
             type="text"
             className="form-control"
@@ -274,7 +301,9 @@ const AddServices = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="meta.metaAuthor" className="form-label">Meta Author</label>
+          <label htmlFor="meta.metaAuthor" className="form-label">
+            Meta Author
+          </label>
           <input
             type="text"
             className="form-control"
@@ -286,7 +315,9 @@ const AddServices = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="meta.metaKeywords" className="form-label">Meta Keywords (comma separated)</label>
+          <label htmlFor="meta.metaKeywords" className="form-label">
+            Meta Keywords (comma separated)
+          </label>
           <input
             type="text"
             className="form-control"
@@ -298,7 +329,9 @@ const AddServices = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="metaTags" className="form-label">Meta Tags (comma separated)</label>
+          <label htmlFor="metaTags" className="form-label">
+            Meta Tags (comma separated)
+          </label>
           <input
             type="text"
             className="form-control"
@@ -321,7 +354,6 @@ const AddServices = () => {
           />
         </div>
 
-       
         <div className="mb-3">
           <button
             style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
@@ -342,7 +374,6 @@ const AddServices = () => {
             Submit
           </button>
         </div>
-
       </form>
 
       <Modal show={showSourceModal} onHide={() => setShowSourceModal(false)}>

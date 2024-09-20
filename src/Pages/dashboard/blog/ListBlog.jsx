@@ -141,7 +141,6 @@ function ListBlogs() {
                 <th style={{ padding: "25px" }}>#</th>
                 <th style={{ padding: "25px" }}>TITLE</th>
                 <th style={{ padding: "25px" }}>DESCRIPTION</th>
-                <th style={{ padding: "25px" }}>CONTENT</th>
                 <th style={{ padding: "25px" }}>STATUS</th>
 
                 <th style={{ padding: "25px" }}>ACTIONS</th>
@@ -153,7 +152,6 @@ function ListBlogs() {
                   <td>{index + 1 + indexOfFirstBlog}</td>
                   <td>{blog.title}</td>
                   <td>{blog.description}</td>
-                  <td>{blog.content}</td>
 
                   <td>
                     <button

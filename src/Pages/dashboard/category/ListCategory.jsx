@@ -148,7 +148,6 @@ function ListCategories() {
               <th style={{ padding: "25px" }}>#</th>
               <th style={{ padding: "25px" }}>CATEGORYNAME</th>
               <th style={{ padding: "25px" }}>VIDEOURL</th>
-              <th style={{ padding: "25px" }}>CONTENT</th>
 
               <th style={{ padding: "25px" }}>STATUS</th>
               <th style={{ padding: "25px" }}>ACTIONS</th>
@@ -161,7 +160,6 @@ function ListCategories() {
                 <td>{index + 1 + indexOfFirstItem}</td>
                 <td>{category.categoryName}</td>
                 <td>{category.videoUrl}</td>
-                <td>{category.content}</td>
                 <td>
                     <button
                       onClick={() => handleStatusChange(category._id)}

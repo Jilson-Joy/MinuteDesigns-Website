@@ -140,46 +140,43 @@ const EditCategory = () => {
   }
 
   return (
-    <div className="container">
+    <div className="container mt-4">
       <h1 className="mt-4">Edit Category</h1>
-
       <form onSubmit={handleSubmit}>
-        <div className="row mb-3">
-          <label htmlFor="categoryName" className="col-sm-2 col-form-label">
+        <div className="mb-3">
+          <label htmlFor="categoryName" className="form-label">
             Category Name
           </label>
-          <div className="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="categoryName"
-              name="categoryName"
-              value={formData.categoryName}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <input
+            type="text"
+            className="form-control"
+            id="categoryName"
+            name="categoryName"
+            value={formData.categoryName}
+            onChange={handleChange}
+            required
+          />
         </div>
 
-        <div className="row mb-3">
+        <div className="mb-3">
           <label htmlFor="videoUrl" className="col-sm-2 col-form-label">
             Video URL
           </label>
-          <div className="col-sm-10">
-            <input
-              type="text"
-              className="form-control"
-              id="videoUrl"
-              name="videoUrl"
-              value={formData.videoUrl}
-              onChange={handleChange}
-              placeholder="https://example.com/video"
-            />
-          </div>
+          <input
+            type="url"
+            className="form-control"
+            id="videoUrl"
+            name="videoUrl"
+            value={formData.videoUrl}
+            onChange={handleChange}
+            placeholder="https://example.com/video"
+          />
         </div>
 
-        <div className="form-group mb-4">
-          <label htmlFor="fileUpload">Upload File</label>
+        <div className="mb-3">
+          <label htmlFor="fileUpload" className="form-label">
+            Upload File
+          </label>
           <input
             type="file"
             className="form-control"
@@ -189,47 +186,37 @@ const EditCategory = () => {
           />
         </div>
 
-        <div className="row mb-3">
-          <label htmlFor="content" className="col-sm-2 col-form-label">
-            Content
-          </label>
-          <div className="col-sm-10">
-            <div className="quill-container" style={{ position: "relative" }}>
-              <ReactQuill
-                style={{ marginLeft: "40px", width: "100%", height: "300px" }}
-                value={formData.content}
-                onChange={handleContentChange}
-                modules={modules}
-                formats={formats}
-                placeholder="Write your content here..."
-              />
-            </div>
-          </div>
+        <div className="mb-3">
+          <label className="form-label">Content</label>
+          <ReactQuill
+            value={formData.content}
+            onChange={handleContentChange}
+            modules={modules}
+            formats={formats}
+            placeholder="Write your content here..."
+            style={{ height: "300px" }}
+          />
         </div>
 
-        <div className="row mb-3">
-          <div className="col-sm-8 offset-sm-2">
-            <button
-              style={{ width: "150px", marginLeft: "200%", marginTop: "-80px" }}
-              type="button"
-              className="btn btn-secondary mt-2"
-              onClick={handleSourceCode}
-            >
-              Source Code
-            </button>
-          </div>
+        <div className="mb-3">
+          <button
+            style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleSourceCode}
+          >
+            Code
+          </button>
         </div>
 
-        <div className="row mb-3">
-          <div className="col-sm-10 offset-sm-2">
-            <button
-              type="submit"
-              style={{ marginLeft: "-20%" }}
-              className="btn btn-primary"
-            >
-              Update
-            </button>
-          </div>
+        <div className="mb-3">
+          <button
+            style={{ marginLeft: "-28%" }}
+            type="submit"
+            className="btn btn-primary"
+          >
+            Submit
+          </button>
         </div>
       </form>
 

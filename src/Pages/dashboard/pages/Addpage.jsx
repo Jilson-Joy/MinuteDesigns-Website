@@ -22,14 +22,12 @@ const AddPage = () => {
     shortDescription: "",
     description: "",
     content: "",
-    meta: [
-      {
-        metaTitle: "",
-        metaDescription: "",
-        metaAuthor: "",
-        metaKeywords: "",
-      },
-    ],
+    meta: {
+      metaTitle: "",
+      metaDescription: "",
+      metaAuthor: "",
+      metaKeywords: "",
+    },
     metaTags: "",
   });
 
@@ -91,12 +89,10 @@ const AddPage = () => {
       const metaField = name.split(".")[1];
       setFormData((prevData) => ({
         ...prevData,
-        meta: [
-          {
-            ...prevData.meta[0],
-            [metaField]: value,
-          },
-        ],
+        meta: {
+          ...prevData.meta,
+          [metaField]: value,
+        },
       }));
     } else {
       setFormData({
@@ -115,62 +111,62 @@ const AddPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formDataToSend = new FormData();
 
     files.forEach((file) => {
-      formDataToSend.append("files", file);
+        formDataToSend.append("files", file);
     });
+
     formDataToSend.append("pageUrl", formData.pageUrl);
     formDataToSend.append("pageTitle", formData.pageTitle);
     formDataToSend.append("name", formData.name);
     formDataToSend.append("shortDescription", formData.shortDescription);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
-    formDataToSend.append("metaTitle", formData.meta[0].metaTitle);
-    formDataToSend.append("metaDescription", formData.meta[0].metaDescription);
-    formDataToSend.append("metaAuthor", formData.meta[0].metaAuthor);
-    formDataToSend.append(
-      "metaKeywords",
-      formData.meta[0].metaKeywords.split(",").map((keyword) => keyword.trim())
-    );
-    formDataToSend.append(
-      "metaTags",
-      formData.metaTags.split(",").map((tag) => tag.trim())
-    );
+
+    const metaArray = [
+        {
+            metaTitle: formData.meta.metaTitle,
+            metaDescription: formData.meta.metaDescription,
+            metaAuthor: formData.meta.metaAuthor,
+            metaKeywords: formData.meta.metaKeywords.split(",").map((keyword) => keyword.trim()),
+        },
+    ];
+
+    metaArray.forEach((meta, index) => {
+        Object.keys(meta).forEach((key) => {
+            formDataToSend.append(`meta[${index}][${key}]`, meta[key]);
+        });
+    });
+
+    const tags = formData.metaTags.split(",").map((tag) => tag.trim());
+    tags.forEach((tag, index) => {
+        formDataToSend.append(`metaTags`, tag); 
+    });
 
     try {
-      const result = await AddPageApi(formDataToSend);
-
-      if (result.success === false) {
-        toast.error(result.message || "Failed to add page");
-      } else {
-        toast.success("Page added successfully!");
-        navigate("/mainDashboard/listPage");
-
-        setFormData({
-          pageUrl: "",
-          pageTitle: "",
-          name: "",
-          shortDescription: "",
-          description: "",
-          content: "",
-          meta: [
-            {
-              metaTitle: "",
-              metaDescription: "",
-              metaAuthor: "",
-              metaKeywords: "",
-            },
-          ],
-          metaTags: "",
-        });
-        setFiles([]);
-      }
+        const result = await AddPageApi(formDataToSend);
+        if (result.success === false) {
+            toast.error(result.message || "Failed to add page");
+        } else {
+            toast.success("Page added successfully!");
+            navigate("/mainDashboard/listPage");
+            setFormData({
+                pageUrl: "",
+                pageTitle: "",
+                name: "",
+                shortDescription: "",
+                description: "",
+                content: "",
+                meta: { metaTitle: "", metaDescription: "", metaAuthor: "", metaKeywords: "" },
+                metaTags: "",
+            });
+            setFiles([]);
+        }
     } catch (error) {
-      toast.error("Failed to add page", error);
+        toast.error("Failed to add page", error);
     }
-  };
+};
 
   return (
     <div className="container mt-4">
@@ -271,7 +267,7 @@ const AddPage = () => {
             className="form-control"
             id="meta.metaTitle"
             name="meta.metaTitle"
-            value={formData.meta[0].metaTitle}
+            value={formData.meta.metaTitle}
             onChange={handleChange}
           />
         </div>
@@ -285,7 +281,7 @@ const AddPage = () => {
             className="form-control"
             id="meta.metaDescription"
             name="meta.metaDescription"
-            value={formData.meta[0].metaDescription}
+            value={formData.meta.metaDescription}
             onChange={handleChange}
           />
         </div>
@@ -299,7 +295,7 @@ const AddPage = () => {
             className="form-control"
             id="meta.metaAuthor"
             name="meta.metaAuthor"
-            value={formData.meta[0].metaAuthor}
+            value={formData.meta.metaAuthor}
             onChange={handleChange}
           />
         </div>
@@ -313,7 +309,7 @@ const AddPage = () => {
             className="form-control"
             id="meta.metaKeywords"
             name="meta.metaKeywords"
-            value={formData.meta[0].metaKeywords}
+            value={formData.meta.metaKeywords}
             onChange={handleChange}
           />
         </div>
