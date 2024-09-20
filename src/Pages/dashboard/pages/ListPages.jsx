@@ -14,9 +14,6 @@ function ListPages() {
   const [loading, setLoading] = useState(true);
   const [selectedPage, setSelectedPage] = useState(null);
   const [showModal, setShowModal] = useState(false);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pagesPerPage] = useState(5);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,12 +30,6 @@ function ListPages() {
 
     fetchPages();
   }, []);
-
-  const indexOfLastPage = currentPage * pagesPerPage;
-  const indexOfFirstPage = indexOfLastPage - pagesPerPage;
-  const currentPages = pages.slice(indexOfFirstPage, indexOfLastPage);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleEdit = (pageId) => {
     navigate(`/mainDashboard/edit-page/${pageId}`);
@@ -104,105 +95,84 @@ function ListPages() {
     return <div>Loading...</div>;
   }
 
-  // Pagination logic
-  const totalPages = Math.ceil(pages.length / pagesPerPage);
-  const pageNumbers = [...Array(totalPages).keys()].map(num => num + 1);
-
   return (
-    <div className="container">
-      <h1 className="mt-4">List of Pages</h1>
-      <div style={{ textAlign: "right" }}>
+    <div className="container mt-5">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1 className="text-primary">List of Pages</h1>
         <button
           onClick={() => navigate("/mainDashboard/addPage")}
-          className="btn btn-success mb-3"
+          className="btn btn-success"
         >
           Add Page
         </button>
       </div>
+
       {pages.length === 0 ? (
-        <p>No pages available.</p>
+        <p className="text-muted">No pages available.</p>
       ) : (
-        <>
-          <table className="table table-striped">
-            <thead>
+        <div className="table-responsive">
+          <table className="table table-bordered table-hover">
+            <thead className="table-dark">
               <tr>
-                <th scope="col">Sl No.</th>
-                <th scope="col">Code</th>
-                <th scope="col">Name</th>
-                <th scope="col">Title</th>
-                <th scope="col">Page URL</th>
-                <th scope="col">Description</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
-                <th scope="col">Status</th>
-                <th scope="col">View</th>
+                <th style={{ padding: "30px" }}>#</th>
+                <th style={{ padding: "30px" }}>CODE</th>
+                <th style={{ padding: "30px" }}>NAME</th>
+                <th style={{ padding: "30px" }}>TITLE</th>
+                <th style={{ padding: "30px" }}>PAGEURL</th>
+                <th style={{ padding: "30px" }}>DESCRIPTION</th>
+                <th style={{ padding: "30pxx" }}>STATUS</th>
+
+                <th style={{ padding: "30px" }}>ACTIONS</th>
               </tr>
             </thead>
             <tbody>
-              {currentPages.map((page, index) => (
+              {pages.map((page, index) => (
                 <tr key={page._id}>
-                  <td>{indexOfFirstPage + index + 1}</td>
+                  <td>{index + 1}</td>
                   <td>{page.pageCode}</td>
                   <td>{page.name}</td>
                   <td>{page.pageTitle}</td>
                   <td>{page.pageUrl}</td>
                   <td>{page.shortDescription}</td>
-
-                  <td>
-                    <button
-                      onClick={() => handleEdit(page._id)}
-                      className="btn btn-primary"
-                    >
-                      Edit
-                    </button>
-                  </td>
-                  <td>
-                    <button
-                      onClick={() => handleDelete(page._id)}
-                      className="btn btn-danger"
-                    >
-                      Delete
-                    </button>
-                  </td>
                   <td>
                     <button
                       onClick={() => handleStatusChange(page._id)}
-                      className="btn btn-warning"
+                      className={`btn btn-sm ${
+                        page.status ? "btn-warning" : "btn-secondary"
+                      }`}
                     >
-                      {page.status ? "Active" : "Deactive"}
+                      {page.status ? "Active" : "Inactive"}
                     </button>
                   </td>
                   <td>
-                    <button
-                      onClick={() => handleView(page)}
-                      className="btn btn-info"
-                    >
-                      View
-                    </button>
-                  </td>
+  <div className="d-flex gap-2">
+    <button
+      onClick={() => handleEdit(page._id)}
+      className="btn btn-primary btn-sm"
+    >
+      Edit
+    </button>
+    <button
+      onClick={() => handleDelete(page._id)}
+      className="btn btn-danger btn-sm"
+    >
+      Delete
+    </button>
+    <button
+      onClick={() => handleView(page)}
+      className="btn btn-info btn-sm"
+    >
+      View
+    </button>
+  </div>
+</td>
+
+
                 </tr>
               ))}
             </tbody>
           </table>
-
-          {/* Pagination controls */}
-          <nav>
-            <ul className="pagination">
-              {pageNumbers.map((number) => (
-                <li key={number} className="page-item">
-                  <button
-                    onClick={() => paginate(number)}
-                    className={`page-link ${
-                      currentPage === number ? "active" : ""
-                    }`}
-                  >
-                    {number}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </>
+        </div>
       )}
 
       {showModal && selectedPage && (
@@ -222,14 +192,61 @@ function ListPages() {
                 ></button>
               </div>
               <div className="modal-body">
-                {/* Details of selected page */}
-                <div className="row mb-3">
-                  <label className="col-sm-3">Page URL</label>
-                  <div className="col-sm-9">
-                    <p>{selectedPage.pageUrl}</p>
-                  </div>
+                <div className="mb-3">
+                  <strong>Page URL: </strong> {selectedPage.pageUrl}
                 </div>
-                {/* Add other details as before */}
+                <div className="mb-3">
+                  <strong>Title: </strong> {selectedPage.pageTitle}
+                </div>
+                <div className="mb-">
+                  <strong>Name: </strong> {selectedPage.name}
+                </div>
+                <div className="mb-3">
+                  <strong>Short Description: </strong>{" "}
+                  {selectedPage.shortDescription}
+                </div>
+                <div className="mb-3">
+                  <strong>Description: </strong> {selectedPage.description}
+                </div>
+                <div className="mb-3">
+                  <strong>Content: </strong>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: selectedPage.content }}
+                  />
+                </div>
+                <div className="mb-3">
+                  <strong>Meta Information: </strong>
+                  <ul>
+                    <li>
+                      <strong>Meta Title: </strong>{" "}
+                      {selectedPage.meta?.[0]?.metaTitle}
+                    </li>
+                    <li>
+                      <strong>Meta Description: </strong>{" "}
+                      {selectedPage.meta?.[0]?.metaDescription}
+                    </li>
+                    <li>
+                      <strong>Meta Author: </strong>{" "}
+                      {selectedPage.meta?.[0]?.metaAuthor}
+                    </li>
+                    <li>
+                      <strong>Meta Keywords: </strong>{" "}
+                      {selectedPage.meta?.[0]?.metaKeywords?.join(", ")}
+                    </li>
+                  </ul>
+                </div>
+                <div className="mb-3">
+                  <strong>Status: </strong>{" "}
+                  {selectedPage.status ? "Active" : "Inactive"}
+                </div>
+                <div className="mb-3">
+                  <strong>Created At: </strong>{" "}
+                  {new Date(selectedPage.createdAt).toLocaleString()}
+                </div>
+                <div className="mb-3">
+                  <strong>Updated At: </strong>{" "}
+                  {new Date(selectedPage.updatedAt).toLocaleString()}
+                </div>
               </div>
               <div className="modal-footer">
                 <button
