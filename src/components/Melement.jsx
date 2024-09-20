@@ -5,9 +5,37 @@ import CircleGrid from '../components/CircleGrid';
 
 function Melement() {
   return (
- <div className="container">
+// style
+<div>
+<style>
+{`
+  .container-M {
+    width: 80%;
+    height: 45vh;
+    position: relative;
+  }
+
+
+  @media (max-width: 768px) {
+    .container-M {
+      width: 80%;
+      height: 25vh;
+    }
+  }
+
+
+  @media (min-width: 1200px) {
+    .container-M {
+      width: 100%;
+      height: 45vh;
+    }
+  }
+`}
+</style>
+
+
+ <div className="container-M">
     {/* <CircleGrid/> */}
-     <div className="container" style={{ width: '100%', height: '45vh', position: 'relative' }}>
       <CircleCanvas
         circleColor="black"
       />
