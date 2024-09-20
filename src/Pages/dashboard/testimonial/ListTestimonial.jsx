@@ -9,6 +9,9 @@ function ListTestimonials() {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedTestimonial, setSelectedTestimonial] = useState(null); 
+  const [searchTerm, setSearchTerm] = useState(""); 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
@@ -18,6 +21,7 @@ function ListTestimonials() {
       setTestimonials(result.testimonials);
     } catch (error) {
       console.error('Error fetching testimonials:', error);
+      toast.error('Failed to fetch testimonials.'); // User feedback on error
     } finally {
       setLoading(false);
     }
@@ -33,12 +37,11 @@ function ListTestimonials() {
 
   const handleStatusChange = async (testimonialId) => {
     const testimonialToUpdate = testimonials.find(testimonial => testimonial._id === testimonialId);
-  
     if (!testimonialToUpdate) {
       console.error('Testimonial not found');
       return;
     }
-  
+
     const newStatus = !testimonialToUpdate.status;
     const action = newStatus ? 'activate' : 'deactivate';
     const confirmed = window.confirm(`Are you sure you want to ${action} this testimonial? This action cannot be undone.`);
@@ -46,15 +49,14 @@ function ListTestimonials() {
     if (confirmed) {
       try {
         await UpdateTestimonialStatus(testimonialId, newStatus);
-  
         const updatedTestimonials = testimonials.map(testimonial => 
           testimonial._id === testimonialId ? { ...testimonial, status: newStatus } : testimonial
         );
         setTestimonials(updatedTestimonials); 
         toast.success(`Testimonial ${action}d successfully!`);
-  
       } catch (error) {
         console.error('Error updating testimonial status:', error);
+        toast.error('Failed to update testimonial status.');
       }
     }
   };
@@ -68,6 +70,7 @@ function ListTestimonials() {
         toast.success('Testimonial deleted successfully!');
       } catch (error) {
         console.error('Error deleting testimonial:', error);
+        toast.error('Failed to delete testimonial.');
       }
     }
   };
@@ -82,117 +85,164 @@ function ListTestimonials() {
     setSelectedTestimonial(null); 
   };
 
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value); 
+    setCurrentPage(1); 
+  };
+
+  const filteredTestimonials = testimonials.filter((testimonial) => {
+    return (
+      (testimonial.name && testimonial.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (testimonial.description && testimonial.description.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+  });
+  
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentTestimonials = filteredTestimonials.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredTestimonials.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   if (loading) {
     return <div>Loading...</div>; 
   }
 
   return (
-    <div className="container">
-      <h1 className="mt-4">List of Testimonials</h1>
-      <div style={{ textAlign: 'right' }}>
-        <button
-          onClick={() => navigate('/mainDashboard/addTestimonial')} 
-          className="btn btn-success mb-3"
-        >
-          Add Testimonial
-        </button>
+    <div className="container mt-5">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1 className="text-primary">List of Testimonials</h1>
+        <div style={{ textAlign: 'right' }}>
+          <button
+            onClick={() => navigate('/mainDashboard/addTestimonial')} 
+            className="btn btn-success"
+          >
+            Add Testimonial
+          </button>
+        </div>
       </div>
-      {testimonials.length === 0 ? (
-        <p>No testimonials available.</p> 
+      <div className="mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search by name or description"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </div>
+      {filteredTestimonials.length === 0 ? (
+        <p className="text-muted">No testimonials available.</p> 
       ) : (
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Sl No.</th>
-              <th scope="col">Title</th>
-              <th scope="col">Description</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-              <th scope="col">Status</th>
-              <th scope="col">View</th> 
-            </tr>
-          </thead>
-          <tbody>
-            {testimonials.map((testimonial, index) => (
-              <tr key={testimonial._id}>
-                <td>{index + 1}</td> 
-                <td>{testimonial.title}</td> 
-                <td>{testimonial.description}</td>
-                <td>
-                  <button 
-                    onClick={() => handleEdit(testimonial._id)}
-                    className="btn btn-primary"
-                  >
-                    Edit
-                  </button>
-                </td>
-                <td>
-                  <button 
-                    onClick={() => handleDelete(testimonial._id)}
-                    className="btn btn-danger"
-                  >
-                    Delete
-                  </button>
-                </td>
-                <td>
-                  <button 
-                    onClick={() => handleStatusChange(testimonial._id)}
-                    className="btn btn-warning"
-                  >
-                    {testimonial.status ? 'Active' : 'Deactive'}
-                  </button>
-                </td>
-                <td>
-                  <button 
-                    onClick={() => handleView(testimonial)} 
-                    className="btn btn-info"
-                  >
-                    View
-                  </button>
-                </td>
+        <div className="table-responsive">
+          <table className="table table-bordered table-hover">
+            <thead className="table-dark">
+              <tr>
+                <th style={{ padding: "34px" }}>#</th>
+                <th style={{ padding: "34px" }}>TITLE</th>
+                <th style={{ padding: "34px" }}>DESCRIPTION</th>
+                <th style={{ padding: "34px" }}>STATUS</th>
+                <th style={{ padding: "34px" }}>ACTIONS</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {currentTestimonials.map((testimonial, index) => (
+                <tr key={testimonial._id}>
+                  <td>{index + 1 + indexOfFirstItem}</td> 
+                  <td>{testimonial.title}</td> 
+                  <td>{testimonial.description}</td>
+                  <td>
+                    <button
+                      onClick={() => handleStatusChange(testimonial._id)}
+                      className={`btn btn-sm ${testimonial.status ? "btn-warning" : "btn-secondary"}`}
+                    >
+                      {testimonial.status ? "Active" : "Inactive"}
+                    </button>
+                  </td>
+                  <td>
+                    <div className="d-flex gap-2">
+                      <button
+                        onClick={() => handleEdit(testimonial._id)}
+                        className="btn btn-primary btn-sm"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(testimonial._id)}
+                        className="btn btn-danger btn-sm"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        onClick={() => handleView(testimonial)}
+                        className="btn btn-info btn-sm"
+                      >
+                        View
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
-      {selectedTestimonial && (
-        <div className={`modal ${showModal ? 'show' : ''}`} tabIndex="-1" style={{ display: showModal ? 'block' : 'none' }}>
+      <nav>
+        <ul className="pagination justify-content-center">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <li key={index + 1} className="page-item">
+              <button
+                className={`page-link ${currentPage === index + 1 ? 'active' : ''}`}
+                onClick={() => paginate(index + 1)}
+              >
+                {index + 1}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {showModal && selectedTestimonial && (
+        <div
+          className={`modal ${showModal ? "show" : ""}`}
+          tabIndex="-1"
+          style={{ display: showModal ? "block" : "none" }}
+        >
           <div className="modal-dialog modal-lg">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Testimonial Details</h5>
+                <h5 className="modal-title">Page Details</h5>
                 <button type="button" className="btn-close" onClick={handleCloseModal}></button>
               </div>
               <div className="modal-body">
-                <div className="row mb-3">
-                  <label className="col-sm-3">Title</label>
+                <div className="mb-3">
+                  <strong className="col-sm-3">Title:</strong>
                   <div className="col-sm-9">
-                    <p>{selectedTestimonial.title}</p>
+                    <strong>{selectedTestimonial.title}</strong>
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label className="col-sm-3">Description</label>
+                  <strong className="col-sm-3">Description:</strong>
                   <div className="col-sm-9">
-                    <p>{selectedTestimonial.description}</p>
+                    <div>{selectedTestimonial.description}</div>
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label className="col-sm-3">Content</label>
+                  <strong className="col-sm-3">Content:</strong>
                   <div className="col-sm-9">
                     <div dangerouslySetInnerHTML={{ __html: selectedTestimonial.content }} />
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label className="col-sm-3">Created At</label>
+                  <strong className="col-sm-3">Created At:</strong>
                   <div className="col-sm-9">
-                    <p>{new Date(selectedTestimonial.createdAt).toLocaleString()}</p>
+                    <div>{new Date(selectedTestimonial.createdAt).toLocaleString()}</div>
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label className="col-sm-3">Updated At</label>
+                  <strong className="col-sm-3">Updated At:</strong>
                   <div className="col-sm-9">
-                    <p>{new Date(selectedTestimonial.updatedAt).toLocaleString()}</p>
+                    <div>{new Date(selectedTestimonial.updatedAt).toLocaleString()}</div>
                   </div>
                 </div>
               </div>
@@ -203,8 +253,6 @@ function ListTestimonials() {
           </div>
         </div>
       )}
-
-      {showModal && <div className="modal-backdrop fade show" onClick={handleCloseModal}></div>}
       
       <ToastContainer />
     </div>

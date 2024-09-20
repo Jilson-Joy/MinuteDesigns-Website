@@ -116,47 +116,37 @@ const AddTestimonial = () => {
   ];
 
   return (
-    <div className="container">
-      <h1 className="mt-4">Add Testimonial</h1>
+    <div className="container mt-4">
+      <h1>Add Testimonial</h1>
 
       <form onSubmit={handleSubmit}>
-        <div className="row mb-3">
-          <label htmlFor="title" className="col-sm-2 col-form-label">
-            Title
-          </label>
-          <div className="col-sm-10">
-            <input
-              style={{ marginLeft: "40px" }}
-              type="text"
-              className="form-control"
-              id="title"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              required
-            />
-          </div>
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label">Title</label>
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
         </div>
 
-        <div className="row mb-3">
-          <label htmlFor="description" className="col-sm-2 col-form-label">
-            Description
-          </label>
-          <div className="col-sm-10">
-            <input
-              style={{ marginLeft: "40px" }}
-              type="text"
-              className="form-control"
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </div>
+        <div className="mb-3">
+          <label htmlFor="description" className="form-label">Description</label>
+          <input
+            type="text"
+            className="form-control"
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
         </div>
 
-        <div className="form-group mb-4">
-          <label htmlFor="fileUpload">Upload File</label>
+        <div className="mb-3">
+          <label htmlFor="fileUpload" className="form-label">Upload File</label>
           <input
             type="file"
             className="form-control"
@@ -166,45 +156,37 @@ const AddTestimonial = () => {
           />
         </div>
 
-        <div className="row mb-3">
-          <label htmlFor="content" className="col-sm-2 col-form-label">
-            Content
-          </label>
-          <div className="col-sm-10">
-            <div className="quill-container" style={{ position: "relative" }}>
-              <ReactQuill
-                style={{ marginLeft: "40px", width: "100%", height: "300px" }}
-                value={formData.content}
-                onChange={handleContentChange}
-                modules={modules}
-                formats={formats}
-                placeholder="Write your content here..."
-              />
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col-sm-8 offset-sm-2">
-              <button
-                style={{ width: "150px", marginLeft: "200%", marginTop: "-80px"}}
-                type="button"
-                className="btn btn-secondary mt-2"
-                onClick={handleSourceCode}
-              >
-                Source Code
-              </button>
-            </div>
-          </div>
+        <div className="mb-3">
+          <label className="form-label">Content</label>
+          <ReactQuill
+            value={formData.content}
+            onChange={handleContentChange}
+            modules={modules}
+            formats={formats}
+            placeholder="Write your content here..."
+            style={{ height: "300px" }}
+          />
         </div>
-        <div className="row mb-3">
-          <div className="col-sm-8 offset-sm-2">
-            <button
-              type="submit"
-              style={{ marginLeft: "-20%" }}
-              className="btn btn-primary"
-            >
-              Submit
-            </button>
-          </div>
+
+        <div className="mb-3">
+          <button
+            style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleSourceCode}
+          >
+            Code
+          </button>
+        </div>
+
+        <div className="mb-3">
+          <button
+            style={{ marginLeft: "-28%" }}
+            type="submit"
+            className="btn btn-primary"
+          >
+            Submit
+          </button>
         </div>
       </form>
 

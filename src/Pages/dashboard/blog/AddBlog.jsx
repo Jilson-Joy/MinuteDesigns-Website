@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { AddBlogApi } from "../../../api/blog"; 
+import { AddBlogApi } from "../../../api/blog";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
@@ -15,7 +15,7 @@ const AddBlog = () => {
     title: "",
     description: "",
     content: "",
-    comments: [""] 
+    comments: [""],
   });
 
   const [files, setFiles] = useState([]);
@@ -55,7 +55,7 @@ const AddBlog = () => {
   const handleAddComment = () => {
     setFormData({
       ...formData,
-      comments: [...formData.comments, ""], 
+      comments: [...formData.comments, ""],
     });
   };
 
@@ -74,7 +74,6 @@ const AddBlog = () => {
     formDataToSend.append("title", formData.title);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
-    
     formDataToSend.append("comments", JSON.stringify(formData.comments));
 
     files.forEach((file) => {
@@ -89,7 +88,7 @@ const AddBlog = () => {
         title: "",
         description: "",
         content: "",
-        comments: [""], 
+        comments: [""],
       });
       setFiles([]);
     } catch (error) {
@@ -144,47 +143,43 @@ const AddBlog = () => {
   ];
 
   return (
-    <div className="container">
-      <h1 className="mt-4">Add Blog</h1> 
+    <div className="container mt-4">
+      <h1 className="mb-4">Add Blog</h1>
 
       <form onSubmit={handleSubmit}>
-        <div className="row mb-3">
-          <label htmlFor="title" className="col-sm-2 col-form-label">
+        <div className="mb-3">
+          <label htmlFor="title" className="form-label">
             Title
           </label>
-          <div className="col-sm-10">
-            <input
-              style={{ marginLeft: "40px" }}
-              type="text"
-              className="form-control"
-              id="title"
-              name="title"
-              value={formData.title}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <input
+            type="text"
+            className="form-control"
+            id="title"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
         </div>
 
-        <div className="row mb-3">
-          <label htmlFor="description" className="col-sm-2 col-form-label">
+        <div className="mb-3">
+          <label htmlFor="description" className="form-label">
             Description
           </label>
-          <div className="col-sm-10">
-            <input
-              style={{ marginLeft: "40px" }}
-              type="text"
-              className="form-control"
-              id="description"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </div>
+          <input
+            type="text"
+            className="form-control"
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
         </div>
 
-        <div className="form-group mb-4">
-          <label htmlFor="fileUpload">Upload File</label>
+        <div className="mb-3">
+          <label htmlFor="fileUpload" className="form-label">
+            Upload File
+          </label>
           <input
             type="file"
             className="form-control"
@@ -194,81 +189,66 @@ const AddBlog = () => {
           />
         </div>
 
-        <div className="row mb-3">
-          <label htmlFor="comments" className="col-sm-2 col-form-label">
-            Comments
-          </label>
-          <div className="col-sm-10">
-            {formData.comments.map((comment, index) => (
-              <div key={index} className="input-group mb-2">
-                <input               style={{ marginLeft: "40px" }}
-
-                  type="text"
-                  className="form-control"
-                  placeholder={`Comment ${index + 1}`}
-                  value={comment}   
-                  onChange={(e) => handleCommentChange(index, e.target.value)}
-                />
-                <button               
-
-                  type="button" 
-                  className="btn btn-danger" 
-                  onClick={() => handleRemoveComment(index)}
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
-            <button  style={{ marginLeft: "40px" }}
-              type="button" 
-              className="btn btn-secondary mt-2" 
-              onClick={handleAddComment}
-            >
-              Add Comment
-            </button>
-          </div>
-        </div>
-
-        <div className="row mb-3">
-          <label htmlFor="content" className="col-sm-2 col-form-label">
-            Content
-          </label>
-          <div className="col-sm-10">
-            <div className="quill-container" style={{ position: "relative" }}>
-              <ReactQuill
-                style={{ marginLeft: "40px", width: "100%", height: "300px" }}
-                value={formData.content}
-                onChange={handleContentChange}
-                modules={modules}
-                formats={formats}
-                placeholder="Write your content here..."
+        <div className="mb-3">
+          <label className="form-label">Comments</label>
+          {formData.comments.map((comment, index) => (
+            <div key={index} className="input-group mb-2">
+              <input
+                type="text"
+                className="form-control"
+                placeholder={`Comment ${index + 1}`}
+                value={comment}
+                onChange={(e) => handleCommentChange(index, e.target.value)}
               />
-            </div>
-          </div>
-          <div className="row mb-3">
-            <div className="col-sm-8 offset-sm-2">
               <button
-                style={{ width: "150px", marginLeft: "200%", marginTop: "-80px"}}
                 type="button"
-                className="btn btn-secondary mt-2"
-                onClick={handleSourceCode}
+                className="btn btn-danger"
+                onClick={() => handleRemoveComment(index)}
               >
-                Source Code
+                Remove
               </button>
             </div>
-          </div>
+          ))}
+          <button
+            type="button"
+            className="btn btn-secondary mt-2"
+            onClick={handleAddComment}
+          >
+            Add Comment
+          </button>
         </div>
 
-        <div className="row mb-3">
-          <div className="col-sm-8 offset-sm-2">
-            <button
-              type="submit"
-              style={{ marginLeft: "-20%" }}
-              className="btn btn-primary"
-            >
-              Submit
-            </button>
-          </div>
+        <div className="mb-3">
+          <label className="form-label">Content</label>
+          <ReactQuill
+            value={formData.content}
+            onChange={handleContentChange}
+            modules={modules}
+            formats={formats}
+            placeholder="Write your content here..."
+            style={{ height: "300px" }}
+          />
+        </div>
+
+        <div className="mb-3">
+          <button
+            style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleSourceCode}
+          >
+            Code
+          </button>
+        </div>
+
+        <div className="mb-3">
+          <button
+            style={{ marginLeft: "-28%" }}
+            type="submit"
+            className="btn btn-primary"
+          >
+            Submit
+          </button>
         </div>
       </form>
 
@@ -293,10 +273,7 @@ const AddBlog = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
-     
-      
-   </div>
+    </div>
   );
 };
 

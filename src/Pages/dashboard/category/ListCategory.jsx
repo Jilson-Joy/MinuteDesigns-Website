@@ -14,11 +14,14 @@ function ListCategories() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
   const navigate = useNavigate();
 
   const fetchCategories = async () => {
     try {
-      const result = await GetAllCategories(1, 10);
+      const result = await GetAllCategories(1, 100);
       setCategories(result.categories);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -54,7 +57,6 @@ function ListCategories() {
     if (confirmed) {
       try {
         await UpdateCategoryStatus(categoryId, newStatus);
-
         const updatedCategories = categories.map((category) =>
           category._id === categoryId
             ? { ...category, status: newStatus }
@@ -95,6 +97,22 @@ function ListCategories() {
     setSelectedCategory(null);
   };
 
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const filteredCategories = categories.filter((category) =>
+    category.categoryName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentCategories = filteredCategories.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(filteredCategories.length / itemsPerPage);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -110,66 +128,92 @@ function ListCategories() {
           Add Category
         </button>
       </div>
-      {categories.length === 0 ? (
+      <div className="mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search by category name"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </div>
+      {filteredCategories.length === 0 ? (
         <p>No categories available.</p>
       ) : (
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Sl No.</th>
-              <th scope="col">Category Name</th>
-              <th scope="col">Video Url</th>
-              <th scope="col">Status</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-              <th scope="col">View</th>
+        <div className="table-responsive">
+
+<table className="table table-bordered table-hover">
+<thead className="table-dark">
+<tr>
+              <th style={{ padding: "25px" }}>#</th>
+              <th style={{ padding: "25px" }}>CATEGORYNAME</th>
+              <th style={{ padding: "25px" }}>VIDEOURL</th>
+              <th style={{ padding: "25px" }}>CONTENT</th>
+
+              <th style={{ padding: "25px" }}>STATUS</th>
+              <th style={{ padding: "25px" }}>ACTIONS</th>
+  
             </tr>
           </thead>
           <tbody>
-            {categories.map((category, index) => (
+            {currentCategories.map((category, index) => (
               <tr key={category._id}>
-                <td>{index + 1}</td>
+                <td>{index + 1 + indexOfFirstItem}</td>
                 <td>{category.categoryName}</td>
                 <td>{category.videoUrl}</td>
+                <td>{category.content}</td>
                 <td>
-                  <button
-                    onClick={() => handleStatusChange(category._id)}
-                    className="btn btn-warning"
-                  >
-                    {category.status ? "Active" : "Inactive"}
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleEdit(category._id)}
-                    className="btn btn-primary"
-                  >
-                    Edit
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleDelete(category._id)}
-                    className="btn btn-danger"
-                  >
-                    Delete
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={() => handleView(category)}
-                    className="btn btn-info"
-                  >
-                    View
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                    <button
+                      onClick={() => handleStatusChange(category._id)}
+                      className={`btn btn-sm ${
+                        category.status ? "btn-warning" : "btn-secondary"
+                      }`}
+                    >
+                      {category.status ? "Active" : "Inactive"}
+                    </button>
+                  </td>
+                  <td>
+                    <div className="d-flex gap-2">
+                      <button
+                        onClick={() => handleEdit(category._id)}
+                        className="btn btn-primary btn-sm"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(category._id)}
+                        className="btn btn-danger btn-sm"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        onClick={() => handleView(category)}
+                        className="btn btn-info btn-sm"
+                      >
+                        View
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
-      {selectedCategory && (
+      <nav>
+        <ul className="pagination justify-content-center">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <li key={index + 1} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
+              <button className="page-link" onClick={() => paginate(index + 1)}>
+                {index + 1}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {showModal && selectedCategory && (
         <div
           className={`modal ${showModal ? "show" : ""}`}
           tabIndex="-1"
@@ -186,33 +230,35 @@ function ListCategories() {
                 ></button>
               </div>
               <div className="modal-body">
-                <div className="row mb-3">
-                  <label className="col-sm-3">Category Name</label>
+                <div className="mb-3">
+                  <strong>Category Name</strong>
                   <div className="col-sm-9">
                     <p>{selectedCategory.categoryName}</p>
                   </div>
                 </div>
 
                 <div className="row mb-3">
-                  <label className="col-sm-3">Video URL</label>
+                  <strong>Video URL</strong>
                   <div className="col-sm-9">
                     <p>{selectedCategory.videoUrl}</p>
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label className="col-sm-3">Created At</label>
+                  <strong>Content</strong>
                   <div className="col-sm-9">
-                    <p>
-                      {new Date(selectedCategory.createdAt).toLocaleString()}
-                    </p>
+                    <p>{selectedCategory.content}</p>
                   </div>
                 </div>
                 <div className="row mb-3">
-                  <label className="col-sm-3">Updated At</label>
+                  <strong>Created At</strong>
                   <div className="col-sm-9">
-                    <p>
-                      {new Date(selectedCategory.updatedAt).toLocaleString()}
-                    </p>
+                    <p>{new Date(selectedCategory.createdAt).toLocaleString()}</p>
+                  </div>
+                </div>
+                <div className="row mb-3">
+                  <strong>Updated At</strong>
+                  <div className="col-sm-9">
+                    <p>{new Date(selectedCategory.updatedAt).toLocaleString()}</p>
                   </div>
                 </div>
               </div>
@@ -231,10 +277,7 @@ function ListCategories() {
       )}
 
       {showModal && (
-        <div
-          className="modal-backdrop fade show"
-          onClick={handleCloseModal}
-        ></div>
+        <div className="modal-backdrop fade show" onClick={handleCloseModal}></div>
       )}
 
       <ToastContainer />

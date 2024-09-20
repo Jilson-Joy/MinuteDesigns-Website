@@ -14,6 +14,9 @@ function ListPages() {
   const [loading, setLoading] = useState(true);
   const [selectedPage, setSelectedPage] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(""); 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -91,6 +94,25 @@ function ListPages() {
     setSelectedPage(null);
   };
 
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value); 
+  };
+
+  const filteredPages = pages.filter((page) => {
+    return (
+      page.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      page.pageTitle.toLowerCase().includes(searchTerm.toLowerCase())||
+      page.shortDescription.toLowerCase().includes(searchTerm.toLowerCase())
+
+    );
+  });
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentPages = filteredPages.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -107,28 +129,38 @@ function ListPages() {
         </button>
       </div>
 
-      {pages.length === 0 ? (
+      <div className="mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Search by name or title or description"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </div>
+
+      {currentPages.length === 0 ? (
         <p className="text-muted">No pages available.</p>
       ) : (
         <div className="table-responsive">
           <table className="table table-bordered table-hover">
             <thead className="table-dark">
               <tr>
-                <th style={{ padding: "30px" }}>#</th>
-                <th style={{ padding: "30px" }}>CODE</th>
-                <th style={{ padding: "30px" }}>NAME</th>
-                <th style={{ padding: "30px" }}>TITLE</th>
-                <th style={{ padding: "30px" }}>PAGEURL</th>
-                <th style={{ padding: "30px" }}>DESCRIPTION</th>
-                <th style={{ padding: "30pxx" }}>STATUS</th>
+              <th style={{ padding: "25px" }}>#</th>
+                <th style={{ padding: "25px" }}>CODE</th>
+                <th style={{ padding: "25px" }}>NAME</th>
+                <th style={{ padding: "25px" }}>TITLE</th>
+                <th style={{ padding: "25px" }}>PAGEURL</th>
+                <th style={{ padding: "25px" }}>DESCRIPTION</th>
+                <th style={{ padding: "25px" }}>STATUS</th>
+                <th style={{ padding: "25px" }}>ACTIONS</th>
 
-                <th style={{ padding: "30px" }}>ACTIONS</th>
               </tr>
             </thead>
             <tbody>
-              {pages.map((page, index) => (
+              {currentPages.map((page, index) => (
                 <tr key={page._id}>
-                  <td>{index + 1}</td>
+                  <td>{indexOfFirstItem + index + 1}</td>
                   <td>{page.pageCode}</td>
                   <td>{page.name}</td>
                   <td>{page.pageTitle}</td>
@@ -145,35 +177,56 @@ function ListPages() {
                     </button>
                   </td>
                   <td>
-  <div className="d-flex gap-2">
-    <button
-      onClick={() => handleEdit(page._id)}
-      className="btn btn-primary btn-sm"
-    >
-      Edit
-    </button>
-    <button
-      onClick={() => handleDelete(page._id)}
-      className="btn btn-danger btn-sm"
-    >
-      Delete
-    </button>
-    <button
-      onClick={() => handleView(page)}
-      className="btn btn-info btn-sm"
-    >
-      View
-    </button>
-  </div>
-</td>
-
-
+                    <div className="d-flex gap-2">
+                      <button
+                        onClick={() => handleEdit(page._id)}
+                        className="btn btn-primary btn-sm"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(page._id)}
+                        className="btn btn-danger btn-sm"
+                      >
+                        Delete
+                      </button>
+                      <button
+                        onClick={() => handleView(page)}
+                        className="btn btn-info btn-sm"
+                      >
+                        View
+                      </button>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       )}
+
+      <nav>
+        <ul className="pagination justify-content-center">
+          {Array.from(
+            { length: Math.ceil(filteredPages.length / itemsPerPage) },
+            (_, index) => (
+              <li
+                key={index}
+                className={`page-item ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+              >
+                <button
+                  className="page-link"
+                  onClick={() => paginate(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              </li>
+            )
+          )}
+        </ul>
+      </nav>
 
       {showModal && selectedPage && (
         <div
@@ -239,6 +292,7 @@ function ListPages() {
                   <strong>Status: </strong>{" "}
                   {selectedPage.status ? "Active" : "Inactive"}
                 </div>
+                
                 <div className="mb-3">
                   <strong>Created At: </strong>{" "}
                   {new Date(selectedPage.createdAt).toLocaleString()}

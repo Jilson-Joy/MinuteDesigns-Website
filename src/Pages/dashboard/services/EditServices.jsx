@@ -187,7 +187,7 @@ const EditService = () => {
 
   return (
     <div className="container">
-      <h1 className="mt-4">Edit Page</h1>
+      <h1 className="mt-4">Edit Service</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="row mb-3">
