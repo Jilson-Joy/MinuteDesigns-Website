@@ -26,6 +26,7 @@ font-weight: 700;
 } */
 
 .products_delivered {
+  min-height: 60vh;
   display: flex;
   align-items: center;
   justify-content: space-evenly;

@@ -2,14 +2,18 @@ import React from "react";
 import "./AboutNew.css";
 import { ChevronDown } from "lucide-react";
 import minuteLogo from "../../assets/images/minute.jpg";
+import vrImage from "../../assets/images/virtual-realityabout.png";
 import Delivered from "../../components/delivered/Delivered";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../variants";
 import Mlogo from "../../assets/images/M.png";
 
+
+
 function AboutNew() {
   return (
-    <div className="aboutNew">
+  <div className="container">
+      <div className="aboutNew">
       <div className="about_header container">
         <motion.div
           variants={fadeIn("down", 0.2)}
@@ -29,6 +33,7 @@ function AboutNew() {
           <ChevronDown className="animate_icon" />
         </span>
       </div>
+      
       <div className="section2">
         <motion.div
           variants={fadeIn("left", 0.2)}
@@ -37,9 +42,10 @@ function AboutNew() {
           viewport={{ once: false, amount: 0.2 }}
           className="container  mt-5"
         >
-          <h3>About Minute Designs</h3>
+        
           <div className="row">
             <div className="about_vision_text col-md-6">
+            <h3>Our Story</h3>
               <p>
                 In March 2024, a group of visionary technology enthusiasts
                 founded Minute Designs, driven by the ambition to transform
@@ -69,12 +75,13 @@ function AboutNew() {
           viewport={{ once: false, amount: 0.2 }}
           className="container mt-5"
         >
-          <h3>vision</h3>
+         
           <div className="row">
-            <div className="about_vision_img col-md-6">
-              <img src={minuteLogo} alt="image" />
+            <div className="about_vision_img vr-image col-md-6">
+              <img src={vrImage} alt="vr-image" />
             </div>
             <div className="about_vision_text col-md-6">
+            <h3>Vision</h3>
               <p>
                 Key values including creativity, agility, and user-centered
                 design could serve as the foundation of Minute Designs' software
@@ -104,14 +111,14 @@ function AboutNew() {
             viewport={{ once: false, amount: 0.2 }}
             className="text-center"
           >
-            <h5>OUR CULTURE</h5>
-            <h3 className="culture_text">
+            <h5 className="head-text">Our Identity</h5>
+            {/* <h3 className="culture_text">
               Our culture is what keeps us together. We believe in
               <br />
               collectively solving problems while keeping our
               <br />
               company values intact.
-            </h3>
+            </h3> */}
           </motion.div>
 
           <div className="row mt-5">
@@ -170,7 +177,7 @@ function AboutNew() {
               >
                 <h5>FREEDOM</h5>
                 <p>
-                  Design is all about freely expressing one’s ideas. At Yellow,
+                  Design is all about freely expressing one's ideas. At Yellow,
                   we encourage feedback and inputs from everyone in the team.
                 </p>
               </motion.div>
@@ -189,6 +196,7 @@ function AboutNew() {
         <Delivered />
       </motion.div>
     </div>
+  </div>
   );
 }
 

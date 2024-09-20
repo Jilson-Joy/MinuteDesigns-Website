@@ -51,7 +51,7 @@ function Delivered() {
   }, [hasAnimated]); // Depend on hasAnimated to avoid re-triggering
 
   return (
-    <div className="container mt-5 mb-5" ref={deliveredRef}>
+    <div className="container" ref={deliveredRef}>
       <div className="products_delivered">
         <div className="products_delivered_iteam">
           <p>{productCount}+</p>
