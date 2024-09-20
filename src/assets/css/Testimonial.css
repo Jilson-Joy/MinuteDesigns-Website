@@ -1,0 +1,233 @@
+.large-container {
+    position: static;
+    min-height: 100vh;
+
+  }
+  
+  .testimonial-section {
+    position: relative;
+    overflow: hidden;
+    padding: 80px 0;
+  
+  }
+  
+  .testimonial-section:before {
+    position: absolute;
+    left: 0; /* Align to the left side */
+    top: 19%;
+    background-image: url('../images//test-circle.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 600px;
+    min-height: 700px;
+    content: "";
+    animation: custom-spin 11s infinite alternate ;
+}
+
+.testimonial-section:after {
+    position: absolute;
+    right: 0; /* Align to the right side */
+    top: 20%;
+    background-image: url('../images/test-circle2.png'); /* Same image as before */
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 600px;
+    min-height: 700px;
+    content: "";
+    animation: custom-spin 11s infinite alternate ;
+    z-index: -1;
+}
+
+
+  @keyframes custom-spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .sec-title {
+    position: relative;
+    margin-bottom: 115px;
+  }
+  
+  .title {
+    margin-bottom: 20px;
+  }
+  
+  .testimonial-carousel {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 -50px;
+  }
+  
+  .testimonial-block {
+    position: relative;
+    padding: 50px;
+  }
+  
+  .inner-box {
+    padding: 80px 105px;
+    background-color: #ffffff;
+    box-shadow: 0 0 50px rgba(226, 222, 232, 0.5);
+    min-height: 350px;
+  }
+  
+  .text {
+    position: relative;
+    display: block;
+    font-size: 18px;
+    line-height: 25px;
+    color: #282331;
+    font-weight: 400;
+    margin-bottom: 50px;
+    font-family: "Muli", sans-serif;
+    min-height: 50px;
+  }
+  
+  .info-box {
+    position: relative;
+    padding-left: 115px;
+    padding-top: 10px;
+  }
+  
+  .thumb {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 82px;
+    width: 82px;
+  }
+  
+  .thumb img {
+    border: 6px solid #e5e6fa;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    box-shadow: 0 45px 45px rgba(147, 147, 147, 0.114);
+  }
+  
+  .name {
+    position: relative;
+    display: block;
+    font-size: 21px;
+    line-height: 1.2em;
+    color: #382c4d;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-family: "Niramit", sans-serif;
+  }
+  
+  .designation {
+    position: relative;
+    display: block;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    font-weight: 400;
+    font-family: "Muli", sans-serif;
+  }
+  
+  .owl-nav {
+    position: absolute;
+    right: 75px;
+    bottom: 70px;
+  }
+  
+  .owl-next, .owl-prev {
+    position: relative;
+    display: inline-block;
+    height: 75px;
+    width: 75px;
+    line-height: 75px;
+    text-align: center;
+    background-color: #ffffff;
+    transition: all 300ms ease;
+  }
+  
+  .owl-next:hover, .owl-prev:hover {
+    background-color: #000000;
+    box-shadow: 0 24px 24px rgba(187, 187, 187, 0.75);
+  }
+  
+
+
+  .image {
+    position: relative;
+    margin-right: 0;
+  }
+  
+  .image img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Media Queries */
+  @media only screen and (max-width: 767px) {
+    .sec-title {
+      margin-bottom: 50px;
+    }
+    .testimonial-block {
+      padding: 0;
+    }
+    .inner-box {
+      box-shadow: none;
+      border: 2px solid #f1f1f1;
+    }
+    .owl-nav {
+      position: relative;
+      left: 0;
+      bottom: 0;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .owl-next, .owl-prev {
+      border: 2px solid #f1f1f1;
+    }
+  }
+  
+  @media only screen and (max-width: 1366px) {
+    .large-container {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+  
+  /* Keyframes for animation */
+  @keyframes fa-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Arrows */
+.arrow {
+    position: absolute;
+    top: 50px;
+    left: 40px;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .right-arrow {
+    left: auto;
+
+  }
+  
+  .left-arrow {
+    right: auto;
+    padding: 0 20px;
+  }
+  
+  .arrow:hover {
+    color: #333;
+  }
+  

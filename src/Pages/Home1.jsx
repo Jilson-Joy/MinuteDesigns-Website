@@ -11,6 +11,7 @@ import UIUX from "../assets/images/uiux.png";
 import WebApp from "../assets/images/web-development.png";
 import CarouselBox from "../components/carousel/CarouselBox";
 import Technologies from "../components/technologies/Technologies";
+import LandingImg from "../assets/images/Landing_img.png";
 
 function Home1() {
   // testimonial
@@ -85,7 +86,9 @@ function Home1() {
   const { name, position, photo, text } = testimonials[currentIndex];
   // testimonial end here
   const webAppRef = useRef(null);
+
   const mobileAppRef = useRef(null);
+
   const ecommerceRef = useRef(null);
   const uiuxRef = useRef(null);
   const architectureRef = useRef(null);
@@ -93,6 +96,7 @@ function Home1() {
 
 
   const circleRef = useRef(null);
+
   const mobileCircleRef = useRef(null);
   const ecommerceCircleRef = useRef(null);
   const uiuxCircleRef = useRef(null);
@@ -122,7 +126,9 @@ function Home1() {
     left: 0,
   });
   const [inView, setInView] = useState(false);
+  
   const [mobileInView, setMobileInView] = useState(false);
+
   const [ecommerceInView, setEcommerceInView] = useState(false);
   const [uiuxInView, setUiuxInView] = useState(false);
   const [architectureInView, setArchitectureInView] = useState(false);
@@ -144,7 +150,7 @@ function Home1() {
           setInView(false);
           setCirclePosition({
             top: '45%',
-            left: '58%',
+            left: '53%',
           });
         }
       },
@@ -166,8 +172,8 @@ function Home1() {
         } else {
           setMobileInView(false);
           setMobileCirclePosition({
-            top: "55%",
-            left: "68%",
+            top: "58%",
+            left: "61%",
           });
         }
       },
@@ -189,7 +195,7 @@ function Home1() {
           setEcommerceInView(false);
           setEcommerceCirclePosition({
             top: "65%",
-            left: "58%",
+            left: "53%",
           });
         }
       },
@@ -210,7 +216,7 @@ function Home1() {
           setUiuxInView(false);
           setUiuxCirclePosition({
             top: "45%",
-            left: "78%",
+            left: "72%",
           });
         }
       },
@@ -229,7 +235,7 @@ function Home1() {
           });
         } else {
           setArchitectureInView(false);
-          setArchitectureCirclePosition({ top: '65%', left: '78%' });
+          setArchitectureCirclePosition({ top: '65%', left: '72%' });
         }
       },
       { threshold: 0.5 }
@@ -249,8 +255,8 @@ function Home1() {
           setRenderingInView(false);
           setRenderingCirclePosition(
             {
-            top: "55%",
-            left: "67%",
+            top: "58%",
+            left: "61%",
             }
           );
         }
@@ -294,17 +300,11 @@ function Home1() {
               </p>
             </div>
             <div className="col-md-6">
-              {/* <div className="group">
-                  <span className="dot dot1"></span>
-                  <span className="dot dot2"></span>
-                  <span className="dot dot3"></span>
-                  <span className="dot dot4"></span>
-                  <span className="dot dot5"></span>
-                  <span className="dot dot6"></span>
-                  <span className="dot dot7"></span>
-                  <span className="dot dot8"></span>
-                  <span className="dot dot9"></span>
-                </div> */}
+            <img
+                      src={LandingImg}
+                      className="card_img"
+                      style={{ width: "65%", }}
+             />
               {/* Moving Circle for Web Application */}
               <div
                 ref={circleRef}
@@ -362,8 +362,8 @@ function Home1() {
         </div>
       </section>
       {/* Services */}
-      <section className="hero-container parallax-section">
-        <div className="container technologies-container">
+      <section className="parallax-section">
+        <div className="container ">
           <div className="col-md-12 d-flex align-items-center mb-3">
             <h5 className="head-text">Our Services</h5>
           </div>
@@ -371,37 +371,49 @@ function Home1() {
           <div className="row d-flex justify-content-between align-items-center  mb-2">
             {/* Web Application Section */}
             <div className="col-md-8 service-head">
-              <h3 ref={webAppRef}>Web Application</h3>
+              <div className="service-detail d-flex align-items-center">
+              <h3 ref={webAppRef}>Web Application</h3> 
+              <button className="readMore">
+                          <ArrowUpRight className="icon" />
+                          <span className="readMore-text">Read More</span>
+                        </button>
+                        </div>
+              {/* <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius ipsam velit eveniet natus commodi consequuntur quae, est, magni obcaecati delectus architecto officiis exercitationem voluptas! Magnam enim similique repellat quidem quibusdam.</p>
+            */}
             </div>
-          </div>
 
-          <div className="row d-flex justify-content-between align-items-center mb-2 ">
+
+  
             {/* Mobile Application Section */}
             <div className="col-md-8 service-head">
               <h3 ref={mobileAppRef}>Mobile Application</h3>
+             
             </div>
-          </div>
+        
 
-          <div className="row d-flex justify-content-between align-items-center  mb-2">
             {/* E-commerce Section */}
             <div className="col-md-8 service-head">
               <h3 ref={ecommerceRef}>E-commerce</h3>
-            </div>
+            
+    
           </div>
 
-          <div className="row d-flex justify-content-between align-items-center mb-2">
             {/* UI/UX Section */}
             <div className="col-md-8 service-head">
               <h3 ref={uiuxRef}>UI/UX</h3>
+           
             </div>
-          </div>
+   
            {/* Architecture Section */}
         <div className="col-md-8 service-head">
           <h3 ref={architectureRef}>Architecture</h3>
+          
         </div>
         {/* 3D Rendering Section */}
         <div className="col-md-8 service-head">
           <h3 ref={renderingRef}>3D Rendering Service</h3>
+         
+        </div>
         </div>
         </div>
       </section>
@@ -415,8 +427,8 @@ function Home1() {
           </p>
         </div>
       </div>
-
     </section>
+    
       {/* Technologies */}
       <section>
         <div className="container mt-5 mb-5">

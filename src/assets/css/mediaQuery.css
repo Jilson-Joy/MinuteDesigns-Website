@@ -1,6 +1,6 @@
 /* first section */
 @media screen and (max-width: 800px) {
-  
+
  .item
   {
     width: 60px;
@@ -13,6 +13,7 @@
    {
        font-size: 5rem ;
    }
+  
    }
    /* Mobile devices (up to 600px) */
 @media screen and (max-width: 780px) {
@@ -24,6 +25,11 @@
       display: flex;
       align-items: center;
   }
+  .mobile-dot
+  {
+    display: none;
+  }
+
 }
 
 /* Tablet devices (600px to 1024px) */
@@ -37,6 +43,7 @@
       display: flex;
       align-items: center;
   }
+
 }
 
 /* Small desktops and larger tablets (1024px and up) */
@@ -44,16 +51,13 @@
   .hero-text {
       font-size: 5rem;
   }
+
 }
 
 
 /* Tablet View */
 @media (max-width: 1024px) {
-  .dot-container {
-    animation: none;
-    max-width: 50px;
 
-  }
 
   .img_container {
     flex-wrap: wrap;
@@ -96,11 +100,10 @@
   .card > .card_row > .description {
     width: 100%;
   }
-
-  /* dot  */
-  .dot-container {
-    animation: none;
-    max-width: 40px;
-    margin-left: 50px;
+  .land-dot
+  {
+    display: none;
   }
+
+
 }

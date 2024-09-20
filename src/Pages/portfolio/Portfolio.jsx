@@ -14,7 +14,7 @@ function Portfolio() {
                 </div>
                 <dev className=' row d-flex justify-content-center align-items-center'>
                     <div className='col-md-6 d-flex justify-content-center align-items-center flex-column'>
-                        <Card  className='portfolio_card'>
+                        <div  className='portfolio_card'>
                             <Card.Body>
                                 <Card.Title className='portfolio_card_header'>Starbucks</Card.Title>
                                 <Card.Img variant="top" src="https://i.pinimg.com/564x/06/d7/16/06d716a7723f18cc0351a47177fd78be.jpg" className='portfolio_card_img' />
@@ -24,10 +24,10 @@ function Portfolio() {
                                 </Card.Text>
                                 {/* <Button variant="primary">Go somewhere</Button> */}
                             </Card.Body>
-                        </Card>
+                        </div>
                     </div>
                     <div className='col-md-6 d-flex justify-content-center align-items-center flex-column'>
-                        <Card  className='portfolio_card'>
+                        <div  className='portfolio_card'>
                             <Card.Body>
                                 <Card.Title className='portfolio_card_header'>Starbucks</Card.Title>
                                 <Card.Img variant="top" src="https://i.pinimg.com/564x/06/d7/16/06d716a7723f18cc0351a47177fd78be.jpg" className='portfolio_card_img' />
@@ -37,7 +37,7 @@ function Portfolio() {
                                 </Card.Text>
                                 {/* <Button variant="primary">Go somewhere</Button> */}
                             </Card.Body>
-                        </Card>
+                        </div>
                     </div>
                 </dev>
             </section>

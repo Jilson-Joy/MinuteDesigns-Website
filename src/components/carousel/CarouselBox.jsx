@@ -62,7 +62,7 @@ function CarouselBox() {
                         <div className="row">
                             {testimonialPair.map((testimonial, idx) => (
                                 <div className="col-md-6 card_container" key={idx}>
-                                    <Card className="card">
+                                    <div className="card_box">
                                         <Card.Body>
                                             <div className="carouselbox_text">
                                                 <Quote className="quote" />
@@ -82,7 +82,7 @@ function CarouselBox() {
                                                 </div>
                                             </div>
                                         </Card.Body>
-                                    </Card>
+                                    </div>
                                 </div>
                             ))}
                         </div>

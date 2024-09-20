@@ -5,8 +5,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import './Login.css';
 import Auth from '../../assets/images/Authentication.gif';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../redux/slices/authSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { loginUser } from '../../redux/slices/authSlice';
 import { Spinner, Alert } from 'react-bootstrap';
 
 function Login() {
@@ -20,13 +20,11 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault();
         const form = e.currentTarget;
-
         if (form.checkValidity() === false) {
             e.stopPropagation();
             setValidated(true);
             return;
         }
-
         setValidated(true);
         dispatch(loginUser({ email, password }));
     };
