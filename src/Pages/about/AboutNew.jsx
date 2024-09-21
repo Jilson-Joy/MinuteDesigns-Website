@@ -2,13 +2,11 @@ import React from "react";
 import "./AboutNew.css";
 import { ChevronDown } from "lucide-react";
 import minuteLogo from "../../assets/images/minute.jpg";
-import vrImage from "../../assets/images/virtual-realityabout.png";
+import vrImage from "../../assets/images/virtual-realityabout1.png";
 import Delivered from "../../components/delivered/Delivered";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../variants";
 import Mlogo from "../../assets/images/M.png";
-
-
 
 function AboutNew() {
   return (

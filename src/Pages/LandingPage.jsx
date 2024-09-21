@@ -35,9 +35,11 @@ function LandingPage() {
                 <br />
                 Thrive
               </h1>
-              <p className="hero-caption">
+              <div className="hero-desc">
+              <p className="hero-description">
                 "Elevating user experience to its pinnacle."
               </p>
+              </div>
             </div>
           </div>
         </div>

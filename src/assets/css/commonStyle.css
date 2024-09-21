@@ -57,8 +57,9 @@ body {
   font-size: var(--large-font-size);
   font-weight: var(--black-weight);
 }
-.hero-caption {
-  font-size: var(--medium-font-size);
+.hero-description
+{
+  font-size: 26px;
 }
 
 .hero-image-content {
