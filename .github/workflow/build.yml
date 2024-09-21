@@ -2,9 +2,9 @@ name: React App Build Pipeline
 
 on:
   push:
-    branches: [main] 
+    branches: [feat/dashboard] 
   pull_request:
-    branches: [main]
+    branches: [feat/dashboard]
 
 jobs:
   build:
