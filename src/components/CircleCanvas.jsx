@@ -1,51 +1,42 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 const CircleCanvas = ({
   bgColor = 'white',
   circleSize = 6,
   circleSpacing = 10,
-  cursorRange = 80,
-  cursorSpeed = 2,
   highlightColor = 'black',
   otherDotColor = 'transparent',
   letterColor = '#ee964b',
 }) => {
   const canvasRef = useRef(null);
-  const [isCursorMoving, setIsCursorMoving] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     const circles = [];
     const shapeSize = 400;
-    const swapInterval = 2000;
-    let lastSwapTime = 0;
-
-    const letters = ['M', 'I', 'N', 'U', 'T', 'E'];
-    const lettersDSG = ['D', 'E', 'S', 'I', 'G', 'N', 'S'].reverse();
-
     const gridCenterX = canvas.width / 2;
     const gridCenterY = canvas.height / 2;
     const halfSize = shapeSize / 2;
 
+    const letters = ['M', 'I', 'N', 'U', 'T', 'E'];
+    const lettersDSG = ['D', 'E', 'S', 'I', 'G', 'N', 'S'];
+
     const isHighlightDot = (x, y) => {
       const leftX = gridCenterX - halfSize;
-      const rightX = gridCenterX + halfSize; 
+      const rightX = gridCenterX + halfSize;
       const topY = gridCenterY - halfSize;
       const bottomY = gridCenterY + halfSize;
-
-      const slope = (bottomY - topY) / (shapeSize / 2);
-
+      const slope = (bottomY - topY) / (shapeSize / 2); // middle bottom triangle
       return (
         (x >= leftX && x <= leftX + 0.3 * shapeSize && y >= topY && y <= bottomY) ||
         (x >= rightX - 0.3 * shapeSize && x <= rightX && y >= topY && y <= bottomY) ||
         (x >= leftX + 0.2 * shapeSize && x <= gridCenterX &&
           y >= topY && y <= bottomY &&
-          y <= topY + slope * (x - leftX - 0.2 * shapeSize)) ||
+          y <= topY + slope * (x - leftX - 0.1 * shapeSize)) ||
         (x >= gridCenterX && x <= rightX - 0.2 * shapeSize &&
           y >= topY && y <= bottomY &&
-          y <= topY + slope * (rightX - x - 0.2 * shapeSize))
+          y <= topY + slope * (rightX - x - 0.1 * shapeSize))
       );
     };
 
@@ -59,26 +50,22 @@ const CircleCanvas = ({
       const offsetX = (canvas.width - columns * spacingX + circleSpacing) / 2;
       const offsetY = (canvas.height - rows * spacingY + circleSpacing) / 2;
 
-      const rowsToRemove = 4; // Height of the triangle
-      const triangleBase = rowsToRemove * 2; // Base width of the triangle
+      const rowsToRemove = 6; // Height of the triangle
+      const triangleBase = rowsToRemove * 2; // Base width of the triangle at the top
 
       for (let y = 0; y < rows; y++) {
         for (let x = 0; x < columns; x++) {
           const cx = offsetX + x * spacingX + radius;
           const cy = offsetY + y * spacingY + radius;
 
-          // Skip dots in a triangular shape from the top left to the middle
-          if (y < rowsToRemove && 
-              (x < columns / 2) && // Left side
-              (y >= (rowsToRemove - 1) - (x - (columns / 2 - Math.floor(triangleBase / 2))) / (triangleBase / 2) * (rowsToRemove - 1))) {
-            continue; // Skip this circle
-          }
+          // Keep dots outside the triangle shape from top to middle
+          if (y < rowsToRemove) {
+            const slope = (triangleBase - y * (triangleBase / rowsToRemove)) / 2;
+            const middleX = columns / 2;
 
-          // Skip dots in a triangular shape from the top right to the middle
-          if (y < rowsToRemove && 
-              (x >= columns / 2) && // Right side
-              (y >= (rowsToRemove - 1) - ((columns - x - 1) - (columns / 2 + Math.floor(triangleBase / 2))) / (triangleBase / 2) * (rowsToRemove - 1))) {
-            continue; // Skip this circle
+            if (x >= middleX - slope - 1 && x <= middleX + slope) {
+              continue; // Skip this circle to form a triangle removal
+            }
           }
 
           circles.push({ x: cx, y: cy, baseX: cx, baseY: cy });
@@ -90,42 +77,41 @@ const CircleCanvas = ({
       ctx.fillStyle = bgColor;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      let minuteIndex = 0;
-      let designIndex = lettersDSG.length - 1;
+      const time = Date.now() / 500; // Adjust speed of the elastic effect
+      let leftLetterIndex = 0;
+      let rightLetterIndex = 0;
 
       circles.forEach((circle) => {
-        ctx.beginPath();
-        ctx.arc(circle.x, circle.y, circleSize / 2, 0, 2 * Math.PI);
+        // Render squares that are highlighted
+        if (isHighlightDot(circle.x, circle.y)) {
+          // Check if the dot is at the bottom of the grid
+          if (circle.y >= canvas.height - 30) {
+            // For left side letters (M, I, N, U, T, E)
+            if (circle.x < canvas.width / 2 && leftLetterIndex < letters.length) {
+              ctx.fillStyle = letterColor;
+              ctx.font = "10px Arial";
+              ctx.fillText(letters[leftLetterIndex], circle.x + 8, circle.y + 10);
+              leftLetterIndex++;
+            }
+            // For right side letters (S, G, N, I, E, D)
+            else if (circle.x > canvas.width / 2 && rightLetterIndex < lettersDSG.length) {
+              ctx.fillStyle = letterColor;
+              ctx.font = "10px Arial";
+              ctx.fillText(lettersDSG[rightLetterIndex], circle.x + 4, circle.y + 10);
+              rightLetterIndex++;
+            }
+          } else {
+            ctx.beginPath();
 
-        const leftX = gridCenterX - halfSize;
-        const rightX = gridCenterX + halfSize; 
-        const topY = gridCenterY - halfSize;
-        const bottomY = gridCenterY + halfSize;
+            // Elastic effect using sine wave
+            const scale = 1 + Math.sin(time * 2 + circle.x / 100) * 0.2; // Elastic bounce effect
+            const size = (circleSize / 1) * scale; // Calculate size based on scale
 
-        if (circle.x >= leftX && circle.x <= leftX + 0.23 * shapeSize &&
-            circle.y >= topY && circle.y <= bottomY &&
-            minuteIndex < letters.length) {
-          ctx.fillStyle = letterColor;
-          ctx.font = `${circleSize * 2}px Arial`;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(letters[minuteIndex], circle.x, circle.y);
-          minuteIndex++;
-        } else if (circle.x >= rightX - 0.3 * shapeSize && circle.x <= rightX &&
-                   circle.y >= topY && circle.y <= bottomY &&
-                   designIndex >= 0) {
-          ctx.fillStyle = letterColor;
-          ctx.font = `${circleSize * 2}px Arial`;
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.fillText(lettersDSG[designIndex], circle.x, circle.y);
-          designIndex--;
-        } else if (isHighlightDot(circle.x, circle.y)) {
-          ctx.fillStyle = highlightColor;
-          ctx.fill();
-        } else {
-          ctx.fillStyle = otherDotColor;
-          ctx.fill();
+            // Draw square instead of circle
+            ctx.rect(circle.x - size / 2, circle.y - size / 2, size, size); // Center the square
+            ctx.fillStyle = highlightColor;
+            ctx.fill();
+          }
         }
       });
     };
@@ -134,8 +120,8 @@ const CircleCanvas = ({
       circles.forEach((circle) => {
         const dx = circle.baseX - circle.x;
         const dy = circle.baseY - circle.y;
-        circle.x += dx / 10; 
-        circle.y += dy / 10; 
+        circle.x += dx / 10;
+        circle.y += dy / 10;
       });
     };
 
@@ -151,22 +137,7 @@ const CircleCanvas = ({
       init();
     };
 
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: e.clientX - canvas.offsetLeft,
-        y: e.clientY - canvas.offsetTop,
-      });
-      setIsCursorMoving(true);
-    };
-
-    const handleMouseOut = () => {
-      setIsCursorMoving(false);
-    };
-
     window.addEventListener('resize', handleResize);
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mouseout', handleMouseOut);
-
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
     init();
@@ -174,10 +145,8 @@ const CircleCanvas = ({
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      canvas.removeEventListener('mousemove', handleMouseMove);
-      canvas.removeEventListener('mouseout', handleMouseOut);
     };
-  }, [bgColor, circleSize, circleSpacing, highlightColor, otherDotColor, letterColor, isCursorMoving]);
+  }, [bgColor, circleSize, circleSpacing, highlightColor, otherDotColor, letterColor]);
 
   return <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />;
 };
