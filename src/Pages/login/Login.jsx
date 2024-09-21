@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect  } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import './Login.css';
 import Auth from '../../assets/images/Authentication.gif';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { loginUser } from '../../redux/slices/authSlice';
+import { useDispatch, useSelector,Provider  } from 'react-redux';
+import { loginUser } from '../../redux/slices/authSlice';
 import { Spinner, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
@@ -32,10 +32,13 @@ function Login() {
     };
 
     useEffect(() => {
+        console.log("currentUser",currentUser)
         if (currentUser) {
             navigate('/mainDashboard'); 
         }
     }, [currentUser, navigate]);
+
+    
 
     return (
         <div className="container">

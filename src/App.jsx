@@ -45,12 +45,18 @@ import Rendering3DService from './Pages/3DRenderingService/Rendering3DService';
 import AboutNew from './Pages/about/AboutNew';
 import WebApplication from './Pages/services/webApp/WebApplication';
 
+import { Provider } from 'react-redux';
+import store from './redux/store'; // Make sure this path is correct
+import PrivateRoute from './PrivateRoute';
+
 function App() {
   return (
+    <Provider store={store}>
+
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<LogIn />} />
-        <Route path="/mainDashboard" element={<MainDashboard />}>
+        <Route path="/mainDashboard" element={<PrivateRoute><MainDashboard /></PrivateRoute>}>
           <Route index element={<Dashboard />} />
           <Route path="addPage" element={<Addpage />} />
           <Route path="listPage" element={<ListPages />} />
@@ -97,6 +103,8 @@ function App() {
         />
       </Routes>
     </BrowserRouter>
+    </Provider>
+
   );
 }
 
