@@ -18,9 +18,9 @@ function AboutNew() {
           viewport={{ once: false, amount: 0.2 }}
         >
           <p className="about_header_text">
-            " Your vision and our experience,
+             Your vision and our experience,
             <br />
-            we innovate."
+            we innovate.
           </p>
         </motion.div>
 
