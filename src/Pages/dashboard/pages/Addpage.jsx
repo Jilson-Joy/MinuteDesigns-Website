@@ -170,10 +170,15 @@ const AddPage = () => {
 
   return (
     <div className="container mt-4">
-      <h1>Add Page</h1>
+     <div className="page-title">
+     <h3>Add </h3>
+     </div>
+     <form onSubmit={handleSubmit}>
 
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
+
+        
+    <div className="col-row d-flex ">
+    <div className="col-md-8 m-2">
           <label htmlFor="pageUrl" className="form-label">
             Page URL
           </label>
@@ -188,7 +193,7 @@ const AddPage = () => {
           />
         </div>
 
-        <div className="mb-3">
+        <div className="col-md-8 m-2">
           <label htmlFor="pageTitle" className="form-label">
             Page Title
           </label>
@@ -202,63 +207,7 @@ const AddPage = () => {
           />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="shortDescription" className="form-label">
-            Short Description
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="shortDescription"
-            name="shortDescription"
-            value={formData.shortDescription}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="description" className="form-label">
-            Description
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="fileUpload" className="form-label">
-            Upload File
-          </label>
-          <input
-            type="file"
-            className="form-control"
-            name="files"
-            multiple
-            onChange={handleFileChange}
-          />
-        </div>
-
-        <div className="mb-3">
+        <div className="col-md-8 m-2">
           <label htmlFor="meta.metaTitle" className="form-label">
             Meta Title
           </label>
@@ -272,21 +221,7 @@ const AddPage = () => {
           />
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="meta.metaDescription" className="form-label">
-            Meta Description
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="meta.metaDescription"
-            name="meta.metaDescription"
-            value={formData.meta.metaDescription}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="mb-3">
+        <div className="col-md-8 m-2">
           <label htmlFor="meta.metaAuthor" className="form-label">
             Meta Author
           </label>
@@ -299,10 +234,13 @@ const AddPage = () => {
             onChange={handleChange}
           />
         </div>
+    </div>
 
-        <div className="mb-3">
+    <div className="col-row d-flex ">
+
+    <div className="col-md-8 m-2">
           <label htmlFor="meta.metaKeywords" className="form-label">
-            Meta Keywords (comma separated)
+            Meta Keywords 
           </label>
           <input
             type="text"
@@ -314,7 +252,7 @@ const AddPage = () => {
           />
         </div>
 
-        <div className="mb-3">
+        <div className="col-md-8 m-2">
           <label htmlFor="metaTags" className="form-label">
             Meta Tags (comma separated)
           </label>
@@ -327,41 +265,107 @@ const AddPage = () => {
             onChange={handleChange}
           />
         </div>
+        <div className="col-md-8 m-2">
+          <label htmlFor="name" className="form-label">
+            Name
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+      </div>
 
-        <div className="mb-3">
+
+      <div className="col-row d-flex ">
+
+
+        <div className="col-md-8 m-2">
+          <label htmlFor="shortDescription" className="form-label">
+            Short Description
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="shortDescription"
+            name="shortDescription"
+            value={formData.shortDescription}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="col-md-8 m-2">
+          <label htmlFor="description" className="form-label">
+            Description
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="col-md-12 m-2">
+          <label htmlFor="fileUpload" className="form-label">
+            Upload File
+          </label>
+          <input
+            type="file"
+            className="form-control"
+            name="files"
+            multiple
+            onChange={handleFileChange}
+          />
+        </div>
+        </div>
+        <div className="col-row d-flex mt-5">
+        <div className="col-md-12 m-2">
           <label htmlFor="content" className="form-label">
             Content
           </label>
+
           <ReactQuill
             value={formData.content}
             onChange={handleContentChange}
             modules={modules}
             formats={formats}
             placeholder="Write your content here..."
-            style={{ height: "300px" }}
+            style={{minwidth:'300px',  height: '200px', overflow:'auto'}}
           />
         </div>
-        <div className="mb-3">
+        </div>
+
+        <div className="col-row d-flex">
+        <div className="col-md-8 m-2">
           <button
-            style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
             type="button"
-            className="btn btn-secondary"
+            className="btn btn-secondary "
             onClick={handleSourceCode}
           >
             Code
           </button>
         </div>
 
-        <div className="mb-3">
+        <div className="col-md-8 m-2">
           <button
-            style={{ marginLeft: "-28%" }}
             type="submit"
-            className="btn btn-primary"
+            className="btn btn-primary main-btn"
           >
             Submit
           </button>
         </div>
+
+
+        </div>
       </form>
+  
 
       <Modal show={showSourceModal} onHide={() => setShowSourceModal(false)}>
         <Modal.Header closeButton>
