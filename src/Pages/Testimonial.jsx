@@ -66,6 +66,9 @@ function Testimonial() {
           <button className="arrow left-arrow" onClick={handlePrev}>
           <MoveLeft />
           </button>
+          <button className="arrow right-arrow" onClick={handleNext}>
+          <MoveRight />
+          </button>
           <div className="text">{testimonials[currentIndex].text}</div>
           <div className="info-box">
             <div className="thumb">
@@ -75,9 +78,7 @@ function Testimonial() {
             <span className="designation">{testimonials[currentIndex].designation}</span>
           </div>
 
-          <button className="arrow right-arrow" onClick={handleNext}>
-          <MoveRight />
-          </button>
+      
         </div>
       </div>
     </div>

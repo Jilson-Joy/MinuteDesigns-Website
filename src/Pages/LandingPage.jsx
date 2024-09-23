@@ -146,10 +146,10 @@ function LandingPage() {
             </div>
 
             <div className="col-md-3 text-center service-item1">
-              <div className="service-icon1-crm">
+              <div className="service-icon1">
                 <img src={Crm} alt="crm" width={115} />
               </div>
-              <div className="service-title1-crm">
+              <div className="service-title1">
                 <h3>CRM/ ERP</h3>
               </div>
               <div className="service-description1">
@@ -166,7 +166,7 @@ function LandingPage() {
 
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
-                <img src={In3D} alt="Interactive3D" width={115} />
+                <img src={In3D} alt="Interactive3D" width={120} />
               </div>
               <div className="service-title">
                 <h3>Interactive 3D</h3>
@@ -180,10 +180,10 @@ function LandingPage() {
             </div>
 
             <div className="col-md-3 text-center service-item1">
-              <div className="service-icon1-crm">
-                <img src={VRICON} alt="360deg" width={115} />
+              <div className="service-icon1">
+                <img src={VRICON} alt="360deg" width={120} />
               </div>
-              <div className="service-title1-crm">
+              <div className="service-title1">
                 <h3>360° VR</h3>
               </div>
               <div className="service-description1">

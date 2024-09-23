@@ -27,18 +27,25 @@ const CircleCanvas = ({
       const rightX = gridCenterX + halfSize;
       const topY = gridCenterY - halfSize;
       const bottomY = gridCenterY + halfSize;
-      const slope = (bottomY - topY) / (shapeSize / 2); // middle bottom triangle
+      
+      // Adjust slope for an exact triangle
+      const slope = (bottomY - topY) / (halfSize); // Use halfSize for the width of the triangle
+  
       return (
-        (x >= leftX && x <= leftX + 0.3 * shapeSize && y >= topY && y <= bottomY) ||
-        (x >= rightX - 0.3 * shapeSize && x <= rightX && y >= topY && y <= bottomY) ||
-        (x >= leftX + 0.2 * shapeSize && x <= gridCenterX &&
-          y >= topY && y <= bottomY &&
-          y <= topY + slope * (x - leftX - 0.1 * shapeSize)) ||
-        (x >= gridCenterX && x <= rightX - 0.2 * shapeSize &&
-          y >= topY && y <= bottomY &&
-          y <= topY + slope * (rightX - x - 0.1 * shapeSize))
+          // Keep existing conditions
+          (x >= leftX && x <= leftX + 0.3 * shapeSize && y >= topY && y <= bottomY) ||
+          (x >= rightX - 0.3 * shapeSize && x <= rightX && y >= topY && y <= bottomY) ||
+          // Left side of the triangle
+          (x >= leftX + 0.1 * shapeSize && x <= gridCenterX &&
+              y >= topY && y <= bottomY &&
+              y <= topY + slope * (x - leftX - 0.08 * shapeSize)) ||
+          // Right side of the triangle
+          (x >= gridCenterX && x <= rightX - 0.2 * shapeSize &&
+              y >= topY && y <= bottomY &&
+              y <= topY + slope * (rightX - x - 0.08 * shapeSize))
       );
-    };
+  };
+  
 
     const init = () => {
       circles.length = 0;
@@ -50,7 +57,7 @@ const CircleCanvas = ({
       const offsetX = (canvas.width - columns * spacingX + circleSpacing) / 2;
       const offsetY = (canvas.height - rows * spacingY + circleSpacing) / 2;
 
-      const rowsToRemove = 6; // Height of the triangle
+      const rowsToRemove = 5; // Height of the triangle
       const triangleBase = rowsToRemove * 2; // Base width of the triangle at the top
 
       for (let y = 0; y < rows; y++) {
@@ -60,7 +67,7 @@ const CircleCanvas = ({
 
           // Keep dots outside the triangle shape from top to middle
           if (y < rowsToRemove) {
-            const slope = (triangleBase - y * (triangleBase / rowsToRemove)) / 2;
+            const slope = (triangleBase - y * (triangleBase / rowsToRemove)) / 2.1;
             const middleX = columns / 2;
 
             if (x >= middleX - slope - 1 && x <= middleX + slope) {
@@ -87,7 +94,7 @@ const CircleCanvas = ({
           // Check if the dot is at the bottom of the grid
           if (circle.y >= canvas.height - 30) {
             // For left side letters (M, I, N, U, T, E)
-            if (circle.x < canvas.width / 2 && leftLetterIndex < letters.length) {
+            if (circle.x < canvas.width / 1 && leftLetterIndex < letters.length) {
               ctx.fillStyle = letterColor;
               ctx.font = "10px Arial";
               ctx.fillText(letters[leftLetterIndex], circle.x + 8, circle.y + 10);

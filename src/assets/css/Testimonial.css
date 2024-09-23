@@ -206,28 +206,51 @@
     }
   }
 
-  /* Arrows */
+/* Arrows */
 .arrow {
-    position: absolute;
-    top: 50px;
-    left: 40px;
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-  }
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scale(1); /* Start at normal size */
+  width: 20px;
+  height: 40px;
+  border: none;
+  background-color: #0b141c;
+  color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  animation: pulse 1.5s ease-in-out infinite; /* Subtle pulse animation */
   
-  .right-arrow {
-    left: auto;
+}
 
+.left-arrow {
+  left: 60px;
+}
+
+.right-arrow {
+  right: 60px;
+}
+
+/* Hover Effect */
+.arrow:hover {
+  transform: translateY(-50%) scale(2); /* Dramatic zoom on hover */
+  background-color: #ffffff; /* Optional background change */
+  color:#0b141c ;
+}
+
+/* Keyframes for pulse animation before hover */
+@keyframes pulse {
+  0% {
+    transform: translateY(-50%) scale(1); /* Normal size */
   }
-  
-  .left-arrow {
-    right: auto;
-    padding: 0 20px;
+  50% {
+    transform: translateY(-50%) scale(1.3); /* Slightly larger */
   }
-  
-  .arrow:hover {
-    color: #333;
+  100% {
+    transform: translateY(-50%) scale(1); /* Back to normal */
   }
+}
+
   
