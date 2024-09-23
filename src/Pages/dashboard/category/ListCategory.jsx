@@ -5,7 +5,7 @@ import {
   DeleteCategoryById,
   GetAllCategories,
   UpdateCategoryStatus,
-} from "../../../api/category"; 
+} from "../../../api/category";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -108,7 +108,10 @@ function ListCategories() {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentCategories = filteredCategories.slice(indexOfFirstItem, indexOfLastItem);
+  const currentCategories = filteredCategories.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
   const totalPages = Math.ceil(filteredCategories.length / itemsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -118,49 +121,69 @@ function ListCategories() {
   }
 
   return (
-    <div className="container">
-      <h1 className="mt-4">List of Categories</h1>
-      <div style={{ textAlign: "right" }}>
-        <button
-          onClick={() => navigate("/mainDashboard/addCategory")}
-          className="btn btn-success mb-3"
-        >
-          Add Category
-        </button>
+    <div className="container">      
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1 className="text-primary">List of Categories</h1>
       </div>
-      <div className="mb-3">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Search by category name"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
+     
+      {/* breadcrumb */}
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <a href="/mainDashboard">Home</a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Category List
+            </li>
+          </ol>
+        </nav>
       </div>
-      {filteredCategories.length === 0 ? (
-        <p>No categories available.</p>
-      ) : (
-        <div className="table-responsive">
 
-<table className="table table-bordered table-hover">
-<thead className="table-dark">
-<tr>
+      <div className="row display-flex">
+        <div className="mb-3 col-md-6 text-left">
+          <button
+            onClick={() => navigate("/mainDashboard/addPage")}
+            className="btn btn-success"
+          >
+            Add Category
+          </button>
+        </div>
+
+        <div className="mb-3 col-md-6 text-right">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by category name"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
+      </div>
+      <div className="table-responsive">
+        <table className="table table-bordered table-hover">
+          <thead className="table-dark">
+            <tr>
               <th style={{ padding: "25px" }}>#</th>
-              <th style={{ padding: "25px" }}>CATEGORYNAME</th>
-              <th style={{ padding: "25px" }}>VIDEOURL</th>
-
+              <th style={{ padding: "25px" }}>CATEGORY NAME</th>
+              <th style={{ padding: "25px" }}>VIDEO URL</th>
               <th style={{ padding: "25px" }}>STATUS</th>
               <th style={{ padding: "25px" }}>ACTIONS</th>
-  
             </tr>
           </thead>
-          <tbody>
-            {currentCategories.map((category, index) => (
-              <tr key={category._id}>
-                <td>{index + 1 + indexOfFirstItem}</td>
-                <td>{category.categoryName}</td>
-                <td>{category.videoUrl}</td>
-                <td>
+          {filteredCategories.length === 0 ? (
+            <tr className="text-muted">
+            <td colSpan="8" className="text-center text-muted">
+            No categories available.</td>
+            </tr>
+          ) : (
+            <tbody>
+              {currentCategories.map((category, index) => (
+                <tr key={category._id}>
+                  <td>{index + 1 + indexOfFirstItem}</td>
+                  <td>{category.categoryName}</td>
+                  <td>{category.videoUrl}</td>
+                  <td>
                     <button
                       onClick={() => handleStatusChange(category._id)}
                       className={`btn btn-sm ${
@@ -195,14 +218,16 @@ function ListCategories() {
                 </tr>
               ))}
             </tbody>
-          </table>
-        </div>
-      )}
-
+          )}
+        </table>
+      </div>
       <nav>
         <ul className="pagination justify-content-center">
           {Array.from({ length: totalPages }, (_, index) => (
-            <li key={index + 1} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
+            <li
+              key={index + 1}
+              className={`page-item ${currentPage === index + 1 ? "active" : ""}`}
+            >
               <button className="page-link" onClick={() => paginate(index + 1)}>
                 {index + 1}
               </button>
@@ -250,13 +275,17 @@ function ListCategories() {
                 <div className="row mb-3">
                   <strong>Created At</strong>
                   <div className="col-sm-9">
-                    <p>{new Date(selectedCategory.createdAt).toLocaleString()}</p>
+                    <p>
+                      {new Date(selectedCategory.createdAt).toLocaleString()}
+                    </p>
                   </div>
                 </div>
                 <div className="row mb-3">
                   <strong>Updated At</strong>
                   <div className="col-sm-9">
-                    <p>{new Date(selectedCategory.updatedAt).toLocaleString()}</p>
+                    <p>
+                      {new Date(selectedCategory.updatedAt).toLocaleString()}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -275,7 +304,10 @@ function ListCategories() {
       )}
 
       {showModal && (
-        <div className="modal-backdrop fade show" onClick={handleCloseModal}></div>
+        <div
+          className="modal-backdrop fade show"
+          onClick={handleCloseModal}
+        ></div>
       )}
 
       <ToastContainer />

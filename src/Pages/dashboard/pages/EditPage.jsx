@@ -196,6 +196,8 @@ const EditPage = () => {
       <h1 className="mt-4">Edit Page</h1>
 
       <form onSubmit={handleSubmit}>
+      <div className="col-row d-flex ">
+      <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="pageUrl" className="form-label">
             Page URL
@@ -210,7 +212,10 @@ const EditPage = () => {
             required
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex ">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="pageTitle" className="form-label">
             Page Title
@@ -224,7 +229,10 @@ const EditPage = () => {
             onChange={handleChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex ">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name
@@ -239,7 +247,10 @@ const EditPage = () => {
             required
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex ">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="shortDescription" className="form-label">
             Short Description
@@ -253,7 +264,10 @@ const EditPage = () => {
             onChange={handleChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex ">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="description" className="form-label">
             Description
@@ -267,7 +281,10 @@ const EditPage = () => {
             onChange={handleChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex ">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="fileUpload" className="form-label">
             Upload File
@@ -280,7 +297,10 @@ const EditPage = () => {
             onChange={handleFileChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex ">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="meta.metaTitle" className="form-label">
             Meta Title
@@ -294,7 +314,10 @@ const EditPage = () => {
             onChange={handleChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex ">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="meta.metaDescription" className="form-label">
             Meta Description
@@ -308,7 +331,10 @@ const EditPage = () => {
             onChange={handleChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex ">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="meta.metaAuthor" className="form-label">
             Meta Author
@@ -322,7 +348,10 @@ const EditPage = () => {
             onChange={handleChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex ">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="meta.metaKeywords" className="form-label">
             Meta Keywords (comma separated)
@@ -336,7 +365,10 @@ const EditPage = () => {
             onChange={handleChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex ">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="metaTags" className="form-label">
             Meta Tags (comma separated)
@@ -350,7 +382,10 @@ const EditPage = () => {
             onChange={handleChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex ">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="content" className="form-label">
             Content
@@ -364,6 +399,10 @@ const EditPage = () => {
             style={{ height: "300px" }}
           />
         </div>
+        </div>
+        </div>
+        <div className="col-row d-flex ">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <button
             style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
@@ -371,19 +410,27 @@ const EditPage = () => {
             className="btn btn-secondary"
             onClick={handleSourceCode}
           >
-            Code
+           Source Code
           </button>
         </div>
-
-        <div className="mb-3">
-          <button
-            style={{ marginLeft: "-28%" }}
-            type="submit"
-            className="btn btn-primary"
-          >
-            Submit
-          </button>
         </div>
+        </div>
+        <div className="col-row d-flex mt-5">
+            <div className="col-md-4 m-2">
+              <button type="submit" className="btn btn-dark mr-1">
+                Submit
+              </button>
+            </div>
+            <div className="col-md-4 m-2">
+              <button
+                type="button"
+                className="btn btn-outline-secondary"
+                onClick={() => navigate("/mainDashboard/listPage")}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
       </form>
       <Modal show={showSourceModal} onHide={() => setShowSourceModal(false)}>
         <Modal.Header closeButton>

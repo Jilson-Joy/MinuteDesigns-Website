@@ -125,80 +125,109 @@ const AddCategory = () => {
       <h1 className="mt-4">Add Category</h1>
 
       <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="categoryName" className="form-label">
-            Category Name
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="categoryName"
-            name="categoryName"
-            value={formData.categoryName}
-            onChange={handleChange}
-            required
-          />
+        <div className="col-row d-flex ">
+          <div className="col-md-12 m-2">
+            <div className="mb-3">
+              <label htmlFor="categoryName" className="form-label">
+                Category Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="categoryName"
+                name="categoryName"
+                value={formData.categoryName}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div className="col-row d-flex ">
+          <div className="col-md-12 m-2">
+            <div className="mb-3">
+              <label htmlFor="videoUrl" className="col-sm-2 col-form-label">
+                Video URL
+              </label>
+              <input
+                type="url"
+                className="form-control"
+                id="videoUrl"
+                name="videoUrl"
+                value={formData.videoUrl}
+                onChange={handleChange}
+                placeholder="https://example.com/video"
+              />
+            </div>
+          </div>
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="videoUrl" className="col-sm-2 col-form-label">
-            Video URL
-          </label>
-          <input
-            type="url"
-            className="form-control"
-            id="videoUrl"
-            name="videoUrl"
-            value={formData.videoUrl}
-            onChange={handleChange}
-            placeholder="https://example.com/video"
-          />
+        <div className="col-row d-flex ">
+          <div className="col-md-12 m-2">
+            <div className="mb-3">
+              <label htmlFor="fileUpload" className="form-label">
+                Upload File
+              </label>
+              <input
+                type="file"
+                className="form-control"
+                name="files"
+                multiple
+                onChange={handleFileChange}
+              />
+            </div>
+          </div>
         </div>
 
-        <div className="mb-3">
-          <label htmlFor="fileUpload" className="form-label">
-            Upload File
-          </label>
-          <input
-            type="file"
-            className="form-control"
-            name="files"
-            multiple
-            onChange={handleFileChange}
-          />
+        <div className="col-row d-flex mt-5">
+          <div className="col-md-12 m-2">
+            <label htmlFor="content" className="form-label">
+              Content
+            </label>
+            <div className="cls-editor">
+              <ReactQuill
+                value={formData.content}
+                onChange={handleContentChange}
+                modules={modules}
+                formats={formats}
+                placeholder="Write your content here..."
+                style={{
+                  minwidth: "500px",
+                  height: "300px",
+                  overflow: "auto",
+                }}
+              />
+            </div>
+          </div>
         </div>
 
-        <div className="mb-3">
-          <label className="form-label">Content</label>
-          <ReactQuill
-            value={formData.content}
-            onChange={handleContentChange}
-            modules={modules}
-            formats={formats}
-            placeholder="Write your content here..."
-            style={{ height: "300px" }}
-          />
+        <div className="col-row d-flex">
+          <div className="col-md-12 m-2">
+            <button
+              type="button"
+              className="btn btn-secondary "
+              onClick={handleSourceCode}
+            >
+              Source Code
+            </button>
+          </div>
         </div>
 
-        <div className="mb-3">
-          <button
-            style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
-            type="button"
-            className="btn btn-secondary"
-            onClick={handleSourceCode}
-          >
-            Code
-          </button>
-        </div>
-
-        <div className="mb-3">
-          <button
-            style={{ marginLeft: "-28%" }}
-            type="submit"
-            className="btn btn-primary"
-          >
-            Submit
-          </button>
+        <div className="col-row d-flex mt-5">
+          <div className="col-md-4 m-2">
+            <button type="submit" className="btn btn-dark mr-1">
+              Submit
+            </button>
+          </div>
+          <div className="col-md-4 m-2">
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={() => navigate("/mainDashboard/listServices")}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       </form>
 

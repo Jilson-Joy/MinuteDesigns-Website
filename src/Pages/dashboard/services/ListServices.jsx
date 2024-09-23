@@ -109,16 +109,40 @@ function ListServices() {
     <div className="container mt-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="text-primary">List of Services</h1>
-        <button onClick={() => navigate("/mainDashboard/addServices")} className="btn btn-success">Add Service</button>
       </div>
-      <div className="mb-3">
-        <input 
-          type="text" 
-          className="form-control" 
-          placeholder="Search by name, title, or description" 
-          value={searchTerm} 
-          onChange={handleSearch} 
-        />
+      {/* breadcrumb */}
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <a href="/mainDashboard">Home</a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+            Service List
+            </li>
+          </ol>
+        </nav>
+      </div>
+   
+      <div className="row display-flex">
+        <div className="mb-3 col-md-6 text-left">
+          <button
+            onClick={() => navigate("/mainDashboard/addServices")}
+            className="btn btn-success"
+          >
+            Add Service
+          </button>
+        </div>
+
+        <div className="mb-3 col-md-6 text-right">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by name, title, or description" 
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
       </div>
       
       <div className="table-responsive">

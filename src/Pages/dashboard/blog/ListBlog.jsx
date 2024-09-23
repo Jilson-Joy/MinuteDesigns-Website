@@ -114,38 +114,46 @@ function ListBlogs() {
   return (
     <div className="container">
       <h1 className="mt-4">List of Blogs</h1>
-      <div style={{ textAlign: "right" }}>
-        <button
-          onClick={() => navigate("/mainDashboard/addBlog")}
-          className="btn btn-success mb-3"
-        >
-          Add Blog
-        </button>
+      <div style={{ textAlign: "right" }}>      
       </div>
-      <div className="mb-3">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Search by title or description"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-      </div>
-      {filteredBlogs.length === 0 ? (
-        <p>No blogs available.</p>
-      ) : (
-        <div className="table-responsive">
-          <table className="table table-bordered table-hover">
-            <thead className="table-dark">
-              <tr>
-                <th style={{ padding: "25px" }}>#</th>
-                <th style={{ padding: "25px" }}>TITLE</th>
-                <th style={{ padding: "25px" }}>DESCRIPTION</th>
-                <th style={{ padding: "25px" }}>STATUS</th>
+   
+      <div className="row display-flex">
+        <div className="mb-3 col-md-6 text-left">
+          <button
+            onClick={() => navigate("/mainDashboard/addBlog")}
+            className="btn btn-success"
+          >
+            Add Blog
+          </button>
+        </div>
 
-                <th style={{ padding: "25px" }}>ACTIONS</th>
-              </tr>
-            </thead>
+        <div className="mb-3 col-md-6 text-right">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by title or description"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
+      </div>
+      <div className="table-responsive">
+        <table className="table table-bordered table-hover">
+          <thead className="table-dark">
+            <tr>
+              <th style={{ padding: "25px" }}>#</th>
+              <th style={{ padding: "25px" }}>TITLE</th>
+              <th style={{ padding: "25px" }}>DESCRIPTION</th>
+              <th style={{ padding: "25px" }}>STATUS</th>
+              <th style={{ padding: "25px" }}>ACTIONS</th>
+            </tr>
+          </thead>
+          {filteredBlogs.length === 0 ? (
+            <tr className="text-muted">
+            <td colSpan="8" className="text-center text-muted">
+            No blogs available.</td>
+            </tr>
+          ) : (
             <tbody>
               {currentBlogs.map((blog, index) => (
                 <tr key={blog._id}>
@@ -188,10 +196,9 @@ function ListBlogs() {
                 </tr>
               ))}
             </tbody>
-          </table>
-        </div>
-      )}
-
+          )}
+        </table>
+      </div>
       <nav>
         <ul className="pagination justify-content-center">
           {Array.from({ length: totalPages }, (_, index) => (

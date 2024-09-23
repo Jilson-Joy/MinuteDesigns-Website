@@ -3,13 +3,13 @@ import { loginApi } from "../../api/login"; // Import your API call
 
 // Async thunk for login
 export const loginUser = createAsyncThunk(
-  'auth/login',
+  "auth/login",
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const response = await loginApi(email, password);
       return response; // Return the API response (user and token)
     } catch (error) {
-      return rejectWithValue(error.response?.data?.message || 'Login failed');
+      return rejectWithValue(error.response?.data?.message || "Login failed");
     }
   }
 );
@@ -17,7 +17,7 @@ export const loginUser = createAsyncThunk(
 // Utility function to handle localStorage operations
 const loadUserFromLocalStorage = () => {
   try {
-    const storedInfo = localStorage.getItem("admin");
+    const storedInfo = localStorage.getItem("minute_admin");
     return storedInfo ? JSON.parse(storedInfo) : null;
   } catch (error) {
     console.error("Error parsing user info from local storage:", error);
@@ -27,7 +27,7 @@ const loadUserFromLocalStorage = () => {
 
 // Initial state
 const initialState = {
-  currentUser: loadUserFromLocalStorage(),
+  currentMinuteWebUser: loadUserFromLocalStorage(),
   token: null,
   error: null,
   loading: false, // Add loading state
@@ -35,16 +35,16 @@ const initialState = {
 
 // Create slice
 const adminSlice = createSlice({
-  name: "admin",
+  name: "minute_admin",
   initialState,
   reducers: {
     signOutSuccess: (state) => {
-      state.currentUser = null;
+      state.currentMinuteWebUser = null;
       state.token = null;
       state.error = null;
       state.loading = false; // Reset loading state on sign out
       try {
-        localStorage.removeItem("admin");
+        localStorage.removeItem("minute_admin");
       } catch (error) {
         console.error("Error removing user info from local storage:", error);
       }
@@ -58,12 +58,12 @@ const adminSlice = createSlice({
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         const { user, token } = action.payload;
-        state.currentUser = user;
+        state.currentMinuteWebUser = user;
         state.token = token;
         state.error = null;
         state.loading = false;
         try {
-          localStorage.setItem("admin", JSON.stringify(user));
+          localStorage.setItem("minute_admin", JSON.stringify(user));
         } catch (error) {
           console.error("Error saving user info to local storage:", error);
         }
@@ -72,9 +72,9 @@ const adminSlice = createSlice({
         state.loading = false;
         state.error = action.payload; // The error message passed from thunk
       });
-  }
+  },
 });
-console.log(adminSlice)
+console.log(adminSlice);
 // Export actions
 export const { signOutSuccess } = adminSlice.actions;
 

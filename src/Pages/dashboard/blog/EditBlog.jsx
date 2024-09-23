@@ -175,6 +175,8 @@ const EditBlog = () => {
       <h1 className="mt-4">Edit Blog</h1> 
 
       <form onSubmit={handleSubmit}>
+      <div className="col-row d-flex">
+      <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="title" className="form-label">
             Title
@@ -189,7 +191,11 @@ const EditBlog = () => {
             required
           />
         </div>
+        </div>
+        </div>
 
+        <div className="col-row d-flex">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="description" className="form-label">
             Description
@@ -203,7 +209,10 @@ const EditBlog = () => {
             onChange={handleChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="fileUpload" className="form-label">
             Upload File
@@ -216,7 +225,10 @@ const EditBlog = () => {
             onChange={handleFileChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label className="form-label">Comments</label>
           {formData.comments.map((comment, index) => (
@@ -245,7 +257,10 @@ const EditBlog = () => {
             Add Comment
           </button>
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label className="form-label">Content</label>
           <ReactQuill
@@ -257,7 +272,10 @@ const EditBlog = () => {
             style={{ height: "300px" }}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex mt-5">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <button
             style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
@@ -268,6 +286,9 @@ const EditBlog = () => {
             Code
           </button>
         </div>
+        </div>
+        </div>
+
 
         <div className="mb-3">
           <button

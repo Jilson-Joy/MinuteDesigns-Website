@@ -1,15 +1,19 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { DeleteTestimonialById, GetAllTestimonial, UpdateTestimonialStatus } from '../../../api/testimonial';
-import { ToastContainer, toast } from 'react-toastify'; 
-import 'react-toastify/dist/ReactToastify.css';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  DeleteTestimonialById,
+  GetAllTestimonial,
+  UpdateTestimonialStatus,
+} from "../../../api/testimonial";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function ListTestimonials() {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedTestimonial, setSelectedTestimonial] = useState(null); 
-  const [searchTerm, setSearchTerm] = useState(""); 
+  const [selectedTestimonial, setSelectedTestimonial] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
   const [showModal, setShowModal] = useState(false);
@@ -17,11 +21,11 @@ function ListTestimonials() {
 
   const fetchTestimonials = async () => {
     try {
-      const result = await GetAllTestimonial(); 
+      const result = await GetAllTestimonial();
       setTestimonials(result.testimonials);
     } catch (error) {
-      console.error('Error fetching testimonials:', error);
-      toast.error('Failed to fetch testimonials.'); // User feedback on error
+      console.error("Error fetching testimonials:", error);
+      toast.error("Failed to fetch testimonials."); // User feedback on error
     } finally {
       setLoading(false);
     }
@@ -32,108 +36,143 @@ function ListTestimonials() {
   }, []);
 
   const handleEdit = (testimonialId) => {
-    navigate(`/mainDashboard/edit-testimonial/${testimonialId}`); 
+    navigate(`/mainDashboard/edit-testimonial/${testimonialId}`);
   };
 
   const handleStatusChange = async (testimonialId) => {
-    const testimonialToUpdate = testimonials.find(testimonial => testimonial._id === testimonialId);
+    const testimonialToUpdate = testimonials.find(
+      (testimonial) => testimonial._id === testimonialId
+    );
     if (!testimonialToUpdate) {
-      console.error('Testimonial not found');
+      console.error("Testimonial not found");
       return;
     }
 
     const newStatus = !testimonialToUpdate.status;
-    const action = newStatus ? 'activate' : 'deactivate';
-    const confirmed = window.confirm(`Are you sure you want to ${action} this testimonial? This action cannot be undone.`);
-  
+    const action = newStatus ? "activate" : "deactivate";
+    const confirmed = window.confirm(
+      `Are you sure you want to ${action} this testimonial? This action cannot be undone.`
+    );
+
     if (confirmed) {
       try {
         await UpdateTestimonialStatus(testimonialId, newStatus);
-        const updatedTestimonials = testimonials.map(testimonial => 
-          testimonial._id === testimonialId ? { ...testimonial, status: newStatus } : testimonial
+        const updatedTestimonials = testimonials.map((testimonial) =>
+          testimonial._id === testimonialId
+            ? { ...testimonial, status: newStatus }
+            : testimonial
         );
-        setTestimonials(updatedTestimonials); 
+        setTestimonials(updatedTestimonials);
         toast.success(`Testimonial ${action}d successfully!`);
       } catch (error) {
-        console.error('Error updating testimonial status:', error);
-        toast.error('Failed to update testimonial status.');
+        console.error("Error updating testimonial status:", error);
+        toast.error("Failed to update testimonial status.");
       }
     }
   };
 
   const handleDelete = async (testimonialId) => {
-    const confirmed = window.confirm('Are you sure you want to delete this testimonial? This action cannot be undone.');
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this testimonial? This action cannot be undone."
+    );
     if (confirmed) {
       try {
-        await DeleteTestimonialById(testimonialId); 
-        setTestimonials(testimonials.filter(testimonial => testimonial._id !== testimonialId)); 
-        toast.success('Testimonial deleted successfully!');
+        await DeleteTestimonialById(testimonialId);
+        setTestimonials(
+          testimonials.filter(
+            (testimonial) => testimonial._id !== testimonialId
+          )
+        );
+        toast.success("Testimonial deleted successfully!");
       } catch (error) {
-        console.error('Error deleting testimonial:', error);
-        toast.error('Failed to delete testimonial.');
+        console.error("Error deleting testimonial:", error);
+        toast.error("Failed to delete testimonial.");
       }
     }
   };
 
   const handleView = (testimonial) => {
     setSelectedTestimonial(testimonial);
-    setShowModal(true); 
+    setShowModal(true);
   };
 
   const handleCloseModal = () => {
-    setShowModal(false); 
-    setSelectedTestimonial(null); 
+    setShowModal(false);
+    setSelectedTestimonial(null);
   };
 
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value); 
-    setCurrentPage(1); 
+    setSearchTerm(e.target.value);
+    setCurrentPage(1);
   };
 
   const filteredTestimonials = testimonials.filter((testimonial) => {
     return (
-      (testimonial.name && testimonial.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      (testimonial.description && testimonial.description.toLowerCase().includes(searchTerm.toLowerCase()))
+      (testimonial.name &&
+        testimonial.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (testimonial.description &&
+        testimonial.description
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()))
     );
   });
-  
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentTestimonials = filteredTestimonials.slice(indexOfFirstItem, indexOfLastItem);
+  const currentTestimonials = filteredTestimonials.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
   const totalPages = Math.ceil(filteredTestimonials.length / itemsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (loading) {
-    return <div>Loading...</div>; 
+    return <div>Loading...</div>;
   }
 
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="text-primary">List of Testimonials</h1>
-        <div style={{ textAlign: 'right' }}>
+      </div>
+
+      {/* breadcrumb */}
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <a href="/mainDashboard">Home</a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Service List
+            </li>
+          </ol>
+        </nav>
+      </div>
+
+      <div className="row display-flex">
+        <div className="mb-3 col-md-6 text-left">
           <button
-            onClick={() => navigate('/mainDashboard/addTestimonial')} 
+            onClick={() => navigate("/mainDashboard/addTestimonial")}
             className="btn btn-success"
           >
             Add Testimonial
           </button>
         </div>
+
+        <div className="mb-3 col-md-6 text-right">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by name or description"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
       </div>
-      <div className="mb-3">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Search by name or description"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-      </div>
-      {filteredTestimonials.length === 0 ? (
-        <p className="text-muted">No testimonials available.</p> 
-      ) : (
-        <div className="table-responsive">
+
+      <div className="table-responsive">
           <table className="table table-bordered table-hover">
             <thead className="table-dark">
               <tr>
@@ -144,11 +183,18 @@ function ListTestimonials() {
                 <th style={{ padding: "34px" }}>ACTIONS</th>
               </tr>
             </thead>
+      {filteredTestimonials.length === 0 ? (
+        <tr className="text-muted">
+          <td colSpan="8" className="text-center text-muted">
+          No testimonials available.</td>
+          </tr>
+      ) : (
+        
             <tbody>
               {currentTestimonials.map((testimonial, index) => (
                 <tr key={testimonial._id}>
-                  <td>{index + 1 + indexOfFirstItem}</td> 
-                  <td>{testimonial.title}</td> 
+                  <td>{index + 1 + indexOfFirstItem}</td>
+                  <td>{testimonial.title}</td>
                   <td>{testimonial.description}</td>
                   <td>
                     <button
@@ -183,16 +229,16 @@ function ListTestimonials() {
                 </tr>
               ))}
             </tbody>
-          </table>
-        </div>
+        
       )}
-
+  </table>
+  </div>
       <nav>
         <ul className="pagination justify-content-center">
           {Array.from({ length: totalPages }, (_, index) => (
             <li key={index + 1} className="page-item">
               <button
-                className={`page-link ${currentPage === index + 1 ? 'active' : ''}`}
+                className={`page-link ${currentPage === index + 1 ? "active" : ""}`}
                 onClick={() => paginate(index + 1)}
               >
                 {index + 1}
@@ -212,7 +258,11 @@ function ListTestimonials() {
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Page Details</h5>
-                <button type="button" className="btn-close" onClick={handleCloseModal}></button>
+                <button
+                  type="button"
+                  className="btn-close"
+                  onClick={handleCloseModal}
+                ></button>
               </div>
               <div className="modal-body">
                 <div className="mb-3">
@@ -230,30 +280,44 @@ function ListTestimonials() {
                 <div className="row mb-3">
                   <strong className="col-sm-3">Content:</strong>
                   <div className="col-sm-9">
-                    <div dangerouslySetInnerHTML={{ __html: selectedTestimonial.content }} />
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: selectedTestimonial.content,
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="row mb-3">
                   <strong className="col-sm-3">Created At:</strong>
                   <div className="col-sm-9">
-                    <div>{new Date(selectedTestimonial.createdAt).toLocaleString()}</div>
+                    <div>
+                      {new Date(selectedTestimonial.createdAt).toLocaleString()}
+                    </div>
                   </div>
                 </div>
                 <div className="row mb-3">
                   <strong className="col-sm-3">Updated At:</strong>
                   <div className="col-sm-9">
-                    <div>{new Date(selectedTestimonial.updatedAt).toLocaleString()}</div>
+                    <div>
+                      {new Date(selectedTestimonial.updatedAt).toLocaleString()}
+                    </div>
                   </div>
                 </div>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={handleCloseModal}
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
         </div>
       )}
-      
+
       <ToastContainer />
     </div>
   );

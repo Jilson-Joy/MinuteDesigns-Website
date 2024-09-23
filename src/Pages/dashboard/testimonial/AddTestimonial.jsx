@@ -120,6 +120,9 @@ const AddTestimonial = () => {
       <h1>Add Testimonial</h1>
 
       <form onSubmit={handleSubmit}>
+
+      <div className="col-row d-flex">
+      <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="title" className="form-label">Title</label>
           <input
@@ -132,7 +135,10 @@ const AddTestimonial = () => {
             required
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="description" className="form-label">Description</label>
           <input
@@ -144,7 +150,10 @@ const AddTestimonial = () => {
             onChange={handleChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="fileUpload" className="form-label">Upload File</label>
           <input
@@ -155,39 +164,59 @@ const AddTestimonial = () => {
             onChange={handleFileChange}
           />
         </div>
-
-        <div className="mb-3">
-          <label className="form-label">Content</label>
-          <ReactQuill
-            value={formData.content}
-            onChange={handleContentChange}
-            modules={modules}
-            formats={formats}
-            placeholder="Write your content here..."
-            style={{ height: "300px" }}
-          />
+        </div>
         </div>
 
-        <div className="mb-3">
-          <button
-            style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
-            type="button"
-            className="btn btn-secondary"
-            onClick={handleSourceCode}
-          >
-            Code
-          </button>
-        </div>
+        <div className="col-row d-flex mt-5">
+            <div className="col-md-12 m-2">
+              <label htmlFor="content" className="form-label">
+                Content
+              </label>
+              <div className="cls-editor">
+                <ReactQuill
+                  value={formData.content}
+                  onChange={handleContentChange}
+                  modules={modules}
+                  formats={formats}
+                  placeholder="Write your content here..."
+                  style={{
+                    minwidth: "500px",
+                    height: "300px",
+                    overflow: "auto",
+                  }}
+                />
+              </div>
+            </div>
+          </div>
 
-        <div className="mb-3">
-          <button
-            style={{ marginLeft: "-28%" }}
-            type="submit"
-            className="btn btn-primary"
-          >
-            Submit
-          </button>
-        </div>
+          <div className="col-row d-flex">
+            <div className="col-md-12 m-2">
+              <button
+                type="button"
+                className="btn btn-secondary "
+                onClick={handleSourceCode}
+              >
+                Source Code
+              </button>
+            </div>
+          </div>
+
+          <div className="col-row d-flex mt-5">
+            <div className="col-md-4 m-2">
+              <button type="submit" className="btn btn-dark mr-1">
+                Submit
+              </button>
+            </div>
+            <div className="col-md-4 m-2">
+              <button
+                type="button"
+                className="btn btn-outline-secondary"
+                onClick={() => navigate("/mainDashboard/listPage")}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
       </form>
 
       <Modal show={showSourceModal} onHide={() => setShowSourceModal(false)}>

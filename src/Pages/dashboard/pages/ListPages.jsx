@@ -14,9 +14,9 @@ function ListPages() {
   const [loading, setLoading] = useState(true);
   const [selectedPage, setSelectedPage] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(""); 
+  const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10); 
+  const [itemsPerPage] = useState(10);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -95,15 +95,14 @@ function ListPages() {
   };
 
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value); 
+    setSearchTerm(e.target.value);
   };
 
   const filteredPages = pages.filter((page) => {
     return (
       page.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      page.pageTitle.toLowerCase().includes(searchTerm.toLowerCase())||
+      page.pageTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
       page.shortDescription.toLowerCase().includes(searchTerm.toLowerCase())
-
     );
   });
 
@@ -121,42 +120,62 @@ function ListPages() {
     <div className="container mt-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="text-primary">List of Pages</h1>
-        <button
-          onClick={() => navigate("/mainDashboard/addPage")}
-          className="btn btn-success"
-        >
-          Add Page
-        </button>
+      </div>
+      {/* breadcrumb */}
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <a href="/mainDashboard">Home</a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Pages List
+            </li>
+          </ol>
+        </nav>
       </div>
 
-      <div className="mb-3">
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Search by name or title or description"
-          value={searchTerm}
-          onChange={handleSearch}
-        />
-      </div>
+      <div className="row display-flex">
+        <div className="mb-3 col-md-6 text-left">
+          <button
+            onClick={() => navigate("/mainDashboard/addPage")}
+            className="btn btn-success"
+          >
+            Add Page
+          </button>
+        </div>
 
-      {currentPages.length === 0 ? (
-        <p className="text-muted">No pages available.</p>
-      ) : (
-        <div className="table-responsive">
-          <table className="table table-bordered table-hover">
-            <thead className="table-dark">
-              <tr>
+        <div className="mb-3 col-md-6 text-right">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by name or title or description"
+            value={searchTerm}
+            onChange={handleSearch}
+          />
+        </div>
+      </div>
+      <div className="table-responsive">
+        <table className="table table-bordered table-hover">
+          <thead className="table-dark">
+            <tr>
               <th style={{ padding: "25px" }}>#</th>
-                <th style={{ padding: "25px" }}>CODE</th>
-                <th style={{ padding: "25px" }}>NAME</th>
-                <th style={{ padding: "25px" }}>TITLE</th>
-                <th style={{ padding: "25px" }}>PAGEURL</th>
-                <th style={{ padding: "25px" }}>DESCRIPTION</th>
-                <th style={{ padding: "25px" }}>STATUS</th>
-                <th style={{ padding: "25px" }}>ACTIONS</th>
-
-              </tr>
-            </thead>
+              <th style={{ padding: "25px" }}>CODE</th>
+              <th style={{ padding: "25px" }}>NAME</th>
+              <th style={{ padding: "25px" }}>TITLE</th>
+              <th style={{ padding: "25px" }}>PAGE URL</th>
+              <th style={{ padding: "25px" }}>DESCRIPTION</th>
+              <th style={{ padding: "25px" }}>STATUS</th>
+              <th style={{ padding: "25px" }}>ACTIONS</th>
+            </tr>
+          </thead>
+          {currentPages.length === 0 ? (
+            <tr className="text-muted">
+              <td colSpan={10} className="text-center">
+                No pages available.
+              </td>
+            </tr>
+          ) : (
             <tbody>
               {currentPages.map((page, index) => (
                 <tr key={page._id}>
@@ -201,9 +220,9 @@ function ListPages() {
                 </tr>
               ))}
             </tbody>
-          </table>
-        </div>
-      )}
+          )}
+        </table>
+      </div>
 
       <nav>
         <ul className="pagination justify-content-center">
@@ -292,7 +311,7 @@ function ListPages() {
                   <strong>Status: </strong>{" "}
                   {selectedPage.status ? "Active" : "Inactive"}
                 </div>
-                
+
                 <div className="mb-3">
                   <strong>Created At: </strong>{" "}
                   {new Date(selectedPage.createdAt).toLocaleString()}

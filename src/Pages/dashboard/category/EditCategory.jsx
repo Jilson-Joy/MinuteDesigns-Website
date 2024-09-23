@@ -143,6 +143,8 @@ const EditCategory = () => {
     <div className="container mt-4">
       <h1 className="mt-4">Edit Category</h1>
       <form onSubmit={handleSubmit}>
+      <div className="col-row d-flex mt-5">
+      <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="categoryName" className="form-label">
             Category Name
@@ -157,7 +159,10 @@ const EditCategory = () => {
             required
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex mt-5">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="videoUrl" className="col-sm-2 col-form-label">
             Video URL
@@ -172,7 +177,10 @@ const EditCategory = () => {
             placeholder="https://example.com/video"
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex mt-5">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label htmlFor="fileUpload" className="form-label">
             Upload File
@@ -185,7 +193,10 @@ const EditCategory = () => {
             onChange={handleFileChange}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex mt-5">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <label className="form-label">Content</label>
           <ReactQuill
@@ -197,7 +208,10 @@ const EditCategory = () => {
             style={{ height: "300px" }}
           />
         </div>
-
+        </div>
+        </div>
+        <div className="col-row d-flex mt-5">
+        <div className="col-md-12 m-2">
         <div className="mb-3">
           <button
             style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
@@ -208,15 +222,24 @@ const EditCategory = () => {
             Code
           </button>
         </div>
-
-        <div className="mb-3">
-          <button
-            style={{ marginLeft: "-28%" }}
-            type="submit"
-            className="btn btn-primary"
-          >
-            Submit
-          </button>
+        </div>
+        </div>
+     
+        <div className="col-row d-flex mt-5">
+          <div className="col-md-4 m-2">
+            <button type="submit" className="btn btn-dark mr-1">
+              Submit
+            </button>
+          </div>
+          <div className="col-md-4 m-2">
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={() => navigate("/mainDashboard/listServices")}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
       </form>
 
