@@ -1,49 +1,16 @@
-/* #maincanvas {
+.Melement {
+  width: 100%;
+  max-width: 400px;
+  min-height: 350px;
 
-    max-width: 450px;
-    border: 1px solid red;
-  }
-   */
+  display: block;
+  margin: 0 auto; 
+}
 
-   /* .grid {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; 
+@media screen and (max-width: 800px) {
+  .Melement {
+    max-width: 80%; 
+    min-width: 250px;
+    min-height: 250px;
   }
-  
-  .row {
-    display: flex;
-    gap: 10px; 
-  }
-  
-  .dot {
-    border-radius: 50%;
-    background-color: #bababa;
-  }
-  
-  .highlighted {
-    background-color: green; 
-  }
-  .circle-canvas {
-    border: 2px solid black; 
-   
-  }
-   */
-
-   @keyframes moveDown {
-    0% {
-      transform: translateY(-100%);
-    }
-    100% {
-      transform: translateY(100%);
-    }
-  }
-
-  .letter {
-    animation: moveDown 5s infinite;
-  }
-
-  .highlight-dot {
-    fill: red; /* or color: red; depending on your implementation */
-  }
-  
+}
