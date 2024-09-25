@@ -34,12 +34,12 @@ function Melement() {
 </style>
 
 
- <div className="container-M">
-    {/* <CircleGrid/> */}
+ {/* <div className="container-M">
+
       <CircleCanvas
         circleColor="black"
       />
-    </div>
+    </div> */}
     </div>
   );
 }
