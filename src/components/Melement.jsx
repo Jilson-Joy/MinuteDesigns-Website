@@ -10,8 +10,8 @@ function Melement() {
 <style>
 {`
   .container-M {
-    width: 80%;
-    height: 45vh;
+    width: 100%;
+    height: 100%;
     position: relative;
   }
 

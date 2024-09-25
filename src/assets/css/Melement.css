@@ -42,3 +42,8 @@
   .letter {
     animation: moveDown 5s infinite;
   }
+
+  .highlight-dot {
+    fill: red; /* or color: red; depending on your implementation */
+  }
+  

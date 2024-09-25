@@ -21,24 +21,37 @@ const CircleCanvas = ({
 
     const letters = ['M', 'I', 'N', 'U', 'T', 'E'];
     const lettersDSG = ['D', 'E', 'S', 'I', 'G', 'N', 'S'];
-
+    
     const isHighlightDot = (x, y) => {
       const leftX = gridCenterX - halfSize;
       const rightX = gridCenterX + halfSize;
       const topY = gridCenterY - halfSize;
-      const bottomY = gridCenterY + halfSize;
-      const slope = (bottomY - topY) / (shapeSize / 2); // middle bottom triangle
+      const bottomY = gridCenterY + halfSize * 0.8; // Reduce the height by 30%
+    
+      // Adjust slope for an exact triangle
+      const slope = (bottomY - topY) / halfSize; 
+    
+      // Coordinates for the last middle bottom dot
+      const lastMiddleBottomDotX = gridCenterX;
+      const lastMiddleBottomDotY = bottomY;
+    
       return (
+        // Remove the bottom middle dot condition
         (x >= leftX && x <= leftX + 0.3 * shapeSize && y >= topY && y <= bottomY) ||
         (x >= rightX - 0.3 * shapeSize && x <= rightX && y >= topY && y <= bottomY) ||
-        (x >= leftX + 0.2 * shapeSize && x <= gridCenterX &&
-          y >= topY && y <= bottomY &&
-          y <= topY + slope * (x - leftX - 0.1 * shapeSize)) ||
-        (x >= gridCenterX && x <= rightX - 0.2 * shapeSize &&
-          y >= topY && y <= bottomY &&
-          y <= topY + slope * (rightX - x - 0.1 * shapeSize))
+        // Left side of the triangle (expanded ranges)
+        (x >= leftX + 0.1 * shapeSize && x <= gridCenterX &&
+            y >= topY && y <= bottomY &&
+            y <= topY + slope * (x - leftX - 0.02 * shapeSize)) || 
+        // Right side of the triangle (expanded ranges)
+        (x >= gridCenterX && x <= rightX - 0.3 * shapeSize &&
+            y >= topY && y <= bottomY &&
+            y <= topY + slope * (rightX - x - 0.02 * shapeSize)) 
+        // Highlight the last middle bottom dot
       );
     };
+    
+
 
     const init = () => {
       circles.length = 0;
@@ -47,8 +60,8 @@ const CircleCanvas = ({
       const spacingY = circleSpacing + circleSize;
       const columns = Math.floor(canvas.width / spacingX);
       const rows = Math.floor(canvas.height / spacingY);
-      const offsetX = (canvas.width - columns * spacingX + circleSpacing) / 2;
-      const offsetY = (canvas.height - rows * spacingY + circleSpacing) / 2;
+      const offsetX = (canvas.width - columns * spacingX + circleSpacing) / 7;
+      const offsetY = (canvas.height - rows * spacingY + circleSpacing) / 3;
 
       const rowsToRemove = 6; // Height of the triangle
       const triangleBase = rowsToRemove * 2; // Base width of the triangle at the top
@@ -58,6 +71,8 @@ const CircleCanvas = ({
           const cx = offsetX + x * spacingX + radius;
           const cy = offsetY + y * spacingY + radius;
 
+    
+
           // Keep dots outside the triangle shape from top to middle
           if (y < rowsToRemove) {
             const slope = (triangleBase - y * (triangleBase / rowsToRemove)) / 2;
@@ -66,6 +81,8 @@ const CircleCanvas = ({
             if (x >= middleX - slope - 1 && x <= middleX + slope) {
               continue; // Skip this circle to form a triangle removal
             }
+        
+          
           }
 
           circles.push({ x: cx, y: cy, baseX: cx, baseY: cy });
@@ -85,9 +102,9 @@ const CircleCanvas = ({
         // Render squares that are highlighted
         if (isHighlightDot(circle.x, circle.y)) {
           // Check if the dot is at the bottom of the grid
-          if (circle.y >= canvas.height - 30) {
+          if (circle.y >= canvas.height - 10) {
             // For left side letters (M, I, N, U, T, E)
-            if (circle.x < canvas.width / 2 && leftLetterIndex < letters.length) {
+            if (circle.x < canvas.width / 1 && leftLetterIndex < letters.length) {
               ctx.fillStyle = letterColor;
               ctx.font = "10px Arial";
               ctx.fillText(letters[leftLetterIndex], circle.x + 8, circle.y + 10);
@@ -96,12 +113,13 @@ const CircleCanvas = ({
             // For right side letters (S, G, N, I, E, D)
             else if (circle.x > canvas.width / 2 && rightLetterIndex < lettersDSG.length) {
               ctx.fillStyle = letterColor;
-              ctx.font = "10px Arial";
+              ctx.font = "10px";
               ctx.fillText(lettersDSG[rightLetterIndex], circle.x + 4, circle.y + 10);
               rightLetterIndex++;
             }
           } else {
             ctx.beginPath();
+          
 
             // Elastic effect using sine wave
             const scale = 1 + Math.sin(time * 2 + circle.x / 100) * 0.2; // Elastic bounce effect
