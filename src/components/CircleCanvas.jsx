@@ -106,7 +106,7 @@ const CircleCanvas = ({
             // For left side letters (M, I, N, U, T, E)
             if (circle.x < canvas.width / 1 && leftLetterIndex < letters.length) {
               ctx.fillStyle = letterColor;
-              ctx.font = "10px Arial";
+              ctx.font = "10px Arial ";
               ctx.fillText(letters[leftLetterIndex], circle.x + 8, circle.y + 10);
               leftLetterIndex++;
             }
