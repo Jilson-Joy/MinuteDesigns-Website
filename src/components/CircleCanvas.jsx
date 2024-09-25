@@ -106,19 +106,20 @@ const CircleCanvas = ({
             // For left side letters (M, I, N, U, T, E)
             if (circle.x < canvas.width / 1 && leftLetterIndex < letters.length) {
               ctx.fillStyle = letterColor;
-              ctx.font = "10px Arial ";
+              ctx.font = "10px Arial";
               ctx.fillText(letters[leftLetterIndex], circle.x + 8, circle.y + 10);
               leftLetterIndex++;
             }
             // For right side letters (S, G, N, I, E, D)
             else if (circle.x > canvas.width / 2 && rightLetterIndex < lettersDSG.length) {
               ctx.fillStyle = letterColor;
-              ctx.font = "10px Arial";
+              ctx.font = "10px";
               ctx.fillText(lettersDSG[rightLetterIndex], circle.x + 4, circle.y + 10);
               rightLetterIndex++;
             }
           } else {
             ctx.beginPath();
+          
 
             // Elastic effect using sine wave
             const scale = 1 + Math.sin(time * 2 + circle.x / 100) * 0.2; // Elastic bounce effect

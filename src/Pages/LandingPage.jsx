@@ -37,7 +37,7 @@ function LandingPage() {
               </h1>
               <div className="hero-desc">
               <p className="hero-description">
-                "Elevating user experience to its pinnacle."
+                "Elevating user experience to its pinnacle"
               </p>
               </div>
             </div>
