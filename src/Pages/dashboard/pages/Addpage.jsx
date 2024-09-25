@@ -618,10 +618,11 @@ const AddPage = () => {
             </div>
 
             <div className="row">
-              <label htmlFor="content" className="form-label">
-                Content
-              </label>
-              <div className="cls-editor">
+
+              <div className="cls-editor col-md-12">
+                <label htmlFor="content" className="form-label">
+                  Content
+                </label>
                 <ReactQuill
                   value={formData.content}
                   onChange={handleContentChange}
@@ -649,23 +650,24 @@ const AddPage = () => {
               </div>
 
             </div>
-            <div className="row mt-2 ">
-              <div className="col-md-6">
-                <button type="submit" className="btn btn-dark ">
+            <div className="row mt-2">
+              <div className="col-md-6 text-center mb-2 mb-md-0">
+                <button type="submit" className="btn btn-dark w-100">
                   Submit
                 </button>
               </div>
 
-              <div  className="col-md-6">
+              <div className="col-md-6 text-center">
                 <button
                   type="button"
-                  className="btn btn-outline-secondary"
+                  className="btn btn-outline-secondary w-100"
                   onClick={() => navigate("/mainDashboard/listPage")}
                 >
                   Cancel
                 </button>
               </div>
             </div>
+
           </form>
           <Modal show={showSourceModal} onHide={() => setShowSourceModal(false)}>
             <Modal.Header closeButton>
