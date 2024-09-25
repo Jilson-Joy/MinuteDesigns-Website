@@ -516,7 +516,7 @@ const AddPage = () => {
               </div>
               <div className="col-md-6">
                 <label htmlFor="description" className="form-label">
-                  Description
+                  Description 
                 </label>
                 <textarea
                   type="text"
