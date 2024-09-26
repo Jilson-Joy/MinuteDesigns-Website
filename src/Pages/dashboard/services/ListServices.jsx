@@ -14,8 +14,6 @@ function ListServices() {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-  const [selectedPage, setSelectedPage] = useState(null);
-  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -73,14 +71,8 @@ function ListServices() {
     }
   };
 
-  const handleView = (service) => {
-    setSelectedPage(service);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedPage(null);
+  const handleView = (serviceId) => {
+    navigate(`/mainDashboard/service/${serviceId}`);
   };
 
   const handleSearch = (e) => {
@@ -117,12 +109,12 @@ function ListServices() {
               <a href="/mainDashboard">Home</a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-            Service List
+              Service List
             </li>
           </ol>
         </nav>
       </div>
-   
+
       <div className="row display-flex">
         <div className="mb-3 col-md-6 text-left">
           <button
@@ -137,25 +129,25 @@ function ListServices() {
           <input
             type="text"
             className="form-control"
-            placeholder="Search by name, title, or description" 
+            placeholder="Search by name, title, or description"
             value={searchTerm}
             onChange={handleSearch}
           />
         </div>
       </div>
-      
+
       <div className="table-responsive">
         <table className="table table-bordered table-hover">
           <thead className="table-dark">
             <tr>
-              <th style={{ padding: "25px" }}>#</th>
-              <th style={{ padding: "25px" }}>CODE</th>
-              <th style={{ padding: "25px" }}>NAME</th>
-              <th style={{ padding: "25px" }}>TITLE</th>
-              <th style={{ padding: "25px" }}>SERVICE URL</th>
-              <th style={{ padding: "25px" }}>DESCRIPTION</th>
-              <th style={{ padding: "25px" }}>STATUS</th>
-              <th style={{ padding: "25px" }}>ACTIONS</th>
+              <th>#</th>
+              <th>CODE</th>
+              <th>NAME</th>
+              <th>TITLE</th>
+              <th>SERVICE URL</th>
+              <th>DESCRIPTION</th>
+              <th>STATUS</th>
+              <th>ACTIONS</th>
             </tr>
           </thead>
           <tbody>
@@ -180,7 +172,7 @@ function ListServices() {
                     <div className="d-flex gap-2">
                       <button onClick={() => handleEdit(service._id)} className="btn btn-primary btn-sm">Edit</button>
                       <button onClick={() => handleDelete(service._id)} className="btn btn-danger btn-sm">Delete</button>
-                      <button onClick={() => handleView(service)} className="btn btn-info btn-sm">View</button>
+                      <button onClick={() => handleView(service._id)} className="btn btn-info btn-sm">View</button>
                     </div>
                   </td>
                 </tr>
@@ -196,57 +188,15 @@ function ListServices() {
 
       <nav>
         <ul className="pagination justify-content-center">
-          {Array.from(
-            { length: totalPages },
-            (_, index) => (
-              <li key={index} className={`page-item ${currentPage === index + 1 ? "active" : ""}`}>
-                <button className="page-link" onClick={() => paginate(index + 1)}>
-                  {index + 1}
-                </button>
-              </li>
-            )
-          )}
+          {Array.from({ length: totalPages }, (_, index) => (
+            <li key={index} className={`page-item ${currentPage === index + 1 ? "active" : ""}`}>
+              <button className="page-link" onClick={() => paginate(index + 1)}>
+                {index + 1}
+              </button>
+            </li>
+          ))}
         </ul>
       </nav>
-
-      {showModal && selectedPage && (
-        <div className={`modal ${showModal ? "show" : ""}`} tabIndex="-1" style={{ display: showModal ? "block" : "none" }}>
-          <div className="modal-dialog modal-lg">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Service Details</h5>
-                <button type="button" className="btn-close" onClick={handleCloseModal}></button>
-              </div>
-              <div className="modal-body">
-                <div className="mb-3"><strong>Service URL:</strong> {selectedPage.pageUrl}</div>
-                <div className="mb-3"><strong>Title:</strong> {selectedPage.pageTitle}</div>
-                <div className="mb-3"><strong>Name:</strong> {selectedPage.name}</div>
-                <div className="mb-3"><strong>Short Description:</strong> {selectedPage.shortDescription}</div>
-                <div className="mb-3"><strong>Description:</strong> {selectedPage.description}</div>
-                <div className="mb-3"><strong>Content:</strong>
-                  <div dangerouslySetInnerHTML={{ __html: selectedPage.content }} />
-                </div>
-                <div className="mb-3"><strong>Meta Information:</strong>
-                  <ul>
-                    <li><strong>Meta Title:</strong> {selectedPage.meta?.[0]?.metaTitle}</li>
-                    <li><strong>Meta Description:</strong> {selectedPage.meta?.[0]?.metaDescription}</li>
-                    <li><strong>Meta Author:</strong> {selectedPage.meta?.[0]?.metaAuthor}</li>
-                    <li><strong>Meta Keywords:</strong> {selectedPage.meta?.[0]?.metaKeywords?.join(", ")}</li>
-                  </ul>
-                </div>
-                <div className="mb-3"><strong>Status:</strong> {selectedPage.status ? "Active" : "Inactive"}</div>
-                <div className="mb-3"><strong>Created At:</strong> {new Date(selectedPage.createdAt).toLocaleString()}</div>
-                <div className="mb-3"><strong>Updated At:</strong> {new Date(selectedPage.updatedAt).toLocaleString()}</div>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {showModal && <div className="modal-backdrop fade show" onClick={handleCloseModal}></div>}
 
       <ToastContainer />
     </div>

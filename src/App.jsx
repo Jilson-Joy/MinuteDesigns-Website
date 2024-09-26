@@ -55,6 +55,7 @@ import AddWebsiteSettings from "./Pages/dashboard/websiteSettings/AddWebsiteSett
 import EditWebsiteSettings from "./Pages/dashboard/websiteSettings/EditWebsiteSettings";
 import EditGallery from "./Pages/dashboard/gallery/EditGallery";
 import ViewService from "./Pages/dashboard/services/ViewService";
+import ViewPage from "./Pages/dashboard/pages/ViewPage";
 function App() {
   return (
     <Provider store={store}>
@@ -79,7 +80,8 @@ function App() {
             <Route path="addServices" element={<AddServices />} />
             <Route path="listServices" element={<ListServices />} />
             <Route path="edit-service/:id" element={<EditService />} />
-            <Route path="view-service/:id" element={<ViewService />} />
+            <Route path="service/:serviceId" element={<ViewService />} />
+            <Route path="page/:pageId" element={<ViewPage />} />
 
             <Route path="addCategory" element={<AddCategory />} />
             <Route path="listCategory" element={<ListCategories />} />
