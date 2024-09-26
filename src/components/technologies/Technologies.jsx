@@ -159,7 +159,7 @@
 
 // export default Technologies
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MoveRight } from "lucide-react";
 import "./Technologies.css";
 
@@ -172,6 +172,7 @@ import Flutter from "../../assets/images/flutterIcons.png";
 import php from "../../assets/images/php.png";
 import laravel from "../../assets/images/laravel.png";
 
+
 function Technologies() {
   // const handlePause = () => {
   //   const marqueeDiv = document.querySelector(".marguee_img_div");
@@ -182,6 +183,8 @@ function Technologies() {
   //   const marqueeDiv = document.querySelector(".marguee_img_div");
   //   marqueeDiv.classList.remove("paused");
   // };
+
+
 
   return (
     <div className="container hero-container ">

@@ -18,14 +18,39 @@ import Testimonial from "./Testimonial";
 import Delivered from "../components/delivered/Delivered";
 import Technologies from "../components/technologies/Technologies";
 import Melement from "../components/Melement";
+import { listAllServices } from "../api/frontendApis/pagesApi";
+
 function LandingPage() {
+  const [servicePage, setServicePage] = useState([])
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const data = await listAllServices();
+        console.log("Fetched Services:", data); // Check the structure of 'data' in the console
+        // Assuming the services array is inside a property like data.services
+        if (data && Array.isArray(data.services)) {
+          setServicePage(data.services);
+        } else {
+          setServicePage([]); // Fallback to an empty array if data is not valid
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
+
+
   return (
     <>
       <section className="hero-container">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6">
-             <Melement/>
+              <Melement />
             </div>
             <div className="col-md-6">
               <h1 className="hero-text">
@@ -36,9 +61,9 @@ function LandingPage() {
                 Thrive
               </h1>
               <div className="hero-desc">
-              <p className="hero-description">
-                "Elevating user experience to its pinnacle"
-              </p>
+                <p className="hero-description">
+                  "Elevating user experience to its pinnacle"
+                </p>
               </div>
             </div>
           </div>
@@ -61,42 +86,38 @@ function LandingPage() {
               </div>
             </div>
           </section>
+
           {/* 1st row service */}
 
-          <div className="row d-flex justify-content-around align-items-center ">
-            <div className="col-md-3 text-center service-item">
-              <div className="service-icon">
-                <img src={WebDev} alt="Web Development" width={120} />
-              </div>
-              <div className="service-title">
-                <h3>Web Application</h3>
-              </div>
-              <div className="service-description">
-                <p>
-                  We create responsive and robust web applications tailored to
-                  your business needs.
-                </p>
-              </div>
-            </div>
-
-            <div className="col-md-3 text-center service-item1">
-              <div className="service-icon1">
-                <img src={MobDev} alt="Mobile Development" width={110} />
-              </div>
-              <div className="service-title1">
-                <h3>Mobile Application</h3>
-              </div>
-              <div className="service-description1">
-                <p>
-                  We create responsive and robust web applications tailored to
-                  your business needs.
-                </p>
-              </div>
-            </div>
+          <div className="row d-flex justify-content-around align-items-center">
+            {Array.isArray(servicePage) && servicePage.length > 0 ? (
+              servicePage.map((item) => (
+                <div key={item._id} className="col-md-6 text-center service-item">
+                  <div className="service-icon">
+                    {item.imageUrl.map((url, index) => (
+                      <img key={index} src={url} alt={item.serviceTitle} width={120} />
+                    ))}
+                  </div>
+                  <div className="service-title">
+                    <h3>{item.name}</h3>
+                  </div>
+                  <div className="service-description">
+                    <p>{item.shortDescription}</p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>No services available</p>
+            )}
           </div>
 
+
+
+
+
+
           {/* 2nd row service */}
-          <div className="row d-flex justify-content-around align-items-center ">
+          {/* <div className="row d-flex justify-content-around align-items-center ">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
                 <img src={Ecom} alt="Ecommerce" width={110} />
@@ -126,10 +147,10 @@ function LandingPage() {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* 3rd row service */}
-          <div className="row d-flex justify-content-around align-items-center ">
+          {/* <div className="row d-flex justify-content-around align-items-center ">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
                 <img src={Archi} alt="architecture" width={120} />
@@ -161,7 +182,6 @@ function LandingPage() {
             </div>
 
 
-               {/* 4th row service */}
           <div className="row d-flex justify-content-around align-items-center mb-2">
 
             <div className="col-md-3 text-center service-item">
@@ -194,27 +214,27 @@ function LandingPage() {
               </div>
             </div>
             </div>
-          </div>
+          </div> */}
         </div>
-      </section>
+      </section >
 
-  {/* Technologies */}
-  <div className="container">
-        <Technologies/>
-      </div>
+      {/* Technologies */}
+      <div div className="container" >
+        <Technologies />
+      </div >
 
       {/* testimonials */}
 
-      <div className="container">
+      <div div className="container" >
         <Testimonial />
-      </div>
+      </div >
 
-           {/* Delivered */}
-           <div>
+      {/* Delivered */}
+      <div div >
         <Delivered />
-      </div>
+      </div >
 
-    
+
 
       {/* <div className="thumb-layer paroller">
           <figure className="image">

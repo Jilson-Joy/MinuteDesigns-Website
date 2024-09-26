@@ -178,6 +178,7 @@ function ListTestimonials() {
               <tr>
                 <th style={{ padding: "34px" }}>#</th>
                 <th style={{ padding: "34px" }}>TITLE</th>
+                <th style={{ padding: "34px" }}>COMPANY NAME</th>
                 <th style={{ padding: "34px" }}>DESCRIPTION</th>
                 <th style={{ padding: "34px" }}>STATUS</th>
                 <th style={{ padding: "34px" }}>ACTIONS</th>
@@ -195,6 +196,7 @@ function ListTestimonials() {
                 <tr key={testimonial._id}>
                   <td>{index + 1 + indexOfFirstItem}</td>
                   <td>{testimonial.title}</td>
+                  <td>{testimonial.companyName}</td>
                   <td>{testimonial.description}</td>
                   <td>
                     <button
@@ -269,6 +271,12 @@ function ListTestimonials() {
                   <strong className="col-sm-3">Title:</strong>
                   <div className="col-sm-9">
                     <strong>{selectedTestimonial.title}</strong>
+                  </div>
+                </div>
+                <div className="mb-3">
+                  <strong className="col-sm-3">Company Name:</strong>
+                  <div className="col-sm-9">
+                    <strong>{selectedTestimonial.companyName}</strong>
                   </div>
                 </div>
                 <div className="row mb-3">
