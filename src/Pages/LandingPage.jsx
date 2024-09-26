@@ -18,6 +18,7 @@ import Testimonial from "./Testimonial";
 import Delivered from "../components/delivered/Delivered";
 import Technologies from "../components/technologies/Technologies";
 import Melement from "../components/Melement";
+import CircleCanvas from "../components/CircleCanvas";
 import { listAllServices } from "../api/frontendApis/pagesApi";
 
 function LandingPage() {
@@ -48,9 +49,10 @@ function LandingPage() {
     <>
       <section className="hero-container">
         <div className="container">
-          <div className="row align-items-center">
+          <div className="row align-items-center justify-content-center">
             <div className="col-md-6">
-              <Melement />
+              <CircleCanvas />
+              {/* <Melement /> */}
             </div>
             <div className="col-md-6">
               <h1 className="hero-text">

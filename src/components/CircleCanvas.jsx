@@ -26,7 +26,7 @@ const CircleCanvas = ({
       const leftX = gridCenterX - halfSize;
       const rightX = gridCenterX + halfSize;
       const topY = gridCenterY - halfSize;
-      const bottomY = gridCenterY + halfSize * 0.8; // Reduce the height by 30%
+      const bottomY = gridCenterY + halfSize * 0.7; // Reduce the height by 30%
     
       // Adjust slope for an exact triangle
       const slope = (bottomY - topY) / halfSize; 
@@ -38,15 +38,15 @@ const CircleCanvas = ({
       return (
         // Remove the bottom middle dot condition
         (x >= leftX && x <= leftX + 0.3 * shapeSize && y >= topY && y <= bottomY) ||
-        (x >= rightX - 0.3 * shapeSize && x <= rightX && y >= topY && y <= bottomY) ||
+        (x >= rightX - 0.32 * shapeSize && x <= rightX && y >= topY && y <= bottomY) ||
         // Left side of the triangle (expanded ranges)
         (x >= leftX + 0.1 * shapeSize && x <= gridCenterX &&
             y >= topY && y <= bottomY &&
-            y <= topY + slope * (x - leftX - 0.02 * shapeSize)) || 
+            y <= topY + slope * (x - leftX - 0.03 * shapeSize)) || 
         // Right side of the triangle (expanded ranges)
-        (x >= gridCenterX && x <= rightX - 0.3 * shapeSize &&
+        (x >= gridCenterX && x <= rightX - 0.1 * shapeSize &&
             y >= topY && y <= bottomY &&
-            y <= topY + slope * (rightX - x - 0.02 * shapeSize)) 
+            y <= topY + slope * (rightX - x - 0.03 * shapeSize)) 
         // Highlight the last middle bottom dot
       );
     };
@@ -151,14 +151,12 @@ const CircleCanvas = ({
 
     const handleResize = () => {
       canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
+      canvas.height = canvas.offsetWidth * (3 / 4); // Maintain 4:3 aspect ratio
       init();
     };
 
     window.addEventListener('resize', handleResize);
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    init();
+    handleResize(); // Set initial size
     animate();
 
     return () => {
@@ -166,7 +164,7 @@ const CircleCanvas = ({
     };
   }, [bgColor, circleSize, circleSpacing, highlightColor, otherDotColor, letterColor]);
 
-  return <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />;
+  return <canvas ref={canvasRef} className='Melement' />;
 };
 
 export default CircleCanvas;
