@@ -25,7 +25,7 @@ function ListTestimonials() {
       setTestimonials(result.testimonials);
     } catch (error) {
       console.error("Error fetching testimonials:", error);
-      toast.error("Failed to fetch testimonials."); // User feedback on error
+      toast.error("Failed to fetch testimonials.");
     } finally {
       setLoading(false);
     }

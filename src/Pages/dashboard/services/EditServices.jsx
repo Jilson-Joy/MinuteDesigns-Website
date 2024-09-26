@@ -217,7 +217,7 @@ const EditService = () => {
               <a href="/mainDashboard/listServices">Service List</a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              Add Service
+              Edit Service
             </li>
           </ol>
         </nav>
