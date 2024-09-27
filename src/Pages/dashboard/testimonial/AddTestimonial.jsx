@@ -13,6 +13,7 @@ const AddTestimonial = () => {
 
   const [formData, setFormData] = useState({
     title: "",
+    companyName:"",
     description: "",
     content: "",
   });
@@ -47,6 +48,7 @@ const AddTestimonial = () => {
 
     const formDataToSend = new FormData();
     formDataToSend.append("title", formData.title);
+    formDataToSend.append("companyName", formData.companyName);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
 
@@ -60,6 +62,7 @@ const AddTestimonial = () => {
       navigate("/mainDashboard/listTestimonials");
       setFormData({
         title: "",
+        companyName: "",
         description: "",
         content: "",
       });
@@ -116,13 +119,13 @@ const AddTestimonial = () => {
   ];
 
   return (
-    <div className="container mt-4">
+    <div className=" mt-5">
       <h1>Add Testimonial</h1>
 
       <form onSubmit={handleSubmit}>
 
-      <div className="col-row d-flex">
-      <div className="col-md-12 m-2">
+      <div className="row d-flex">
+      <div className="col-md-6">
         <div className="mb-3">
           <label htmlFor="title" className="form-label">Title</label>
           <input
@@ -136,9 +139,26 @@ const AddTestimonial = () => {
           />
         </div>
         </div>
+
+        <div className="col-md-6">
+        <div className="mb-3">
+          <label htmlFor="companyName" className="form-label">Company Name</label>
+          <input
+            type="text"
+            className="form-control"
+            id="companyName"
+            name="companyName"
+            value={formData.companyName}
+            onChange={handleChange}
+            required
+          />
         </div>
-        <div className="col-row d-flex">
-        <div className="col-md-12 m-2">
+        </div>
+
+        </div>
+      
+        <div className="row d-flex">
+        <div className="col-md-6 ">
         <div className="mb-3">
           <label htmlFor="description" className="form-label">Description</label>
           <input
@@ -151,9 +171,7 @@ const AddTestimonial = () => {
           />
         </div>
         </div>
-        </div>
-        <div className="col-row d-flex">
-        <div className="col-md-12 m-2">
+        <div className="col-md-6">
         <div className="mb-3">
           <label htmlFor="fileUpload" className="form-label">Upload File</label>
           <input
@@ -165,6 +183,10 @@ const AddTestimonial = () => {
           />
         </div>
         </div>
+
+        </div>
+        <div className="col-row d-flex">
+       
         </div>
 
         <div className="col-row d-flex mt-5">
@@ -189,8 +211,8 @@ const AddTestimonial = () => {
             </div>
           </div>
 
-          <div className="col-row d-flex">
-            <div className="col-md-12 m-2">
+          <div className="row ">
+            <div className="col-md-12">
               <button
                 type="button"
                 className="btn btn-secondary "
@@ -201,16 +223,16 @@ const AddTestimonial = () => {
             </div>
           </div>
 
-          <div className="col-row d-flex mt-5">
-            <div className="col-md-4 m-2">
-              <button type="submit" className="btn btn-dark mr-1">
+          <div className="row mt-2">
+            <div className="col-md-6 text-center mb-2 mb-md-0">
+              <button type="submit" className="btn btn-dark w-100">
                 Submit
               </button>
             </div>
-            <div className="col-md-4 m-2">
+            <div className="col-md-6 text-center">
               <button
                 type="button"
-                className="btn btn-outline-secondary"
+                className="btn btn-outline-secondary w-100"
                 onClick={() => navigate("/mainDashboard/listPage")}
               >
                 Cancel
