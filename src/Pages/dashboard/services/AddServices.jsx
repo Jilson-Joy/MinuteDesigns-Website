@@ -323,6 +323,20 @@ const AddServices = () => {
               />
             </div>
 
+            <div className="col-md-6">
+                <label htmlFor="meta.metaDescription" className="form-label">
+                  Meta Description
+                </label>
+                <input
+                  type="text"
+                  className="form-control clsinp"
+                  id="meta.metaDescription"
+                  name="meta.metaDescription"
+                  value={formData.meta.metaDescription}
+                  onChange={handleChange}
+                />
+              </div>
+
             <div className="col-md-12 m-2">
               <label htmlFor="meta.metaAuthor" className="form-label">
                 Meta Author

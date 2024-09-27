@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BookOpen, Box, ChevronDown, ChevronLeft, LayoutDashboard, } from 'lucide-react';
+import { BookOpen, Box, ChevronDown, ChevronLeft, LayoutDashboard } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 function Sidebar({ openSidebarToggle, OpenSidebar }) {
@@ -65,8 +65,6 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                     </ul>
                 </li>
 
-              
-
                 <li className="sidebar-list-item">
                     <a
                         href="javascript:void(0)"
@@ -106,6 +104,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                         </Link>
                     </ul>
                 </li>
+
                 <li className="sidebar-list-item">
                     <a
                         href="javascript:void(0)"
@@ -125,9 +124,53 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                         </Link>
                     </ul>   
                 </li>
-            </ul>
-        </aside>
-    );
+
+                <li className="sidebar-list-item">
+                    <a
+                        href="javascript:void(0)"
+                        onClick={() => toggleDropdown('gallery')}
+                        style={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <Box className="icon" />
+                        Gallery
+                        <ChevronDown style={{ marginTop: '3px' }} />
+                    </a>
+                    <ul className={`dropdown-list ${openDropdown === 'gallery' ? 'show' : ''}`}>
+                        <Link to="/mainDashboard/addGallery" className='link_tag'>
+                            <li>Add Gallery</li> 
+                       </Link> 
+                  
+                       <Link to="/mainDashboard/listGallery" className='link_tag'> 
+                           <li>List Galleries</li> 
+                       </Link> 
+                   </ul>   
+               </li>
+
+               <li className="sidebar-list-item">
+                    <a
+                        href="javascript:void(0)"
+                        onClick={() => toggleDropdown('websiteSettings')}
+                        style={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <Box className="icon" />
+                        Website Settings
+                        <ChevronDown style={{ marginTop: '3px' }} />
+                    </a>
+                    <ul className={`dropdown-list ${openDropdown === 'websiteSettings' ? 'show' : ''}`}>
+                        <Link to="/mainDashboard/addWebsiteSettings" className='link_tag'>
+                            <li>Add Website Settings</li> 
+                       </Link> 
+                  
+                       <Link to="/mainDashboard/listWebsiteSettings" className='link_tag'> 
+                           <li>List Website Settings</li> 
+                       </Link> 
+                   </ul>   
+               </li>
+
+
+           </ul>
+       </aside>
+   );
 }
 
 export default Sidebar;

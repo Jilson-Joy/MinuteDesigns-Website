@@ -12,11 +12,9 @@ import "react-toastify/dist/ReactToastify.css";
 function ListTestimonials() {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedTestimonial, setSelectedTestimonial] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
-  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   const fetchTestimonials = async () => {
@@ -25,7 +23,7 @@ function ListTestimonials() {
       setTestimonials(result.testimonials);
     } catch (error) {
       console.error("Error fetching testimonials:", error);
-      toast.error("Failed to fetch testimonials."); // User feedback on error
+      toast.error("Failed to fetch testimonials.");
     } finally {
       setLoading(false);
     }
@@ -34,6 +32,10 @@ function ListTestimonials() {
   useEffect(() => {
     fetchTestimonials();
   }, []);
+
+  const handleView = (testimonialId) => {
+    navigate(`/mainDashboard/view-testimonial/${testimonialId}`);
+  };
 
   const handleEdit = (testimonialId) => {
     navigate(`/mainDashboard/edit-testimonial/${testimonialId}`);
@@ -91,16 +93,6 @@ function ListTestimonials() {
     }
   };
 
-  const handleView = (testimonial) => {
-    setSelectedTestimonial(testimonial);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedTestimonial(null);
-  };
-
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
     setCurrentPage(1);
@@ -137,7 +129,6 @@ function ListTestimonials() {
         <h1 className="text-primary">List of Testimonials</h1>
       </div>
 
-      {/* breadcrumb */}
       <div>
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
@@ -145,7 +136,7 @@ function ListTestimonials() {
               <a href="/mainDashboard">Home</a>
             </li>
             <li className="breadcrumb-item active" aria-current="page">
-              Service List
+              Testimonial List
             </li>
           </ol>
         </nav>
@@ -201,7 +192,9 @@ function ListTestimonials() {
                   <td>
                     <button
                       onClick={() => handleStatusChange(testimonial._id)}
-                      className={`btn btn-sm ${testimonial.status ? "btn-warning" : "btn-secondary"}`}
+                      className={`btn btn-sm ${
+                        testimonial.status ? "btn-warning" : "btn-secondary"
+                      }`}
                     >
                       {testimonial.status ? "Active" : "Inactive"}
                     </button>
@@ -221,7 +214,7 @@ function ListTestimonials() {
                         Delete
                       </button>
                       <button
-                        onClick={() => handleView(testimonial)}
+                        onClick={() => handleView(testimonial._id)}
                         className="btn btn-info btn-sm"
                       >
                         View
@@ -231,16 +224,18 @@ function ListTestimonials() {
                 </tr>
               ))}
             </tbody>
-        
-      )}
-  </table>
-  </div>
+          )}
+        </table>
+      </div>
+
       <nav>
         <ul className="pagination justify-content-center">
           {Array.from({ length: totalPages }, (_, index) => (
             <li key={index + 1} className="page-item">
               <button
-                className={`page-link ${currentPage === index + 1 ? "active" : ""}`}
+                className={`page-link ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
                 onClick={() => paginate(index + 1)}
               >
                 {index + 1}
