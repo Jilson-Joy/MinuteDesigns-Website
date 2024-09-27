@@ -59,7 +59,12 @@ body {
 }
 .hero-description
 {
-  font-size: 26px;
+  font-size: 20px;
+}
+
+.MDesign
+{
+  width: 370px;
 }
 
 .hero-image-content {
@@ -976,4 +981,13 @@ input:checked + label .description {
   .dot-wrapper .land-dot {
     display: none !important;
   }
+}
+
+/* prevent not to copy */
+
+.no-select {
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* Internet Explorer/Edge */
 }

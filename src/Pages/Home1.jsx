@@ -11,7 +11,7 @@ import UIUX from "../assets/images/uiux.png";
 import WebApp from "../assets/images/web-development.png";
 import CarouselBox from "../components/carousel/CarouselBox";
 import Technologies from "../components/technologies/Technologies";
-import LandingImg from "../assets/images/Landing_img.png";
+
 
 function Home1() {
   // testimonial

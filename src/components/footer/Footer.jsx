@@ -37,13 +37,6 @@ function Footer() {
               </a>
                 </div>
 
-      
-
-
-         
-
-
-
             </div>
           </div>
           <div className="col-md-2">
@@ -137,20 +130,20 @@ function Footer() {
                 </li>
                 <li className="mb-2">
                   <Phone className="icons" />
-                  <p className="mb-0">Office: +91 8943627627</p>
+                  <p className="mb-0">Office: +91 9946102832</p>
                 </li>
-                <li className="mb-2">
+                {/* <li className="mb-2">
                   <Phone className="icons" />
                   <p className="mb-0">Landline: 0480 2991234</p>
-                </li>
+                </li> */}
                 <li className="mb-2">
                   <Mail className="email_icons me-2" />
-                  <p className="mb-0">info@imitpark.com</p>
+                  <p className="mb-0">hr@minutedesigns.in</p>
                 </li>
-                <li className="mb-2">
+                {/* <li className="mb-2">
                   <Mail className="icons" />
                   <p className="mb-0">connect@imitpark.com</p>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
