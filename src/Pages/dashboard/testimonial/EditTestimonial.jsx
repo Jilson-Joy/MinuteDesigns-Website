@@ -17,6 +17,7 @@ const EditTestimonialData = () => {
 
   const [formData, setFormData] = useState({
     title: "",
+    companyName: "",
     description: "",
     content: "",
   });
@@ -34,6 +35,7 @@ const EditTestimonialData = () => {
 
         setFormData({
           title: testimonialData.title || "",
+          companyName: testimonialData.companyName || "",
           description: testimonialData.description || "",
           content: testimonialData.content || "",
         });
@@ -110,6 +112,7 @@ const EditTestimonialData = () => {
       formDataToSend.append("files", file);
     });
     formDataToSend.append("title", formData.title);
+    formDataToSend.append("companyName", formData.companyName);
     formDataToSend.append("content", formData.content);
 
     try {
@@ -152,6 +155,18 @@ const EditTestimonialData = () => {
             id="title"
             name="title"
             value={formData.title}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="companyName" className="form-label">Company Name</label>
+          <input
+            type="text"
+            className="form-control"
+            id="companyName"
+            name="companyName"
+            value={formData.companyName}
             onChange={handleChange}
             required
           />

@@ -88,7 +88,7 @@ function App() {
                 <Route path="/careers" element={<Careers />} />
                 <Route path="/technologies" element={<Careers />} />
                 <Route path="/reachUs" element={<ReachUs />} />
-                <Route path="/webapp" element={<WebApplication />} />
+                <Route path="/webApp" element={<WebApplication />} />
                 <Route path="/mobileApp" element={<MobileApplication />} />
                 <Route path="/e-commerce" element={<Ecommerce />} />
                 <Route path="/uiux" element={<UiUx />} />
