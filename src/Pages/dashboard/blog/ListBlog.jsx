@@ -64,10 +64,6 @@ function ListBlogs() {
     }
   };
 
-  const handleView = (id) => {
-    navigate(`/mainDashboard/view-blog/${id}`);
-  };
-
   const handleDelete = async (blogId) => {
     const confirmed = window.confirm(
       "Are you sure you want to delete this blog? This action cannot be undone."
@@ -83,6 +79,10 @@ function ListBlogs() {
     }
   };
 
+  const handleView = (blog) => {
+    setSelectedBlog(blog);
+    setShowModal(true);
+  };
 
   const handleCloseModal = () => {
     setShowModal(false);
@@ -186,7 +186,7 @@ function ListBlogs() {
                         Delete
                       </button>
                       <button
-                        onClick={() => handleView(blog._id)}
+                        onClick={() => handleView(blog)}
                         className="btn btn-info btn-sm"
                       >
                         View
@@ -282,6 +282,12 @@ function ListBlogs() {
         </div>
       )}
 
+      {showModal && (
+        <div
+          className="modal-backdrop fade show"
+          onClick={handleCloseModal}
+        ></div>
+      )}
 
       <ToastContainer />
     </div>

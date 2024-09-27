@@ -120,7 +120,7 @@ function ViewTestimonial() {
                           key={idx}
                           src={fullUrl}
                           alt={`Gallery Image ${idx + 1}`}
-                          style={{ width: "50px", height: "50px", marginRight: "5px" }}
+                          style={{ width: "300px", height: "300px", marginRight: "5px" }}
                         />
                       );
                     })}

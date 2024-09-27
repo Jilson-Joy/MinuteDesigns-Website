@@ -38,9 +38,7 @@ const ListGallery = () => {
   }, []);
 
   const handleDelete = async (galleryId) => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this gallery? This action cannot be undone."
-    );
+    const confirmed = window.confirm("Are you sure you want to delete this gallery? This action cannot be undone.");
     if (confirmed) {
       try {
         await DeleteGalleryById(galleryId);
@@ -69,9 +67,7 @@ const ListGallery = () => {
 
   const handleStatusChange = async (galleryId, currentStatus) => {
     const newStatus = !currentStatus;
-    const confirmed = window.confirm(
-      `Are you sure you want to ${newStatus ? "activate" : "deactivate"} this gallery?`
-    );
+    const confirmed = window.confirm(`Are you sure you want to ${newStatus ? "activate" : "deactivate"} this gallery?`);
     if (confirmed) {
       try {
         await UpdateGalleryStatus(galleryId, newStatus);
@@ -82,9 +78,7 @@ const ListGallery = () => {
               : gallery
           )
         );
-        toast.success(
-          `Gallery ${newStatus ? "activated" : "deactivated"} successfully!`
-        );
+        toast.success(`Gallery ${newStatus ? "activated" : "deactivated"} successfully!`);
       } catch (error) {
         console.error("Error updating gallery status:", error);
         toast.error("Failed to update gallery status.");
@@ -98,15 +92,14 @@ const ListGallery = () => {
   };
 
   const filteredGalleries = galleries.filter((gallery) =>
-    gallery.categoryName.toLowerCase().includes(searchTerm.toLowerCase())
+    gallery.categoryName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+  gallery.type.toLowerCase().includes(searchTerm.toLowerCase())
+
   );
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentGallery = filteredGalleries.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
+  const currentGallery = filteredGalleries.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(filteredGalleries.length / itemsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -118,24 +111,19 @@ const ListGallery = () => {
   return (
     <div className="container">
       <h1 className="text-primary">List of Galleries</h1>
-      <div>
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <a href="/mainDashboard">Home</a>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              Gallery List
-            </li>
-          </ol>
-        </nav>
-      </div>
-      <div className="row display-flex">
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <a href="/mainDashboard">Home</a>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            Gallery List
+          </li>
+        </ol>
+      </nav>
+      <div className="row">
         <div className="mb-3 col-md-6 text-left">
-          <button
-            onClick={() => navigate("/mainDashboard/addGallery")}
-            className="btn btn-success"
-          >
+          <button onClick={() => navigate("/mainDashboard/addGallery")} className="btn btn-success">
             Add Gallery
           </button>
         </div>
@@ -143,7 +131,7 @@ const ListGallery = () => {
           <input
             type="text"
             className="form-control"
-            placeholder="Search by category name"
+            placeholder="Search by category name or type"
             value={searchTerm}
             onChange={handleSearch}
           />
@@ -157,7 +145,8 @@ const ListGallery = () => {
               <th>#</th>
               <th>Category Name</th>
               <th>Type</th>
-              <th>Image URL</th> <th>Video URL</th>
+              <th>Image URL</th>
+              <th>Video URL</th>
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -165,9 +154,7 @@ const ListGallery = () => {
           <tbody>
             {currentGallery.length === 0 ? (
               <tr className="text-muted">
-                <td colSpan="6" className="text-center">
-                  No galleries available.
-                </td>
+                <td colSpan="7" className="text-center">No galleries available.</td>
               </tr>
             ) : (
               currentGallery.map((gallery, index) => (
@@ -176,30 +163,21 @@ const ListGallery = () => {
                   <td>{gallery.categoryName}</td>
                   <td>{gallery.type}</td>
                   <td>
-                    {gallery.imageUrl.length > 0
-                      ? gallery.imageUrl.map((url, idx) => (
-                          <img
-                            key={idx}
-                            src={`${baseUrl}${url}`}
-                            alt={`Gallery Image ${idx + 1}`}
-                            style={{
-                              width: "50px",
-                              height: "50px",
-                              marginRight: "5px",
-                            }}
-                          />
-                        ))
-                      : "No image"}
+                    {gallery.imageUrl.length > 0 ? (
+                      gallery.imageUrl.map((url, idx) => (
+                        <img
+                          key={idx}
+                          src={`${baseUrl}${url}`}
+                          alt={`Gallery Image ${idx + 1}`}
+                          style={{ width: "50px", height: "50px", marginRight: "5px" }}
+                        />
+                      ))
+                    ) : "No image"}
                   </td>
-                  <td>
-                    {gallery.videoUrl ? gallery.videoUrl : "No video Url"}
-                  </td>
-
+                  <td>{gallery.videoUrl ? gallery.videoUrl : "No video URL"}</td>
                   <td>
                     <button
-                      onClick={() =>
-                        handleStatusChange(gallery._id, gallery.status)
-                      }
+                      onClick={() => handleStatusChange(gallery._id, gallery.status)}
                       className={`btn btn-sm ${gallery.status ? "btn-success" : "btn-danger"}`}
                     >
                       {gallery.status ? "Active" : "Inactive"}
@@ -207,22 +185,13 @@ const ListGallery = () => {
                   </td>
                   <td>
                     <div className="d-flex gap-2">
-                      <button
-                        onClick={() => handleView(gallery)}
-                        className="btn btn-info btn-sm"
-                      >
+                      <button onClick={() => handleView(gallery)} className="btn btn-info btn-sm">
                         View
                       </button>
-                      <button
-                        onClick={() => handleEdit(gallery._id)}
-                        className="btn btn-warning btn-sm"
-                      >
+                      <button onClick={() => handleEdit(gallery._id)} className="btn btn-warning btn-sm">
                         Edit
                       </button>
-                      <button
-                        onClick={() => handleDelete(gallery._id)}
-                        className="btn btn-danger btn-sm"
-                      >
+                      <button onClick={() => handleDelete(gallery._id)} className="btn btn-danger btn-sm">
                         Delete
                       </button>
                     </div>
@@ -236,10 +205,7 @@ const ListGallery = () => {
       <nav>
         <ul className="pagination justify-content-center">
           {Array.from({ length: totalPages }, (_, index) => (
-            <li
-              key={index + 1}
-              className={`page-item ${currentPage === index + 1 ? "active" : ""}`}
-            >
+            <li key={index + 1} className={`page-item ${currentPage === index + 1 ? "active" : ""}`}>
               <button className="page-link" onClick={() => paginate(index + 1)}>
                 {index + 1}
               </button>
@@ -249,57 +215,42 @@ const ListGallery = () => {
       </nav>
 
       {showModal && selectedGallery && (
-        <div
-          className={`modal ${showModal ? "show" : ""}`}
-          style={{ display: showModal ? "block" : "none" }}
-        >
+        <div className={`modal ${showModal ? "show" : ""}`} style={{ display: showModal ? "block" : "none" }}>
           <div className="modal-dialog modal-lg">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Gallery Details</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={handleCloseModal}
-                ></button>
+                <button type="button" className="btn-close" onClick={handleCloseModal}></button>
               </div>
               <div className="modal-body">
+                <p><strong>Category Name:</strong> {selectedGallery.categoryName}</p>
+                <p><strong>Type:</strong> {selectedGallery.type}</p>
                 <p>
-                  <strong>Category Name:</strong> {selectedGallery.categoryName}
+                  <strong>Images:</strong>
+                  {selectedGallery.imageUrl.length > 0 ? (
+                    selectedGallery.imageUrl.map((url, idx) => (
+                      <img
+                        key={idx}
+                        src={`${baseUrl}${url}`}
+                        alt={`Gallery Image ${idx + 1}`}
+                        style={{ width: "300px", height: "300px", marginRight: "5px" }}
+                      />
+                    ))
+                  ) : "No image"}
                 </p>
-                <p>
-                  <strong>Type:</strong> {selectedGallery.type}
-                </p>
-
-                <p>
-                  <strong>Created At:</strong>{" "}
-                  {new Date(selectedGallery.createdAt).toLocaleString()}
-                </p>
-                <p>
-                  <strong>Updated At:</strong>{" "}
-                  {new Date(selectedGallery.updatedAt).toLocaleString()}
-                </p>
+                <p><strong>Video URL:</strong> {selectedGallery.videoUrl ? selectedGallery.videoUrl : "No video URL"}</p>
+                <p><strong>Created At:</strong> {new Date(selectedGallery.createdAt).toLocaleString()}</p>
+                <p><strong>Updated At:</strong> {new Date(selectedGallery.updatedAt).toLocaleString()}</p>
               </div>
               <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleCloseModal}
-                >
-                  Close
-                </button>
+                <button type="button" className="btn btn-secondary" onClick={handleCloseModal}>Close</button>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {showModal && (
-        <div
-          className="modal-backdrop fade show"
-          onClick={handleCloseModal}
-        ></div>
-      )}
+      {showModal && <div className="modal-backdrop fade show" onClick={handleCloseModal}></div>}
 
       <ToastContainer />
     </div>

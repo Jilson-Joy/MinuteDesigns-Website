@@ -29,7 +29,6 @@ const EditWebsiteSettings = () => {
     const fetchWebsiteSettings = async () => {
       try {
         const result = await GetWebsiteSettingsById(id);
-        // Ensure socialMedia and menuLinks are arrays
         setFormData({
           ...result,
           socialMedia: Array.isArray(result.socialMedia) ? result.socialMedia : [],
@@ -120,6 +119,7 @@ const EditWebsiteSettings = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const formDataToSend = new FormData();
 
     Object.keys(formData).forEach((key) => {
@@ -294,113 +294,118 @@ const EditWebsiteSettings = () => {
             </label>
             <input
               type="email"
+              className="form-control"
               id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="form-control"
             />
           </div>
         </div>
 
-        {/* Social Media Section */}
-        <div className="mb-4">
-          <h5>Social Media Links</h5>
-          {formData.socialMedia.map((social, index) => (
-            <div key={index} className="row mb-2">
-              <div className="col-md-4">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="name"
-                  placeholder="Name"
-                  value={social.name}
-                  onChange={(e) => handleSocialMediaChange(index, e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="icon"
-                  placeholder="Icon"
-                  value={social.icon}
-                  onChange={(e) => handleSocialMediaChange(index, e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="link"
-                  placeholder="Link"
-                  value={social.link}
-                  onChange={(e) => handleSocialMediaChange(index, e)}
-                />
-              </div>
-              <div className="col-md-12 mt-2">
-                <button type="button" className="btn btn-danger" onClick={() => removeSocialMedia(index)}>
-                  Remove
-                </button>
-              </div>
+        {/* Social Media Links */}
+        <h4>Social Media Links</h4>
+        {formData.socialMedia.map((media, index) => (
+          <div key={index} className="row mb-3">
+            <div className="col-md-4">
+              <label htmlFor={`socialMedia[${index}].name`} className="form-label">
+                Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                name="name"
+                value={media.name}
+                onChange={(e) => handleSocialMediaChange(index, e)}
+              />
             </div>
-          ))}
-          <button type="button" className="btn btn-primary" onClick={addSocialMedia}>
-            Add Social Media
-          </button>
-        </div>
-
-        {/* Menu Links Section */}
-        <div className="mb-4">
-          <h5>Menu Links</h5>
-          {formData.menuLinks.map((link, index) => (
-            <div key={index} className="row mb-2">
-              <div className="col-md-4">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="name"
-                  placeholder="Link Name"
-                  value={link.name}
-                  onChange={(e) => handleMenuLinkChange(index, e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="menuType"
-                  placeholder="Menu Type"
-                  value={link.menuType}
-                  onChange={(e) => handleMenuLinkChange(index, e)}
-                />
-              </div>
-              <div className="col-md-4">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="link"
-                  placeholder="URL"
-                  value={link.link}
-                  onChange={(e) => handleMenuLinkChange(index, e)}
-                />
-              </div>
-              <div className="col-md-12 mt-2">
-                <button type="button" className="btn btn-danger" onClick={() => removeMenuLink(index)}>
-                  Remove
-                </button>
-              </div>
+            <div className="col-md-4">
+              <label htmlFor={`socialMedia[${index}].icon`} className="form-label">
+                Icon
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                name="icon"
+                value={media.icon}
+                onChange={(e) => handleSocialMediaChange(index, e)}
+              />
             </div>
-          ))}
-          <button type="button" className="btn btn-primary" onClick={addMenuLink}>
-            Add Menu Link
-          </button>
-        </div>
-
-        {/* Submit Button */}
-        <button type="submit" className="btn btn-success">
-          Update Website Settings
+            <div className="col-md-4">
+              <label htmlFor={`socialMedia[${index}].link`} className="form-label">
+                Link
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                name="link"
+                value={media.link}
+                onChange={(e) => handleSocialMediaChange(index, e)}
+              />
+            </div>
+            <button type="button" onClick={() => removeSocialMedia(index)} className="btn btn-danger mt-4">
+              Remove
+            </button>
+          </div>
+        ))}
+        <button type="button" onClick={addSocialMedia} className="btn btn-secondary">
+          Add Social Media
         </button>
+
+        {/* Menu Links */}
+        <h4>Menu Links</h4>
+        {formData.menuLinks.map((link, index) => (
+          <div key={index} className="row mb-3">
+            <div className="col-md-4">
+              <label htmlFor={`menuLinks[${index}].name`} className="form-label">
+                Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                name="name"
+                value={link.name}
+                onChange={(e) => handleMenuLinkChange(index, e)}
+              />
+            </div>
+            <div className="col-md-4">
+              <label htmlFor={`menuLinks[${index}].menuType`} className="form-label">
+                Menu Type
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                name="menuType"
+                value={link.menuType}
+                onChange={(e) => handleMenuLinkChange(index, e)}
+              />
+            </div>
+            <div className="col-md-4">
+              <label htmlFor={`menuLinks[${index}].link`} className="form-label">
+                Link
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                name="link"
+                value={link.link}
+                onChange={(e) => handleMenuLinkChange(index, e)}
+              />
+            </div>
+            <button type="button" onClick={() => removeMenuLink(index)} className="btn btn-danger mt-4">
+              Remove
+            </button>
+          </div>
+        ))}
+        <button type="button" onClick={addMenuLink} className="btn btn-secondary">
+          Add Menu Link
+        </button>
+
+        <div className="mt-4">
+          <button type="submit" className="btn btn-primary">
+            Save Changes
+          </button>
+        </div>
       </form>
     </div>
   );

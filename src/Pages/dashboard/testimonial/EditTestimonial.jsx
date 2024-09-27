@@ -110,6 +110,7 @@ const EditTestimonialData = () => {
       formDataToSend.append("files", file);
     });
     formDataToSend.append("title", formData.title);
+    formDataToSend.append("description", formData.description); // Include description
     formDataToSend.append("content", formData.content);
 
     try {

@@ -97,8 +97,8 @@ function ViewBlog() {
               <td>{blog.status ? "Active" : "Inactive"}</td> 
             </tr>
             <tr>
-              <td>Published At</td>
-              <td>{new Date(blog.publishedAt).toLocaleString() || "Invalid Date"}</td> 
+              <td>created At</td>
+              <td>{new Date(blog.createdAt).toLocaleString() || "Invalid Date"}</td> 
             </tr>
             <tr>
               <td>Updated At</td>
@@ -116,7 +116,7 @@ function ViewBlog() {
                           key={idx}
                           src={fullUrl}
                           alt={`Gallery Image ${idx + 1}`}
-                          style={{ width: "50px", height: "50px", marginRight: "5px" }}
+                          style={{ width: "300px", height: "300px", marginRight: "5px" }}
                         />
                       );
                     })}
