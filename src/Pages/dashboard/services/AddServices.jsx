@@ -303,7 +303,6 @@ const AddServices = () => {
                 type="file"
                 className="form-control clsinp"
                 name="files"
-                multiple
                 onChange={handleFileChange}
               />
             </div>

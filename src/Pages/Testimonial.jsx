@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../assets/css/Testimonial.css";
 import { MoveLeft, MoveRight } from 'lucide-react';
 import { listAlltestimonials } from "../api/frontendApis/pagesApi";
+
 function Testimonial() {
   const [testimonials, setTestimonials] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -72,10 +73,23 @@ function Testimonial() {
                 <div className="text">{testimonials[currentIndex].description}</div>
                 <div className="info-box">
                   <div className="thumb">
-                    <img 
-                      src={`${API_BASE_URL}${testimonials[currentIndex].imageUrl}`}
-                      alt={testimonials[currentIndex].title}
-                    />
+                    {testimonials[currentIndex].imageUrl && testimonials[currentIndex].imageUrl.length > 0 ? (
+                      <div className="d-flex flex-wrap">
+                        {testimonials[currentIndex].imageUrl.map((url, idx) => {
+                          const fullUrl = `${API_BASE_URL}${url}`;
+                          return (
+                            <img
+                              key={idx}
+                              src={fullUrl}
+                              alt={`Gallery Image ${idx + 1}`}
+                              style={{ width: "150px", height: "auto", marginRight: "5px" }}
+                            />
+                          );
+                        })}
+                      </div>
+                    ) : (
+                      "No uploaded files available."
+                    )}
                   </div>
                   <h4 className="name">{testimonials[currentIndex].title}</h4>
                   <span className="designation">{testimonials[currentIndex].companyName}</span>
