@@ -144,7 +144,7 @@ const AddBlog = () => {
   ];
 
   return (
-    <div className="container mt-4">
+    <div className=" mt-5">
       <div className="page-title">
         <h3>Add Blog </h3>
       </div>
@@ -177,8 +177,8 @@ const AddBlog = () => {
       </div>
       <div className="container mt-5">
         <form onSubmit={handleSubmit}>
-          <div className="col-row d-flex">
-            <div className="col-md-12 m-2">
+          <div className="row d-flex">
+            <div className="col-md-6 ">
               <div className="mb-3">
                 <label htmlFor="title" className="form-label">
                   Title
@@ -194,7 +194,24 @@ const AddBlog = () => {
                 />
               </div>
             </div>
-            <div className="col-md-12 m-2">
+            
+            <div className="col-md-6 ">
+          <div className="mb-3">
+            <label htmlFor="fileUpload" className="form-label">
+              Upload File
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              name="files"
+              multiple
+              onChange={handleFileChange}
+            />
+          </div>
+          </div>
+          </div>
+          <div className="col-row d-flex">
+          <div className="col-md-12 ">
               <div className="mb-3">
                 <label htmlFor="description" className="form-label">
                   Description
@@ -209,22 +226,6 @@ const AddBlog = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className="col-row d-flex">
-          <div className="col-md-12 m-2">
-          <div className="mb-3">
-            <label htmlFor="fileUpload" className="form-label">
-              Upload File
-            </label>
-            <input
-              type="file"
-              className="form-control"
-              name="files"
-              multiple
-              onChange={handleFileChange}
-            />
-          </div>
-          </div>
           </div>
           <div className="col-row d-flex">
           <div className="col-md-12 m-2">
@@ -292,16 +293,16 @@ const AddBlog = () => {
             </div>
           </div>
 
-          <div className="col-row d-flex mt-5">
-            <div className="col-md-4 m-2">
-              <button type="submit" className="btn btn-dark mr-1">
+          <div className="row  mt-2">
+            <div className="col-md-6 text-center mb-2 mb-md-0">
+              <button type="submit" className="btn btn-dark w-100">
                 Submit
               </button>
             </div>
-            <div className="col-md-4 m-2">
+            <div className="col-md-6 text-center">
               <button
                 type="button"
-                className="btn btn-outline-secondary"
+                className="btn btn-outline-secondary w-100"
                 onClick={() => navigate("/mainDashboard/listBlogs")}
               >
                 Cancel
