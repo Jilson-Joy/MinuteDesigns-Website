@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../assets/css/Testimonial.css";
+// import './Testimonial.css';
 import { MoveLeft, MoveRight } from 'lucide-react';
 import { listAlltestimonials } from "../api/frontendApis/pagesApi";
 

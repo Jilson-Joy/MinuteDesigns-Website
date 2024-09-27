@@ -45,7 +45,6 @@ function LandingPage() {
     fetchServices();
   }, []);
 
-  const baseUrl = "https://your-backend-url.com";
 
   return (
     <>
@@ -99,8 +98,11 @@ function LandingPage() {
                 <div key={item._id} className="col-md-6 text-center service-item">
                   <div className="service-icon">
                     <img
-                      src={`${API_BASE_URL}${item.imageUrl}`} alt={item.title} // Uncomment this line if you want to include alt text
+                      src={`${API_BASE_URL}${item.imageUrl}`}
+                      alt={item.title} // Descriptive alt text
+                      style={{ width: "150px", height: "auto", marginRight: "5px" }} // Optional styling
                     />
+
                   </div>
 
                   <div className="service-title">
