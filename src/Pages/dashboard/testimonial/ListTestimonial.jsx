@@ -8,7 +8,7 @@ import {
 } from "../../../api/testimonial";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+ 
 function ListTestimonials() {
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ function ListTestimonials() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
   const navigate = useNavigate();
-
+ 
   const fetchTestimonials = async () => {
     try {
       const result = await GetAllTestimonial();
@@ -28,19 +28,19 @@ function ListTestimonials() {
       setLoading(false);
     }
   };
-
+ 
   useEffect(() => {
     fetchTestimonials();
   }, []);
-
+ 
   const handleView = (testimonialId) => {
     navigate(`/mainDashboard/view-testimonial/${testimonialId}`);
   };
-
+ 
   const handleEdit = (testimonialId) => {
     navigate(`/mainDashboard/edit-testimonial/${testimonialId}`);
   };
-
+ 
   const handleStatusChange = async (testimonialId) => {
     const testimonialToUpdate = testimonials.find(
       (testimonial) => testimonial._id === testimonialId
@@ -49,13 +49,13 @@ function ListTestimonials() {
       console.error("Testimonial not found");
       return;
     }
-
+ 
     const newStatus = !testimonialToUpdate.status;
     const action = newStatus ? "activate" : "deactivate";
     const confirmed = window.confirm(
       `Are you sure you want to ${action} this testimonial? This action cannot be undone.`
     );
-
+ 
     if (confirmed) {
       try {
         await UpdateTestimonialStatus(testimonialId, newStatus);
@@ -72,7 +72,7 @@ function ListTestimonials() {
       }
     }
   };
-
+ 
   const handleDelete = async (testimonialId) => {
     const confirmed = window.confirm(
       "Are you sure you want to delete this testimonial? This action cannot be undone."
@@ -92,12 +92,12 @@ function ListTestimonials() {
       }
     }
   };
-
+ 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
     setCurrentPage(1);
   };
-
+ 
   const filteredTestimonials = testimonials.filter((testimonial) => {
     return (
       (testimonial.name &&
@@ -108,7 +108,7 @@ function ListTestimonials() {
           .includes(searchTerm.toLowerCase()))
     );
   });
-
+ 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentTestimonials = filteredTestimonials.slice(
@@ -116,19 +116,19 @@ function ListTestimonials() {
     indexOfLastItem
   );
   const totalPages = Math.ceil(filteredTestimonials.length / itemsPerPage);
-
+ 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+ 
   if (loading) {
     return <div>Loading...</div>;
   }
-
+ 
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="text-primary">List of Testimonials</h1>
       </div>
-
+ 
       <div>
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
@@ -141,7 +141,7 @@ function ListTestimonials() {
           </ol>
         </nav>
       </div>
-
+ 
       <div className="row display-flex">
         <div className="mb-3 col-md-6 text-left">
           <button
@@ -151,7 +151,7 @@ function ListTestimonials() {
             Add Testimonial
           </button>
         </div>
-
+ 
         <div className="mb-3 col-md-6 text-right">
           <input
             type="text"
@@ -162,32 +162,32 @@ function ListTestimonials() {
           />
         </div>
       </div>
-
+ 
       <div className="table-responsive">
-          <table className="table table-bordered table-hover">
-            <thead className="table-dark">
-              <tr>
-                <th style={{ padding: "34px" }}>#</th>
-                <th style={{ padding: "34px" }}>TITLE</th>
-                <th style={{ padding: "34px" }}>COMPANY NAME</th>
-                <th style={{ padding: "34px" }}>DESCRIPTION</th>
-                <th style={{ padding: "34px" }}>STATUS</th>
-                <th style={{ padding: "34px" }}>ACTIONS</th>
+        <table className="table table-bordered table-hover">
+          <thead className="table-dark">
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          {filteredTestimonials.length === 0 ? (
+            <tbody>
+              <tr className="text-muted">
+                <td colSpan="8" className="text-center">
+                  No testimonials available.
+                </td>
               </tr>
-            </thead>
-      {filteredTestimonials.length === 0 ? (
-        <tr className="text-muted">
-          <td colSpan="8" className="text-center text-muted">
-          No testimonials available.</td>
-          </tr>
-      ) : (
-        
+            </tbody>
+          ) : (
             <tbody>
               {currentTestimonials.map((testimonial, index) => (
                 <tr key={testimonial._id}>
                   <td>{index + 1 + indexOfFirstItem}</td>
                   <td>{testimonial.title}</td>
-                  <td>{testimonial.companyName}</td>
                   <td>{testimonial.description}</td>
                   <td>
                     <button
@@ -227,7 +227,7 @@ function ListTestimonials() {
           )}
         </table>
       </div>
-
+ 
       <nav>
         <ul className="pagination justify-content-center">
           {Array.from({ length: totalPages }, (_, index) => (
@@ -244,86 +244,10 @@ function ListTestimonials() {
           ))}
         </ul>
       </nav>
-
-      {showModal && selectedTestimonial && (
-        <div
-          className={`modal ${showModal ? "show" : ""}`}
-          tabIndex="-1"
-          style={{ display: showModal ? "block" : "none" }}
-        >
-          <div className="modal-dialog modal-lg">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Page Details</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={handleCloseModal}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <div className="mb-3">
-                  <strong className="col-sm-3">Title:</strong>
-                  <div className="col-sm-9">
-                    <strong>{selectedTestimonial.title}</strong>
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <strong className="col-sm-3">Company Name:</strong>
-                  <div className="col-sm-9">
-                    <strong>{selectedTestimonial.companyName}</strong>
-                  </div>
-                </div>
-                <div className="row mb-3">
-                  <strong className="col-sm-3">Description:</strong>
-                  <div className="col-sm-9">
-                    <div>{selectedTestimonial.description}</div>
-                  </div>
-                </div>
-                <div className="row mb-3">
-                  <strong className="col-sm-3">Content:</strong>
-                  <div className="col-sm-9">
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: selectedTestimonial.content,
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="row mb-3">
-                  <strong className="col-sm-3">Created At:</strong>
-                  <div className="col-sm-9">
-                    <div>
-                      {new Date(selectedTestimonial.createdAt).toLocaleString()}
-                    </div>
-                  </div>
-                </div>
-                <div className="row mb-3">
-                  <strong className="col-sm-3">Updated At:</strong>
-                  <div className="col-sm-9">
-                    <div>
-                      {new Date(selectedTestimonial.updatedAt).toLocaleString()}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleCloseModal}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
+ 
       <ToastContainer />
     </div>
   );
 }
-
+ 
 export default ListTestimonials;
