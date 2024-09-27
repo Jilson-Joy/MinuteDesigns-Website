@@ -34,6 +34,7 @@ import ListServices from "./Pages/dashboard/services/ListServices";
 import EditService from "./Pages/dashboard/services/EditServices";
 import AddCategory from "./Pages/dashboard/category/AddCategory";
 import ListCategories from "./Pages/dashboard/category/ListCategory";
+import ViewTestimonial from "./Pages/dashboard/testimonial/ViewTestimonial";
 import EditCategory from "./Pages/dashboard/category/EditCategory";
 import AddBlog from "./Pages/dashboard/blog/AddBlog";
 import ListBlogs from "./Pages/dashboard/blog/ListBlog";
@@ -56,6 +57,8 @@ import EditWebsiteSettings from "./Pages/dashboard/websiteSettings/EditWebsiteSe
 import EditGallery from "./Pages/dashboard/gallery/EditGallery";
 import ViewService from "./Pages/dashboard/services/ViewService";
 import ViewPage from "./Pages/dashboard/pages/ViewPage";
+import ViewBlog from "./Pages/dashboard/blog/ViewBlog";
+import ViewWebsiteSettings from "./Pages/dashboard/websiteSettings/ViewWebsiteSettings";
 function App() {
   return (
     <Provider store={store}>
@@ -77,6 +80,8 @@ function App() {
             <Route path="addTestimonial" element={<AddTestimonial />} />
             <Route path="listTestimonials" element={<ListTestimonials />} />
             <Route path="edit-testimonial/:id" element={<EditTestimonial />} />
+            <Route path="view-testimonial/:testimonialId" element={<ViewTestimonial />} />
+
             <Route path="addServices" element={<AddServices />} />
             <Route path="listServices" element={<ListServices />} />
             <Route path="edit-service/:id" element={<EditService />} />
@@ -89,6 +94,8 @@ function App() {
             <Route path="addBlog" element={<AddBlog />} />
             <Route path="listBlogs" element={<ListBlogs />} />
             <Route path="edit-blog/:id" element={<EditBlog />} />
+            <Route path="view-blog/:id" element={<ViewBlog />} />
+
             <Route path="addGallery" element={<AddGallery />} />
             <Route path="listGallery" element={<ListGallery />} />
             <Route path="edit-Gallery/:id" element={<EditGallery />} />
@@ -101,6 +108,10 @@ function App() {
             <Route
               path="edit-website-settings/:id"
               element={<EditWebsiteSettings />}
+            />
+             <Route
+              path="view-websitesettings/:id"
+              element={<ViewWebsiteSettings />}
             />
           </Route>
 

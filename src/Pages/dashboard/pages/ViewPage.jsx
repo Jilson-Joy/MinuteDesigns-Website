@@ -57,7 +57,7 @@ function ViewPage() {
       <h1 className="text-primary text-center">Page Details</h1>
       <div className="mb-3 text-center">
         <button
-          onClick={() => navigate("/mainDashboard/listPage")} // Navigate to the list of pages
+          onClick={() => navigate("/mainDashboard/listPage")} 
           className="btn btn-secondary"
           aria-label="Back to Page List"
         >

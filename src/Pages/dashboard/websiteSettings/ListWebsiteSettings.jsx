@@ -88,16 +88,10 @@ function ListWebsiteSettings() {
       }
     }
   };
-
-  const handleView = (setting) => {
-    setSelectedSetting(setting);
-    setShowModal(true);
+  const handleView = (id) => {
+    navigate(`/mainDashboard/view-websitesettings/${id}`);
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedSetting(null);
-  };
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
@@ -175,7 +169,7 @@ function ListWebsiteSettings() {
               <th style={{ padding: "25px" }}>Status</th>
               <th style={{ padding: "25px" }}>Actions</th>
             </tr>
-          </thead>
+          </thead> 
           <tbody>
             {currentSettings.length === 0 ? (
               <tr className="text-muted">
@@ -217,7 +211,7 @@ function ListWebsiteSettings() {
                         Delete
                       </button>
                       <button
-                        onClick={() => handleView(setting)}
+                        onClick={() => handleView(setting._id)}
                         className="btn btn-info btn-sm"
                       >
                         View
@@ -252,129 +246,7 @@ function ListWebsiteSettings() {
         </ul>
       </nav>
 
-      {showModal && selectedSetting && (
-        <div
-          className={`modal ${showModal ? "show" : ""}`}
-          tabIndex="-1"
-          style={{ display: showModal ? "block" : "none" }}
-        >
-          <div className="modal-dialog modal-lg">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Website Settings Details</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={handleCloseModal}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <div className="mb-3">
-                  <strong>Website Name: </strong> {selectedSetting.websiteName}
-                </div>
-                <div className="mb-3">
-                  <strong>Address: </strong> {selectedSetting.address}
-                </div>
-                <div className="mb-3">
-                  <strong>Office Phone: </strong> {selectedSetting.officePhone}
-                </div>
-                <div className="mb-3">
-                  <strong>Mobile: </strong> {selectedSetting.mobile}
-                </div>
-                <div className="mb-3">
-                  <strong>Email: </strong> {selectedSetting.email}
-                </div>
-                <div className="mb-3">
-                  <strong>Google Map Link: </strong>
-                  <a
-                    href={selectedSetting.googleMapLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Map
-                  </a>
-                </div>
-                <div className="mb-3">
-                  <strong>Number of Products: </strong>{" "}
-                  {selectedSetting.numberOfProducts}
-                </div>
-                <div className="mb-3">
-                  <strong>Number of Clients: </strong>{" "}
-                  {selectedSetting.numberOfClients}
-                </div>
-                <div className="mb-3">
-                  <strong>Number of Employees: </strong>{" "}
-                  {selectedSetting.numberOfEmployees}
-                </div>
-                <div className="mb-3">
-                  <strong>Status: </strong>{" "}
-                  {selectedSetting.status ? "Active" : "Inactive"}
-                </div>
-                <div className="mb-3">
-                  <strong>Created At: </strong>{" "}
-                  {new Date(selectedSetting.createdAt).toLocaleString()}
-                </div>
-                <div className="mb-3">
-                  <strong>Updated At: </strong>{" "}
-                  {new Date(selectedSetting.updatedAt).toLocaleString()}
-                </div>
-
-                <div className="mb-3">
-                  <strong>Social Media Links:</strong>
-                  <ul>
-                    {selectedSetting.socialMedia.map((media) => (
-                      <li key={media._id}>
-                        <strong>{media.name}: </strong>
-                        <a
-                          href={media.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {media.link}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mb-3">
-                  <strong>Menu Links:</strong>
-                  <ul>
-                    {selectedSetting.menuLinks.map((link) => (
-                      <li key={link.code}>
-                        <strong>{link.name}: </strong>
-                        <a
-                          href={link.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {link.link}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleCloseModal}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {showModal && (
-        <div
-          className="modal-backdrop fade show"
-          onClick={handleCloseModal}
-        ></div>
-      )}
+    
       <ToastContainer />
     </div>
   );
