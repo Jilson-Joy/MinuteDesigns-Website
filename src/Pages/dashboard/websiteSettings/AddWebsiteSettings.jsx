@@ -33,7 +33,6 @@ const AddWebsiteSettings = () => {
       [name]: value,
     }));
   };
-
   const handleFileChange = (event) => {
     const { name, files } = event.target;
     if (files.length > 0) {
@@ -43,6 +42,7 @@ const AddWebsiteSettings = () => {
       }));
     }
   };
+  
 
   const handleSocialMediaChange = (index, e) => {
     const { name, value } = e.target;

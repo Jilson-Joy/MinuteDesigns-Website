@@ -11,7 +11,7 @@ import { FaArrowLeft } from "react-icons/fa";
 const AddPage = () => {
   const navigate = useNavigate();
 
-  const [files, setFiles] = useState([]);
+  const [file, setFile] = useState(null);
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [sourceCode, setSourceCode] = useState("");
 
@@ -31,11 +31,12 @@ const AddPage = () => {
     metaTags: "",
   });
 
-  const handleFileChange = (event) => {
-    if (event.target.files) {
-      setFiles(Array.from(event.target.files));
+  const handleFileChange = (e) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]); 
     }
   };
+
 
   const handleSourceCode = () => {
     setShowSourceModal(true);
@@ -113,16 +114,16 @@ const AddPage = () => {
     e.preventDefault();
     const formDataToSend = new FormData();
 
-    files.forEach((file) => {
-      formDataToSend.append("files", file);
-    });
-
     formDataToSend.append("pageUrl", formData.pageUrl);
     formDataToSend.append("pageTitle", formData.pageTitle);
     formDataToSend.append("name", formData.name);
     formDataToSend.append("shortDescription", formData.shortDescription);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
+    
+    if (file) {
+      formDataToSend.append("files", file);
+    }
 
     const metaArray = [
       {
@@ -168,7 +169,7 @@ const AddPage = () => {
           },
           metaTags: "",
         });
-        setFiles([]);
+        setFile([]);
       }
     } catch (error) {
       toast.error("Failed to add page", error);

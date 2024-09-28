@@ -19,7 +19,7 @@ const AddBlog = () => {
     comments: [""],
   });
 
-  const [files, setFiles] = useState([]);
+  const [file, setFile] = useState(null);
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [sourceCode, setSourceCode] = useState(formData.content);
 
@@ -33,7 +33,7 @@ const AddBlog = () => {
 
   const handleFileChange = (e) => {
     if (e.target.files) {
-      setFiles(Array.from(e.target.files));
+      setFile(e.target.files[0]); 
     }
   };
 
@@ -77,9 +77,9 @@ const AddBlog = () => {
     formDataToSend.append("content", formData.content);
     formDataToSend.append("comments", JSON.stringify(formData.comments));
 
-    files.forEach((file) => {
+    if (file) {
       formDataToSend.append("files", file);
-    });
+    }
 
     try {
       await AddBlogApi(formDataToSend);
@@ -91,7 +91,7 @@ const AddBlog = () => {
         content: "",
         comments: [""],
       });
-      setFiles([]);
+      setFile(null);
     } catch (error) {
       toast.error("Failed to add blog");
       console.error("Failed to add blog:", error);
@@ -211,51 +211,51 @@ const AddBlog = () => {
             </div>
           </div>
           <div className="col-row d-flex">
-          <div className="col-md-12 m-2">
-          <div className="mb-3">
-            <label htmlFor="fileUpload" className="form-label">
-              Upload File
-            </label>
-            <input
-              type="file"
-              className="form-control"
-              name="files"
-              multiple
-              onChange={handleFileChange}
-            />
-          </div>
-          </div>
+            <div className="col-md-12 m-2">
+              <div className="mb-3">
+                <label htmlFor="fileUpload" className="form-label">
+                  Upload File
+                </label>
+                <input
+                  type="file"
+                  className="form-control"
+                  name="files" 
+                  onChange={handleFileChange}
+                />
+              </div>
+            </div>
           </div>
           <div className="col-row d-flex">
-          <div className="col-md-12 m-2">
-          <div className="mb-3">
-            <label className="form-label">Comments</label>
-            {formData.comments.map((comment, index) => (
-              <div key={index} className="input-group mb-2">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder={`Comment ${index + 1}`}
-                  value={comment}
-                  onChange={(e) => handleCommentChange(index, e.target.value)}
-                />
+            <div className="col-md-12 m-2">
+              <div className="mb-3">
+                <label className="form-label">Comments</label>
+                {formData.comments.map((comment, index) => (
+                  <div key={index} className="input-group mb-2">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder={`Comment ${index + 1}`}
+                      value={comment}
+                      onChange={(e) => handleCommentChange(index, e.target.value)}
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => handleRemoveComment(index)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
                 <button
                   type="button"
-                  className="btn btn-danger"
-                  onClick={() => handleRemoveComment(index)}
+                  className="btn btn-primary mt-2"
+                  onClick={handleAddComment}
                 >
-                  Remove
+                  + Add Comment
                 </button>
               </div>
-            ))}
-            <button
-              type="button"
-              className="btn btn-primary mt-2"
-              onClick={handleAddComment}
-            >             + Add Comment
-            </button>
-          </div>
-          </div>
+            </div>
           </div>
 
           <div className="col-row d-flex mt-5">
@@ -271,7 +271,7 @@ const AddBlog = () => {
                   formats={formats}
                   placeholder="Write your content here..."
                   style={{
-                    minwidth: "500px",
+                    minWidth: "500px",
                     height: "300px",
                     overflow: "auto",
                   }}

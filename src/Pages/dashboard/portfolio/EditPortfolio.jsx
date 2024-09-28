@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
-  GetTestimonialById,
-  UpdateTestimonialById,
-} from "../../../api/testimonial";
+  GetPortfolioById, // Changed from GetTestimonialById to GetPortfolioById
+  UpdatePortfolioById, // Changed from UpdateTestimonialById to UpdatePortfolioById
+} from "../../../api/portfolio"; // Adjust the API import to match the portfolio API
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Modal, Button } from "react-bootstrap";
 
-const EditTestimonialData = () => {
+const EditPortfolio = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -20,39 +20,32 @@ const EditTestimonialData = () => {
     description: "",
     content: "",
   });
+  const [file, setFile] = useState(null);
 
-  const [files, setFiles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [sourceCode, setSourceCode] = useState(formData.content);
 
   useEffect(() => {
-    const fetchTestimonialData = async () => {
+    const fetchPortfolioData = async () => {
       try {
-        const result = await GetTestimonialById(id);
-        const testimonialData = result.testimonial;
+        const result = await GetPortfolioById(id);
+        const portfolioData = result.portfolio;
 
         setFormData({
-          title: testimonialData.title || "",
-          description: testimonialData.description || "",
-          content: testimonialData.content || "",
+          title: portfolioData.title || "",
+          description: portfolioData.description || "",
+          content: portfolioData.content || "",
         });
-        setFiles(testimonialData.files || []);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching testimonial data:", error);
+        console.error("Error fetching portfolio data:", error);
         setLoading(false);
       }
     };
 
-    fetchTestimonialData();
+    fetchPortfolioData();
   }, [id]);
-
-  const handleFileChange = (event) => {
-    if (event.target.files) {
-      setFiles(Array.from(event.target.files));
-    }
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -60,6 +53,12 @@ const EditTestimonialData = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]);
+    }
   };
 
   const handleContentChange = (value) => {
@@ -105,21 +104,26 @@ const EditTestimonialData = () => {
     e.preventDefault();
 
     const formDataToSend = new FormData();
-
-    files.forEach((file) => {
-      formDataToSend.append("files", file);
-    });
     formDataToSend.append("title", formData.title);
-    formDataToSend.append("description", formData.description); // Include description
+    formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
-
+    if (file) {
+        formDataToSend.append("files", file);
+      }
+  
     try {
-      await UpdateTestimonialById(id, formDataToSend);
-      toast.success("Testimonial updated successfully!");
-      navigate("/mainDashboard/listTestimonials");
+      await UpdatePortfolioById(id, formDataToSend);
+      toast.success("Portfolio updated successfully!");
+      navigate("/mainDashboard/listPortfolios");
+      setFormData({
+        title: "",
+        description: "",
+        content: "",
+      });
+      setFile(null);
     } catch (error) {
-      console.error("Failed to update testimonial:", error);
-      toast.error("Failed to update testimonial. Please try again.");
+      console.error("Failed to update portfolio:", error);
+      toast.error("Failed to update portfolio. Please try again.");
     }
   };
 
@@ -142,7 +146,7 @@ const EditTestimonialData = () => {
 
   return (
     <div className="container">
-      <h1 className="mt-4">Edit Testimonial</h1>
+      <h1 className="mt-4">Edit Portfolio</h1>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -169,16 +173,18 @@ const EditTestimonialData = () => {
             onChange={handleChange}
           />
         </div>
-
-        <div className="mb-3">
-          <label htmlFor="fileUpload" className="form-label">Upload File</label>
-          <input
-            type="file"
-            className="form-control"
-            name="files"
-            multiple
-            onChange={handleFileChange}
-          />
+        <div className="col-row d-flex">
+          <div className="col-md-12 m-2">
+            <div className="mb-3">
+              <label htmlFor="fileUpload" className="form-label">Upload File</label>
+              <input
+                type="file"
+                className="form-control"
+                name="files"
+                onChange={handleFileChange}
+              />
+            </div>
+          </div>
         </div>
 
         <div className="mb-3">
@@ -214,7 +220,7 @@ const EditTestimonialData = () => {
             <button
               type="button"
               className="btn btn-outline-secondary"
-              onClick={() => navigate("/mainDashboard/listTestimonials")}
+              onClick={() => navigate("/mainDashboard/listPortfolios")}
             >
               Cancel
             </button>
@@ -248,4 +254,4 @@ const EditTestimonialData = () => {
   );
 };
 
-export default EditTestimonialData;
+export default EditPortfolio;

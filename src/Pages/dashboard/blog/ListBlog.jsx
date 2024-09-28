@@ -78,10 +78,8 @@ function ListBlogs() {
       }
     }
   };
-
-  const handleView = (blog) => {
-    setSelectedBlog(blog);
-    setShowModal(true);
+  const handleView = (blogId) => {
+    navigate(`/mainDashboard/view-blog/${blogId}`);
   };
 
   const handleCloseModal = () => {
@@ -186,7 +184,7 @@ function ListBlogs() {
                         Delete
                       </button>
                       <button
-                        onClick={() => handleView(blog)}
+                        onClick={() => handleView(blog._id)}
                         className="btn btn-info btn-sm"
                       >
                         View

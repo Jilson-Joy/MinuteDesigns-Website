@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Modal, Button } from "react-bootstrap";
+import { FaArrowLeft } from "react-icons/fa";
+
 
 const AddTestimonial = () => {
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ const AddTestimonial = () => {
     content: "",
   });
 
-  const [files, setFiles] = useState([]);
+  const [file, setFile] = useState(null);
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [sourceCode, setSourceCode] = useState(formData.content);
 
@@ -31,9 +33,10 @@ const AddTestimonial = () => {
 
   const handleFileChange = (e) => {
     if (e.target.files) {
-      setFiles(Array.from(e.target.files));
+      setFile(e.target.files[0]); 
     }
   };
+
 
   const handleContentChange = (value) => {
     setFormData({
@@ -49,10 +52,9 @@ const AddTestimonial = () => {
     formDataToSend.append("title", formData.title);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
-
-    files.forEach((file) => {
+    if (file) {
       formDataToSend.append("files", file);
-    });
+    }
 
     try {
       await AddTestimonialApi(formDataToSend);
@@ -63,7 +65,7 @@ const AddTestimonial = () => {
         description: "",
         content: "",
       });
-      setFiles([]);
+      setFile([]);
     } catch (error) {
       toast.error("Failed to add testimonial");
       console.error("Failed to add testimonial:", error);
@@ -118,7 +120,31 @@ const AddTestimonial = () => {
   return (
     <div className="container mt-4">
       <h1>Add Testimonial</h1>
-
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <a href="/mainDashboard">Home</a>
+            </li>
+            <li className="breadcrumb-item">
+              <a href="/mainDashboard/listCategory">Testimonial List</a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Add Testimonial
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <div className="d-flex">
+        <div className="float-right">
+          <button
+            onClick={() => navigate("/mainDashboard/listTestimonials")}
+            className="btn btn-dark"
+          >
+            <FaArrowLeft className="me-2" />
+          </button>
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
 
       <div className="col-row d-flex">

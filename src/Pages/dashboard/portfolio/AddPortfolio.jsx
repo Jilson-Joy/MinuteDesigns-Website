@@ -1,53 +1,35 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { GetBlogById, UpdateBlogById } from "../../../api/blog"; 
-import { toast } from "react-toastify";
+import { AddPortfolioApi } from "../../../api/portfolio"; 
+import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Modal, Button } from "react-bootstrap";
+import { FaArrowLeft } from "react-icons/fa";
 
-const EditBlog = () => { 
-  const { id } = useParams();
+
+const AddPortfolio = () => {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     title: "",
     description: "",
     content: "",
-    url: "",
-    comments: [""]
   });
 
   const [file, setFile] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [sourceCode, setSourceCode] = useState(formData.content);
 
-  useEffect(() => {
-    const fetchBlogData = async () => {
-      try {
-        const result = await GetBlogById(id); 
-        const blogData = result.blog; 
-
-        setFormData({
-          title: blogData.title || "",
-          description: blogData.description || "",
-          content: blogData.content || "",
-          url: blogData.url || "",
-          comments: blogData.comments || [""],
-        });
-        setFile(blogData.files ? blogData.files[0] : null); 
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching blog data:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchBlogData();
-  }, [id]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const handleFileChange = (e) => {
     if (e.target.files) {
@@ -55,42 +37,10 @@ const EditBlog = () => {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
   const handleContentChange = (value) => {
-    setFormData((prevData) => ({
-      ...prevData,
+    setFormData({
+      ...formData,
       content: value,
-    }));
-  };
-
-  const handleCommentChange = (index, value) => {
-    const updatedComments = [...formData.comments];
-    updatedComments[index] = value;
-    setFormData({
-      ...formData,
-      comments: updatedComments,
-    });
-  };
-
-  const handleAddComment = () => {
-    setFormData({
-      ...formData,
-      comments: [...formData.comments, ""],
-    });
-  };
-
-  const handleRemoveComment = (index) => {
-    const updatedComments = formData.comments.filter((_, i) => i !== index);
-    setFormData({
-      ...formData,
-      comments: updatedComments,
     });
   };
 
@@ -101,20 +51,23 @@ const EditBlog = () => {
     formDataToSend.append("title", formData.title);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
-    formDataToSend.append("url", formData.url); 
-    formDataToSend.append("comments", JSON.stringify(formData.comments));
-    
     if (file) {
       formDataToSend.append("files", file);
     }
 
     try {
-      await UpdateBlogById(id, formDataToSend);
-      toast.success("Blog updated successfully!");
-      navigate("/mainDashboard/listBlogs"); 
+      await AddPortfolioApi(formDataToSend); 
+      toast.success("Portfolio added successfully!");
+      navigate("/mainDashboard/listPortfolios");
+      setFormData({
+        title: "",
+        description: "",
+        content: "",
+      });
+      setFile(null);
     } catch (error) {
-      console.error("Failed to update blog:", error);
-      toast.error("Failed to update blog. Please try again.");
+      toast.error("Failed to add portfolio");
+      console.error("Failed to add portfolio:", error);
     }
   };
 
@@ -130,10 +83,6 @@ const EditBlog = () => {
     });
     setShowSourceModal(false);
   };
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
 
   const modules = {
     toolbar: [
@@ -168,9 +117,33 @@ const EditBlog = () => {
   ];
 
   return (
-    <div className="container">
-      <h1 className="mt-4">Edit Blog</h1> 
-
+    <div className="container mt-4">
+      <h1>Add Portfolio</h1>
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <a href="/mainDashboard">Home</a>
+            </li>
+            <li className="breadcrumb-item">
+              <a href="/mainDashboard/listCategory">Portfolio List</a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Add Portfolio
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <div className="d-flex">
+        <div className="float-right">
+          <button
+            onClick={() => navigate("/mainDashboard/listPortfolios")}
+            className="btn btn-dark"
+          >
+            <FaArrowLeft className="me-2" />
+          </button>
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="col-row d-flex">
           <div className="col-md-12 m-2">
@@ -188,7 +161,6 @@ const EditBlog = () => {
             </div>
           </div>
         </div>
-
         <div className="col-row d-flex">
           <div className="col-md-12 m-2">
             <div className="mb-3">
@@ -204,24 +176,6 @@ const EditBlog = () => {
             </div>
           </div>
         </div>
-
-        <div className="col-row d-flex">
-          <div className="col-md-12 m-2">
-            <div className="mb-3">
-              <label htmlFor="url" className="form-label">URL</label>
-              <input
-                type="url"
-                className="form-control"
-                id="url"
-                name="url"
-                value={formData.url}
-                onChange={handleChange}
-                placeholder="https://example.com"
-              />
-            </div>
-          </div>
-        </div>
-
         <div className="col-row d-flex">
           <div className="col-md-12 m-2">
             <div className="mb-3">
@@ -236,67 +190,37 @@ const EditBlog = () => {
           </div>
         </div>
 
-        <div className="col-row d-flex">
+        <div className="col-row d-flex mt-5">
           <div className="col-md-12 m-2">
-            <div className="mb-3">
-              <label className="form-label">Comments</label>
-              {formData.comments.map((comment, index) => (
-                <div key={index} className="input-group mb-2">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={`Comment ${index + 1}`}
-                    value={comment}
-                    onChange={(e) => handleCommentChange(index, e.target.value)}
-                  />
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => handleRemoveComment(index)}
-                  >
-                    Remove
-                  </button>
-                </div>
-              ))}
-              <button
-                type="button"
-                className="btn btn-secondary mt-2"
-                onClick={handleAddComment}
-              >
-                Add Comment
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-row d-flex">
-          <div className="col-md-12 m-2">
-            <div className="mb-3">
-              <label className="form-label">Content</label>
+            <label htmlFor="content" className="form-label">
+              Content
+            </label>
+            <div className="cls-editor">
               <ReactQuill
                 value={formData.content}
                 onChange={handleContentChange}
                 modules={modules}
                 formats={formats}
                 placeholder="Write your content here..."
-                style={{ height: "300px" }}
+                style={{
+                  minWidth: "500px",
+                  height: "300px",
+                  overflow: "auto",
+                }}
               />
             </div>
           </div>
         </div>
 
-        <div className="col-row d-flex mt-5">
+        <div className="col-row d-flex">
           <div className="col-md-12 m-2">
-            <div className="mb-3">
-              <button
-                style={{ width: "150px", marginLeft: "110%", marginTop: "-80px" }}
-                type="button"
-                className="btn btn-secondary"
-                onClick={handleSourceCode}
-              >
-                Code
-              </button>
-            </div>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={handleSourceCode}
+            >
+              Source Code
+            </button>
           </div>
         </div>
 
@@ -310,7 +234,7 @@ const EditBlog = () => {
             <button
               type="button"
               className="btn btn-outline-secondary"
-              onClick={() => navigate("/mainDashboard/listblogs")}
+              onClick={() => navigate("/mainDashboard/listPortfolios")}
             >
               Cancel
             </button>
@@ -324,10 +248,10 @@ const EditBlog = () => {
         </Modal.Header>
         <Modal.Body>
           <textarea
+            rows="10"
+            className="form-control"
             value={sourceCode}
             onChange={(e) => setSourceCode(e.target.value)}
-            rows={10}
-            style={{ width: "100%" }}
           />
         </Modal.Body>
         <Modal.Footer>
@@ -343,4 +267,4 @@ const EditBlog = () => {
   );
 };
 
-export default EditBlog;
+export default AddPortfolio;

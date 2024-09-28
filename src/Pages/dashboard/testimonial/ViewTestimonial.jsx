@@ -109,22 +109,14 @@ function ViewTestimonial() {
               <td>{new Date(testimonial.updatedAt).toLocaleString() || "Invalid Date"}</td>
             </tr>
             <tr>
-              <td>Uploaded Files</td>
+              <td>Uploaded File</td>
               <td>
-                {testimonial.imageUrl && testimonial.imageUrl.length > 0 ? (
-                  <div className="d-flex flex-wrap">
-                    {testimonial.imageUrl.map((url, idx) => {
-                      const fullUrl = `${baseUrl}${url}`;
-                      return (
-                        <img
-                          key={idx}
-                          src={fullUrl}
-                          alt={`Gallery Image ${idx + 1}`}
-                          style={{ width: "300px", height: "300px", marginRight: "5px" }}
-                        />
-                      );
-                    })}
-                  </div>
+                {testimonial.imageUrl ? (
+                  <img
+                    src={`${baseUrl}${testimonial.imageUrl}`}
+                    alt="Uploaded"
+                    style={{ width: "300px", height: "300px" }}
+                  />
                 ) : (
                   "No uploaded files available."
                 )}

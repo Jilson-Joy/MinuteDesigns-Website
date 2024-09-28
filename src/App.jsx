@@ -3,11 +3,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/commonStyle.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Components
 import Header from "./components/Navbar/Header";
 import Footer from "./components/footer/Footer";
 
-// Pages
 import Home from "./Pages/Home";
 import About from "./Pages/About";
 import Work from "./Pages/Work";
@@ -59,6 +57,10 @@ import ViewService from "./Pages/dashboard/services/ViewService";
 import ViewPage from "./Pages/dashboard/pages/ViewPage";
 import ViewBlog from "./Pages/dashboard/blog/ViewBlog";
 import ViewWebsiteSettings from "./Pages/dashboard/websiteSettings/ViewWebsiteSettings";
+import AddPortfolio from "./Pages/dashboard/portfolio/AddPortfolio";
+import ListPortfolios from "./Pages/dashboard/portfolio/ListPortfolios";
+import EditPortfolio from "./Pages/dashboard/portfolio/EditPortfolio";
+import ViewPortFolios from "./Pages/dashboard/portfolio/ViewPortfolio";
 function App() {
   return (
     <Provider store={store}>
@@ -80,7 +82,10 @@ function App() {
             <Route path="addTestimonial" element={<AddTestimonial />} />
             <Route path="listTestimonials" element={<ListTestimonials />} />
             <Route path="edit-testimonial/:id" element={<EditTestimonial />} />
-            <Route path="view-testimonial/:testimonialId" element={<ViewTestimonial />} />
+            <Route
+              path="view-testimonial/:testimonialId"
+              element={<ViewTestimonial />}
+            />
 
             <Route path="addServices" element={<AddServices />} />
             <Route path="listServices" element={<ListServices />} />
@@ -109,10 +114,16 @@ function App() {
               path="edit-website-settings/:id"
               element={<EditWebsiteSettings />}
             />
-             <Route
+            <Route
               path="view-websitesettings/:id"
               element={<ViewWebsiteSettings />}
             />
+            <Route path="addPortfolio" element={<AddPortfolio />} />
+            <Route path="listPortfolios" element={<ListPortfolios />} />
+            <Route path="edit-portfolio/:id" element={<EditPortfolio />} />
+            <Route path="view-portfolio/:portfolioId" element={<ViewPortFolios />} />
+
+
           </Route>
 
           <Route

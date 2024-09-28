@@ -56,7 +56,7 @@ const EditWebsiteSettings = () => {
     if (files.length > 0) {
       setFormData((prev) => ({
         ...prev,
-        [name]: files[0],
+        [name]: files[0], // Ensure we're updating the correct file input
       }));
     }
   };
@@ -121,7 +121,6 @@ const EditWebsiteSettings = () => {
     e.preventDefault();
 
     const formDataToSend = new FormData();
-
     Object.keys(formData).forEach((key) => {
       if (key === "socialMedia" || key === "menuLinks") {
         formData[key].forEach((item, index) => {
@@ -161,20 +160,15 @@ const EditWebsiteSettings = () => {
         </ol>
       </nav>
       <div className="d-flex mb-3">
-        <button
-          onClick={() => navigate("/mainDashboard/listWebsiteSettings")}
-          className="btn btn-dark"
-        >
+        <button onClick={() => navigate("/mainDashboard/listWebsiteSettings")} className="btn btn-dark">
           <FaArrowLeft className="me-2" />
+          Back
         </button>
       </div>
       <form onSubmit={handleSubmit}>
-        {/* Form Fields */}
         <div className="row mb-3">
           <div className="col-md-6">
-            <label htmlFor="websiteName" className="form-label">
-              Website Name
-            </label>
+            <label htmlFor="websiteName" className="form-label">Website Name</label>
             <input
               type="text"
               className="form-control"
@@ -185,9 +179,7 @@ const EditWebsiteSettings = () => {
             />
           </div>
           <div className="col-md-6">
-            <label htmlFor="address" className="form-label">
-              Address
-            </label>
+            <label htmlFor="address" className="form-label">Address</label>
             <input
               type="text"
               className="form-control"
@@ -199,12 +191,9 @@ const EditWebsiteSettings = () => {
           </div>
         </div>
 
-        {/* Other Input Fields */}
         <div className="row mb-3">
           <div className="col-md-6">
-            <label htmlFor="officePhone" className="form-label">
-              Office Phone
-            </label>
+            <label htmlFor="officePhone" className="form-label">Office Phone</label>
             <input
               type="text"
               className="form-control"
@@ -215,9 +204,7 @@ const EditWebsiteSettings = () => {
             />
           </div>
           <div className="col-md-6">
-            <label htmlFor="mobile" className="form-label">
-              Mobile
-            </label>
+            <label htmlFor="mobile" className="form-label">Mobile</label>
             <input
               type="text"
               className="form-control"
@@ -231,9 +218,7 @@ const EditWebsiteSettings = () => {
 
         <div className="row mb-3">
           <div className="col-md-6">
-            <label htmlFor="googleMapLink" className="form-label">
-              Google Map Link
-            </label>
+            <label htmlFor="googleMapLink" className="form-label">Google Map Link</label>
             <input
               type="text"
               className="form-control"
@@ -244,9 +229,7 @@ const EditWebsiteSettings = () => {
             />
           </div>
           <div className="col-md-6">
-            <label htmlFor="numberOfProducts" className="form-label">
-              Number of Products
-            </label>
+            <label htmlFor="numberOfProducts" className="form-label">Number of Products</label>
             <input
               type="text"
               className="form-control"
@@ -260,9 +243,7 @@ const EditWebsiteSettings = () => {
 
         <div className="row mb-3">
           <div className="col-md-6">
-            <label htmlFor="numberOfClients" className="form-label">
-              Number of Clients
-            </label>
+            <label htmlFor="numberOfClients" className="form-label">Number of Clients</label>
             <input
               type="text"
               className="form-control"
@@ -273,9 +254,7 @@ const EditWebsiteSettings = () => {
             />
           </div>
           <div className="col-md-6">
-            <label htmlFor="numberOfEmployees" className="form-label">
-              Number of Employees
-            </label>
+            <label htmlFor="numberOfEmployees" className="form-label">Number of Employees</label>
             <input
               type="text"
               className="form-control"
@@ -289,9 +268,7 @@ const EditWebsiteSettings = () => {
 
         <div className="row mb-3">
           <div className="col-md-6">
-            <label htmlFor="email" className="form-label">
-              Email
-            </label>
+            <label htmlFor="email" className="form-label">Email</label>
             <input
               type="email"
               className="form-control"
@@ -303,110 +280,139 @@ const EditWebsiteSettings = () => {
           </div>
         </div>
 
-        {/* Social Media Links */}
-        <h4>Social Media Links</h4>
-        {formData.socialMedia.map((media, index) => (
+        <h5>Social Media Links</h5>
+        {formData.socialMedia.map((social, index) => (
           <div key={index} className="row mb-3">
-            <div className="col-md-4">
-              <label htmlFor={`socialMedia[${index}].name`} className="form-label">
-                Name
-              </label>
+            <div className="col-md-3">
+              <label htmlFor={`socialName_${index}`} className="form-label">Name</label>
               <input
                 type="text"
                 className="form-control"
+                id={`socialName_${index}`}
                 name="name"
-                value={media.name}
+                value={social.name}
                 onChange={(e) => handleSocialMediaChange(index, e)}
               />
             </div>
-            <div className="col-md-4">
-              <label htmlFor={`socialMedia[${index}].icon`} className="form-label">
-                Icon
-              </label>
+            <div className="col-md-3">
+              <label htmlFor={`socialIcon_${index}`} className="form-label">Icon</label>
               <input
                 type="text"
                 className="form-control"
+                id={`socialIcon_${index}`}
                 name="icon"
-                value={media.icon}
+                value={social.icon}
                 onChange={(e) => handleSocialMediaChange(index, e)}
               />
             </div>
-            <div className="col-md-4">
-              <label htmlFor={`socialMedia[${index}].link`} className="form-label">
-                Link
-              </label>
+            <div className="col-md-3">
+              <label htmlFor={`socialLink_${index}`} className="form-label">Link</label>
               <input
                 type="text"
                 className="form-control"
+                id={`socialLink_${index}`}
                 name="link"
-                value={media.link}
+                value={social.link}
                 onChange={(e) => handleSocialMediaChange(index, e)}
               />
             </div>
-            <button type="button" onClick={() => removeSocialMedia(index)} className="btn btn-danger mt-4">
-              Remove
-            </button>
+            <div className="col-md-3 d-flex align-items-end">
+              <button type="button" className="btn btn-danger" onClick={() => removeSocialMedia(index)}>
+                Remove
+              </button>
+            </div>
           </div>
         ))}
-        <button type="button" onClick={addSocialMedia} className="btn btn-secondary">
+        <button type="button" className="btn btn-secondary mb-3" onClick={addSocialMedia}>
           Add Social Media
         </button>
 
-        {/* Menu Links */}
-        <h4>Menu Links</h4>
+        <h5>Menu Links</h5>
         {formData.menuLinks.map((link, index) => (
           <div key={index} className="row mb-3">
-            <div className="col-md-4">
-              <label htmlFor={`menuLinks[${index}].name`} className="form-label">
-                Name
-              </label>
+            <div className="col-md-3">
+              <label htmlFor={`menuLinkName_${index}`} className="form-label">Name</label>
               <input
                 type="text"
                 className="form-control"
+                id={`menuLinkName_${index}`}
                 name="name"
                 value={link.name}
                 onChange={(e) => handleMenuLinkChange(index, e)}
               />
             </div>
-            <div className="col-md-4">
-              <label htmlFor={`menuLinks[${index}].menuType`} className="form-label">
-                Menu Type
-              </label>
+            <div className="col-md-3">
+              <label htmlFor={`menuLinkType_${index}`} className="form-label">Menu Type</label>
               <input
                 type="text"
                 className="form-control"
+                id={`menuLinkType_${index}`}
                 name="menuType"
                 value={link.menuType}
                 onChange={(e) => handleMenuLinkChange(index, e)}
               />
             </div>
-            <div className="col-md-4">
-              <label htmlFor={`menuLinks[${index}].link`} className="form-label">
-                Link
-              </label>
+            <div className="col-md-3">
+              <label htmlFor={`menuLink_${index}`} className="form-label">Link</label>
               <input
                 type="text"
                 className="form-control"
+                id={`menuLink_${index}`}
                 name="link"
                 value={link.link}
                 onChange={(e) => handleMenuLinkChange(index, e)}
               />
             </div>
-            <button type="button" onClick={() => removeMenuLink(index)} className="btn btn-danger mt-4">
-              Remove
-            </button>
+            <div className="col-md-3 d-flex align-items-end">
+              <button type="button" className="btn btn-danger" onClick={() => removeMenuLink(index)}>
+                Remove
+              </button>
+            </div>
           </div>
         ))}
-        <button type="button" onClick={addMenuLink} className="btn btn-secondary">
+        <button type="button" className="btn btn-secondary mb-3" onClick={addMenuLink}>
           Add Menu Link
         </button>
 
-        <div className="mt-4">
-          <button type="submit" className="btn btn-primary">
-            Save Changes
-          </button>
+        <div className="row mb-3">
+          <div className="col-md-6">
+            <label htmlFor="headerLogo" className="form-label">Header Logo</label>
+            <input
+              type="file"
+              className="form-control"
+              id="headerLogo"
+              name="files"
+              onChange={handleFileChange}
+            />
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="footerLogo" className="form-label">Footer Logo</label>
+            <input
+              type="file"
+              className="form-control"
+              id="footerLogo"
+              name="files"
+              onChange={handleFileChange}
+            />
+          </div>
         </div>
-      </form>
+
+        <div className="col-row d-flex mt-5">
+          <div className="col-md-4 m-2">
+            <button type="submit" className="btn btn-dark mr-1">
+              Submit
+            </button>
+          </div>
+          <div className="col-md-4 m-2">
+            <button
+              type="button"
+              className="btn btn-outline-secondary"
+              onClick={() => navigate("/mainDashboard/listWebsiteSettings")}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>      </form>
     </div>
   );
 };
