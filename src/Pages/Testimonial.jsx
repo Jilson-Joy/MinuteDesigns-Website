@@ -3,6 +3,9 @@ import "../assets/css/Testimonial.css";
 // import './Testimonial.css';
 import { MoveLeft, MoveRight } from 'lucide-react';
 import { listAlltestimonials } from "../api/frontendApis/pagesApi";
+import { Carousel } from "react-bootstrap";
+import { Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+
 
 function Testimonial() {
   const [testimonials, setTestimonials] = useState([]);
@@ -68,9 +71,13 @@ function Testimonial() {
               <MoveRight />
             </button>
 
-            {/* Display the current testimonial */}
+
+            
             {testimonials.length > 0 && (
               <div key={testimonials[currentIndex]._id}>
+                <div className="text-center">
+                  <Quote className="quote"/>
+                </div>
                 <div className="text">{testimonials[currentIndex].description}</div>
                 <div className="info-box">
                   <div className="thumb">
@@ -92,14 +99,38 @@ function Testimonial() {
                       "No uploaded files available."
                     )}
                   </div>
-                  <h4 className="name">{testimonials[currentIndex].title}</h4>
-                  <span className="designation">{testimonials[currentIndex].companyName}</span>
+                 <div className="text-center">
+                    <h4 className="name">{testimonials[currentIndex].title}</h4>
+                    <p className="designation">{testimonials[currentIndex].companyName}</p>
+                 </div>
                 </div>
               </div>
             )}
 
           </div>
         </div>
+
+        {/* hfdhdh */}
+
+        {/* <div className="container mt-5 mb-5">
+          <Carousel className='carousel_box'>
+            <Carousel.Item>
+              <div className="carousel_item row">
+                <div className="carousel_item_img col-md-6">
+                  <img src="https://i.pinimg.com/736x/14/2c/0a/142c0a0200a6bdb83e38406a814e9c80.jpg" alt="dhdf" className="" />
+                </div>
+                <div className="carousel_item_text col-md-6">
+                  <h4 className='mb-5'>Shoes E-commerce App</h4>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquid vel, nostrum tenetur voluptas possimus est explicabo omnis harum quia corporis odio aspernatur doloremque repellendus? Magnam corrupti dolores debitis tenetur?
+                  </p>
+                </div>
+              </div>
+
+            </Carousel.Item>
+          </Carousel>
+        </div> */}
+
       </div>
     </section>
   );

@@ -1,0 +1,116 @@
+/* .mobileapplication_header_button_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+.mobileapplication_header_button {
+  height: 100px;
+  display: flex;
+  /* align-items:center; */
+  /* justify-content: center; */
+}
+.mobileapplication_header_button button {
+  width: 190px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: #000000;
+  color: #f9f9f9;
+  transition: 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+.mobileapplication_header_button button:hover {
+  background-color: #ee964b;
+  color: #000000;
+}
+/* .mobile_boxs {
+  display: flex;
+  align-items: center;
+} */
+.mobile_box {
+  display: flex;
+  justify-content: space-between;
+}
+.mobile_box1 {
+  padding: 20px;
+  text-align: justify;
+  border-radius: 10px;
+  max-width: 560px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease-in-out;
+}
+
+.mobile_box1:hover {
+  background-color: black;
+  color: azure;
+}
+.mobile_box2 {
+  padding: 20px;
+  text-align: justify;
+  border-radius: 10px;
+  max-width: 560px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease-in-out;
+}
+
+.mobile_box2:hover {
+  background-color: black;
+  color: azure;
+}
+
+/* carousel */
+.carousel_box {
+  /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;    border-radius: 10px; */
+  padding: 10px;
+}
+.carousel_item {
+  display: flex;
+}
+.carousel_item_img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel_item_img img {
+  min-width: 190px;
+  max-height: 300px;
+  border-radius: 10px;
+}
+.carousel_item_text {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+}
+/* Styling the previous and next buttons */
+.carousel-control-prev,
+.carousel-control-next {
+  width: 50px; /* Set the width of the buttons */
+  height: 50px; /* Set the height of the buttons */
+  background-color: #ee964b; /* Make the buttons black */
+  border-radius: 50%; /* Round shape for the buttons */
+  opacity: 0.7; /* Slight transparency */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hover effect on the buttons */
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  width: 60px;
+  height: 60px;
+  opacity: 1; /* Full opacity on hover */
+}
+
+/* Styling the icons inside the buttons */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(100%); /* Change the icon color to white */
+  width: 20px; /* Set the size of the icon */
+  height: 20px;
+}

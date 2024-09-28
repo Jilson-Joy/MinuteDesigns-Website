@@ -15,7 +15,7 @@ import Gallery from "./Pages/Gallery";
 import Careers from "./Pages/Careers";
 import ReachUs from "./Pages/ReachUs";
 import WebApp from "./Pages/webApplication/WebApp";
-import MobileApplication from "./Pages/mobileApplication/MobileApplication";
+// import MobileApplication from "./Pages/mobileApplication/MobileApplication";
 import Ecommerce from "./Pages/ecommerce/Ecommerce";
 import UiUx from "./Pages/ui&ux/UiUx";
 import Home1 from "./Pages/Home1";
@@ -44,7 +44,9 @@ import Blog from "./Pages/blog/Blog";
 import Architecture from "./Pages/architecture/Architecture";
 import Rendering3DService from "./Pages/3DRenderingService/Rendering3DService";
 import AboutNew from "./Pages/about/AboutNew";
+// service
 import WebApplication from "./Pages/services/webApp/WebApplication";
+import MobileApplication from "./Pages/services/mobileApp/MobileApplication";
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -59,6 +61,7 @@ import ViewService from "./Pages/dashboard/services/ViewService";
 import ViewPage from "./Pages/dashboard/pages/ViewPage";
 import ViewBlog from "./Pages/dashboard/blog/ViewBlog";
 import ViewWebsiteSettings from "./Pages/dashboard/websiteSettings/ViewWebsiteSettings";
+import Architecture3D from "./Pages/services/architecture & 3D/Architecture3D";
 function App() {
   return (
     <Provider store={store}>
@@ -109,7 +112,7 @@ function App() {
               path="edit-website-settings/:id"
               element={<EditWebsiteSettings />}
             />
-             <Route
+            <Route
               path="view-websitesettings/:id"
               element={<ViewWebsiteSettings />}
             />
@@ -128,8 +131,11 @@ function App() {
                   <Route path="/careers" element={<Careers />} />
                   <Route path="/technologies" element={<Careers />} />
                   <Route path="/reachUs" element={<ReachUs />} />
+                  {/* service pages */}
                   <Route path="/webapp" element={<WebApplication />} />
+                  {/* <Route path="/mobileApp" element={<MobileApplication />} /> */}
                   <Route path="/mobileApp" element={<MobileApplication />} />
+                  <Route path="/Architecture3D" element={<Architecture3D />} />
                   <Route path="/e-commerce" element={<Ecommerce />} />
                   <Route path="/uiux" element={<UiUx />} />
                   <Route path="/portfolio" element={<Portfolio />} />
