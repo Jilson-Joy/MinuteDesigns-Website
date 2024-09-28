@@ -104,21 +104,21 @@ function Uiux() {
       <div className="col-md-4">
       <div className="benefit-card1 card1">
         <h3>Raising the Bars in Design</h3>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim perferendis quam atque explicabo neque sunt sed labore, in possimus.</p>
+       <p>Minute is renowned for its innovative UI/UX design, delivering user-centric solutions that exceed industry standards, enhancing user experience and engagement. </p>
      </div>
      </div>
 
      <div className="col-md-4">
       <div className="benefit-card1 card2">
         <h3>Diverse Industry Experience</h3>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim perferendis quam atque explicabo neque sunt sed labore, in possimus.</p>
+        <p>Minute Design, with its extensive industry experience, offers tailored solutions across various sectors, including web and app development, e-commerce, and more.</p>
      </div>
      </div>
 
      <div className="col-md-4">
       <div className="benefit-card1 card3">
         <h3>Excitable for Achievement</h3>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Enim perferendis quam atque explicabo neque sunt sed labore, in possimus.</p>
+       <p>Our team is passionate about achievement, pushing boundaries for creativity and innovation. We strive to exceed clients' goals and achieve excellence in every milestone we reach.</p>
      </div>
      </div>
      </div>
