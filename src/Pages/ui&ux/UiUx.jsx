@@ -1,9 +1,9 @@
 import React from 'react'
 import UiUx from '../../assets/images/UI-UX_differences.gif'
 import './UiUx.css'
-import figma from '../../assets/images/figma.png'
-import Photoshop from '../../assets/images/photoshop.png'
-import illustrator from '../../assets/images/illustrator.png'
+// import figma from '../../assets/images/figma.png'
+// import Photoshop from '../../assets/images/photoshop.png'
+// import illustrator from '../../assets/images/illustrator.png'
 import {  MoveRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
