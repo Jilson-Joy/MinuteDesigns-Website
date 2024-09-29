@@ -106,7 +106,9 @@ const AddServices = () => {
         toast.error(result.message || "Failed to add service");
       } else {
         toast.success("Service added successfully!");
-        navigate("/mainDashboard/listServices");
+        setTimeout(() => {
+          navigate("/mainDashboard/listServices");
+        }, 1000)
 
         setFormData({
           serviceUrl: "",

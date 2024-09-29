@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AddTestimonialApi } from "../../../api/testimonial";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Modal, Button } from "react-bootstrap";
@@ -57,16 +57,24 @@ const AddTestimonial = () => {
     }
 
     try {
-      await AddTestimonialApi(formDataToSend);
+     const result =  await AddTestimonialApi(formDataToSend);
+     if (result.success === false) {
+      toast.error(result.message || "Failed to add testimonial");
+    } else {
       toast.success("Testimonial added successfully!");
-      navigate("/mainDashboard/listTestimonials");
+      setTimeout(() => {
+        navigate("/mainDashboard/listTestimonials");
+      }, 1000)
+
+
+
       setFormData({
         title: "",
         description: "",
         content: "",
       });
       setFile([]);
-    } catch (error) {
+    }} catch (error) {
       toast.error("Failed to add testimonial");
       console.error("Failed to add testimonial:", error);
     }
@@ -266,6 +274,8 @@ const AddTestimonial = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ToastContainer />
+
     </div>
   );
 };

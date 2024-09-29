@@ -16,12 +16,10 @@ const EditGallery = () => {
     type: "",
     videoUrl: "",
   });
-  const [files, setFiles] = useState([]); 
-  const [existingFiles, setExistingFiles] = useState([]); 
+  const [files, setFiles] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loadingCategories, setLoadingCategories] = useState(true);
   const [loading, setLoading] = useState(true);
-  const [filesToRemove, setFilesToRemove] = useState([]); 
 
   useEffect(() => {
     const fetchGallery = async () => {
@@ -33,8 +31,6 @@ const EditGallery = () => {
             type: result.gallery.type,
             videoUrl: result.gallery.videoUrl,
           });
-
-          setExistingFiles(result.gallery.images || []); // Assuming images are stored as "images" in the gallery object
         } else {
           toast.error("Failed to load gallery data.");
         }
@@ -80,11 +76,6 @@ const EditGallery = () => {
     }
   };
 
-  const handleRemoveFile = (file) => {
-    setFilesToRemove([...filesToRemove, file]);
-    setExistingFiles(existingFiles.filter((f) => f !== file));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
@@ -95,8 +86,6 @@ const EditGallery = () => {
     files.forEach((file) => {
       formDataToSend.append("files", file);
     });
-
-    formDataToSend.append("filesToRemove", JSON.stringify(filesToRemove)); // Send the files to remove
 
     try {
       await EditGalleryApi(id, formDataToSend);
@@ -216,36 +205,7 @@ const EditGallery = () => {
             <div className="col-md-12 m-2">
               <div className="mb-3">
                 <label htmlFor="fileUpload" className="form-label">
-                  Uploaded Files
-                </label>
-                <div>
-                  {existingFiles.length > 0 ? (
-                    existingFiles.map((file, index) => (
-                      <div key={index} className="mb-2">
-                        <img
-                          src={file} // Assuming `file` is a URL
-                          alt={`Uploaded file ${index + 1}`}
-                          className="img-thumbnail"
-                          style={{ width: "100px", height: "100px" }}
-                        />
-                        <button
-                          type="button"
-                          className="btn btn-danger ml-2"
-                          onClick={() => handleRemoveFile(file)}
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    ))
-                  ) : (
-                    <p>No files uploaded.</p>
-                  )}
-                </div>
-              </div>
-
-              <div className="mb-3">
-                <label htmlFor="fileUpload" className="form-label">
-                  Upload New Files
+                  Upload File
                 </label>
                 <input
                   type="file"

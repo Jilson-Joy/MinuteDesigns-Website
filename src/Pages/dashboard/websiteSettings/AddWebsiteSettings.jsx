@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AddWebsiteSettingsApi } from "../../../api/websiteSettings";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+import { toast,ToastContainer } from "react-toastify";
 import { FaArrowLeft } from "react-icons/fa";
 
 
@@ -117,13 +117,20 @@ const AddWebsiteSettings = () => {
     });
 
     try {
-      await AddWebsiteSettingsApi(formDataToSend);
-      toast.success("Website settings added successfully!");
-      navigate("/mainDashboard/listWebsiteSettings");
-      resetForm();
+      const result = await AddWebsiteSettingsApi(formDataToSend);
+      if (result.success === false) {
+        toast.error(result.message || "Failed to add Website settings");
+      } else {
+        toast.success("Website settings added successfully!");
+        resetForm();
+        setTimeout(() => {
+          navigate("/mainDashboard/listWebsiteSettings");
+        }, 1000);
+      }
     } catch (error) {
-      toast.error("Failed to add website settings");
-      console.error("Failed to add website settings:", error);
+      toast.error("Error occurred during submission!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -473,6 +480,8 @@ const AddWebsiteSettings = () => {
             </div>
         
       </form>
+      <ToastContainer />
+
     </div>
   );
 };

@@ -2,8 +2,8 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AddBlogApi } from "../../../api/blog";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify"; // Include ToastContainer here
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Modal, Button } from "react-bootstrap";
@@ -33,7 +33,7 @@ const AddBlog = () => {
 
   const handleFileChange = (e) => {
     if (e.target.files) {
-      setFile(e.target.files[0]); 
+      setFile(e.target.files[0]);
     }
   };
 
@@ -82,16 +82,22 @@ const AddBlog = () => {
     }
 
     try {
-      await AddBlogApi(formDataToSend);
-      toast.success("Blog added successfully!");
-      navigate("/mainDashboard/listBlogs");
-      setFormData({
-        title: "",
-        description: "",
-        content: "",
-        comments: [""],
-      });
-      setFile(null);
+      const result = await AddBlogApi(formDataToSend);
+      if (result.success === false) {
+        toast.error(result.message || "Failed to add blog");
+      } else {
+        toast.success("Blog added successfully!"); 
+        setTimeout(() => {
+          navigate("/mainDashboard/listblogs");
+        }, 1000);
+        setFormData({
+          title: "",
+          description: "",
+          content: "",
+          comments: [""],
+        });
+        setFile(null);
+      }
     } catch (error) {
       toast.error("Failed to add blog");
       console.error("Failed to add blog:", error);
@@ -145,6 +151,8 @@ const AddBlog = () => {
 
   return (
     <div className="container mt-4">
+      {/* Include the ToastContainer */}
+      <ToastContainer />
       <div className="page-title">
         <h3>Add Blog </h3>
       </div>
@@ -219,7 +227,7 @@ const AddBlog = () => {
                 <input
                   type="file"
                   className="form-control"
-                  name="files" 
+                  name="files"
                   onChange={handleFileChange}
                 />
               </div>
@@ -236,7 +244,9 @@ const AddBlog = () => {
                       className="form-control"
                       placeholder={`Comment ${index + 1}`}
                       value={comment}
-                      onChange={(e) => handleCommentChange(index, e.target.value)}
+                      onChange={(e) =>
+                        handleCommentChange(index, e.target.value)
+                      }
                     />
                     <button
                       type="button"

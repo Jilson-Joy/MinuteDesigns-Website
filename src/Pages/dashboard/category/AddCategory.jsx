@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AddCategoryApi } from "../../../api/category";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-quill/dist/quill.snow.css";
 import { Modal, Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa";
@@ -29,14 +29,19 @@ const AddCategory = () => {
     e.preventDefault();
 
     try {
-      await AddCategoryApi(formData);
-      toast.success("Category added successfully!");
-      navigate("/mainDashboard/listCategory");
+      const result = await AddCategoryApi(formData);
+      if (result.success === false) {
+        toast.error(result.message || "Failed to add category");
+      } else {
+        toast.success("Category added successfully!");
+        setTimeout(() => {
+          navigate("/mainDashboard/listCategory");
+        }, 1000)
 
       setFormData({
         categoryName: "",
       });
-    } catch (error) {
+    }} catch (error) {
       toast.error("Error adding category.");
     }
   };
@@ -114,6 +119,8 @@ const AddCategory = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ToastContainer />
+
     </div>
   );
 };

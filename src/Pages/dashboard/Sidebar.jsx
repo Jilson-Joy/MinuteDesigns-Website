@@ -157,9 +157,7 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                         <ChevronDown style={{ marginTop: '3px' }} />
                     </a>
                     <ul className={`dropdown-list ${openDropdown === 'websiteSettings' ? 'show' : ''}`}>
-                        <Link to="/mainDashboard/addWebsiteSettings" className='link_tag'>
-                            <li>Add Website Settings</li> 
-                       </Link> 
+                      
                   
                        <Link to="/mainDashboard/listWebsiteSettings" className='link_tag'> 
                            <li>List Website Settings</li> 

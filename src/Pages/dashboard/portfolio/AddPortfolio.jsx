@@ -1,14 +1,13 @@
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { AddPortfolioApi } from "../../../api/portfolio"; 
+import { AddPortfolioApi } from "../../../api/portfolio";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Modal, Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa";
-
 
 const AddPortfolio = () => {
   const navigate = useNavigate();
@@ -56,15 +55,22 @@ const AddPortfolio = () => {
     }
 
     try {
-      await AddPortfolioApi(formDataToSend); 
-      toast.success("Portfolio added successfully!");
-      navigate("/mainDashboard/listPortfolios");
+     const result =  await AddPortfolioApi(formDataToSend);
+      if (result.success === false) {
+        toast.error(result.message);
+      } else {
+        toast.success("Portfolio added successfully!");
+    
+        setTimeout(() => {
+          navigate("/mainDashboard/listPortfolios");
+        }, 1000)
       setFormData({
         title: "",
         description: "",
         content: "",
       });
       setFile(null);
+    }
     } catch (error) {
       toast.error("Failed to add portfolio");
       console.error("Failed to add portfolio:", error);
@@ -148,7 +154,9 @@ const AddPortfolio = () => {
         <div className="col-row d-flex">
           <div className="col-md-12 m-2">
             <div className="mb-3">
-              <label htmlFor="title" className="form-label">Title</label>
+              <label htmlFor="title" className="form-label">
+                Title
+              </label>
               <input
                 type="text"
                 className="form-control"
@@ -164,7 +172,9 @@ const AddPortfolio = () => {
         <div className="col-row d-flex">
           <div className="col-md-12 m-2">
             <div className="mb-3">
-              <label htmlFor="description" className="form-label">Description</label>
+              <label htmlFor="description" className="form-label">
+                Description
+              </label>
               <input
                 type="text"
                 className="form-control"
@@ -179,7 +189,9 @@ const AddPortfolio = () => {
         <div className="col-row d-flex">
           <div className="col-md-12 m-2">
             <div className="mb-3">
-              <label htmlFor="fileUpload" className="form-label">Upload File</label>
+              <label htmlFor="fileUpload" className="form-label">
+                Upload File
+              </label>
               <input
                 type="file"
                 className="form-control"
@@ -263,6 +275,7 @@ const AddPortfolio = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ToastContainer/>
     </div>
   );
 };

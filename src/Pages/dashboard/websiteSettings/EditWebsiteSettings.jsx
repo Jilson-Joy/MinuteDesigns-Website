@@ -56,7 +56,7 @@ const EditWebsiteSettings = () => {
     if (files.length > 0) {
       setFormData((prev) => ({
         ...prev,
-        [name]: files[0], // Ensure we're updating the correct file input
+        [name]: files[0],
       }));
     }
   };
