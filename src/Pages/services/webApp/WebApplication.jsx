@@ -93,7 +93,7 @@ function WebApplication() {
 
       {/* section 2 */}
 
-      <div className="container mt-5 mb-5">
+      <div className="container ">
         <h1>What We Offer</h1>
         <motion.div
           className="offer row mt-5"

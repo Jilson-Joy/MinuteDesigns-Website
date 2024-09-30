@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react';
-import "../assets/css/Melement.css";
 import CircleCanvas from '../components/CircleCanvas';
 import CircleGrid from '../components/CircleGrid';
 

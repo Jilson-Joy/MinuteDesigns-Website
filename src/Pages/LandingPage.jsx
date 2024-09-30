@@ -12,7 +12,7 @@ import Archi from "../assets/images/architecture-ICON.gif";
 import Crm from "../assets/images/crm-icon.gif";
 import In3D from "../assets/images/3d-ICON.gif";
 import VRICON from "../assets/images/360-ICON.gif";
-
+import Mhome from "../assets/images/MinuteHome1.gif";
 import CursorMouse from "../components/CustomCursor";
 import Testimonial from "./Testimonial";
 import Delivered from "../components/delivered/Delivered";
@@ -46,31 +46,35 @@ function LandingPage() {
   }, []);
 
 
+  const disableRightClick = (e) => {
+    e.preventDefault();
+  };
   return (
     <>
-      <section className="hero-container">
-        <div className="container">
-          <div className="row align-items-center justify-content-center">
-            <div className="col-md-6">
-              <CircleCanvas />
-              {/* <Melement /> */}
-            </div>
-            <div className="col-md-6">
-              <h1 className="hero-text">
-                Design
-                <br />
-                Innovate
-                <br />
-                Thrive
-              </h1>
-              <div className="hero-desc">
-                <p className="hero-description">
-                  "Elevating user experience to its pinnacle"
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section onContextMenu={disableRightClick} className="no-select">
+      <section className="hero-container" >
+      <div className="container d-flex justify-content-center align-items-center ms-auto">
+  <div className="row d-flex align-items-center">
+    <div className="col-md-5  p-5">
+      <img src={Mhome} alt="Mhome" className="MDesign" />
+    </div>
+    <div className="col-md-7 p-5">
+      <h1 className="hero-text">
+        Design
+        <br />
+        Innovate
+        <br />
+        Thrive
+      </h1>
+      <div className="hero-desc">
+        <p className="hero-description">
+          "Elevating user experience to its pinnacle"
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
       </section>
 
       {/* mouse cursor */}
@@ -343,6 +347,7 @@ function LandingPage() {
       {/* <section>
   <Technologies/>
 </section> */}
+</section>
     </>
   );
 }
