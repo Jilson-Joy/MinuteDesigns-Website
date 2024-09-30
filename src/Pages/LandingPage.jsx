@@ -22,6 +22,8 @@ import CircleCanvas from "../components/CircleCanvas";
 import { listAllServices } from "../api/frontendApis/pagesApi";
 
 function LandingPage() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   const [servicePage, setServicePage] = useState([])
 
   useEffect(() => {
@@ -42,7 +44,6 @@ function LandingPage() {
 
     fetchServices();
   }, []);
-
 
 
   return (
@@ -96,10 +97,14 @@ function LandingPage() {
               servicePage.map((item) => (
                 <div key={item._id} className="col-md-6 text-center service-item">
                   <div className="service-icon">
-                    {item.imageUrl.map((url, index) => (
-                      <img key={index} src={url} alt={item.serviceTitle} width={120} />
-                    ))}
+                    <img
+                      src={`${API_BASE_URL}${item.imageUrl}`}
+                      alt={item.title} // Descriptive alt text
+                      style={{ width: "150px", height: "auto", marginRight: "5px" }} // Optional styling
+                    />
+
                   </div>
+
                   <div className="service-title">
                     <h3>{item.name}</h3>
                   </div>

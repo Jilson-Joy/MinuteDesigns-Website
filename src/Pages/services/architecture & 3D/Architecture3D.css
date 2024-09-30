@@ -1,0 +1,12 @@
+.Benefits_Services{
+    text-align: justify;
+    /* border: 1px solid black; */
+    border-radius:10px ;
+    padding: 10px;
+    /* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
+}
+.Benefits_Services_img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -23,3 +23,17 @@ export const listAlltestimonials = async () => {
     throw error;
   }
 };
+
+
+
+
+// blog page
+export const listAllBlogs = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/blog/`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching blog:", error);
+    throw error;
+  }
+};

@@ -9,9 +9,7 @@ export const AddCategoryApi = async (categoryData) => {
       `${API_BASE_URL}/category`, 
       categoryData,
       {
-        headers: {
-          'Content-Type': 'multipart/form-data', 
-        },
+       
         withCredentials: true,
       }
     );
@@ -28,9 +26,7 @@ export const UpdateCategoryById = async (id, categoryData) => {
       `${API_BASE_URL}/category/${id}`,
       categoryData,
       {
-        headers: {
-          'Content-Type': 'multipart/form-data', 
-        },
+       
         withCredentials: true,
       }
     );

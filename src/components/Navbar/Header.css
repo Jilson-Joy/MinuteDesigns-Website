@@ -93,3 +93,44 @@
 .navbar-toggler-icon{
 background-image: none;
 }
+
+/* Custom styles for the dropdown */
+.custom-nav-dropdown {
+  font-size: 1rem; /* Adjust the font size */
+  color: #333; /* Text color */
+}
+
+.custom-nav-dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.custom-dropdown-item {
+  padding: 10px 15px; /* Increase padding for better spacing */
+  font-weight: 500;
+  color: #000; /* Text color */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+  width: 300px;
+
+}
+
+.custom-dropdown-item:hover {
+  background-color: #f8f9fa; /* Light background on hover */
+  color: #ee964b; /* Text color on hover */
+}
+
+.custom-dropdown-item:active {
+  background-color: #ee964b; /* Active state background */
+  color: #fff; /* Active state text color */
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #e1e1e1; /* Border for dropdown */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+/* Align dropdown items to the left */
+.custom-nav-dropdown .dropdown-menu {
+  text-align: left;
+}

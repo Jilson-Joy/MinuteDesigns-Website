@@ -121,12 +121,11 @@ function ListCategories() {
   }
 
   return (
-    <div className="container">      
+    <div className="container">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="text-primary">List of Categories</h1>
       </div>
-     
-      {/* breadcrumb */}
+
       <div>
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
@@ -143,7 +142,7 @@ function ListCategories() {
       <div className="row display-flex">
         <div className="mb-3 col-md-6 text-left">
           <button
-            onClick={() => navigate("/mainDashboard/addPage")}
+            onClick={() => navigate("/mainDashboard/addCategory")}
             className="btn btn-success"
           >
             Add Category
@@ -166,15 +165,15 @@ function ListCategories() {
             <tr>
               <th style={{ padding: "25px" }}>#</th>
               <th style={{ padding: "25px" }}>CATEGORY NAME</th>
-              <th style={{ padding: "25px" }}>VIDEO URL</th>
               <th style={{ padding: "25px" }}>STATUS</th>
               <th style={{ padding: "25px" }}>ACTIONS</th>
             </tr>
           </thead>
           {filteredCategories.length === 0 ? (
             <tr className="text-muted">
-            <td colSpan="8" className="text-center text-muted">
-            No categories available.</td>
+              <td colSpan="8" className="text-center text-muted">
+                No categories available.
+              </td>
             </tr>
           ) : (
             <tbody>
@@ -182,7 +181,6 @@ function ListCategories() {
                 <tr key={category._id}>
                   <td>{index + 1 + indexOfFirstItem}</td>
                   <td>{category.categoryName}</td>
-                  <td>{category.videoUrl}</td>
                   <td>
                     <button
                       onClick={() => handleStatusChange(category._id)}
@@ -260,18 +258,6 @@ function ListCategories() {
                   </div>
                 </div>
 
-                <div className="row mb-3">
-                  <strong>Video URL</strong>
-                  <div className="col-sm-9">
-                    <p>{selectedCategory.videoUrl}</p>
-                  </div>
-                </div>
-                <div className="row mb-3">
-                  <strong>Content</strong>
-                  <div className="col-sm-9">
-                    <p>{selectedCategory.content}</p>
-                  </div>
-                </div>
                 <div className="row mb-3">
                   <strong>Created At</strong>
                   <div className="col-sm-9">

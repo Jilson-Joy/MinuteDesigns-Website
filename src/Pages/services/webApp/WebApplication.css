@@ -326,8 +326,12 @@ border-radius: 10px;
   justify-content: center;
 
 } */
- .Choose_text h1{
+ /* .Choose_text h1{
 color: #ffffff;
+ } */
+ .Choose_text{
+  color: #ffffff;
+
  }
 .Choose_img{
   display: flex;
