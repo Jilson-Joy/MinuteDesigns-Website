@@ -1,5 +1,5 @@
 import React from 'react'
-import UiUx from '../../assets/images/UI-UX_differences.gif'
+import UiUx from '../../../assets/images/UI-UX_differences.gif'
 import './UiUx.css'
 // import figma from '../../assets/images/figma.png'
 // import Photoshop from '../../assets/images/photoshop.png'
@@ -125,7 +125,7 @@ function Uiux() {
 
 </section>
 
-<section >
+<section className='contact-footer'>
 <div className="container mt-5 mb-5 text-center bg-black text-white p-2">
 <div className="benefit-title">
     <h3>  Get Started Today ! </h3>

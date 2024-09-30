@@ -43,13 +43,14 @@
   border: none;
   background-color: #000000;
   color: #f9f9f9;
-  transition: 0.5s ease-in-out;
+  transition: 0.1s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  border: 1px solid #000000;
 }
 .webapplication_header_button button:hover {
-  background-color: #ee964b;
+  background-color: #f9f9f9;
   color: #000000;
 }
 .responsive-img {
@@ -88,7 +89,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 10px;
   }
   .webapplication_header_button {
     display: flex;
@@ -104,29 +104,29 @@
   /* text-align: center; */
   font-size: 40px;
 }
-.webAppCards_heading p {
-  font-size: 30px;
-  font-weight: 600;
-  text-align: center;
-}
+
 .webAppCards {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  padding: 5px 5px;
+}
+.head-service-head
+{
+  max-width: 700px;
 }
 .webAppCards_card {
   border: 1px solid rgba(0, 0, 0, 0.15);
   max-width: 550px;
   min-height: 300px;
-  border-radius: 10px;
-  padding: 10px;
+
+  padding: 0 10px;
   /* text-align: justify; */
   display: flex;
   align-items: center;
   justify-content: space-between;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  background-color: white;
+
   transition: background-color 0.2s ease-in-out;
 }
 .webAppCards_card:hover {
@@ -140,7 +140,7 @@
   margin: 10px;
 }
 .webApp_text {
-  font-size: 15px;
+  font-size: 14px;
 }
 
 /* section 1 */
@@ -181,14 +181,15 @@
 .offer {
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  margin: 10px;
+  justify-content: space-between;
+  margin: 0 2px;
 }
 .Offer_card {
-  padding: 10px;
-  text-align: justify;
+  padding: 10px 10px;
   max-width: 500px;
-  border-radius: 10px;
+  min-height: 200px;
+
+
 }
 .Offer_card_img {
   mix-blend-mode: luminosity;
@@ -200,8 +201,8 @@
   justify-content: space-evenly;
   min-height: 200px;
   /* background-color: #0b141c; */
-  color: #000000;
-  border-radius: 20px;
+
+
 }
 .Technologies_img_box {
   max-width: 180px;
@@ -212,7 +213,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 10px 10px;
   min-height: 130px;
 }
 .Technologies_img_box img {
@@ -271,8 +272,8 @@
 }
 .timeline-content {
   background-color: #0b141c;
-  padding: 30px;
-  border-radius: 5px;
+  padding: 20px 20px;
+  min-height: 180px;
 }
 .timeline-content h3 {
   font-size: 20px;
@@ -311,12 +312,12 @@
 .Choose {
 display: flex;
 align-items: center;
-justify-content: center;
-max-height: 500px;
+justify-content: space-around;
+min-height: 500px;
 background-color: #0b141c;
 color: #c8c8c8;
-margin: 10px;
-border-radius: 10px;
+margin: 0 2px;
+
 
 }
 /* .Choose_text{
@@ -336,11 +337,11 @@ color: #ffffff;
 .Choose_img{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 
 }
 .Choose_img img{
-  max-width: 50%;
+  width: 100%;
   padding: 10px;
   /* mix-blend-mode:luminosity */
 }

@@ -16,8 +16,9 @@ import Careers from "./Pages/Careers";
 import ReachUs from "./Pages/ReachUs";
 import WebApp from "./Pages/webApplication/WebApp";
 // import MobileApplication from "./Pages/mobileApplication/MobileApplication";
-import Ecommerce from "./Pages/ecommerce/Ecommerce";
-import UiUx from "./Pages/ui&ux/UiUx";
+import Ecommerce from "./Pages/services/ecommerce/Ecommerce";
+import UiUx from "./Pages/services/ui&ux/UiUx";
+import CRM from "./Pages/services/CRM/Crm";
 import Home1 from "./Pages/Home1";
 import Portfolio from "./Pages/portfolio/Portfolio";
 import LogIn from "./Pages/login/Login";
@@ -47,6 +48,7 @@ import AboutNew from "./Pages/about/AboutNew";
 // service
 import WebApplication from "./Pages/services/webApp/WebApplication";
 import MobileApplication from "./Pages/services/mobileApp/MobileApplication";
+
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -133,6 +135,7 @@ function App() {
                   <Route path="/reachUs" element={<ReachUs />} />
                   {/* service pages */}
                   <Route path="/webapp" element={<WebApplication />} />
+                  <Route path="/CRM&ERp" element={<CRM />} />
                   {/* <Route path="/mobileApp" element={<MobileApplication />} /> */}
                   <Route path="/mobileApp" element={<MobileApplication />} />
                   <Route path="/Architecture3D" element={<Architecture3D />} />
