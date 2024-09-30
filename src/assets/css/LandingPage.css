@@ -79,7 +79,7 @@
 }
 
 .service-item:hover .service-icon {
-  transform: translateX(300px);
+  transform: translateX(280px);
   min-width: 280px;
   min-height: 250px;
   text-align: center;
@@ -91,7 +91,7 @@
 
 .service-item:hover .service-title {
   color: #000000;
-  transform: translateX(300px);
+  transform: translateX(280px);
   position: absolute;
   font-size: 10px;
   min-width: 280px;

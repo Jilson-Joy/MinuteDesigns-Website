@@ -162,8 +162,9 @@
 import React, { useEffect, useState } from "react";
 import { MoveRight } from "lucide-react";
 import "./Technologies.css";
-
+import AndroidStudio from "../../assets/images/AndroidStudio.png";
 import figma from "../../assets/images/figma.png";
+import vstech from "../../assets/images/vstech.png";
 import reactLogo from "../../assets/images/React.png";
 import node from "../../assets/images/node.png";
 import mongodbicons from "../../assets/images/mongodbIcons.png";
@@ -171,6 +172,8 @@ import mysql from "../../assets/images/mysql.png";
 import Flutter from "../../assets/images/flutterIcons.png";
 import php from "../../assets/images/php.png";
 import laravel from "../../assets/images/laravel.png";
+import bootstrap from "../../assets/images/Bootstrap.png";
+
 
 
 function Technologies() {
@@ -200,7 +203,7 @@ function Technologies() {
             </div>
             <div>
               <p>
-                Our 75+ in-house tech team are skilled in <br /> 20+ top
+                Our 35+ in-house tech team are skilled in <br /> 14+ top
                 technologies that help us deliver digital <br /> solutions to
                 your needs.
               </p>
@@ -247,6 +250,7 @@ function Technologies() {
                   className="black-white-img"
                 />
                 <img src={php} alt="" width="45%" className="black-white-img" />
+                <img src={bootstrap} alt="" width="45%" className="black-white-img" />
               </div>
             </div>
             <div className="marquee down">
@@ -270,7 +274,7 @@ function Technologies() {
                   className="black-white-img"
                 />
                 <img
-                  src={Flutter}
+                  src={AndroidStudio}
                   alt=""
                   width="45%"
                   className="black-white-img"
@@ -330,7 +334,7 @@ function Technologies() {
                   className="black-white-img"
                 />
                 <img
-                  src={mongodbicons}
+                  src={vstech}
                   alt=""
                   width="45%"
                   className="black-white-img"

@@ -4,6 +4,8 @@ import MobileImage from "../../../assets/images/Mobile_login.gif";
 import Card from "react-bootstrap/Card";
 import { ChevronDown, MoveRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import Flutter from "../../../assets/images/flutterIcons.png";
+import AndroidStudio from "../../../assets/images/AndroidStudio.png";
 import CustomWebApp from "../../../assets/images/customWebApp1.gif";
 import responsiveWeb from "../../../assets/images/responsiveWeb.gif";
 import browserSecurity from "../../../assets/images/output-onlinegiftools.gif";
@@ -17,9 +19,13 @@ import phpicon from "../../../assets/images/php.png";
 import razorpay from "../../../assets/images/razorpay .png";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../variants";
-import CodingWorkShop from "../../../assets/images/CodeWorkSpace.gif";
-
-import Carousel from 'react-bootstrap/Carousel';
+// import CodingWorkShop from "../../../assets/images/CodeWorkSpace.gif";
+import whyUs1 from "../../../assets/images/whyus1.jpg";
+import AppBank from "../../../assets/images/AppBank.png";
+import  AppSchl  from "../../../assets/images/AppSchl.png";
+import AppDevry from "../../../assets/images/AppDevry.png";
+import AppTravel from "../../../assets/images/AppTravel.png";
+// import Carousel from 'react-bootstrap/Carousel';
 // import ExampleCarouselImage from 'components/ExampleCarouselImage';
 
 function MobileApplication() {
@@ -54,18 +60,16 @@ function MobileApplication() {
                             <p>
                                 Powerful, Scalable, and Custom-Built Solutions for Your Business
                             </p>
-                            <div className='mobileapplication_header_button_div'>
-                                <div className="mobileapplication_header_button row ">
-                                    <Link to="/reachUs" style={{ textDecoration: "none" }}>
-                                        <button>
-                                            Let's Talk{" "}
-                                            <span>
-                                                <MoveRight />
-                                            </span>
-                                        </button>
-                                    </Link>
-                                </div>
-                            </div>
+                            <div className="webapplication_header_button row ">
+                <Link to="/reachUs" style={{ textDecoration: "none" }}>
+                  <button>
+                    Let's Talk{" "}
+                    <span>
+                      <MoveRight />
+                    </span>
+                  </button>
+                </Link>
+              </div>
                         </motion.div>
                     </div>
 
@@ -80,7 +84,7 @@ function MobileApplication() {
 
             {/* section 1*/}
 
-            <div className="container mt-5 mb-5">
+            {/* <div className="container mt-5 mb-5">
                 <motion.div
                     className="Introduction_box"
                     variants={fadeIn("down", 0.2)}
@@ -92,91 +96,118 @@ function MobileApplication() {
                         At Minute Designs, we specialize in creating intuitive and innovative mobile applications tailored to meet your business needs. Our expert team develops robust, user-friendly apps that offer seamless performance across platforms, whether Android, iOS, or cross-platform.
                     </p>
                 </motion.div>
-            </div>
+            </div> */}
 
-            {/* section 5 products */}
-            <div className="container mt-5 mb-5">
-                <div className="webAppCards_heading mt-5 mb-5">
-                    <p>Partner with a team ready to elevate your product</p>
-                </div>
-                <div className='mt-5 mb-3'>
-                    <h3>Our Products</h3>
-                </div>
-              <motion.div
-               variants={fadeIn("up", 0.2)}
-               initial="hidden"
-               whileInView={"show"}
-               viewport={{ once: false, amount: 0.2 }}
-              >
-                    <Carousel className='carousel_box'>
-                        <Carousel.Item>
-    
-                            <div className="carousel_item row">
-                                <div className="carousel_item_img col-md-6">
-                                    <img src="https://i.pinimg.com/736x/14/2c/0a/142c0a0200a6bdb83e38406a814e9c80.jpg" alt="dhdf" className="" />
-                                </div>
-                                <div className="carousel_item_text col-md-6">
-                                    <h4 className='mb-5'>Shoes E-commerce App</h4>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquid vel, nostrum tenetur voluptas possimus est explicabo omnis harum quia corporis odio aspernatur doloremque repellendus? Magnam corrupti dolores debitis tenetur?
-                                    </p>
-                                </div>
-                            </div>
-    
-                        </Carousel.Item>
-                        <Carousel.Item>
-    
-                            <div className="carousel_item row">
-                                <div className="carousel_item_img col-md-6">
-                                    <img src="https://i.pinimg.com/564x/f6/70/54/f67054039c162fdf6ae70d3daf619726.jpg" alt="dhdf" className="" />
-                                </div>
-                                <div className="carousel_item_text col-md-6">
-                                    <h4 className='mb-5'>Shoes E-commerce App</h4>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquid vel, nostrum tenetur voluptas possimus est explicabo omnis harum quia corporis odio aspernatur doloremque repellendus? Magnam corrupti dolores debitis tenetur?
-                                    </p>
-                                </div>
-                            </div>
-    
-                        </Carousel.Item>
-                        <Carousel.Item>
-    
-                            <div className="carousel_item row">
-                                <div className="carousel_item_img col-md-6">
-                                    <img src="https://i.pinimg.com/564x/fe/31/28/fe3128ca66e18ae9cefb5163de21c99a.jpg" alt="dhdf" className="" />
-                                </div>
-                                <div className="carousel_item_text col-md-6">
-                                    <h4 className='mb-5'>Shoes E-commerce App</h4>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquid vel, nostrum tenetur voluptas possimus est explicabo omnis harum quia corporis odio aspernatur doloremque repellendus? Magnam corrupti dolores debitis tenetur?
-                                    </p>
-                                </div>
-                            </div>
-    
-                        </Carousel.Item>
-                        <Carousel.Item>
-    
-                            <div className="carousel_item row">
-                                <div className="carousel_item_img col-md-6">
-                                    <img src="https://i.pinimg.com/564x/6d/96/67/6d96673ea9da5fedbf1eb47393404a16.jpg" alt="dhdf" className="" />
-                                </div>
-                                <div className="carousel_item_text col-md-6">
-                                    <h4 className='mb-5'>Shoes E-commerce App</h4>
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat aliquid vel, nostrum tenetur voluptas possimus est explicabo omnis harum quia corporis odio aspernatur doloremque repellendus? Magnam corrupti dolores debitis tenetur?
-                                    </p>
-                                </div>
-                            </div>
-    
-                        </Carousel.Item>
-    
-                    </Carousel>
-              </motion.div>
-            </div>
+              {/* section 5 products */}
+ <section className="full-container parallax-section">
+ <div className="container mt-5 mb-5">
+        <div className="head-service-head">
+          <h1>Collaborate with a team that is prepared to elevate your product</h1>
+        </div>
+
+   
+          <div className="webAppCards row mt-5">
+            <motion.div
+              className="webAppCards_card col-md-6 "
+              variants={fadeIn("right", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.2 }}
+            >
+              <Card.Body className="webApp_card_body">
+                <Card.Title>Banking App</Card.Title>
+                <Card.Text className="webApp_text">
+                Our banking app solutions aim to streamline financial operations, improve user engagement, & provide a seamless digital banking experience.
+                </Card.Text>
+              </Card.Body>
+              <Card.Img
+                style={{
+                  height: "200px",
+                  objectFit: "cover",
+                }}
+                variant="top"
+                src={AppBank}
+              />
+            </motion.div>
+
+            <motion.div
+              className="webAppCards_card col-md-6"
+              variants={fadeIn("left", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.2 }}
+            >
+              <Card.Body className="webApp_card_body">
+                <Card.Title>School App</Card.Title>
+                <Card.Text className="webApp_text">
+                Our school apps are designed to streamline communication, enhance learning experiences, and simplify school management.
+                </Card.Text>
+              </Card.Body>
+              <Card.Img
+                style={{
+                  height: "200px",
+                  objectFit: "cover",
+                }}
+                variant="top"
+                src={AppSchl}
+              />
+            </motion.div>
+          </div>
+
+          <div className="webAppCards row mt-5">
+            <motion.div
+              className="webAppCards_card col-md-6"
+              variants={fadeIn("right", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.2 }}
+            >
+              <Card.Body className="webApp_card_body">
+                <Card.Title>Delivery App</Card.Title>
+                <Card.Text className="webApp_text">
+                We create efficient and user-friendly delivery apps that streamline logistics, improve customer satisfaction, and optimize operations for businesses of all sizes.
+                </Card.Text>
+              </Card.Body>
+              <Card.Img
+                style={{
+                  height: "200px",
+                  objectFit: "cover",
+                }}
+                variant="top"
+                src={AppDevry}
+              />
+            </motion.div>
+
+            <motion.div
+              className="webAppCards_card col-md-6"
+              variants={fadeIn("left", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.2 }}
+            >
+              <Card.Body className="webApp_card_body">
+                <Card.Title>Travel App</Card.Title>
+                <Card.Text className="webApp_text">
+                Our travel app solutions aim to enhance travel convenience, personalization, and enjoyment by incorporating essential features for both travelers and travel businesses.
+                </Card.Text>
+              </Card.Body>
+              <Card.Img
+                style={{
+                  height: "200px",
+                  objectFit: "cover",
+                }}
+                variant="top"
+                src={AppTravel}
+              />
+            </motion.div>
+          </div>
+        </div>
+ </section>
+      
 
 
             {/* section 2 Why Choose Us? */}
-            <div className='mobile_boxs container mt-5 mb-5'>
+            {/* <div className='mobile_boxs container mt-5 mb-5'>
                 <div className=" mobile_box row">
                     <motion.div
                         className="mobile_box1 col-md-6 mb-4" // Added mb-4 for bottom margin
@@ -224,7 +255,7 @@ function MobileApplication() {
                         </div>
                     </motion.div>
                 </div>
-            </div>
+            </div> */}
 
 
 
@@ -331,66 +362,202 @@ function MobileApplication() {
             </div> */}
 
 
-            {/* section 3 Technologies  */}
+      
+      {/* section 3 Technologies  */}
 
-            <div className="container">
-                <div className="Technologies">
-                    <h1>Technologies We Use</h1>
-                    <motion.div
-                        className="Technologies_box row"
-                        variants={fadeIn("left", 0.2)}
-                        initial="hidden"
-                        whileInView={"show"}
-                        viewport={{ once: false, amount: 0.2 }}
-                    >
-                        <div className="Technologies_img_box col-md-2">
-                            <img src={reactLogo} alt="" />
-                            <p>React JS</p>
-                        </div>
-                        <div className="Technologies_img_box col-md-2">
-                            <img src={nodeIcons} alt="" />
-                            <p>Node JS</p>
-                        </div>
-                        <div className="Technologies_img_box col-md-2">
-                            <img src={mongodbicons} alt="" />
-                            <p>Mongo DB</p>
-                        </div>
-                        <div className="Technologies_img_box col-md-2">
-                            <img src={mysql} alt="" />
-                            <p>MySql</p>
-                        </div>
-                        <div className="Technologies_img_box col-md-2">
-                            <img src={phpicon} alt="" />
-                            <p>Php</p>
-                        </div>
-                        <div className="Technologies_img_box col-md-2">
-                            <img src={razorpay} alt="" />
-                            <p>Razorpay</p>
-                        </div>
-                    </motion.div>
-                </div>
+    <section className="full-container">
+    <div className="container">
+        <div className="Technologies">
+          <h1>Technologies We Use</h1>
+
+            <motion.div
+            className="Technologies_box row"
+            variants={fadeIn("left", 0.2)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.2 }}
+          >
+            <div className="row d-flex justify-content-around mt-5 p-5">
+            <div className="Technologies_img_box col-md-4">
+              <img src={Flutter} alt="" />
+              <p>Flutter</p>
+            </div>
+            <div className="Technologies_img_box col-md-4">
+              <img src={nodeIcons} alt="" />
+              <p>Node JS</p>
+            </div>
+            <div className="Technologies_img_box col-md-4">
+              <img src={mongodbicons} alt="" />
+              <p>Mongo DB</p>
+            </div>
             </div>
 
-            {/* section 7 contact us */}
-
-            <div className="container mt-5 mb-5">
-                <motion.div
-                    className="contactUs_box"
-                    variants={fadeIn("up", 0.2)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.2 }}
-                >
-                    <h1>Get Started Today!</h1>
-                    <p>
-                        Ready to take your business to the next level with a custom web
-                        application? Contact us to schedule a free consultation.
-                    </p>
-                    <Link to="/reachUs" style={{ textDecoration: "none" }}>
-                        <button>Reach Us</button>
-                    </Link>
-                </motion.div>
+            <div className="row d-flex justify-content-around p-5">
+            <div className="Technologies_img_box col-md-4">
+              <img src={mysql} alt="" />
+              <p>MySql</p>
             </div>
+            <div className="Technologies_img_box col-md-4">
+              <img src={AndroidStudio} alt="" />
+              <p>Android Studio</p>
+            </div>
+            <div className="Technologies_img_box col-md-4">
+              <img src={razorpay} alt="" />
+              <p>Razorpay</p>
+            </div>
+            </div>
+          </motion.div>
+    
+        </div>
+      </div>
+
+      <section className="mb-5">
+                  {/* section 5  Why Choose Minute Designs?*/}
+    <div className="container">
+        <motion.div
+          className="Choose row"
+          variants={fadeIn("up", 0.1)}
+          initial="hidden"
+          whileInView={"show"}
+          viewport={{ once: false, amount: 0.8 }}
+        >
+          <div className="Choose_img col-md-6">
+            <img src={whyUs1} alt="" />
+          </div>
+          <div className="Choose_text col-md-6">
+            <h1>Why Choose Minute Designs?</h1>
+            <ul>
+              <li>Innovative Technology</li>
+              <li>Agile Development</li>
+              <li>Fast and Secure Applications</li>
+              <li>Ongoing Support & Maintenance</li>
+            </ul>
+          </div>
+        </motion.div>
+      </div>
+              </section>
+    </section>
+
+
+          {/* section 4 Our Process*/}
+<section className="full-container parallax-section  mt-5 mb-5">
+      <div className="container">
+        <div>
+          <h1>Our Process</h1>
+        </div>
+        <section class="timeline-section">
+          <div class="timeline-items">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              {/* <div class="timeline-date">Consultation & Planning</div> */}
+              <motion.div
+                class="timeline-content"
+                variants={fadeIn("left", 0.2)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.2 }}
+              >
+                <h3>Research & Analysis</h3>
+                <p>
+                The research aims to identify industry trends, user pain points, and optimal strategies for app design and development to achieve goals.
+                </p>
+              </motion.div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              {/* <div class="timeline-date">2016</div> */}
+              <motion.div
+                class="timeline-content"
+                variants={fadeIn("right", 0.2)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.2 }}
+              >
+                <h3> UI/UX Design</h3>
+                <p>
+                Our goal is to provide a superior user experience, ensuring a design that is user-friendly, responsive, and aligns with your brand identity.
+                </p>
+              </motion.div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              {/* <div class="timeline-date">2017</div> */}
+              <motion.div
+                class="timeline-content"
+                variants={fadeIn("left", 0.2)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.2 }}
+              >
+                <h3>Development & Testing</h3>
+                <p>
+                We offer native iOS and Android apps or cross-platform solutions, ensuring seamless integration of third-party services, APIs, and databases, depending on your project's requirements.
+               </p>
+              </motion.div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              {/* <div class="timeline-date">2018</div> */}
+              <motion.div
+                class="timeline-content"
+                variants={fadeIn("right", 0.2)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.2 }}
+              >
+                <h3>App Launch</h3>
+                <p>
+                We handle app submissions for Apple App Store and Google Play, preparing assets like app descriptions, icons, screenshots, and videos to create a strong first impression.
+                </p>
+              </motion.div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              {/* <div class="timeline-date">2017</div> */}
+              <motion.div
+                class="timeline-content"
+                variants={fadeIn("left", 0.2)}
+                initial="hidden"
+                whileInView={"show"}
+                viewport={{ once: false, amount: 0.2 }}
+              >
+                <h3>Performance Monitoring & Analytics</h3>
+                <p>
+                After the app's launch, we utilize analytics tools to track user engagement, downloads, crashes, and other crucial metrics.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+      </div>
+      </section>
+
+  {/* section 7 contact us */}
+  <section >
+<div className="container mt-5 mb-5 text-center bg-black text-white p-2">
+<div className="benefit-title">
+    <h3>  Get Started Today ! </h3>
+  </div>
+  <div className="section-footer-para">
+  <p>
+            Ready to take your business to the next level with our E-commerce service? Contact us to schedule a free consultation.
+          </p>
+  </div>
+       
+          <div className="head-btn text-center">
+                <Link to="/reachUs" style={{ textDecoration: "none" }}>
+                  <button className='service-footer-btn'>
+                    Let's Talk
+                    <span>
+                      <MoveRight />
+                    </span>
+                  </button>
+                </Link>
+              </div>
+        </div>
+   
+</section>
         </div>
     )
 }

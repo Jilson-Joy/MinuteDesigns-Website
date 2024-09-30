@@ -145,6 +145,7 @@
     margin-top: 40px;
     font-size: 2.8rem;
 
+
 }
 .benefit-card1 {
     margin-top: 50px;
@@ -160,16 +161,16 @@
 }
 
 .benefit-card1.card1 {
-    background-image: url('../../assets/images/uiux1.jpg');
+    background-image: url('../../../assets/images/uiux1.jpg');
 }
 
 .benefit-card1.card2 {
-    background-image: url('../../assets/images/uiux2.png');
+    background-image: url('../../../assets/images/uiux2.png');
     background-attachment: fixed;
 }
 
 .benefit-card1.card3 {
-    background-image: url('../../assets/images/uiux3.jpg');
+    background-image: url('../../../assets/images/uiux3.jpg');
 }
 .benefit-card1:hover::before {
    
