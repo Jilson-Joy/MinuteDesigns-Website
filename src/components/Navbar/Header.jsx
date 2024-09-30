@@ -5,7 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Logo from "../../assets/images/MinuteLogo.png";
 import { Link, useLocation } from "react-router-dom";
-import { Smartphone, MonitorSmartphone, Menu, X } from "lucide-react";
+import { Smartphone, MonitorSmartphone, Menu, X,ShoppingCart, LayoutPanelLeft, House, PanelsTopLeft, Box, Glasses  } from "lucide-react";
 import headerIcons from "../../assets/images/about-img.png";
 import "./Header.css";
 
@@ -81,7 +81,8 @@ function Header() {
             >
               services
             </Nav.Link> */}
-            <NavDropdown
+
+            {/* <NavDropdown
               title="Services"
               id="basic-nav-dropdown"
               className="pe-4"
@@ -90,11 +91,10 @@ function Header() {
               show={showDropdown} // Control visibility here
             >
               <NavDropdown.Item as={Link} to="/webapp">
-                <img src={headerIcons} alt="" className="headerIconImg" /> Web
-                Application
+               Web Application
               </NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/mobileApp">
-                <Smartphone /> Mobile Application
+                Mobile Application
               </NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/e-commerce">
                 E-commerce
@@ -102,13 +102,56 @@ function Header() {
               <NavDropdown.Item as={Link} to="/uiux">
                 UI/UX
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/architecture">
-               Architecture
+              <NavDropdown.Item as={Link} to="/Architecture3D">
+               Architecture & 3D
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="/3DRenderingService">
-                3D Rendering Service
+              <NavDropdown.Item as={Link} to="/CRM&ERp">
+                CRM / ERP
               </NavDropdown.Item>
-            </NavDropdown>
+              <NavDropdown.Item as={Link} to="/CRM&ERp">
+                Interactive 3D
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/CRM&ERp">
+                360 VR
+              </NavDropdown.Item>
+            </NavDropdown> */}
+
+            <NavDropdown
+  title="Services"
+  id="basic-nav-dropdown"
+  className="custom-nav-dropdown pe-4"
+  onMouseEnter={() => setShowDropdown(true)}
+  onMouseLeave={() => setShowDropdown(false)}
+  show={showDropdown} // Control visibility here
+>
+  <div className="dropdown-row">
+    <NavDropdown.Item as={Link} to="/webapp" className="custom-dropdown-item">
+     <MonitorSmartphone/> Web Application
+    </NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/mobileApp" className="custom-dropdown-item">
+     <Smartphone/> Mobile Application
+    </NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/e-commerce" className="custom-dropdown-item">
+     <ShoppingCart /> E-commerce
+    </NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/uiux" className="custom-dropdown-item">
+     <LayoutPanelLeft /> UI/UX
+    </NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/Architecture3D" className="custom-dropdown-item">
+    <House /> Architecture & 3D
+    </NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/CRM&ERp" className="custom-dropdown-item">
+    <PanelsTopLeft /> CRM / ERP
+    </NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/Interactive3D" className="custom-dropdown-item">
+    <Box /> Interactive 3D
+    </NavDropdown.Item>
+    <NavDropdown.Item as={Link} to="/VR360" className="custom-dropdown-item">
+    <Glasses /> 360 VR
+    </NavDropdown.Item>
+  </div>
+</NavDropdown>
+
             {/* <Nav.Link
                             as={Link}
                             to="/careers"

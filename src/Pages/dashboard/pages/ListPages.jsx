@@ -12,8 +12,6 @@ import "react-toastify/dist/ReactToastify.css";
 function ListPages() {
   const [pages, setPages] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedPage, setSelectedPage] = useState(null);
-  const [showModal, setShowModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(10);
@@ -33,6 +31,11 @@ function ListPages() {
 
     fetchPages();
   }, []);
+
+  const handleView = (pageId) => {
+    navigate(`/mainDashboard/page/${pageId}`);
+  };
+
 
   const handleEdit = (pageId) => {
     navigate(`/mainDashboard/edit-page/${pageId}`);
@@ -84,16 +87,6 @@ function ListPages() {
     }
   };
 
-  const handleView = (page) => {
-    setSelectedPage(page);
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-    setSelectedPage(null);
-  };
-
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
@@ -121,7 +114,6 @@ function ListPages() {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1 className="text-primary">List of Pages</h1>
       </div>
-      {/* breadcrumb */}
       <div>
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
@@ -197,24 +189,9 @@ function ListPages() {
                   </td>
                   <td>
                     <div className="d-flex gap-2">
-                      <button
-                        onClick={() => handleEdit(page._id)}
-                        className="btn btn-primary btn-sm"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => handleDelete(page._id)}
-                        className="btn btn-danger btn-sm"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        onClick={() => handleView(page)}
-                        className="btn btn-info btn-sm"
-                      >
-                        View
-                      </button>
+                      <button onClick={() => handleEdit(page._id)} className="btn btn-primary btn-sm">Edit</button>
+                      <button onClick={() => handleDelete(page._id)} className="btn btn-danger btn-sm">Delete</button>
+                      <button onClick={() => handleView(page._id)} className="btn btn-info btn-sm">View</button>
                     </div>
                   </td>
                 </tr>
@@ -246,101 +223,6 @@ function ListPages() {
           )}
         </ul>
       </nav>
-
-      {showModal && selectedPage && (
-        <div
-          className={`modal ${showModal ? "show" : ""}`}
-          tabIndex="-1"
-          style={{ display: showModal ? "block" : "none" }}
-        >
-          <div className="modal-dialog modal-lg">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Page Details</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={handleCloseModal}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <div className="mb-3">
-                  <strong>Page URL: </strong> {selectedPage.pageUrl}
-                </div>
-                <div className="mb-3">
-                  <strong>Title: </strong> {selectedPage.pageTitle}
-                </div>
-                <div className="mb-">
-                  <strong>Name: </strong> {selectedPage.name}
-                </div>
-                <div className="mb-3">
-                  <strong>Short Description: </strong>{" "}
-                  {selectedPage.shortDescription}
-                </div>
-                <div className="mb-3">
-                  <strong>Description: </strong> {selectedPage.description}
-                </div>
-                <div className="mb-3">
-                  <strong>Content: </strong>
-                  <div
-                    dangerouslySetInnerHTML={{ __html: selectedPage.content }}
-                  />
-                </div>
-                <div className="mb-3">
-                  <strong>Meta Information: </strong>
-                  <ul>
-                    <li>
-                      <strong>Meta Title: </strong>{" "}
-                      {selectedPage.meta?.[0]?.metaTitle}
-                    </li>
-                    <li>
-                      <strong>Meta Description: </strong>{" "}
-                      {selectedPage.meta?.[0]?.metaDescription}
-                    </li>
-                    <li>
-                      <strong>Meta Author: </strong>{" "}
-                      {selectedPage.meta?.[0]?.metaAuthor}
-                    </li>
-                    <li>
-                      <strong>Meta Keywords: </strong>{" "}
-                      {selectedPage.meta?.[0]?.metaKeywords?.join(", ")}
-                    </li>
-                  </ul>
-                </div>
-                <div className="mb-3">
-                  <strong>Status: </strong>{" "}
-                  {selectedPage.status ? "Active" : "Inactive"}
-                </div>
-
-                <div className="mb-3">
-                  <strong>Created At: </strong>{" "}
-                  {new Date(selectedPage.createdAt).toLocaleString()}
-                </div>
-                <div className="mb-3">
-                  <strong>Updated At: </strong>{" "}
-                  {new Date(selectedPage.updatedAt).toLocaleString()}
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={handleCloseModal}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {showModal && (
-        <div
-          className="modal-backdrop fade show"
-          onClick={handleCloseModal}
-        ></div>
-      )}
 
       <ToastContainer />
     </div>
