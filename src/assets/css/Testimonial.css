@@ -66,21 +66,22 @@
   .testimonial-block {
     position: relative;
     padding: 50px;
+
   }
   
   .inner-box {
-    padding: 80px 105px;
+    padding: 30px 105px;
     background-color: #ffffff;
     box-shadow: 0 0 50px rgba(226, 222, 232, 0.5);
     min-height: 350px;
     border-radius: 10px;
     background-color: #f1f1f1;
   }
-  
-  .text {
+
+  .text_des {
     position: relative;
     display: block;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 25px;
     color: #282331;
     font-weight: 400;

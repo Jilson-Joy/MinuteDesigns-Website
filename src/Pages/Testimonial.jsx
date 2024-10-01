@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../assets/css/Testimonial.css";
 // import './Testimonial.css';
-import { MoveLeft, MoveRight } from 'lucide-react';
+import { MoveLeft, MoveRight, XCircle } from 'lucide-react';
 import { listAlltestimonials } from "../api/frontendApis/pagesApi";
 import { Carousel } from "react-bootstrap";
 import { Quote, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -75,10 +75,10 @@ function Testimonial() {
             
             {testimonials.length > 0 && (
               <div key={testimonials[currentIndex]._id}>
-                <div className="text-center">
-                  <Quote className="quote"/>
+                <div className="text-center mb-2">
+                  <Quote className="quote"  />
                 </div>
-                <div className="text">{testimonials[currentIndex].description}</div>
+                <div className="text_des">{testimonials[currentIndex].description}</div>
                 <div className="info-box">
                   <div className="thumb">
                     {testimonials[currentIndex].imageUrl && testimonials[currentIndex].imageUrl.length > 0 ? (
@@ -90,7 +90,7 @@ function Testimonial() {
                               key={idx}
                               src={fullUrl}
                               alt={`Gallery Image ${idx + 1}`}
-                              style={{ width: "150px", height: "auto", marginRight: "5px" }}
+                              // style={{ width: "150px", height: "auto", marginRight: "5px" }}
                             />
                           );
                         })}
