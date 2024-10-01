@@ -24,7 +24,6 @@ function ViewPortFolios() {
         console.log("Fetching portfolio with ID:", portfolioId);
         const result = await GetPortfolioById(portfolioId);
         console.log("Fetched result:", result);
-
         if (result.success) {
           setPortfolio(result.portfolio);
         } else {
