@@ -13,15 +13,15 @@ import { FaArrowLeft } from "react-icons/fa";
 const AddServices = () => {
   const navigate = useNavigate();
 
-  const [files, setFiles] = useState([]);
+  const [file, setFile] = useState(null);
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [sourceCode, setSourceCode] = useState("");
-
-  const handleFileChange = (event) => {
-    if (event.target.files) {
-      setFiles(Array.from(event.target.files));
+  const handleFileChange = (e) => {
+    if (e.target.files) {
+      setFile(e.target.files[0]); 
     }
   };
+
 
   const [formData, setFormData] = useState({
     serviceUrl: "",
@@ -66,9 +66,10 @@ const AddServices = () => {
     e.preventDefault();
 
     const formDataToSend = new FormData();
-    files.forEach((file) => {
+    if (file) {
       formDataToSend.append("files", file);
-    });
+    }
+
     formDataToSend.append("serviceUrl", formData.serviceUrl);
     formDataToSend.append("serviceTitle", formData.serviceTitle);
     formDataToSend.append("name", formData.name);
@@ -105,7 +106,9 @@ const AddServices = () => {
         toast.error(result.message || "Failed to add service");
       } else {
         toast.success("Service added successfully!");
-        navigate("/mainDashboard/listServices");
+        setTimeout(() => {
+          navigate("/mainDashboard/listServices");
+        }, 1000)
 
         setFormData({
           serviceUrl: "",
@@ -124,7 +127,7 @@ const AddServices = () => {
           ],
           metaTags: "",
         });
-        setFiles([]);
+        setFile([]);
       }
     } catch (error) {
       toast.error("Failed to add service");

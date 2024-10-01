@@ -134,7 +134,7 @@ const ViewWebsiteSettings = () => {
                   <img
                     src={`${baseUrl}${settings.headerLogo}`}
                     alt="Header Logo"
-                    style={{ width: "50px", height: "50px" }}
+                    style={{ width: "300px", height: "300px" }}
                   />
                 ) : (
                   "No header logo available."
@@ -148,7 +148,7 @@ const ViewWebsiteSettings = () => {
                   <img
                     src={`${baseUrl}${settings.headerLogo}`}
                     alt="Header Logo"
-                    style={{ width: "50px", height: "50px" }}
+                    style={{ width: "300px", height: "300px" }}
                   />
                 ) : (
                   "No header logo available."

@@ -92,7 +92,8 @@ function ListTestimonials() {
       }
     }
   };
- 
+  
+
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
     setCurrentPage(1);
@@ -100,8 +101,8 @@ function ListTestimonials() {
  
   const filteredTestimonials = testimonials.filter((testimonial) => {
     return (
-      (testimonial.name &&
-        testimonial.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (testimonial.title &&
+        testimonial.title.toLowerCase().includes(searchTerm.toLowerCase())) ||
       (testimonial.description &&
         testimonial.description
           .toLowerCase()
@@ -156,7 +157,7 @@ function ListTestimonials() {
           <input
             type="text"
             className="form-control"
-            placeholder="Search by name or description"
+            placeholder="Search by title or description"
             value={searchTerm}
             onChange={handleSearch}
           />

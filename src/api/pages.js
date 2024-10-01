@@ -34,18 +34,7 @@ export const GetAllPages = async () => {
   }
 };
 
-export const DeletePageById = async (id) => {
-  try {
-    const response = await axios.delete(
-      `${API_BASE_URL}/page/${id}`,
-      { withCredentials: true } 
-    );
-    return response.data;
-  } catch (error) {
-    console.error('There was an error deleting the page:', error);
-    throw error;
-  }
-};
+
 
 export const UpdatePageById = async (id, updatedData) => {
   try {
@@ -75,6 +64,18 @@ export const GetPageById = async (id) => {
     return response.data;
   } catch (error) {
     console.error('There was an error fetching the page:', error);
+    throw error;
+  }
+};
+export const DeletePageById = async (id) => {
+  try {
+    const response = await axios.delete(
+      `${API_BASE_URL}/page/${id}`,
+      { withCredentials: true } 
+    );
+    return response.data;
+  } catch (error) {
+    console.error('There was an error deleting the page:', error);
     throw error;
   }
 };

@@ -3,10 +3,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AddTestimonialApi } from "../../../api/testimonial";
 import { useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Modal, Button } from "react-bootstrap";
+import { FaArrowLeft } from "react-icons/fa";
+
 
 const AddTestimonial = () => {
   const navigate = useNavigate();
@@ -18,7 +20,7 @@ const AddTestimonial = () => {
     content: "",
   });
 
-  const [files, setFiles] = useState([]);
+  const [file, setFile] = useState(null);
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [sourceCode, setSourceCode] = useState(formData.content);
 
@@ -32,9 +34,10 @@ const AddTestimonial = () => {
 
   const handleFileChange = (e) => {
     if (e.target.files) {
-      setFiles(Array.from(e.target.files));
+      setFile(e.target.files[0]); 
     }
   };
+
 
   const handleContentChange = (value) => {
     setFormData({
@@ -51,23 +54,30 @@ const AddTestimonial = () => {
     formDataToSend.append("companyName", formData.companyName);
     formDataToSend.append("description", formData.description);
     formDataToSend.append("content", formData.content);
-
-    files.forEach((file) => {
+    if (file) {
       formDataToSend.append("files", file);
-    });
+    }
 
     try {
-      await AddTestimonialApi(formDataToSend);
+     const result =  await AddTestimonialApi(formDataToSend);
+     if (result.success === false) {
+      toast.error(result.message || "Failed to add testimonial");
+    } else {
       toast.success("Testimonial added successfully!");
-      navigate("/mainDashboard/listTestimonials");
+      setTimeout(() => {
+        navigate("/mainDashboard/listTestimonials");
+      }, 1000)
+
+
+
       setFormData({
         title: "",
         companyName: "",
         description: "",
         content: "",
       });
-      setFiles([]);
-    } catch (error) {
+      setFile([]);
+    }} catch (error) {
       toast.error("Failed to add testimonial");
       console.error("Failed to add testimonial:", error);
     }
@@ -121,7 +131,31 @@ const AddTestimonial = () => {
   return (
     <div className=" mt-5">
       <h1>Add Testimonial</h1>
-
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <a href="/mainDashboard">Home</a>
+            </li>
+            <li className="breadcrumb-item">
+              <a href="/mainDashboard/listCategory">Testimonial List</a>
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              Add Testimonial
+            </li>
+          </ol>
+        </nav>
+      </div>
+      <div className="d-flex">
+        <div className="float-right">
+          <button
+            onClick={() => navigate("/mainDashboard/listTestimonials")}
+            className="btn btn-dark"
+          >
+            <FaArrowLeft className="me-2" />
+          </button>
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
 
       <div className="row d-flex">
@@ -262,6 +296,8 @@ const AddTestimonial = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      <ToastContainer />
+
     </div>
   );
 };

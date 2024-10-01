@@ -180,7 +180,7 @@ const EditPage = () => {
     try {
       await UpdatePageById(id, formDataToSend);
       toast.success("Page updated successfully!");
-      navigate("/mainDashboard/listPage");
+      setTimeout(()=>{navigate("/mainDashboard/listPage"),2000})
     } catch (error) {
       console.error("Failed to update page:", error);
       toast.error("Failed to update page. Please try again.");

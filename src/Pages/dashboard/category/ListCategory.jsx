@@ -44,7 +44,6 @@ function ListCategories() {
     );
 
     if (!categoryToUpdate) {
-      console.error("Category not found");
       return;
     }
 

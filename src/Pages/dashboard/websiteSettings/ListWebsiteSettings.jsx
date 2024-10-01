@@ -113,6 +113,8 @@ function ListWebsiteSettings() {
   );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const isAddButtonDisabled = settings.length > 0;
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -140,6 +142,7 @@ function ListWebsiteSettings() {
           <button
             onClick={() => navigate("/mainDashboard/addWebsiteSettings")}
             className="btn btn-success"
+            disabled={isAddButtonDisabled} 
           >
             Add Website Settings
           </button>

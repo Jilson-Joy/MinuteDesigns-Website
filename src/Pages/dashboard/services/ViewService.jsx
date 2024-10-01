@@ -4,14 +4,12 @@ import { GetServiceById } from "../../../api/services";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function ViewService() {
-
   const { serviceId } = useParams();
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const baseUrl = import.meta.env.VITE_API_BASE_URL
-
+  const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   useEffect(() => {
     const fetchService = async () => {
@@ -21,7 +19,7 @@ function ViewService() {
         console.log("Fetched service:", result);
 
         if (result.success) {
-          setService(result.service); 
+          setService(result.service);
         } else {
           setError("Failed to load service details.");
         }
@@ -102,23 +100,43 @@ function ViewService() {
             </tr>
             <tr>
               <td>Meta Title</td>
-              <td>{service.meta && service.meta.length > 0 ? service.meta[0]?.metaTitle : "N/A"}</td>
+              <td>
+                {service.meta && service.meta.length > 0
+                  ? service.meta[0]?.metaTitle
+                  : "N/A"}
+              </td>
             </tr>
             <tr>
               <td>Meta Description</td>
-              <td>{service.meta && service.meta.length > 0 ? service.meta[0]?.metaDescription : "N/A"}</td>
+              <td>
+                {service.meta && service.meta.length > 0
+                  ? service.meta[0]?.metaDescription
+                  : "N/A"}
+              </td>
             </tr>
             <tr>
               <td>Meta Author</td>
-              <td>{service.meta && service.meta.length > 0 ? service.meta[0]?.metaAuthor : "N/A"}</td>
+              <td>
+                {service.meta && service.meta.length > 0
+                  ? service.meta[0]?.metaAuthor
+                  : "N/A"}
+              </td>
             </tr>
             <tr>
               <td>Meta Keywords</td>
-              <td>{service.meta && service.meta.length > 0 ? service.meta[0]?.metaKeywords.join(", ") : "N/A"}</td>
+              <td>
+                {service.meta && service.meta.length > 0
+                  ? service.meta[0]?.metaKeywords.join(", ")
+                  : "N/A"}
+              </td>
             </tr>
             <tr>
               <td>Meta Tags</td>
-              <td>{service.metaTags && service.metaTags.length > 0 ? service.metaTags.join(", ") : "N/A"}</td>
+              <td>
+                {service.metaTags && service.metaTags.length > 0
+                  ? service.metaTags.join(", ")
+                  : "N/A"}
+              </td>
             </tr>
             <tr>
               <td>Status</td>
@@ -126,36 +144,41 @@ function ViewService() {
             </tr>
             <tr>
               <td>Created At</td>
-              <td>{new Date(service.createdAt).toLocaleString() || "Invalid Date"}</td>
+              <td>
+                {new Date(service.createdAt).toLocaleString() || "Invalid Date"}
+              </td>
             </tr>
             <tr>
               <td>Updated At</td>
-              <td>{new Date(service.updatedAt).toLocaleString() || "Invalid Date"}</td>
+              <td>
+                {new Date(service.updatedAt).toLocaleString() || "Invalid Date"}
+              </td>
             </tr>
             <tr>
-              <td>Uploaded Files</td>
-              <td>
-  {service.imageUrl && service.imageUrl.length > 0 ? (
-    <div className="d-flex flex-wrap">
-      {service.imageUrl.map((url, idx) => {
-        const fullUrl = `${baseUrl}${url}`;
-        console.log(`Image URL: ${fullUrl}`); 
-        return (
-          <img
-            key={idx}
-            src={fullUrl}
-            alt={`Gallery Image ${idx + 1}`}
-            style={{ width: "50px", height: "50px", marginRight: "5px" }}
-          />
-        );
-      })}
-    </div>
-  ) : (
-    "No uploaded files available."
-  )}
-</td>
+  <td>Uploaded File</td>
+  <td>
+    {service.imageUrl ? (
+      <div className="d-flex justify-content-center">
+        {(() => {
+          const fullUrl = `${baseUrl}${service.imageUrl}`;
+          console.log(`Image URL: ${fullUrl}`);
+          return (
+            <img
+            
+              src={fullUrl}
+              alt="Uploaded File"
+              style={{ width: "300px", height: "300px", marginRight: "5px" }}
+            />
+          );
+        })()}
+      </div>
+    ) : (
+      "No uploaded files available."
+    )}
+  </td>
+</tr>
 
-            </tr>
+
           </tbody>
         </table>
       </div>
