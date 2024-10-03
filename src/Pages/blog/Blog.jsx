@@ -41,34 +41,34 @@ function Blog() {
 
       {/* Recent blog */}
       <div className="blog mt-5 mb-5">
-          <div className="blog_box row">
-            {Array.isArray(blogs) && blogs.length > 0 ? (
-              blogs
-                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                .slice(0, 1)
-                .map((item) => (
-                  <div key={item._id} className="blog_item col-md-12">
-                    <div className="blog_img col-md-6">
-                      <img
-                        src={`${API_BASE_URL}${item.imageUrl}`}
-                        alt={item.title}
-                        className="img-fluid"
-                      />
-                    </div>
-                    <div className="blog_text col-md-6">
-                      <h1 className="blog_title">{item.title}</h1>
-                      <p className="blog_des">
-                        {item.description}
-                      </p>
-                      <p className="blog_date">{formatDate(item.createdAt)}</p>
-                    </div>
+        <div className="blog_box row">
+          {Array.isArray(blogs) && blogs.length > 0 ? (
+            blogs
+              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+              .slice(0, 1)
+              .map((item) => (
+                <div key={item._id} className="blog_item col-md-12">
+                  <div className="blog_img col-md-6">
+                    <img
+                      src={`${API_BASE_URL}${item.imageUrl}`}
+                      alt={item.title}
+                      className="img-fluid"
+                    />
                   </div>
-                ))
-            ) : (
-              <p>No blogs available</p>
-            )}
-          </div>
-        
+                  <div className="blog_text col-md-6">
+                    <h1 className="blog_title">{item.title}</h1>
+                    <p className="blog_des">
+                      {item.description}
+                    </p>
+                    <p className="blog_date">{formatDate(item.createdAt)}</p>
+                  </div>
+                </div>
+              ))
+          ) : (
+            <p>No blogs available</p>
+          )}
+        </div>
+
 
       </div>
 

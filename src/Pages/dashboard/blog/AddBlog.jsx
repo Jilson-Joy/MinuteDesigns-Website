@@ -2,8 +2,8 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AddBlogApi } from "../../../api/blog";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify"; // Include ToastContainer here
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { Modal, Button } from "react-bootstrap";
@@ -19,7 +19,7 @@ const AddBlog = () => {
     comments: [""],
   });
 
-  const [files, setFiles] = useState([]);
+  const [file, setFile] = useState(null);
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [sourceCode, setSourceCode] = useState(formData.content);
 
@@ -33,7 +33,7 @@ const AddBlog = () => {
 
   const handleFileChange = (e) => {
     if (e.target.files) {
-      setFiles(Array.from(e.target.files));
+      setFile(e.target.files[0]);
     }
   };
 
@@ -77,21 +77,27 @@ const AddBlog = () => {
     formDataToSend.append("content", formData.content);
     formDataToSend.append("comments", JSON.stringify(formData.comments));
 
-    files.forEach((file) => {
+    if (file) {
       formDataToSend.append("files", file);
-    });
+    }
 
     try {
-      await AddBlogApi(formDataToSend);
-      toast.success("Blog added successfully!");
-      navigate("/mainDashboard/listBlogs");
-      setFormData({
-        title: "",
-        description: "",
-        content: "",
-        comments: [""],
-      });
-      setFiles([]);
+      const result = await AddBlogApi(formDataToSend);
+      if (result.success === false) {
+        toast.error(result.message || "Failed to add blog");
+      } else {
+        toast.success("Blog added successfully!"); 
+        setTimeout(() => {
+          navigate("/mainDashboard/listblogs");
+        }, 1000);
+        setFormData({
+          title: "",
+          description: "",
+          content: "",
+          comments: [""],
+        });
+        setFile(null);
+      }
     } catch (error) {
       toast.error("Failed to add blog");
       console.error("Failed to add blog:", error);
@@ -145,6 +151,8 @@ const AddBlog = () => {
 
   return (
     <div className=" mt-5">
+      {/* Include the ToastContainer */}
+      <ToastContainer />
       <div className="page-title">
         <h3>Add Blog </h3>
       </div>
@@ -228,35 +236,53 @@ const AddBlog = () => {
             </div>
           </div>
           <div className="col-row d-flex">
-          <div className="col-md-12 m-2">
-          <div className="mb-3">
-            <label className="form-label">Comments</label>
-            {formData.comments.map((comment, index) => (
-              <div key={index} className="input-group mb-2">
+            <div className="col-md-12 m-2">
+              <div className="mb-3">
+                <label htmlFor="fileUpload" className="form-label">
+                  Upload File
+                </label>
                 <input
-                  type="text"
+                  type="file"
                   className="form-control"
-                  placeholder={`Comment ${index + 1}`}
-                  value={comment}
-                  onChange={(e) => handleCommentChange(index, e.target.value)}
+                  name="files"
+                  onChange={handleFileChange}
                 />
+              </div>
+            </div>
+          </div>
+          <div className="col-row d-flex">
+            <div className="col-md-12 m-2">
+              <div className="mb-3">
+                <label className="form-label">Comments</label>
+                {formData.comments.map((comment, index) => (
+                  <div key={index} className="input-group mb-2">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder={`Comment ${index + 1}`}
+                      value={comment}
+                      onChange={(e) =>
+                        handleCommentChange(index, e.target.value)
+                      }
+                    />
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => handleRemoveComment(index)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
                 <button
                   type="button"
-                  className="btn btn-danger"
-                  onClick={() => handleRemoveComment(index)}
+                  className="btn btn-primary mt-2"
+                  onClick={handleAddComment}
                 >
-                  Remove
+                  + Add Comment
                 </button>
               </div>
-            ))}
-            <button
-              type="button"
-              className="btn btn-primary mt-2"
-              onClick={handleAddComment}
-            >             + Add Comment
-            </button>
-          </div>
-          </div>
+            </div>
           </div>
 
           <div className="col-row d-flex mt-5">
@@ -272,7 +298,7 @@ const AddBlog = () => {
                   formats={formats}
                   placeholder="Write your content here..."
                   style={{
-                    minwidth: "500px",
+                    minWidth: "500px",
                     height: "300px",
                     overflow: "auto",
                   }}

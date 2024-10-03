@@ -1,6 +1,6 @@
-import React from 'react'
-import './ReachUs.css'
-import Swal from 'sweetalert2'
+import React, { useEffect, useState } from 'react';
+import './ReachUs.css';
+import Swal from 'sweetalert2';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -8,32 +8,73 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import { Mail, Phone } from 'lucide-react';
 import { Container } from 'react-bootstrap';
+import { postContact } from '../api/frontendApis/contactusApi';
 
 function ReachUs() {
+  // const [contact, setContact] = useState([]);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    remarks: '',
+  });
+  const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    const sendInfo = async () => {
+      try {
+        const data = await postContact();
+        console.log(data, 'post info');
+        setFormData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    sendInfo();
+  }, []);
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.firstName) newErrors.firstName = "First Name is required";
+    if (!formData.lastName) newErrors.lastName = "Last Name is required";
+    if (!formData.email) newErrors.email = "Email is required";
+    if (!formData.phone) newErrors.phone = "Phone Number is required";
+    if (!formData.remarks) newErrors.remarks = "remarks is required";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
+    if (!validateForm()) return;
 
-    formData.append("access_key", "a190a99c-b0cc-4e83-86c7-6aba9a122095");
-
-    const object = Object.fromEntries(formData);
-    const json = JSON.stringify(object);
-
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: json
-    }).then((res) => res.json());
-
-    if (res.success) {
+    try {
+      const response = await postContact(formData);
       Swal.fire({
         title: "Success!",
         text: "We will get back to you soon",
         icon: "success"
+      });
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        remarks: '',
+      });
+      console.log(response);
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: "There was an error submitting your request.",
+        icon: "error"
       });
     }
   };
@@ -41,18 +82,15 @@ function ReachUs() {
   return (
     <div className='reachUs'>
       {/* container 1 */}
-      <div className='container'>
-
-      </div>
-{/* container 2 */}
+      <div className='container'></div>
+      {/* container 2 */}
       <div className="container reachUs_container">
         <div className="row">
-        <h1>Reach Us</h1>
+          <h1>Reach Us</h1>
         </div>
         <div className="row-icons d-flex justify-content-around align-items-center">
           <div className="col-md-6">
-            
-            <p style={{opacity:".7"}}>
+            <p style={{ opacity: ".7" }}>
               We are eager to assist you in your new project and help you create something innovative and exceptional.
             </p>
             <div className="map-responsive">
@@ -79,17 +117,35 @@ function ReachUs() {
                     </div>
                   </Col>
                 </Row>
-                <form className='form_value' onSubmit={onSubmit}> {/* Correct form tag */}
+                <form className='form_value' onSubmit={onSubmit}>
                   <Row className="form_input">
                     <Col md={6}>
                       <Form.Group controlId="validationCustom01">
-                        <Form.Control required type="text" placeholder="First name" name=" First Name" className='input_box p-2' />
+                        <Form.Control
+                          required
+                          type="text"
+                          placeholder="First Name"
+                          name="firstName"
+                          value={formData.firstName}
+                          onChange={onChange}
+                          className='input_box p-2'
+                        />
+                        {errors.firstName && <div className="error">{errors.firstName}</div>}
                       </Form.Group>
                     </Col>
 
                     <Col md={6}>
                       <Form.Group controlId="validationCustom02">
-                        <Form.Control required type="text" placeholder="Last name" name="Last Name" className='input_box p-2' />
+                        <Form.Control
+                          required
+                          type="text"
+                          placeholder="Last Name"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={onChange}
+                          className='input_box p-2'
+                        />
+                        {errors.lastName && <div className="error">{errors.lastName}</div>}
                       </Form.Group>
                     </Col>
                   </Row>
@@ -97,7 +153,7 @@ function ReachUs() {
                   <Row className="form_email">
                     <Col md={12}>
                       <Form.Group controlId="validationCustomUsername">
-                        <InputGroup hasValidation >
+                        <InputGroup hasValidation>
                           <InputGroup.Text id="inputGroupPrepend" className='input_box p-2'>
                             <Mail />
                           </InputGroup.Text>
@@ -106,7 +162,9 @@ function ReachUs() {
                             placeholder="Email"
                             aria-describedby="inputGroupPrepend"
                             required
-                            name="Email"
+                            name="email"
+                            value={formData.email}
+                            onChange={onChange}
                             className='input_box p-2'
                           />
                           <Form.Control.Feedback type="invalid">
@@ -124,10 +182,12 @@ function ReachUs() {
                           </InputGroup.Text>
                           <Form.Control
                             required
-                            type="tel"  // Ensure the input is of type 'tel' for phone numbers
+                            type="tel"
                             placeholder="Phone Number"
-                            name="Phone Number"
-                            pattern="^\+?[0-9\s\-]{7,15}$"  // Allow for international format, spaces, and dashes
+                            name="phone"
+                            value={formData.phone}
+                            onChange={onChange}
+                            pattern="^\+?[0-9\s\-]{7,15}$"
                             className='input_box p-2'
                           />
                           <Form.Control.Feedback type="invalid">
@@ -135,7 +195,6 @@ function ReachUs() {
                           </Form.Control.Feedback>
                         </InputGroup>
                       </Form.Group>
-
                     </Col>
 
                     <Col md={12}>
@@ -146,7 +205,9 @@ function ReachUs() {
                           required
                           placeholder="How can we help you?"
                           className='input_box p-3'
-                          name="Message"
+                          name="remarks"
+                          value={formData.remarks}
+                          onChange={onChange}
                         />
                         <Form.Control.Feedback type="invalid">
                           Please provide details on how we can help.
@@ -159,16 +220,13 @@ function ReachUs() {
                     </Col>
                   </Row>
                 </form>
-
               </Container>
             </div>
-
           </div>
         </div>
-
       </div>
     </div>
-  )
+  );
 }
 
-export default ReachUs
+export default ReachUs;

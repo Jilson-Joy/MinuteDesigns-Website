@@ -95,8 +95,8 @@ function WebApplication() {
       {/* section 2 */}
 
 
-     <section className="full-container parallax-section">
-     <div className="container">
+      <section className="full-container parallax-section">
+        <div className="container">
           <h1>What We Offer</h1>
           <motion.div
             className="offer row mt-5"
@@ -120,9 +120,9 @@ function WebApplication() {
                   />
                 </div>
                 <Card.Text>
-                <p>   Our solutions are built from the ground up to meet your specific
-                  requirements. Whether you're looking for a simple tool or a
-                  complex multi-featured platform, we have you covered.</p>
+                  <p>   Our solutions are built from the ground up to meet your specific
+                    requirements. Whether you're looking for a simple tool or a
+                    complex multi-featured platform, we have you covered.</p>
                 </Card.Text>
               </Card.Body>
             </div>
@@ -138,9 +138,9 @@ function WebApplication() {
                   />
                 </div>
                 <Card.Text>
-               <p>   Whether your users access your app from their desktops, tablets,
-                  or smartphones, our web applications are optimized for all
-                  devices.</p>
+                  <p>   Whether your users access your app from their desktops, tablets,
+                    or smartphones, our web applications are optimized for all
+                    devices.</p>
                 </Card.Text>
               </Card.Body>
             </div>
@@ -165,7 +165,7 @@ function WebApplication() {
                 </div>
                 <Card.Text>
                   <p>We prioritize usability, creating intuitive interfaces that make
-                  your web applications accessible and enjoyable for your users.</p>
+                    your web applications accessible and enjoyable for your users.</p>
                 </Card.Text>
               </Card.Body>
             </div>
@@ -187,9 +187,9 @@ function WebApplication() {
                   />
                 </div>
                 <Card.Text>
-               <p>   Our top-notch security protocols protect your data and your
-                  users, ensuring peace of mind and compliance with industry
-                  standards.</p>
+                  <p>   Our top-notch security protocols protect your data and your
+                    users, ensuring peace of mind and compliance with industry
+                    standards.</p>
                 </Card.Text>
               </Card.Body>
             </div>
@@ -210,174 +210,174 @@ function WebApplication() {
             </div>
           </div> */}
         </div>
-     </section>
+      </section>
 
 
       {/* section 3 Technologies  */}
 
-    <section className="full-container">
-    <div className="container">
-        <div className="Technologies">
-          <h1>Technologies We Use</h1>
+      <section className="full-container">
+        <div className="container">
+          <div className="Technologies">
+            <h1>Technologies We Use</h1>
 
             <motion.div
-            className="Technologies_box row"
-            variants={fadeIn("left", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.2 }}
-          >
-                        <div className="row d-flex justify-content-around mt-5 p-5">
-            <div className="Technologies_img_box col-md-4">
-              <img src={reactLogo} alt="" />
-              <p>React JS</p>
-            </div>
-            <div className="Technologies_img_box col-md-4">
-              <img src={nodeIcons} alt="" />
-              <p>Node JS</p>
-            </div>
-            <div className="Technologies_img_box col-md-4">
-              <img src={mongodbicons} alt="" />
-              <p>Mongo DB</p>
-            </div>
-            </div>
+              className="Technologies_box row"
+              variants={fadeIn("left", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.2 }}
+            >
+              <div className="row d-flex justify-content-around mt-5 p-5">
+                <div className="Technologies_img_box col-md-4">
+                  <img src={reactLogo} alt="" />
+                  <p>React JS</p>
+                </div>
+                <div className="Technologies_img_box col-md-4">
+                  <img src={nodeIcons} alt="" />
+                  <p>Node JS</p>
+                </div>
+                <div className="Technologies_img_box col-md-4">
+                  <img src={mongodbicons} alt="" />
+                  <p>Mongo DB</p>
+                </div>
+              </div>
 
-            <div className="row d-flex justify-content-around p-5">
-            <div className="Technologies_img_box col-md-4">
-              <img src={mysql} alt="" />
-              <p>MySql</p>
-            </div>
-            <div className="Technologies_img_box col-md-4">
-              <img src={phpicon} alt="" />
-              <p>Php</p>
-            </div>
-            <div className="Technologies_img_box col-md-4">
-              <img src={razorpay} alt="" />
-              <p>Razorpay</p>
-            </div>
-            </div>
-          </motion.div>
-    
-        </div>
-      </div>
+              <div className="row d-flex justify-content-around p-5">
+                <div className="Technologies_img_box col-md-4">
+                  <img src={mysql} alt="" />
+                  <p>MySql</p>
+                </div>
+                <div className="Technologies_img_box col-md-4">
+                  <img src={phpicon} alt="" />
+                  <p>Php</p>
+                </div>
+                <div className="Technologies_img_box col-md-4">
+                  <img src={razorpay} alt="" />
+                  <p>Razorpay</p>
+                </div>
+              </div>
+            </motion.div>
 
-      <section className="mb-5">
-                  {/* section 5  Why Choose Minute Designs?*/}
-    <div className="container">
-        <motion.div
-          className="Choose row"
-          variants={fadeIn("up", 0.1)}
-          initial="hidden"
-          whileInView={"show"}
-          viewport={{ once: false, amount: 0.8 }}
-        >
-          <div className="Choose_img col-md-6">
-            <img src={whyUs} alt="" />
           </div>
-          <div className="Choose_text col-md-6">
-            <h1>Why Choose Minute Designs?</h1>
-            <ul>
-              <li>Expertise in various industries</li>
-              <li>Tailored solutions that match your business needs</li>
-              <li>Fast and secure applications</li>
-              <li>Long-term support and collaboration</li>
-            </ul>
-          </div>
-        </motion.div>
-      </div>
-              </section>
-    </section>
-
-    
-      {/* section 4 Our Process*/}
-<section className="full-container parallax-section  mt-5 mb-5">
-      <div className="container">
-        <div>
-          <h1>Our Process</h1>
         </div>
-        <section class="timeline-section">
-          <div class="timeline-items">
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              {/* <div class="timeline-date">Consultation & Planning</div> */}
-              <motion.div
-                class="timeline-content"
-                variants={fadeIn("left", 0.2)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.2 }}
-              >
-                <h3>Consultation & Planning</h3>
-                <p>
-                  We start by understanding your business goals and challenges
-                  to create a tailored solution roadmap.
-                </p>
-              </motion.div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              {/* <div class="timeline-date">2016</div> */}
-              <motion.div
-                class="timeline-content"
-                variants={fadeIn("right", 0.2)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.2 }}
-              >
-                <h3>Design & Prototype</h3>
-                <p>
-                  Our team creates wireframes and prototypes to visualize the
-                  user experience and application flow.
-                </p>
-              </motion.div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              {/* <div class="timeline-date">2017</div> */}
-              <motion.div
-                class="timeline-content"
-                variants={fadeIn("left", 0.2)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.2 }}
-              >
-                <h3>Development & Testing</h3>
-                <p>
-                Our agile development, we build your web application while keeping you updated every step of the way. Rigorous testing ensures your app performs flawlessly.
-                </p>
-              </motion.div>
-            </div>
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              {/* <div class="timeline-date">2018</div> */}
-              <motion.div
-                class="timeline-content"
-                variants={fadeIn("right", 0.2)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.2 }}
-              >
-                <h3>Deployment & Support</h3>
-                <p>
-                  After deployment, we provide ongoing support and maintenance
-                  to keep your web application running smoothly and up-to-date.{" "}
-                </p>
-              </motion.div>
-            </div>
+
+        {/* section 5  Why Choose Minute Designs?*/}
+        <section className="mb-5">
+          <div className="container">
+            <motion.div
+              className="Choose row"
+              variants={fadeIn("up", 0.1)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.8 }}
+            >
+              <div className="Choose_img col-md-6">
+                <img src={whyUs} alt="" />
+              </div>
+              <div className="Choose_text col-md-6">
+                <h1>Why Choose Minute Designs?</h1>
+                <ul>
+                  <li>Expertise in various industries</li>
+                  <li>Tailored solutions that match your business needs</li>
+                  <li>Fast and secure applications</li>
+                  <li>Long-term support and collaboration</li>
+                </ul>
+              </div>
+            </motion.div>
           </div>
         </section>
-      </div>
       </section>
-  
+
+
+      {/* section 4 Our Process*/}
+      <section className="full-container parallax-section  mt-5 mb-5">
+        <div className="container">
+          <div>
+            <h1>Our Process</h1>
+          </div>
+          <section class="timeline-section">
+            <div class="timeline-items">
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                {/* <div class="timeline-date">Consultation & Planning</div> */}
+                <motion.div
+                  class="timeline-content"
+                  variants={fadeIn("left", 0.2)}
+                  initial="hidden"
+                  whileInView={"show"}
+                  viewport={{ once: false, amount: 0.2 }}
+                >
+                  <h3>Consultation & Planning</h3>
+                  <p>
+                    We start by understanding your business goals and challenges
+                    to create a tailored solution roadmap.
+                  </p>
+                </motion.div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                {/* <div class="timeline-date">2016</div> */}
+                <motion.div
+                  class="timeline-content"
+                  variants={fadeIn("right", 0.2)}
+                  initial="hidden"
+                  whileInView={"show"}
+                  viewport={{ once: false, amount: 0.2 }}
+                >
+                  <h3>Design & Prototype</h3>
+                  <p>
+                    Our team creates wireframes and prototypes to visualize the
+                    user experience and application flow.
+                  </p>
+                </motion.div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                {/* <div class="timeline-date">2017</div> */}
+                <motion.div
+                  class="timeline-content"
+                  variants={fadeIn("left", 0.2)}
+                  initial="hidden"
+                  whileInView={"show"}
+                  viewport={{ once: false, amount: 0.2 }}
+                >
+                  <h3>Development & Testing</h3>
+                  <p>
+                    Our agile development, we build your web application while keeping you updated every step of the way. Rigorous testing ensures your app performs flawlessly.
+                  </p>
+                </motion.div>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                {/* <div class="timeline-date">2018</div> */}
+                <motion.div
+                  class="timeline-content"
+                  variants={fadeIn("right", 0.2)}
+                  initial="hidden"
+                  whileInView={"show"}
+                  viewport={{ once: false, amount: 0.2 }}
+                >
+                  <h3>Deployment & Support</h3>
+                  <p>
+                    After deployment, we provide ongoing support and maintenance
+                    to keep your web application running smoothly and up-to-date.{" "}
+                  </p>
+                </motion.div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
 
       {/* section 5 products */}
- <section className="full-container">
- <div className="container mt-5 mb-5">
-        <div className="head-service-head">
-          <h1>Collaborate with a team that is prepared to elevate your product</h1>
-        </div>
+      <section className="full-container">
+        <div className="container mt-5 mb-5">
+          <div className="head-service-head">
+            <h1>Collaborate with a team that is prepared to elevate your product</h1>
+          </div>
 
-   
+
           <div className="webAppCards row mt-5">
             <motion.div
               className="webAppCards_card col-md-6 "
@@ -389,7 +389,7 @@ function WebApplication() {
               <Card.Body className="webApp_card_body">
                 <Card.Title>Web Apps</Card.Title>
                 <Card.Text className="webApp_text">
-                We create user-friendly, secure, and scalable web applications that drive business growth and success, ensuring each app is tailored to your specific needs.
+                  We create user-friendly, secure, and scalable web applications that drive business growth and success, ensuring each app is tailored to your specific needs.
                 </Card.Text>
               </Card.Body>
               <Card.Img
@@ -412,7 +412,7 @@ function WebApplication() {
               <Card.Body className="webApp_card_body">
                 <Card.Title>CRM</Card.Title>
                 <Card.Text className="webApp_text">
-                CRM systems help businesses maintain strong customer relationships, enhancing sales and customer service through data-driven insights and user-friendly interfaces.
+                  CRM systems help businesses maintain strong customer relationships, enhancing sales and customer service through data-driven insights and user-friendly interfaces.
                 </Card.Text>
               </Card.Body>
               <Card.Img
@@ -437,7 +437,7 @@ function WebApplication() {
               <Card.Body className="webApp_card_body">
                 <Card.Title>Admin Panel</Card.Title>
                 <Card.Text className="webApp_text">
-                Our admin panles offer comprehensive control over user content management, data analysis, and system configuration through robust features and customizable settings.
+                  Our admin panles offer comprehensive control over user content management, data analysis, and system configuration through robust features and customizable settings.
                 </Card.Text>
               </Card.Body>
               <Card.Img
@@ -460,7 +460,7 @@ function WebApplication() {
               <Card.Body className="webApp_card_body">
                 <Card.Title>Dashboard</Card.Title>
                 <Card.Text className="webApp_text">
-                Dashboards offer a visually appealing representation of your business's key metrics, enabling easy data-driven decision-making through user-friendly interfaces and real-time analytics.
+                  Dashboards offer a visually appealing representation of your business's key metrics, enabling easy data-driven decision-making through user-friendly interfaces and real-time analytics.
                 </Card.Text>
               </Card.Body>
               <Card.Img
@@ -474,34 +474,34 @@ function WebApplication() {
             </motion.div>
           </div>
         </div>
- </section>
-  
+      </section>
+
 
       {/* section 7 contact us */}
       <section >
-<div className="container mt-5 mb-5 text-center bg-black text-white p-2">
-<div className="benefit-title">
-    <h3>  Get Started Today ! </h3>
-  </div>
-  <div className="section-footer-para">
-  <p>
-            Ready to take your business to the next level with our E-commerce service? Contact us to schedule a free consultation.
-          </p>
-  </div>
-       
+        <div className="container mt-5 mb-5 text-center bg-black text-white p-2">
+          <div className="benefit-title">
+            <h3>  Get Started Today ! </h3>
+          </div>
+          <div className="section-footer-para">
+            <p>
+              Ready to take your business to the next level with our E-commerce service? Contact us to schedule a free consultation.
+            </p>
+          </div>
+
           <div className="head-btn text-center">
-                <Link to="/reachUs" style={{ textDecoration: "none" }}>
-                  <button className='service-footer-btn'>
-                    Let's Talk
-                    <span>
-                      <MoveRight />
-                    </span>
-                  </button>
-                </Link>
-              </div>
+            <Link to="/reachUs" style={{ textDecoration: "none" }}>
+              <button className='service-footer-btn'>
+                Let's Talk
+                <span>
+                  <MoveRight />
+                </span>
+              </button>
+            </Link>
+          </div>
         </div>
-   
-</section>
+
+      </section>
     </div>
   );
 }

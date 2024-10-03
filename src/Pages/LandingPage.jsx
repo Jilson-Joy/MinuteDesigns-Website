@@ -51,52 +51,52 @@ function LandingPage() {
   };
   return (
     <>
-    <section onContextMenu={disableRightClick} className="no-select">
-      <section className="hero-container" >
-      <div className="container d-flex justify-content-center align-items-center ms-auto">
-  <div className="row d-flex align-items-center">
-    <div className="col-md-5  p-5">
-      <img src={Mhome} alt="Mhome" className="MDesign" />
-    </div>
-    <div className="col-md-7 p-5">
-      <h1 className="hero-text">
-        Design
-        <br />
-        Innovate
-        <br />
-        Thrive
-      </h1>
-      <div className="hero-desc">
-        <p className="hero-description">
-          "Elevating user experience to its pinnacle"
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-
-      </section>
-
-      {/* mouse cursor */}
-      <section>
-        <div className="container ">
-          <CursorMouse />
-        </div>
-      </section>
-
-      <section className="parallax-section ">
-        <div className="container">
-          <section>
-            <div className="container">
-              <div className="col-md-12 d-flex align-items-center mb-5">
-                <h5 className="head-text">What We Do</h5>
+      <section onContextMenu={disableRightClick} className="no-select">
+        <section className="hero-container" >
+          <div className="container d-flex justify-content-center align-items-center ms-auto">
+            <div className="row d-flex align-items-center">
+              <div className="col-md-5  p-5">
+                <img src={Mhome} alt="Mhome" className="MDesign" />
+              </div>
+              <div className="col-md-7 p-5">
+                <h1 className="hero-text">
+                  Design
+                  <br />
+                  Innovate
+                  <br />
+                  Thrive
+                </h1>
+                <div className="hero-desc">
+                  <p className="hero-description">
+                    "Elevating user experience to its pinnacle"
+                  </p>
+                </div>
               </div>
             </div>
-          </section>
+          </div>
 
-          {/* 1st row service */}
+        </section>
 
-          {/* <div className="row d-flex justify-content-around align-items-center">
+        {/* mouse cursor */}
+        <section>
+          <div className="container ">
+            <CursorMouse />
+          </div>
+        </section>
+
+        <section className="parallax-section ">
+          <div className="container">
+            <section>
+              <div className="container">
+                <div className="col-md-12 d-flex align-items-center mb-5">
+                  <h5 className="head-text">What We Do</h5>
+                </div>
+              </div>
+            </section>
+
+            {/* 1st row service */}
+
+            {/* <div className="row d-flex justify-content-around align-items-center">
             {Array.isArray(servicePage) && servicePage.length > 0 ? (
               servicePage.map((item) => (
                 <div key={item._id} className="col-md-6 text-center service-item">
@@ -122,13 +122,49 @@ function LandingPage() {
             )}
           </div> */}
 
+<div className="container">
+  {Array.isArray(servicePage) && servicePage.length > 0 ? (
+    servicePage.reduce((rows, item, index) => {
+      // Create new row every 2 items
+      if (index % 2 === 0) {
+        rows.push([item]);
+      } else {
+        rows[rows.length - 1].push(item);
+      }
+      return rows;
+    }, []).map((row, rowIndex) => (
+      <div key={rowIndex} className="row d-flex justify-content-around align-items-center">
+        {row.map((item) => (
+          <div key={item._id} className="col-md-6 text-center service-item">
+            <div className="service-icon">
+              <img
+                src={`${API_BASE_URL}${item.imageUrl}`}
+                alt={item.title}
+                width={110}
+              />
+            </div>
+            <div className="service-title">
+              <h3>{item.name}</h3>
+            </div>
+            <div className="service-description">
+              <p>{item.shortDescription}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    ))
+  ) : (
+    <p>No services available</p>
+  )}
+</div>
 
 
 
 
 
-          {/* 2nd row service */}
-          <div className="row d-flex justify-content-around align-items-center ">
+
+            {/* 2nd row service */}
+            {/* <div className="row d-flex justify-content-around align-items-center ">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
                 <img src={Ecom} alt="Ecommerce" width={110} />
@@ -156,10 +192,10 @@ function LandingPage() {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
 
-          {/* 3rd row service */}
-          <div className="row d-flex justify-content-around align-items-center">
+            {/* 3rd row service */}
+            {/* <div className="row d-flex justify-content-around align-items-center">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
                 <img src={Archi} alt="architecture" width={120} />
@@ -187,9 +223,9 @@ function LandingPage() {
                 </p>
               </div>
             </div>
-          </div>
-           {/* 4rd row service */}
-          <div className="row d-flex justify-content-around align-items-center">
+          </div> */}
+            {/* 4rd row service */}
+            {/* <div className="row d-flex justify-content-around align-items-center">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
                 <img src={In3D} alt="Interactive3D" width={120} />
@@ -217,36 +253,36 @@ function LandingPage() {
                 </p>
               </div>
             </div>
-            </div>
-        </div>
-      </section >
+            </div> */}
+          </div>
+        </section >
 
-      {/* Technologies */}
-      <div div className="container" >
-        <Technologies />
-      </div >
+        {/* Technologies */}
+        <div div className="container" >
+          <Technologies />
+        </div >
 
-      {/* testimonials */}
+        {/* testimonials */}
 
-      <div div className="container" >
-        <Testimonial />
-      </div >
+        <div div className="container" >
+          <Testimonial />
+        </div >
 
-      {/* Delivered */}
-      <div div >
-        <Delivered />
-      </div >
+        {/* Delivered */}
+        <div div >
+          <Delivered />
+        </div >
 
 
 
-      {/* <div className="thumb-layer paroller">
+        {/* <div className="thumb-layer paroller">
           <figure className="image">
             <img src="http://t.commonsupport.com/adro/images/resource/user-thumbs.png" alt="User Thumbs" />
           </figure>
         </div> */}
 
-      {/* Services section */}
-      {/* <section className="parallax-section">
+        {/* Services section */}
+        {/* <section className="parallax-section">
         <div className="container">
           <div className="col-md-12 d-flex align-items-center mb-3">
             <h5 className="head-text">Our Services</h5>
@@ -335,11 +371,11 @@ function LandingPage() {
 
       {/* Add services or other content here */}
 
-      {/* Technologies */}
-      {/* <section>
+        {/* Technologies */}
+        {/* <section>
   <Technologies/>
 </section> */}
-</section>
+      </section>
     </>
   );
 }

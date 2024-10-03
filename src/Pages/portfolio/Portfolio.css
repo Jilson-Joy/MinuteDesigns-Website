@@ -1,14 +1,67 @@
-.portfolio{
-    /* height: 100vh; */
+/* Portfolio.css */
+
+/* General container styling */
+.container {
+    padding: 20px;
 }
-.portfolio_card{
-    border-radius: 10px;
-    width: 100%;
+
+/* Portfolio section */
+.portfolio {
+    text-align: center; /* Center align text */
 }
-.portfolio_card_img{
+
+.portfolio h1 {
+    margin-bottom: 30px; /* Space below the heading */
+    font-size: 2.5rem; /* Adjust heading size */
+    color: #333; /* Dark color for the title */
+}
+
+/* Portfolio card styling */
+.portfolio_card {
+    background-color: #f8f9fa; /* Light background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.2s; /* Animation for hover effect */
+    margin-bottom: 20px; /* Space between cards */
     padding: 10px;
-    border-radius: 20px;
 }
-.portfolio_card_text{
+
+.portfolio_card:hover {
+    transform: scale(1.05); /* Scale up on hover */
+}
+
+.portfolio_card_header {
+    font-size: 1.5rem; /* Card title size */
+    color: #000000; /* Bootstrap primary color */
+    margin-bottom: 10px; /* Space below the title */
+}
+
+/* Image styling */
+.portfolio_card img {
+    border-radius: 8px; /* Match card's rounded corners */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+/* Text styling */
+.portfolio_card_text {
+    color: #555; /* Dark gray for text */
+    font-size: 1rem; /* Adjust text size */
     padding: 10px;
+}
+
+/* Loading and empty state message styling */
+p {
+    font-size: 1.2rem; /* Slightly larger font for messages */
+    color: #999; /* Gray color for messages */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .portfolio_card {
+        margin-bottom: 15px; /* Less margin on smaller screens */
+    }
+
+    .portfolio_card_header {
+        font-size: 1.25rem; /* Smaller title size on mobile */
+    }
 }

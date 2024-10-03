@@ -131,23 +131,14 @@ function ViewPage() {
               <td>{new Date(page.updatedAt).toLocaleString() || "Invalid Date"}</td>
             </tr>
             <tr>
-              <td>Uploaded Files</td>
+              <td>Uploaded File</td>
               <td>
-                {page.imageUrl && page.imageUrl.length > 0 ? (
-                  <div className="d-flex flex-wrap">
-                    {page.imageUrl.map((url, idx) => {
-                      const fullUrl = `${baseUrl}${url}`;
-                      console.log(`Image URL: ${fullUrl}`);
-                      return (
-                        <img
-                          key={idx}
-                          src={fullUrl}
-                          alt={`Gallery Image ${idx + 1}`}
-                          style={{ width: "50px", height: "50px", marginRight: "5px" }}
-                        />
-                      );
-                    })}
-                  </div>
+                {page.imageUrl ? (
+                  <img
+                    src={`${baseUrl}${page.imageUrl}`}
+                    alt="Uploaded"
+                    style={{ width: "300px", height: "300px" }}
+                  />
                 ) : (
                   "No uploaded files available."
                 )}

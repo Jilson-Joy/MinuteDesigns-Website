@@ -37,3 +37,14 @@ export const listAllBlogs = async () => {
     throw error;
   }
 };
+
+// portfolio page
+export const listAllPortfolio = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/portfolio/`);
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching Portfolio:", error);
+    throw error;
+  }
+};

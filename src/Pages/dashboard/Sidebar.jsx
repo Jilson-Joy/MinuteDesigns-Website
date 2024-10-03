@@ -157,12 +157,30 @@ function Sidebar({ openSidebarToggle, OpenSidebar }) {
                         <ChevronDown style={{ marginTop: '3px' }} />
                     </a>
                     <ul className={`dropdown-list ${openDropdown === 'websiteSettings' ? 'show' : ''}`}>
-                        <Link to="/mainDashboard/addWebsiteSettings" className='link_tag'>
-                            <li>Add Website Settings</li> 
-                       </Link> 
+                      
                   
                        <Link to="/mainDashboard/listWebsiteSettings" className='link_tag'> 
                            <li>List Website Settings</li> 
+                       </Link> 
+                   </ul>   
+               </li>
+               <li className="sidebar-list-item">
+                    <a
+                        href="javascript:void(0)"
+                        onClick={() => toggleDropdown('portfolio')}
+                        style={{ display: 'flex', alignItems: 'center' }}
+                    >
+                        <Box className="icon" />
+                        Portfolio
+                        <ChevronDown style={{ marginTop: '3px' }} />
+                    </a>
+                    <ul className={`dropdown-list ${openDropdown === 'portfolio' ? 'show' : ''}`}>
+                        <Link to="/mainDashboard/addPortFolio" className='link_tag'>
+                            <li>Add Portfolio</li> 
+                       </Link> 
+                  
+                       <Link to="/mainDashboard/listPortfolios" className='link_tag'> 
+                           <li>List Portfolio</li> 
                        </Link> 
                    </ul>   
                </li>

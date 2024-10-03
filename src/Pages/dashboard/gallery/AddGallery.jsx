@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import { Modal, Button } from "react-bootstrap";
 import { FaArrowLeft } from "react-icons/fa";
 
-
 const AddGallery = () => {
   const navigate = useNavigate();
 
@@ -22,9 +21,6 @@ const AddGallery = () => {
   const [showSourceModal, setShowSourceModal] = useState(false);
   const [categories, setCategories] = useState([]);
   const [loadingCategories, setLoadingCategories] = useState(true);
-  const [loadingType, setLoadingType] = useState(true);
-
-  const [types, setTypes] = useState([]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -46,7 +42,6 @@ const AddGallery = () => {
 
     fetchCategories();
   }, []);
- 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,7 +53,7 @@ const AddGallery = () => {
 
   const handleFileChange = (e) => {
     if (e.target.files) {
-      setFiles(Array.from(e.target.files));
+      setFiles(Array.from(e.target.files)); // Array.from converts FileList to an array
     }
   };
 
@@ -68,8 +63,12 @@ const AddGallery = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("categoryName", formData.categoryName);
     formDataToSend.append("type", formData.type);
-    formDataToSend.append("videoUrl", formData.videoUrl);
 
+    if (formData.type === "Video") {
+      formDataToSend.append("videoUrl", formData.videoUrl);
+    }
+
+    // Append each file to formData
     files.forEach((file) => {
       formDataToSend.append("files", file);
     });
@@ -94,29 +93,29 @@ const AddGallery = () => {
     <div className="container mt-4">
       <h1>Add Gallery</h1>
       <nav aria-label="breadcrumb">
-            <ol className="breadcrumb">
-              <li className="breadcrumb-item">
-                <a href="/mainDashboard">Home</a>
-              </li>
-              <li className="breadcrumb-item">
-                <a href="/mainDashboard/listGallery">Gallery List</a>
-              </li>
-              <li className="breadcrumb-item active" aria-current="page">
-                Add Gallery
-              </li>
-            </ol>
-          </nav>
-          
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <a href="/mainDashboard">Home</a>
+          </li>
+          <li className="breadcrumb-item">
+            <a href="/mainDashboard/listGallery">Gallery List</a>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            Add Gallery
+          </li>
+        </ol>
+      </nav>
+
       <div className="d-flex">
-          <div className="float-right">
-            <button
-              onClick={() => navigate("/mainDashboard/listGallery")}
-              className="btn btn-dark"
-            >
-              <FaArrowLeft className="me-2" />
-            </button>
-          </div>
+        <div className="float-right">
+          <button
+            onClick={() => navigate("/mainDashboard/listGallery")}
+            className="btn btn-dark"
+          >
+            <FaArrowLeft className="me-2" />
+          </button>
         </div>
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="col-row d-flex">
           <div className="col-md-12 m-2">
@@ -184,7 +183,7 @@ const AddGallery = () => {
                   name="videoUrl"
                   value={formData.videoUrl}
                   onChange={handleChange}
-                  required 
+                  required
                 />
               </div>
             </div>
@@ -196,7 +195,7 @@ const AddGallery = () => {
             <div className="col-md-12 m-2">
               <div className="mb-3">
                 <label htmlFor="fileUpload" className="form-label">
-                  Upload File
+                  Upload Files
                 </label>
                 <input
                   type="file"
@@ -210,7 +209,6 @@ const AddGallery = () => {
             </div>
           </div>
         )}
-
 
         <div className="col-row d-flex mt-5">
           <div className="col-md-4 m-2">

@@ -1,0 +1,145 @@
+.Key_Features_img {
+max-width: 500px;
+}
+.Key_Features_text{
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+.vr_box {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.vr_section1 {
+  padding: 50px 0;
+}
+.vr_row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.vr_section1 h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 40px;
+  font-weight: 700;
+  /* color: white; */
+}
+.vr_text {
+  text-align: center;
+  margin-top: 40px;
+}
+.vr_text h3 {
+  font-size: 2.8rem;
+}
+
+.vr_section1_img {
+  position: relative;
+  overflow: hidden; /* Ensures the icon stays within the image bounds */
+}
+
+.vr_section1_img img {
+  transition: filter 0.3s ease; /* Smooth transition for the blur effect */
+  border-radius: 10px;
+
+}
+
+.icon-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Hide the icon initially */
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease; /* Smooth transitions */
+}
+
+.vr_section1_img:hover img {
+  filter: blur(1px); /* Add blur effect to the image on hover */
+}
+
+.vr_section1_img:hover .icon-overlay {
+  opacity: 1; /* Show the icon on hover */
+  transform: translate(-50%, -50%) scale(3); /* Center and enlarge the icon */
+}
+.icon-overlay a{
+    text-decoration: none;
+    color: white;
+
+}
+.vr_section1_text_row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vr_section1_text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+  text-align: center;
+
+}
+
+.vr_section1_text h5 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+  /* color: white; */
+}
+
+.vr_section1_text h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+  /* color: white; */
+}
+
+.vr_section1_text p {
+  font-size: 1rem;
+
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .vr_section1 {
+    padding: 30px 10px;
+  }
+
+  .vr_section1 h2 {
+    font-size: 2rem;
+  }
+
+  .vr_section1_img {
+    margin-bottom: 30px;
+  }
+
+  .vr_section1_text h3 {
+    font-size: 1.5rem;
+  }
+
+  .vr_section1_text p {
+    font-size: 0.95rem;
+  }
+}
+
+.product_360btn button{
+  /* text-decoration: none; */
+  border: 1px solid white;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+}
+.product_360btn button:hover{
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+
+}
