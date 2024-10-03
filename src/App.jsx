@@ -66,6 +66,7 @@ import ListPortfolios from "./Pages/dashboard/portfolio/ListPortfolios";
 import EditPortfolio from "./Pages/dashboard/portfolio/EditPortfolio";
 import ViewPortFolios from "./Pages/dashboard/portfolio/ViewPortfolio";
 import Architecture3D from "./Pages/services/architecture & 3D/Architecture3D";
+import VR360 from "./Pages/services/vr360/VR360";
 function App() {
   return (
     <Provider store={store}>
@@ -147,6 +148,7 @@ function App() {
                   {/* service pages */}
                   <Route path="/webapp" element={<WebApplication />} />
                   <Route path="/CRM&ERp" element={<CRM />} />
+                  <Route path="/VR360" element={<VR360 />} />
                   {/* <Route path="/mobileApp" element={<MobileApplication />} /> */}
                   <Route path="/mobileApp" element={<MobileApplication />} />
                   <Route path="/Architecture3D" element={<Architecture3D />} />

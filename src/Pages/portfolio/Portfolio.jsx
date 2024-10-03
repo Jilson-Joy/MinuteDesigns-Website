@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import './Portfolio.css';
 import Card from 'react-bootstrap/Card';
-import { listAllPortfolio } from '../../api/frontendApis/pagesApi';
+import { GetAllPortfolios } from "../../api/frontendApis/portfolioApi";
 
 function Portfolio() {
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
-    const [portfolio, setPortfolio] = useState([]);
+    const [portfolios, setPortfolios] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const fetchPortfolio = async () => {
+        const fetchPortfolios = async () => {
             try {
-                const data = await listAllPortfolio();
-                console.log("Fetched portfolio:", data);
-                if (data && Array.isArray(data.portfolio)) {
-                    setPortfolio(data.portfolio);
-                } else {
-                    setPortfolio([]);
-                }
+                const result = await GetAllPortfolios();
+                console.log("Fetched portfolios:", result); // Log the fetched data for debugging
+                setPortfolios(result.portfolios);
             } catch (error) {
-                console.log(error);
+                console.error("Error fetching portfolios:", error);
+            } finally {
+                setLoading(false);
             }
         };
 
-        fetchPortfolio();
+        fetchPortfolios();
     }, []);
 
     return (
@@ -33,17 +32,23 @@ function Portfolio() {
                     <h1>Works</h1>
                 </div>
                 <div className="row d-flex justify-content-center align-items-center">
-                    {portfolio.length > 0 ? (
-                        portfolio.map((item) => (
+                    {loading ? ( // Show loading message while fetching
+                        <p>Loading portfolios...</p>
+                    ) : portfolios.length > 0 ? (
+                        portfolios.map((item) => (
                             <div key={item._id} className="col-md-6 d-flex justify-content-center align-items-center flex-column">
                                 <div className="portfolio_card">
                                     <Card.Body>
                                         <Card.Title className="portfolio_card_header">{item.title}</Card.Title>
-                                        <Card.Img
-                                            variant="top"
-                                            src={`${API_BASE_URL}${item.imageUrl}`}
-                                            className="portfolio_card_img"
-                                        />
+                                        {item.imageUrl ? (
+                                            <img
+                                                src={`${baseUrl}${item.imageUrl}`} // Use the API base URL to display the image
+                                                alt="Uploaded"
+                                                style={{ width: "300px" }}
+                                            />
+                                        ) : (
+                                            <p>No uploaded files available.</p>
+                                        )}
                                         <Card.Text className="portfolio_card_text">
                                             {item.description}
                                         </Card.Text>

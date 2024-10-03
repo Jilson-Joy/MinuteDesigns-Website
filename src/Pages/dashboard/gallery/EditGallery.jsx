@@ -6,11 +6,11 @@ import { GetAllCategories } from "../../../api/category";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaArrowLeft } from "react-icons/fa";
-
+ 
 const EditGallery = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-
+ 
   const [formData, setFormData] = useState({
     categoryName: "",
     type: "",
@@ -20,7 +20,7 @@ const EditGallery = () => {
   const [categories, setCategories] = useState([]);
   const [loadingCategories, setLoadingCategories] = useState(true);
   const [loading, setLoading] = useState(true);
-
+ 
   useEffect(() => {
     const fetchGallery = async () => {
       try {
@@ -41,7 +41,7 @@ const EditGallery = () => {
         setLoading(false);
       }
     };
-
+ 
     const fetchCategories = async () => {
       try {
         const result = await GetAllCategories();
@@ -57,11 +57,11 @@ const EditGallery = () => {
         setLoadingCategories(false);
       }
     };
-
+ 
     fetchGallery();
     fetchCategories();
   }, [id]);
-
+ 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -69,24 +69,24 @@ const EditGallery = () => {
       [name]: value,
     });
   };
-
+ 
   const handleFileChange = (e) => {
     if (e.target.files) {
       setFiles(Array.from(e.target.files));
     }
   };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
     formDataToSend.append("categoryName", formData.categoryName);
     formDataToSend.append("type", formData.type);
     formDataToSend.append("videoUrl", formData.videoUrl);
-
+ 
     files.forEach((file) => {
       formDataToSend.append("files", file);
     });
-
+ 
     try {
       await EditGalleryApi(id, formDataToSend);
       toast.success("Gallery updated successfully!");
@@ -96,11 +96,11 @@ const EditGallery = () => {
       console.error("Error updating gallery:", error);
     }
   };
-
+ 
   if (loading) {
     return <div>Loading...</div>;
   }
-
+ 
   return (
     <div className="container mt-4">
       <h1>Edit Gallery</h1>
@@ -156,7 +156,7 @@ const EditGallery = () => {
             </div>
           </div>
         </div>
-
+ 
         <div className="col-row d-flex">
           <div className="col-md-12 m-2">
             <div className="mb-3">
@@ -178,7 +178,7 @@ const EditGallery = () => {
             </div>
           </div>
         </div>
-
+ 
         {formData.type === "Video" && (
           <div className="col-row d-flex">
             <div className="col-md-12 m-2">
@@ -199,7 +199,7 @@ const EditGallery = () => {
             </div>
           </div>
         )}
-
+ 
         {formData.type === "Photo" && (
           <div className="col-row d-flex">
             <div className="col-md-12 m-2">
@@ -218,7 +218,7 @@ const EditGallery = () => {
             </div>
           </div>
         )}
-
+ 
         <div className="col-row d-flex mt-5">
           <div className="col-md-4 m-2">
             <button type="submit" className="btn btn-dark mr-1">
@@ -236,10 +236,10 @@ const EditGallery = () => {
           </div>
         </div>
       </form>
-
+ 
       <ToastContainer />
     </div>
   );
 };
-
+ 
 export default EditGallery;

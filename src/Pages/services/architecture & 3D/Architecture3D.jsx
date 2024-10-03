@@ -196,10 +196,10 @@ function Architecture3D() {
                     <h1 className="">Benefits of Our Services</h1> {/* Centered Heading */}
                 </div>
                 <motion.div className="Benefits_Services row align-items-center"
-                 variants={fadeIn("left", 0.2)}
-                 initial="hidden"
-                 whileInView={"show"}
-                 viewport={{ once: false, amount: 0.2 }}
+                    variants={fadeIn("left", 0.2)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{ once: false, amount: 0.2 }}
                 > {/* Align items vertically in the center */}
                     <div className="Benefits_Services_img col-md-6 mb-4 mb-md-0"> {/* Add margin-bottom for mobile */}
                         <img src={Benefits} alt="" className="img-fluid" /> {/* Make image responsive */}
@@ -229,10 +229,10 @@ function Architecture3D() {
                     <h1 className="">Our Process</h1> {/* Centered Heading */}
                 </div>
                 <motion.div className="Benefits_Services row align-items-center"
-                 variants={fadeIn("right", 0.2)}
-                 initial="hidden"
-                 whileInView={"show"}
-                 viewport={{ once: false, amount: 0.2 }}
+                    variants={fadeIn("right", 0.2)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{ once: false, amount: 0.2 }}
                 > {/* Align items vertically in the center */}
 
                     <div className="col-md-6"> {/* Text column first */}
