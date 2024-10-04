@@ -1,6 +1,6 @@
 /* DOT */
-
-
+ 
+ 
 /* Custom Cursor */
 .custom-cursor {
   position: fixed;
@@ -19,37 +19,43 @@
   z-index: 9999;
   transition: opacity 0.2s ease; /* Smooth transition for hiding */
 }
-
+ 
 .custom-cursor.hidden {
  background-color: #000000;
 }
-
-
-
+ 
+ 
+ 
 .service-item {
   text-align: center;
   color: #fff;
   position: relative;
   min-height: 250px;
-  overflow: visible; 
+  overflow: visible;
 }
-
+ 
 .service-item:last-child {
   border-right: none;
 }
-
+ 
 .service-icon {
   font-size: 1rem;
   transition: opacity 0.5s ease-in-out, transform 0.8s ease-in-out;
   mix-blend-mode: luminosity;
   position: relative;
 }
-
+ 
 .service-title h3 {
   color: #000000;
   font-size: 25px;
 }
-
+.service-title
+{
+  max-width: 180px;
+  text-align: center;
+  margin: auto;
+}
+ 
 .service-description {
   display: none;
   position: absolute;
@@ -66,41 +72,41 @@
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
 }
-
+ 
 .service-description p {
   font-size: 15px;
 }
-
+ 
 .service-item:hover .service-description {
   display: flex;
   opacity: 1;
   font-size: 10px;
   z-index: 1;
 }
-
+ 
 .service-item:hover .service-icon {
   transform: translateX(280px);
   min-width: 280px;
   min-height: 250px;
   text-align: center;
-  padding-top: 60px;
+  padding-top: 80px;
   text-align: center;
   position: absolute;
-  background: #f3f3f3;
+  background: #e7e7e7;
 }
-
+ 
 .service-item:hover .service-title {
   color: #000000;
-  transform: translateX(280px);
+  transform: translateX(300px);
   position: absolute;
   font-size: 10px;
   min-width: 280px;
   text-align: center;
   padding-top: 30px;
 }
-
-
-
+ 
+ 
+ 
 .service-item::before,
 .service-item::after {
   content: '';
@@ -111,49 +117,50 @@
   left: 0;
   background: #0b141c;
   transition: transform 0.8s ease-in-out;
-
+ 
 }
-
+ 
 .service-item::before {
   transform: scaleX(0);
   transform-origin: left;
 }
-
+ 
 .service-item::after {
   transform: scaleY(0);
   transform-origin: top;
 }
-
+ 
 .service-item:hover::before {
   transform: scaleX(1);
 }
-
+ 
 .service-item:hover::after {
   transform: scaleY(1);
 }
-
-
-
+ 
+ 
+ 
 /* second service */
-
+ 
 .service-item1 {
   text-align: center;
   color: #fff;
   /* border-right: 1px solid #afaf29; */
   position: relative;
   min-height: 250px;
-  overflow: visible; 
+  overflow: visible;
 }
-
+ 
 .service-item1:last-child {
   border-right: none;
 }
-
+ 
 .service-icon1 {
   font-size: 1rem;
   transition: opacity 0.5s ease-in-out, transform 0.8s ease-in-out;
   mix-blend-mode: luminosity;
   position: relative;
+
 }
 .service-icon1-crm {
   font-size: 1rem;
@@ -198,9 +205,9 @@
   padding-top: 60px;
   text-align: center;
   position: absolute;
-  background: #f3f3f3;
+  background: #e7e7e7;
 }
-
+ 
 .service-item1:hover .service-title1 {
   transform: translateX(-280px);
   position: absolute;
@@ -209,13 +216,13 @@
   text-align: center;
   padding-top: 30px;
 }
-
-.service-title1-crm 
+ 
+.service-title1-crm
 {
   color: #000000;
   font-size: 25px;
 }
-
+ 
 .service-item1::before,
 .service-item1::after {
   content: '';
@@ -227,21 +234,21 @@
   background: #0b141c;
   transition: transform 0.8s ease-in-out;
 }
-
+ 
 .service-item1::before {
   transform: scaleX(0);
   transform-origin: right;
 }
-
+ 
 .service-item1::after {
   transform: scaleY(0);
   transform-origin: top;
 }
-
+ 
 .service-item1:hover::before {
   transform: scaleX(1);
 }
-
+ 
 .service-item1:hover::after {
   transform: scaleY(1);
 }

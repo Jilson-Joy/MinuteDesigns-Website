@@ -138,14 +138,14 @@ function Header() {
      <LayoutPanelLeft /> UI/UX
     </NavDropdown.Item>
     <NavDropdown.Item as={Link} to="/Architecture3D" className="custom-dropdown-item">
-    <House /> Architecture & 3D
+    <House /> Architectural 3D Rendering
     </NavDropdown.Item>
     <NavDropdown.Item as={Link} to="/CRM&ERp" className="custom-dropdown-item">
     <PanelsTopLeft /> CRM / ERP
     </NavDropdown.Item>
-    <NavDropdown.Item as={Link} to="/Interactive3D" className="custom-dropdown-item">
+    {/* <NavDropdown.Item as={Link} to="/Interactive3D" className="custom-dropdown-item">
     <Box /> Interactive 3D
-    </NavDropdown.Item>
+    </NavDropdown.Item> */}
     <NavDropdown.Item as={Link} to="/VR360" className="custom-dropdown-item">
     <Glasses /> 360 VR
     </NavDropdown.Item>

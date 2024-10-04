@@ -15,6 +15,11 @@
   display: flex;
   align-items: end;
 }
+.footer-icons{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .footer_link p {
   font-size: 15px;
   opacity: 0.5;
@@ -55,6 +60,28 @@
   text-align:center;
   font-weight: 200;
 }
+
+.linked .linkedin-icon,.Facebook .Facebook-icon {
+  color: white;
+}
+
+.linked:hover .linkedin-icon, .Facebook:hover .Facebook-icon {
+  color: #0077b4;
+}
+.Facebook-icon {
+  color: white;
+}
+.Facebook:hover .Facebook-icon {
+  color: #1878f1;
+}
+.Instagram-icon {
+  color: white;
+}
+.Instagram:hover .Instagram-icon {
+  color: #b43a96;
+}
+
+
 @media screen and (max-width: 780px) {
   .logo_footer{
     display: flex;

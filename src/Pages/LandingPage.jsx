@@ -122,7 +122,7 @@ function LandingPage() {
             )}
           </div> */}
 
-<div className="container">
+{/* <div className="container">
   {Array.isArray(servicePage) && servicePage.length > 0 ? (
     servicePage.reduce((rows, item, index) => {
       // Create new row every 2 items
@@ -156,15 +156,43 @@ function LandingPage() {
   ) : (
     <p>No services available</p>
   )}
-</div>
+</div> */}
 
 
 
 
 
 
+            {/* 1nd row service */}
+            <div className="row d-flex justify-content-around align-items-center ">
+            <div className="col-md-3 text-center service-item">
+              <div className="service-icon">
+                <img src={WebDev} alt="Ecommerce" width={110} />
+              </div>
+              <div className="service-title">
+                <h3>Web Application</h3>
+              </div>
+              <div className="service-description">
+                <p>
+                We create responsive and robust web applications tailored to your business needs.                </p>
+              </div>
+            </div>
+
+            <div className="col-md-3 text-center service-item1">
+              <div className="service-icon1">
+                <img src={MobDev} alt="UIUX" width={110} />
+              </div>
+              <div className="service-title1">
+                <h3>Mobile Application</h3>
+              </div>
+              <div className="service-description1">
+                <p>
+                We create robust and user-friendly mobile applications that cater to your business requirements.                </p>
+              </div>
+            </div>
+          </div>
             {/* 2nd row service */}
-            {/* <div className="row d-flex justify-content-around align-items-center ">
+            <div className="row d-flex justify-content-around align-items-center ">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
                 <img src={Ecom} alt="Ecommerce" width={110} />
@@ -174,8 +202,7 @@ function LandingPage() {
               </div>
               <div className="service-description">
                 <p>
-                We create robust e-commerce platforms that provide smooth shopping experiences, secure payments and powerful features for online business growth, ensuring scalability
-                </p>
+                We create robust e-commerce platforms that provide smooth shopping experiences, secure payments and powerful features for online business growth, ensuring scalability                </p>
               </div>
             </div>
 
@@ -188,25 +215,23 @@ function LandingPage() {
               </div>
               <div className="service-description1">
                 <p>
-                Our designers create user-friendly, visually appealing interfaces, ensuring a seamless and engaging experience, aiming to elevate brand identity and user engagement.
-                </p>
+                Our designers create user-friendly, visually appealing interfaces, ensuring a seamless and engaging experience, aiming to elevate brand identity and user engagement.                </p>
               </div>
             </div>
-          </div> */}
+          </div>
 
             {/* 3rd row service */}
-            {/* <div className="row d-flex justify-content-around align-items-center">
+            <div className="row d-flex justify-content-around align-items-center">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
                 <img src={Archi} alt="architecture" width={120} />
               </div>
               <div className="service-title">
-                <h3>Architecture & 3D </h3>
+                <h3>Architectural 3D Rendering</h3>
               </div>
               <div className="service-description">
                 <p>
-                Our solutions combine contemporary design principles with practical implementation to create visually appealing and efficient spaces.
-                </p>
+                Our solutions combine contemporary design principles with practical implementation to create visually appealing and efficient spaces.                </p>
               </div>
             </div>
 
@@ -219,13 +244,12 @@ function LandingPage() {
               </div>
               <div className="service-description1">
                 <p>
-                We develop comprehensive CRM and ERP systems that streamline business operations, improve customer relationships, and boost productivity.
-                </p>
+                Our VR solutions offer a captivating and engaging way to explore spaces and scenarios from various angles.                </p>
               </div>
             </div>
-          </div> */}
+          </div>
             {/* 4rd row service */}
-            {/* <div className="row d-flex justify-content-around align-items-center">
+            <div className="row d-flex justify-content-around align-items-center">
             <div className="col-md-3 text-center service-item">
               <div className="service-icon">
                 <img src={In3D} alt="Interactive3D" width={120} />
@@ -253,7 +277,7 @@ function LandingPage() {
                 </p>
               </div>
             </div>
-            </div> */}
+            </div>
           </div>
         </section >
 

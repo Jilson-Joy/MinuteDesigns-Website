@@ -1,10 +1,11 @@
 import React from "react";
 import "./Footer.css";
 import logo from "../../assets/images/MinuteLogo.png";
-import { Phone } from "lucide-react";
+import { Facebook, Phone } from "lucide-react";
+import { Instagram } from 'lucide-react';
 import { Mail } from "lucide-react";
 import { Link } from "react-router-dom";
-import { FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -20,22 +21,42 @@ function Footer() {
             </div>
             <div className="footer_address mt-4">
               <p>
-                3rd Floor, Thakkolkaran Building, Metro Station, near
+                2nd Floor, Thakkolkaran Building, Metro Station, near
                 Companypady, Thaikkattukara, P.O, Choornikkara, Aluva, Kochi,
                 Kerala 683106
               </p>
             </div>
-            <div className="footer-icons d-flex justify-space-between ">
-                <div className="linked">
+            <div className="footer-icons  ">
+              <div className="linked">
                 <a
-                href="https://www.linkedin.com/company/minutedesigns"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: "none", color: "white"}}
-              >
-                <FaLinkedin style={{ fontSize: "24px" }} />
-              </a>
-                </div>
+                  href="https://www.linkedin.com/company/minutedesigns/posts/?feedView=all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none",}}
+                >
+                  <FaLinkedin className="linkedin-icon" style={{ fontSize: "24px" }} />
+                </a>
+              </div>
+              <div className="Instagram">
+                <a
+                  href="https://www.instagram.com/minute.designs?igsh=MXF5YzhkcXhibm9nMg=="
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                <FaInstagram  className="Instagram-icon" style={{ fontSize: "24px" }}/>
+                </a>
+              </div>
+              <div className="Facebook">
+                <a
+                  href="https://www.facebook.com/minute.designs/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ textDecoration: "none", color: "white" }}
+                >
+                  <FaFacebook className="Facebook-icon" style={{ fontSize: "24px" }}/>
+                </a>
+              </div>
 
             </div>
           </div>
@@ -106,13 +127,19 @@ function Footer() {
                 <p>UI/UX</p>
               </Link>
               <Link
-                to={"/architecture"}
+                to={"/Architecture3D"}
                 style={{ textDecoration: "none", color: "white" }}
               >
-                <p>Architecture</p>
+                <p>Architectural 3D Rendering</p>
               </Link>
               <Link
-                to={"/3DRenderingService"}
+                to={"/CRM&ERp"}
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                <p>CRM /ERP</p>
+              </Link>
+              <Link
+                to={"/VR360"}
                 style={{ textDecoration: "none", color: "white" }}
               >
                 {" "}
@@ -126,11 +153,11 @@ function Footer() {
               <ul className="footer_number list-unstyled">
                 <li className="mb-2">
                   <Phone className="phone_icon me-2" />
-                  <p className="mb-0">HR: +91 8593833370</p>
+                  <p className="mb-0">+91 8848499282</p>
                 </li>
                 <li className="mb-2">
                   <Phone className="icons" />
-                  <p className="mb-0">Office: +91 9946102832</p>
+                  <p className="mb-0">+91 9947250800</p>
                 </li>
                 {/* <li className="mb-2">
                   <Phone className="icons" />
