@@ -29,21 +29,6 @@
     justify-content: center;
   }
 
-  /* .element-item1{
-    width: 300px;
-  }
-  .element-item1 img{
-    width: 100%;
-  } */
-
-     /* Mobile devices (up to 600px) */
-/* @media screen and (max-width: 780px) {
-
-  .element-item1{
-    width: 500px;
-  }
-
-} */
 
 .element-item1 {
   display: flex; /* Enables flexbox */
