@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/commonStyle.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -67,7 +67,10 @@ import EditPortfolio from "./Pages/dashboard/portfolio/EditPortfolio";
 import ViewPortFolios from "./Pages/dashboard/portfolio/ViewPortfolio";
 import Architecture3D from "./Pages/services/architecture & 3D/Architecture3D";
 import VR360 from "./Pages/services/vr360/VR360";
+
+
 function App() {
+
   return (
     <Provider store={store}>
       <BrowserRouter>

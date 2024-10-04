@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./MobileApplication.css";
 import MobileImage from "../../../assets/images/Mobile_login.gif";
 import Card from "react-bootstrap/Card";
@@ -29,6 +29,12 @@ import AppTravel from "../../../assets/images/AppTravel.png";
 // import ExampleCarouselImage from 'components/ExampleCarouselImage';
 
 function MobileApplication() {
+
+  useEffect(() => {
+    // Scroll to the top when the component is mounted
+    window.scrollTo(0, 0);
+  }, []);
+
     return (
         <div className="webApplication_container">
             {/* section top */}
@@ -541,7 +547,7 @@ function MobileApplication() {
   </div>
   <div className="section-footer-para">
   <p>
-            Ready to take your business to the next level with our E-commerce service? Contact us to schedule a free consultation.
+            Ready to take your business to the next level with our Mobile Application service? Contact us to schedule a free consultation.
           </p>
   </div>
        

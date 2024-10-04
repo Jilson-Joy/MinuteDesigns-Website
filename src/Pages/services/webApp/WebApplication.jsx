@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./WebApplication.css";
 import WebsiteIcon from "../../../assets/images/Website designer.gif";
 import Card from "react-bootstrap/Card";
@@ -21,6 +21,12 @@ import whyUs from "../../../assets/images/whyUs.jpg";
 import CodingWorkShop from "../../../assets/images/CodeWorkSpace.gif";
 
 function WebApplication() {
+
+  useEffect(() => {
+    // Scroll to the top when the component is mounted
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="webApplication_container">
       {/* section 1 */}
@@ -485,7 +491,7 @@ function WebApplication() {
           </div>
           <div className="section-footer-para">
             <p>
-              Ready to take your business to the next level with our E-commerce service? Contact us to schedule a free consultation.
+              Ready to take your business to the next level with our Web Application service? Contact us to schedule a free consultation.
             </p>
           </div>
 

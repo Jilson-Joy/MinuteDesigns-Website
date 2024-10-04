@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Ecommerce.css'
 import EcommerceImg from '../../../assets/images/Ecommerce_checkout_laptop.gif'
 // import reactLogo from '../../assets/images/React.png';
@@ -17,7 +17,13 @@ import skinEcms from '../../../assets/images/skinEcms.png';
 import healthEcms from '../../../assets/images/healthEcms.png';
 import b2bEcms from '../../../assets/images/b2bEcms.png';
 import fashionEcms from '../../../assets/images/fashionEcms.png';
+
 function Ecommerce() {
+  useEffect(() => {
+    // Scroll to the top when the component is mounted
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
 <>
 <section className='full-container'>
