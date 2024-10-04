@@ -78,10 +78,7 @@ function Gallery() {
           </div>
         </div>
         </div>
-  
-  
-  
-        
+
    </section>
    <div className="container">
         <div className="gallery-grid">

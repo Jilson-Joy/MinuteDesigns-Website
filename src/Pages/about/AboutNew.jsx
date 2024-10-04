@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import "./AboutNew.css";
 import { ChevronDown } from "lucide-react";
-import minuteLogo from "../../assets/images/minute.jpg";
+import minuteLogo from "../../assets/images/ABT1.jpg";
 import vrImage from "../../assets/images/virtual-realityabout1.png";
 import Delivered from "../../components/delivered/Delivered";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../variants";
 import Mlogo from "../../assets/images/M.png";
+import MDR from "../../assets/images/MReveal.mp4";
 
 function AboutNew() {
 
@@ -49,10 +50,10 @@ function AboutNew() {
         >
         
           <div className="row">
-            <div className="about_vision_text col-md-6">
+            <div className="about_vision_text col-md-5">
             <h3>Our Story</h3>
               <p>
-                In March 2024, a group of visionary technology enthusiasts
+                In March 2004, a group of visionary technology enthusiasts
                 founded Minute Designs, driven by the ambition to transform
                 digital experiences for businesses across the globe. From the
                 heart of Kerala, in our office at the 3rd Floor of the
@@ -67,8 +68,8 @@ function AboutNew() {
                 creates a ripple in the global tech space.
               </p>
             </div>
-            <div className="about_vision_img col-md-6">
-              <img src={minuteLogo} alt="image" />
+            <div className="about_vision_img col-md-7">
+              <img src={minuteLogo} alt="about image" />
             </div>
           </div>
         </motion.div>
@@ -82,10 +83,10 @@ function AboutNew() {
         >
          
           <div className="row">
-            <div className="about_vision_img vr-image col-md-6">
+            <div className="about_vision_img col-md-6">
               <img src={vrImage} alt="vr-image" />
             </div>
-            <div className="about_vision_text col-md-6">
+            <div className="about_vision_text col-md-5">
             <h3>Vision</h3>
               <p>
                 Key values including creativity, agility, and user-centered
@@ -107,89 +108,88 @@ function AboutNew() {
         </motion.div>
       </div>
       {/* Our Culture */}
-      <div className="container">
-        <div className="culture mt-5 mb-5">
-          <motion.div
-            variants={fadeIn("up", 0.2)}
-            initial="hidden"
-            whileInView={"show"}
-            viewport={{ once: false, amount: 0.2 }}
-            className="text-center"
-          >
-            <h5 className="head-text">Our Identity</h5>
-            {/* <h3 className="culture_text">
-              Our culture is what keeps us together. We believe in
-              <br />
-              collectively solving problems while keeping our
-              <br />
-              company values intact.
-            </h3> */}
-          </motion.div>
-
-          <div className="row mt-5">
-            <div className="our_culture_textBox_down col-md-6 col-lg-4 mb-4">
-              <motion.div
-                variants={fadeIn("left", 0.2)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.2 }}
-              >
-                <h5>RESULT ORIENTED</h5>
-                <p>
-                  At Yellow, we ensure all our endeavours are result-oriented,
-                  focused on solving a problem. We brainstorm ideas collectively
-                  and then implement them in reality.
-                </p>
-              </motion.div>
-              <motion.div
-                variants={fadeIn("left", 0.2)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.2 }}
-              >
-                <h5>HELPING</h5>
-                <p>
-                  We promote a healthy knowledge-sharing environment amongst our
-                  team. Refusing to help someone is highly looked down upon.
-                </p>
-              </motion.div>
-            </div>
-            <div className="our_culture_img col-md-6 col-lg-4 mb-4">
-              <img
-                src={Mlogo}
-                alt="Culture Image"
-              />
-            </div>
-            <div className="our_culture_textBox_down col-md-6 col-lg-4 mb-4">
-              <motion.div
-                variants={fadeIn("right", 0.2)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.2 }}
-              >
-                <h5>TRANSPARENT</h5>
-                <p>
-                  Transparency is what helps us deliver the best of experiences.
-                  A practice that we strictly follow includes maximum data
-                  sharing across all levels of functioning.
-                </p>
-              </motion.div>
-              <motion.div
-                variants={fadeIn("right", 0.2)}
-                initial="hidden"
-                whileInView={"show"}
-                viewport={{ once: false, amount: 0.2 }}
-              >
-                <h5>FREEDOM</h5>
-                <p>
-                  Design is all about freely expressing one's ideas. At Yellow,
-                  we encourage feedback and inputs from everyone in the team.
-                </p>
-              </motion.div>
+ <section className="full-container">
+        <div className="container">
+          <div className="culture mt-5 mb-5">
+            <motion.div
+              variants={fadeIn("up", 0.2)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.2 }}
+              className="text-center"
+            >
+              <h5 className="head-text">Our Identity</h5>
+              {/* <h3 className="culture_text">
+                Our culture is what keeps us together. We believe in
+                <br />
+                collectively solving problems while keeping our
+                <br />
+                company values intact.
+              </h3> */}
+            </motion.div>
+  
+            <div className="row mt-5">
+              <div className="our_culture_textBox_down col-md-6 col-lg-4 mb-4">
+                <motion.div
+                  variants={fadeIn("left", 0.2)}
+                  initial="hidden"
+                  whileInView={"show"}
+                  viewport={{ once: false, amount: 0.2 }}
+                >
+                  <h5>RESULT ORIENTED</h5>
+                  <p>
+                    At Yellow, we ensure all our endeavours are result-oriented,
+                    focused on solving a problem. We brainstorm ideas collectively
+                    and then implement them in reality.
+                  </p>
+                </motion.div>
+                <motion.div
+                  variants={fadeIn("left", 0.2)}
+                  initial="hidden"
+                  whileInView={"show"}
+                  viewport={{ once: false, amount: 0.2 }}
+                >
+                  <h5>HELPING</h5>
+                  <p>
+                    We promote a healthy knowledge-sharing environment amongst our
+                    team. Refusing to help someone is highly looked down upon.
+                  </p>
+                </motion.div>
+              </div>
+              <div className="our_culture_img col-md-6 col-lg-4 mb-4">
+              <video src={MDR} alt="Mhome" className="MDesign" type="video/mp4" autoPlay muted playsInline loop></video>
+              </div>
+              <div className="our_culture_textBox_down col-md-6 col-lg-4 mb-4">
+                <motion.div
+                  variants={fadeIn("right", 0.2)}
+                  initial="hidden"
+                  whileInView={"show"}
+                  viewport={{ once: false, amount: 0.2 }}
+                >
+                  <h5>TRANSPARENT</h5>
+                  <p>
+                    Transparency is what helps us deliver the best of experiences.
+                    A practice that we strictly follow includes maximum data
+                    sharing across all levels of functioning.
+                  </p>
+                </motion.div>
+                <motion.div
+                  variants={fadeIn("right", 0.2)}
+                  initial="hidden"
+                  whileInView={"show"}
+                  viewport={{ once: false, amount: 0.2 }}
+                >
+                  <h5>FREEDOM</h5>
+                  <p>
+                    Design is all about freely expressing one's ideas. At Yellow,
+                    we encourage feedback and inputs from everyone in the team.
+                  </p>
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+ </section>
 
       {/* Products Delivered  */}
       <motion.div
