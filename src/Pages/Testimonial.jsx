@@ -78,7 +78,7 @@ function Testimonial() {
                 <div className="text-center mb-2">
                   <Quote className="quote" />
                 </div>
-                <div className="text_des">{testimonials[currentIndex].description}</div>
+                <div className="text_des"><p>{testimonials[currentIndex].description}</p></div>
                 <div className="info-box">
                   <div className="thumb">
                     {testimonials[currentIndex].imageUrl ? (
@@ -93,7 +93,7 @@ function Testimonial() {
 
                   </div>
                   <div className="text-center">
-                    <h4 className="name">{testimonials[currentIndex].title}</h4>
+                    <p className="testimonials_name">{testimonials[currentIndex].title}</p>
                     <p className="designation">{testimonials[currentIndex].companyName}</p>
                   </div>
                 </div>

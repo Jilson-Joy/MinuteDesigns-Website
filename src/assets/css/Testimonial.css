@@ -71,11 +71,11 @@
   
   .inner-box {
     padding: 30px 105px;
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     box-shadow: 0 0 50px rgba(226, 222, 232, 0.5);
     min-height: 350px;
     border-radius: 10px;
-    background-color: #f3f3f3;
+    background-color: #e7e7e7;
   }
 
   .text_des {
@@ -119,13 +119,13 @@
     box-shadow: 0 45px 45px rgba(147, 147, 147, 0.114);
   }
   
-  .name {
+  .testimonials_name {
     position: relative;
     display: block;
-    font-size: 21px;
+    /* font-size: 21px; */
     line-height: 1.2em;
-    color: #382c4d;
-    font-weight: 700;
+    /* color: #382c4d; */
+    /* font-weight: 700; */
     margin-bottom: 10px;
     font-family: "Niramit", sans-serif;
   }

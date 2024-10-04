@@ -117,18 +117,21 @@
   align-items: center;
 }
 .technologies_box_col2 {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content:space-between;
   align-items: center;
-  height: 100%;
+  height: 100%; */
 }
 .technologies_box_marguee {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
+
 .marquee {
-  height: 450px;
+  height: 600px;
   overflow: hidden;
+  padding: 0 10px ;
 }
 .marguee_img_div {
   display: flex;
@@ -136,7 +139,12 @@
   gap: 120px;
   animation: marquee 20s linear infinite;
 }
-
+.tech_img{
+  max-width:100px ;
+}
+.tech_img img{
+  width: 100%;
+}
 .black-white-img {
   filter: grayscale(100%);
   transition: filter 0.3s ease-in-out;
