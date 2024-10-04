@@ -23,5 +23,42 @@
     background-color: #0b141c;
     color: white;
   }
-  
+  .gallery-grid{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
+  /* .element-item1{
+    width: 300px;
+  }
+  .element-item1 img{
+    width: 100%;
+  } */
+
+     /* Mobile devices (up to 600px) */
+/* @media screen and (max-width: 780px) {
+
+  .element-item1{
+    width: 500px;
+  }
+
+} */
+
+.element-item1 {
+  display: flex; /* Enables flexbox */
+  justify-content: center; /* Center aligns the image */
+  align-items: center; /* Vertically centers the image */
+}
+
+.element-item1 img {
+  max-width: 100%; /* Ensures the image scales down to fit the container */
+  height: auto; /* Maintains the aspect ratio */
+}
+
+/* Optional: Add padding for mobile devices */
+@media (max-width: 768px) {
+  .element-item1 {
+    padding: 1rem; /* Adjust padding for smaller screens */
+  }
+}

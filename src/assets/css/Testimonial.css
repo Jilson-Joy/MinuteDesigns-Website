@@ -164,12 +164,12 @@
   
 
 
-  .image {
+  .image_testimonials {
     position: relative;
     margin-right: 0;
   }
   
-  .image img {
+  .image_testimonials img {
     display: inline-block;
     max-width: 100%;
     height: auto;

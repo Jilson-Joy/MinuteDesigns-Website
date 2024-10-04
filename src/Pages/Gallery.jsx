@@ -5,14 +5,14 @@ import './Gallery.css';
 import GalleryImage from './services/gallery/GalleryImage';
 import GalleryVideo from './services/gallery/GalleryVideo';
 import GalleryMinute3D from './services/gallery/GalleryMinute3D';
-
+import groupPic from '../assets/images/shared image.jpg';
 function Gallery() {
   const isotope = useRef(null);
-  const [filterKey, setFilterKey] = useState('image'); // Set 'image' as default
+  const [filterKey, setFilterKey] = useState('imag'); // Set 'image' as default
 
   useEffect(() => {
     isotope.current = new Isotope('.gallery-grid', {
-      itemSelector: '.element-item',
+      itemSelector: '.element-item1',
       layoutMode: 'fitRows',
     });
 
@@ -57,7 +57,7 @@ function Gallery() {
               </button> */}
               <button
                 className={filterKey === 'image' ? 'active' : ''}
-                onClick={handleFilterKeyChange('image')}
+                onClick={handleFilterKeyChange('imag')}
               >
                 Events
               </button>
@@ -85,22 +85,22 @@ function Gallery() {
    </section>
    <div className="container">
         <div className="gallery-grid">
-              <div className="element-item image p-2">
+              {/* <div className="element-item image p-2">
                 <GalleryImage/>
-              </div>
+              </div> */}
               {/* <div className="element-item video p-2">
               <GalleryVideo />
               </div> */}
-              {/* <div className="element-item image p-2">
-                <img src="https://via.placeholder.com/300x200" alt="Placeholder" />
-              </div> */}
-              <div className="element-item video p-2">
+              <div className="element-item1 imag p-2">
+  <img src={groupPic} alt="Placeholder" width="300" />
+</div>
+              <div className="element-item1 video p-2">
                 <video controls width="300">
                   <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
                 </video>
               </div>
               {/* 3D videos */}
-              <div className="element-item videos3d">
+              <div className="element-item1 videos3d">
                 <GalleryMinute3D/>
               </div>
             </div>
