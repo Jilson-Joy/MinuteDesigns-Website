@@ -20,8 +20,8 @@ import Technologies from "../components/technologies/Technologies";
 import Melement from "../components/Melement";
 import CircleCanvas from "../components/CircleCanvas";
 import { listAllServices } from "../api/frontendApis/pagesApi";
-// import MDRe from "../assets/images/Mreveal.gif";
 import MDR from "../assets/images/MReveal.mp4";
+
 function LandingPage() {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 

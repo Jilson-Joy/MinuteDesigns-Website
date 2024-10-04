@@ -6,6 +6,7 @@ import dreamflowerVR from '../../../assets/images/dreamflowerVR360.gif'
 import vr2 from '../../../assets/images/vr2.png'
 import './VR360.css'
 import VrImg from '../../../assets/images/vr.png'
+import WhyUs from '../../../assets/images/360why.jpg'
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../variants";
 import { Carousel } from 'react-bootstrap'
@@ -164,21 +165,21 @@ function VR360() {
                         viewport={{ once: false, amount: 0.8 }}
                     >
                         <div className="Choose_img col-md-6">
-                            <img src={VrImg} alt="" />
+                            <img src={WhyUs} alt="" />
                         </div>
                         <div className="Choose_text col-md-6">
                             <h1>Why Choose Minute Designs?</h1>
 
-                            <ul>
+                            <ul className='mt-3'>
                                 <li>
                                     Expert Collaboration: From concept development to the final delivery, we collaborate with you at every stage, ensuring your vision comes to life.
-                                </li>
+                                </li><br />
                                 <li>
                                     Innovative Technology: We stay ahead of the curve with the latest VR advancements to offer you state-of-the-art solutions.
 
-                                </li>
+                                </li><br />
                                 <li>
-                                    Scalable Solutions: Whether you’re a small business or a large enterprise, our VR services are scalable and adaptable to meet your budget and project needs.
+                                    Scalable Solutions: Whether you're a small business or a large enterprise, our VR services are scalable and adaptable to meet your budget and project needs.
                                 </li>
                             </ul>
                         </div>
@@ -200,7 +201,7 @@ function VR360() {
                 <div className="container mt-5 mb-5">
                     <div className='row text-center'>
                         <div className="benefit-title mb-5">
-                            <h3>Popular 360VR Service You May Know </h3>
+                            <h3>Popular 360 VR Service You May Know </h3>
                         </div>
                     </div>
                     <div className="row mt-4">
