@@ -49,6 +49,12 @@
   color: #000000;
   font-size: 25px;
 }
+.service-title
+{
+  max-width: 180px;
+  text-align: center;
+  margin: auto;
+}
 
 .service-description {
   display: none;
@@ -83,7 +89,7 @@
   min-width: 280px;
   min-height: 250px;
   text-align: center;
-  padding-top: 60px;
+  padding-top: 80px;
   text-align: center;
   position: absolute;
   background: #f3f3f3;
@@ -91,7 +97,7 @@
 
 .service-item:hover .service-title {
   color: #000000;
-  transform: translateX(280px);
+  transform: translateX(290px);
   position: absolute;
   font-size: 10px;
   min-width: 280px;

@@ -19,10 +19,11 @@ function AboutNew() {
           whileInView={"show"}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <p className="about_header_text">
-          Your vision and our experience,
-            we innovate.
-          </p>
+            <div className="head-title">
+    <h3>
+    Shaping engaging digital experiences through innovative UI/UX design
+    </h3>
+    </div>
         </motion.div>
 
         <span className="chevron_icon">
