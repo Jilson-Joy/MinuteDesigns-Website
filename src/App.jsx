@@ -8,7 +8,6 @@ import Footer from "./components/footer/Footer";
 
 import Home from "./Pages/Home";
 import About from "./Pages/About";
-import Work from "./Pages/Work";
 import Gallery from "./Pages/Gallery";
 import Careers from "./Pages/Careers";
 import ReachUs from "./Pages/ReachUs";
@@ -143,7 +142,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={<LandingPage />} />
                   <Route path="/about" element={<AboutNew />} />
-                  <Route path="/work" element={<Work />} />
+                  {/* <Route path="/work" element={<Work />} /> */}
                   <Route path="/gallery" element={<Gallery />} />
                   <Route path="/careers" element={<Careers />} />
                   <Route path="/technologies" element={<Careers />} />

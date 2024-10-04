@@ -91,14 +91,16 @@ function Gallery() {
               <div className="element-item1 imag p-2">
   <img src={groupPic} alt="Placeholder" width="300" />
 </div>
-              <div className="element-item1 video p-2">
-                <video controls width="300">
+              <div className="element-item1  video p-2">
+                <p>Coming Soon !</p>
+                {/* <video controls width="300">
                   <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-                </video>
+                </video> */}
               </div>
               {/* 3D videos */}
               <div className="element-item1 videos3d">
-                <GalleryMinute3D/>
+              <p>Coming Soon !</p>
+                {/* <GalleryMinute3D/> */}
               </div>
             </div>
         </div>
