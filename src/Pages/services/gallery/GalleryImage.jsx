@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { GetAllGalleryImageApi } from "../../../api/frontendApis/galleryApi";
+import './GalleryImage.css';
 
 function GalleryImage() {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
   const [galleries, setGalleries] = useState([]);
-  const [loading, setLoading] = useState(true); // Loading state added
+  const [loading, setLoading] = useState(true);
 
   // Fetch galleries from the API
   const fetchGalleries = async () => {
@@ -28,21 +29,24 @@ function GalleryImage() {
     return <div>Loading...</div>;
   }
 
-  // Filter galleries to include only those with valid imageUrl
+  // Filter galleries to only include those with an imageUrl
   const filteredGalleries = galleries.filter(gallery => gallery.imageUrl);
 
-  // Render only if there are valid images
   return (
-    <div className='row d-flex'>
-      {filteredGalleries.map((gallery, idx) => (
-        <div key={idx} className="element-item col-md-3 image p-2">
-          <img
-            src={`${baseUrl}${gallery.imageUrl}`}
-            alt={`Gallery Image ${idx + 1}`}
-            style={{ width: "300px", height: "300px" }}
-          />
-        </div>
-      ))}
+    <div className='row gallery '>
+      {filteredGalleries.length > 0 ? (
+        filteredGalleries.map((gallery, idx) => (
+          <div key={idx} className="element-item col-12 col-sm-6 col-md-4 col-lg-3 p-2">
+            <img
+              src={`${baseUrl}${gallery.imageUrl}`}
+              alt={`Gallery Image ${idx + 1}`}
+              className="gallery-image"
+            />
+          </div>
+        ))
+      ) : (
+        <div>No galleries available</div>
+      )}
     </div>
   );
 }

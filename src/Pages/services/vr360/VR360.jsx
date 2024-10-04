@@ -1,5 +1,5 @@
 import { Eye, MoveRight } from 'lucide-react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 // import dreamflowerVR from '../../../assets/images/MAGNUM OPUS.mp4'
 import dreamflowerVR from '../../../assets/images/dreamflowerVR360.gif'
@@ -12,6 +12,12 @@ import { Carousel } from 'react-bootstrap'
 
 
 function VR360() {
+
+    useEffect(() => {
+        // Scroll to the top when the component is mounted
+        window.scrollTo(0, 0);
+      }, []);
+
     return (
         <>
             {/* section1 */}

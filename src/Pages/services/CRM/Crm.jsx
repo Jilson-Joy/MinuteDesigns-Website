@@ -1,12 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Crm.css'
 import { MoveRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../../variants";
+
+
 function Crm() {
+
+  useEffect(() => {
+    // Scroll to the top when the component is mounted
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <section className='full-container'>
-        <div className="container">
+        <motion.div className="container"
+         variants={fadeIn("down", 0.2)}
+         initial="hidden"
+         whileInView={"show"}
+         viewport={{ once: false, amount: 0.2 }}>
           <div className='row text-center'>
             <div className="head-title mt-5">
               <h3>
@@ -25,15 +39,20 @@ function Crm() {
             </div>
 
           </div>
-        </div>
+        </motion.div>
       </section>
 
       <section className='crm_box container'>
-        <div className='crm_section1'>
+        <div className='crm_section1'  >
           <div className='CRM_text'>
-            <h3>At every point of the client experience, Minute Designs makes sure that all of your teams remain in sync.</h3>
+            <h3>Unlocking business potential with synchronized CRM and ERP for smooth operations.</h3>
           </div>
-          <div className="row mt-5 mb-5">
+          <motion.div className="row mt-5 mb-5"
+           variants={fadeIn("right", 0.2)}
+           initial="hidden"
+           whileInView={"show"}
+           viewport={{ once: false, amount: 0.2 }}
+          >
             <div className="crm_section1_img col-md-6">
               <img src="https://i.pinimg.com/564x/d0/38/43/d03843f15d986adb51d862cda2e8376a.jpg" alt="" />
             </div>
@@ -48,8 +67,13 @@ function Crm() {
                 </p>
               </div>
             </div>
-          </div>
-          <div className="row mt-5 mb-5">
+          </motion.div>
+          <motion.div className="row mt-5 mb-5"
+           variants={fadeIn("left", 0.2)}
+           initial="hidden"
+           whileInView={"show"}
+           viewport={{ once: false, amount: 0.2 }}
+          >
             <div className="crm_section1_text col-md-6">
               <div>
                 <h5>Support Desk</h5>
@@ -65,7 +89,7 @@ function Crm() {
               <img src="https://i.pinimg.com/564x/d7/59/7a/d7597a3edee32d207fb45a6b9ce644bd.jpg" alt="" />
             </div>
 
-          </div>
+          </motion.div>
           {/* <div className="row mt-5 mb-5">
             <div className="crm_section1_img col-md-6">
               <img src="https://i.pinimg.com/564x/d0/38/43/d03843f15d986adb51d862cda2e8376a.jpg" alt="" />
@@ -83,6 +107,37 @@ function Crm() {
             </div>
           </div> */}
         </div>
+      </section>
+
+          {/* section 7 contact us */}
+    <section >
+        <motion.div className="container mt-5 mb-5 text-center bg-black text-white p-2"
+         variants={fadeIn("up", 0.2)}
+         initial="hidden"
+         whileInView={"show"}
+         viewport={{ once: false, amount: 0.2 }}
+        >
+          <div className="benefit-title">
+            <h3>  Get Started Today ! </h3>
+          </div>
+          <div className="section-footer-para">
+            <p>
+              Ready to take your business to the next level with our CRM / ERP service? Contact us to schedule a free consultation.
+            </p>
+          </div>
+
+          <div className="head-btn text-center">
+            <Link to="/reachUs" style={{ textDecoration: "none" }}>
+              <button className='service-footer-btn'>
+                Let's Talk
+                <span>
+                  <MoveRight />
+                </span>
+              </button>
+            </Link>
+          </div>
+        </motion.div>
+
       </section>
 
     </>

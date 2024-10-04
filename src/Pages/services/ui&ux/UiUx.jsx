@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import UiUx from '../../../assets/images/UI-UX_differences.gif'
 import './UiUx.css'
 // import figma from '../../assets/images/figma.png'
@@ -8,7 +8,10 @@ import {  MoveRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function Uiux() {
-
+  useEffect(() => {
+    // Scroll to the top when the component is mounted
+    window.scrollTo(0, 0);
+  }, []);
   
   return (
 
