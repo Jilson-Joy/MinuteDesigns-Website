@@ -50,10 +50,7 @@
 }
 
 /* Loading and empty state message styling */
-p {
-    font-size: 1.2rem; /* Slightly larger font for messages */
-    color: #999; /* Gray color for messages */
-}
+
 
 /* Responsive adjustments */
 @media (max-width: 768px) {

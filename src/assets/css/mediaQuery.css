@@ -31,7 +31,10 @@
   }
   .MDesign
   {
-    width: 230px;
+    width: 240px;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
   }
 
 }
