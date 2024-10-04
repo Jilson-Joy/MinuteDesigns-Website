@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 // import "./WebApplication.css";
 import './Architecture3D.css';
 
@@ -22,7 +22,14 @@ import razorpay from "../../../assets/images/razorpay .png";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../../variants";
 import CodingWorkShop from "../../../assets/images/CodeWorkSpace.gif";
+
+
 function Architecture3D() {
+
+    useEffect(() => {
+        // Scroll to the top when the component is mounted
+        window.scrollTo(0, 0);
+      }, []);
     return (
         <div className="webApplication_container">
             {/* section 1 */}
@@ -525,26 +532,36 @@ function Architecture3D() {
                 </div>
             </div>
 
-            {/* section 7 contact us */}
+      {/* section 7 contact us */}
+    <section >
+        <motion.div className="container mt-5 mb-5 text-center bg-black text-white p-2"
+         variants={fadeIn("down", 0.2)}
+         initial="hidden"
+         whileInView={"show"}
+         viewport={{ once: false, amount: 0.2 }}
+        >
+          <div className="benefit-title">
+            <h3>  Get Started Today ! </h3>
+          </div>
+          <div className="section-footer-para">
+            <p>
+              Ready to take your business to the next level with our Architectural 3D Rendering service? Contact us to schedule a free consultation.
+            </p>
+          </div>
 
-            <div className="container mt-5 mb-5">
-                <motion.div
-                    className="contactUs_box"
-                    variants={fadeIn("up", 0.2)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.2 }}
-                >
-                    <h1>Get Started Today!</h1>
-                    <p>
-                        Ready to take your business to the next level with a custom web
-                        application? Contact us to schedule a free consultation.
-                    </p>
-                    <Link to="/reachUs" style={{ textDecoration: "none" }}>
-                        <button>Reach Us</button>
-                    </Link>
-                </motion.div>
-            </div>
+          <div className="head-btn text-center">
+            <Link to="/reachUs" style={{ textDecoration: "none" }}>
+              <button className='service-footer-btn'>
+                Let's Talk
+                <span>
+                  <MoveRight />
+                </span>
+              </button>
+            </Link>
+          </div>
+        </motion.div>
+
+      </section>
         </div>)
 }
 

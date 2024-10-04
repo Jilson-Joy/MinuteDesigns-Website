@@ -24,6 +24,11 @@ function Gallery() {
   }, []);
 
   useEffect(() => {
+    // Scroll to the top when the component is mounted
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     filterKey === '*'
       ? isotope.current.arrange({ filter: `*` })
       : isotope.current.arrange({ filter: `.${filterKey}` });
@@ -80,17 +85,17 @@ function Gallery() {
               <div className="element-item image p-2">
                 <GalleryImage/>
               </div>
-              <div className="element-item video p-2">
+              {/* <div className="element-item video p-2">
               <GalleryVideo />
-              </div>
+              </div> */}
               {/* <div className="element-item image p-2">
                 <img src="https://via.placeholder.com/300x200" alt="Placeholder" />
               </div> */}
-              {/* <div className="element-item video p-2">
+              <div className="element-item video p-2">
                 <video controls width="300">
                   <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
                 </video>
-              </div> */}
+              </div>
               {/* 3D videos */}
               <div className="element-item videos3d">
                 <GalleryMinute3D/>

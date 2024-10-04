@@ -25,43 +25,53 @@ function Portfolio() {
         fetchPortfolios();
     }, []);
 
+    useEffect(() => {
+        // Scroll to the top when the component is mounted
+        window.scrollTo(0, 0);
+      }, []);
+
     return (
-        <div className="container">
-            <section className="portfolio mt-5">
-                <div>
-                    <h1>Works</h1>
-                </div>
-                <div className="row d-flex justify-content-center align-items-center">
-                    {loading ? ( // Show loading message while fetching
-                        <p>Loading portfolios...</p>
-                    ) : portfolios.length > 0 ? (
-                        portfolios.map((item) => (
-                            <div key={item._id} className="col-md-6 d-flex justify-content-center align-items-center flex-column">
-                                <div className="portfolio_card">
-                                    <Card.Body>
-                                        <Card.Title className="portfolio_card_header">{item.title}</Card.Title>
-                                        {item.imageUrl ? (
-                                            <img
-                                                src={`${baseUrl}${item.imageUrl}`} // Use the API base URL to display the image
-                                                alt="Uploaded"
-                                                style={{ width: "300px" }}
-                                            />
-                                        ) : (
-                                            <p>No uploaded files available.</p>
-                                        )}
-                                        <Card.Text className="portfolio_card_text">
-                                            {item.description}
-                                        </Card.Text>
-                                    </Card.Body>
+       <>
+
+<h1 style={{ height:"100vh", display:'flex', alignItems:'center', justifyContent:'center'}}>🧐 Portfolio coming soon..... 🧐</h1>
+
+            {/* <div className="container">
+                <section className="portfolio mt-5">
+                    <div>
+                        <h1>Works</h1>
+                    </div>
+                    <div className="row d-flex justify-content-center align-items-center">
+                        {loading ? ( // Show loading message while fetching
+                            <p>Loading portfolios...</p>
+                        ) : portfolios.length > 0 ? (
+                            portfolios.map((item) => (
+                                <div key={item._id} className="col-md-6 d-flex justify-content-center align-items-center flex-column">
+                                    <div className="portfolio_card">
+                                        <Card.Body>
+                                            <Card.Title className="portfolio_card_header">{item.title}</Card.Title>
+                                            {item.imageUrl ? (
+                                                <img
+                                                    src={`${baseUrl}${item.imageUrl}`} // Use the API base URL to display the image
+                                                    alt="Uploaded"
+                                                    style={{ width: "300px" }}
+                                                />
+                                            ) : (
+                                                <p>No uploaded files available.</p>
+                                            )}
+                                            <Card.Text className="portfolio_card_text">
+                                                {item.description}
+                                            </Card.Text>
+                                        </Card.Body>
+                                    </div>
                                 </div>
-                            </div>
-                        ))
-                    ) : (
-                        <p>No Portfolios available</p>
-                    )}
-                </div>
-            </section>
-        </div>
+                            ))
+                        ) : (
+                            <p>No Portfolios available</p>
+                        )}
+                    </div>
+                </section>
+            </div> */}
+       </>
     );
 }
 

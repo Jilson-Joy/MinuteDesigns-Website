@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./AboutNew.css";
 import { ChevronDown } from "lucide-react";
 import minuteLogo from "../../assets/images/ABT1.jpg";
@@ -10,6 +10,13 @@ import Mlogo from "../../assets/images/M.png";
 import MDR from "../../assets/images/MReveal.mp4";
 
 function AboutNew() {
+
+  
+  useEffect(() => {
+    // Scroll to the top when the component is mounted
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
   <div className="container">
       <div className="aboutNew">

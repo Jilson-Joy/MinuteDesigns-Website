@@ -46,6 +46,11 @@ function LandingPage() {
     fetchServices();
   }, []);
 
+  useEffect(() => {
+    // Scroll to the top when the component is mounted
+    window.scrollTo(0, 0);
+  }, []);
+
 
   const disableRightClick = (e) => {
     e.preventDefault();
