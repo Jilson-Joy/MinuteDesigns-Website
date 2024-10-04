@@ -20,7 +20,8 @@ import Technologies from "../components/technologies/Technologies";
 import Melement from "../components/Melement";
 import CircleCanvas from "../components/CircleCanvas";
 import { listAllServices } from "../api/frontendApis/pagesApi";
-
+// import MDRe from "../assets/images/Mreveal.gif";
+import MDR from "../assets/images/MReveal.mp4";
 function LandingPage() {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -56,10 +57,12 @@ function LandingPage() {
           <div className="container d-flex justify-content-center align-items-center ms-auto">
             <div className="row d-flex align-items-center">
               <div className="col-md-5  p-5">
-                <img src={Mhome} alt="Mhome" className="MDesign" />
+              <video src={MDR} alt="Mhome" className="MDesign" type="video/mp4" autoPlay muted playsInline loop></video>
+
+                {/* <img src={MDRe} alt="Mhome" className="MDesign" /> */}
               </div>
-              <div className="col-md-7 p-5">
-                <h1 className="hero-text">
+              <div className="col-md-7 p-5 Landing_text">
+                <h1 className="hero-text ">
                   Design
                   <br />
                   Innovate

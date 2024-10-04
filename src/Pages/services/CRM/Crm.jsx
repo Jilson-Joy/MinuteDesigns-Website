@@ -28,7 +28,6 @@ function Crm() {
         </div>
       </section>
 
-
       <section className='crm_box container'>
         <div className='crm_section1'>
           <div className='CRM_text'>

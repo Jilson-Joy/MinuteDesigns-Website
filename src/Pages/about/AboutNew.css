@@ -13,7 +13,6 @@
 
 .about_header_text {
   font-size: 70px; /* Large size for bigger screens */
-  margin: 10px;
   line-height: 1.2;
 }
 
@@ -67,7 +66,6 @@
   background-color: #0b141c;
   padding: 20px 10px;
   color: #f9f9f9;
-  min-height: 100vh;
 }
 .about_vision_text p {
   text-align: justify;
